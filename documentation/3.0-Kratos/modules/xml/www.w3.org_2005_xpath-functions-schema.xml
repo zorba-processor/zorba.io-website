@@ -1,0 +1,28 @@
+<doxygen><compounddef id="www.w3.org_2005_xpath-functions-schema" kind="schema"><detaileddescription><para><h3>Content of www.w3.org_2005_xpath-functions schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" targetNamespace="http://www.w3.org/2005/xpath-functions" elementFormDefault="qualified"&gt;
+
+  &lt;xs:element name="analyze-string-result" type="fn:analyze-string-result-type"/&gt;
+  &lt;xs:element name="match" type="fn:match-type"/&gt;
+  &lt;xs:element name="non-match" type="xs:string"/&gt;
+  &lt;xs:element name="group" type="fn:group-type"/&gt;
+
+  &lt;xs:complexType name="analyze-string-result-type" mixed="true"&gt;
+    &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
+      &lt;xs:element ref="fn:match"/&gt;
+      &lt;xs:element ref="fn:non-match"/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="match-type" mixed="true"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element ref="fn:group" minOccurs="0" maxOccurs="unbounded"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="group-type" mixed="true"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element ref="fn:group" minOccurs="0" maxOccurs="unbounded"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attribute name="nr" type="xs:positiveInteger"/&gt;
+  &lt;/xs:complexType&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

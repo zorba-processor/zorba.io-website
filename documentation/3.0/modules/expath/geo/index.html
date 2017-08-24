@@ -1,0 +1,2028 @@
+<!DOCTYPE html><html lang="en" class="js cssanimations ng-scope" ng-app="28.ioApp" prefix="og: http://ogp.me/ns#" ng-controller="MainCtrl"><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Zorba - The NoSQL Query Processor</title>
+        <meta name="description" content="Zorba - The NoSQL Query Processor">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+
+        <meta content="28.io" name="apple-mobile-web-app-title">
+        <link href="/images/iphone-icon.png" rel="apple-touch-icon-precomposed">
+        <link href="/favicon.png" rel="icon" type="image/png">
+
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="http://www.zorba.io/blog/atom.xml">
+        <base href="/">
+        <link rel="stylesheet" href="/styles/index.css">
+    <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\:form{display:block;}</style></head>
+    <body ready="" class="" ng-cloak="undefined">
+        <!--[if lt IE 9]>
+            <script type="text/javascript">location.href = "/outdated";</script>
+        <![endif]-->
+        <div class="navbar navbar-default navbar-fixed-top" id="top-menu" navbar-toggle="">
+            <div class="container">
+                <a href="/home" id="logo">
+<svg width="172px" height="44px" viewBox="0 0 172 44" version="1.1" xmlns="http://www.w3.org/2000/svg" style="margin-right: 30px">
+    <defs></defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="g3354-1-3-0" transform="translate(70.000000, 3.000000)" fill="#3498DB">
+            <path d="M36.8599281,6.08695652 C23.7462235,7.46138534 17.3241713,7.87186266 12.0855118,12.5394913 C9.61392853,8.89602738 2.41221529,6.6246591 0,6.89251341 L0.0401259499,9.84221332 C11.3218642,17.172198 8.15927521,31.2798979 5.60530924,40 L18.0693794,40 C15.1069036,30.4981162 15.7891093,23.8890354 16.4644797,20.4999181 C17.5216924,12.0444371 30.0443188,9.56353073 37,7.95199463 L36.8599281,6.08695652 Z" id="path3217-2-16-8-3-4-8-9"></path>
+            <path d="M17.2092989,4.7826087 C17.2112417,6.18001565 16.3916489,7.47202866 15.0597079,8.1712421 C13.7277668,8.87045553 12.0861867,8.87045553 10.7542456,8.1712421 C9.42230457,7.47202866 8.60271176,6.18001565 8.60465461,4.7826087 C8.60271176,3.38520174 9.42230457,2.09318873 10.7542456,1.39397529 C12.0861867,0.694761858 13.7277668,0.694761858 15.0597079,1.39397529 C16.3916489,2.09318873 17.2112417,3.38520174 17.2092989,4.7826087 L17.2092989,4.7826087 Z" id="path3830-2-4-8-2-3-6-0-4" transform="translate(12.906977, 4.782609) rotate(-12.486691) translate(-12.906977, -4.782609) "></path>
+        </g>
+        <path d="M0.896,35.2271939 L0.896,42.1301694 L34.4088328,42.1301694 L34.4088328,34.7818406 L12.5308539,34.7818406 L33.8521412,9.28536648 L33.8521412,2.38239095 L2.56607473,2.38239095 L2.56607473,9.73071974 L22.2172873,9.73071974 L0.896,35.2271939 Z M37.8046514,27.7675268 C37.8046514,30.0685301 38.1572192,32.1468246 38.8623654,34.0024724 C39.5675116,35.8581203 40.5695464,37.4446754 41.8684999,38.7621854 C43.1674534,40.0796954 44.7261743,41.0910083 46.5447092,41.7961545 C48.3632441,42.5013007 50.4044261,42.8538685 52.6683165,42.8538685 C54.9322069,42.8538685 56.982667,42.5013007 58.8197584,41.7961545 C60.6568498,41.0910083 62.2248487,40.0796954 63.5238022,38.7621854 C64.8227557,37.4446754 65.8247905,35.8581203 66.5299367,34.0024724 C67.2350829,32.1468246 67.5876507,30.0685301 67.5876507,27.7675268 C67.5876507,25.4665234 67.2350829,23.3789509 66.5299367,21.5047466 C65.8247905,19.6305422 64.8227557,18.034709 63.5238022,16.717199 C62.2248487,15.399689 60.6568498,14.379098 58.8197584,13.6553953 C56.982667,12.9316927 54.9322069,12.5698468 52.6683165,12.5698468 C50.4044261,12.5698468 48.3632441,12.9316927 46.5447092,13.6553953 C44.7261743,14.379098 43.1674534,15.399689 41.8684999,16.717199 C40.5695464,18.034709 39.5675116,19.6305422 38.8623654,21.5047466 C38.1572192,23.3789509 37.8046514,25.4665234 37.8046514,27.7675268 Z M45.7096718,27.7675268 C45.7096718,26.6170251 45.821009,25.4850969 46.0436867,24.3717082 C46.2663645,23.2583195 46.6467666,22.2748408 47.1849045,21.4212428 C47.7230424,20.5676448 48.4374561,19.8717873 49.328167,19.3336494 C50.218878,18.7955115 51.33225,18.5264466 52.6683165,18.5264466 C54.0043829,18.5264466 55.1270331,18.7955115 56.0363005,19.3336494 C56.945568,19.8717873 57.6692598,20.5676448 58.2073977,21.4212428 C58.7455355,22.2748408 59.1259376,23.2583195 59.3486154,24.3717082 C59.5712931,25.4850969 59.6826303,26.6170251 59.6826303,27.7675268 C59.6826303,28.9180285 59.5712931,30.0406786 59.3486154,31.1355108 C59.1259376,32.230343 58.7455355,33.2138217 58.2073977,34.0859762 C57.6692598,34.9581306 56.945568,35.6539882 56.0363005,36.1735696 C55.1270331,36.693151 54.0043829,36.9529378 52.6683165,36.9529378 C51.33225,36.9529378 50.218878,36.693151 49.328167,36.1735696 C48.4374561,35.6539882 47.7230424,34.9581306 47.1849045,34.0859762 C46.6467666,33.2138217 46.2663645,32.230343 46.0436867,31.1355108 C45.821009,30.0406786 45.7096718,28.9180285 45.7096718,27.7675268 Z" id="Zo" fill="#333333"></path>
+        <path d="M109.28037,2.38239095 L109.28037,42.1301694 L116.795707,42.1301694 L116.795707,38.456005 L116.907045,38.456005 C117.760643,40.0518622 119.022465,41.1837904 120.692548,41.8518236 C122.362631,42.5198569 124.255363,42.8538685 126.370802,42.8538685 C127.818207,42.8538685 129.247034,42.5569693 130.657327,41.9631619 C132.067619,41.3693546 133.338719,40.4601008 134.470664,39.2353732 C135.602609,38.0106456 136.521141,36.4426467 137.226287,34.5313294 C137.931434,32.6200121 138.284001,30.3468776 138.284001,27.7118576 C138.284001,25.0768377 137.931434,22.8037031 137.226287,20.8923858 C136.521141,18.9810685 135.602609,17.4130696 134.470664,16.188342 C133.338719,14.9636144 132.067619,14.0543606 130.657327,13.4605533 C129.247034,12.866746 127.818207,12.5698468 126.370802,12.5698468 C124.58938,12.5698468 122.872931,12.9131365 121.221405,13.5997262 C119.569878,14.2863159 118.261666,15.3718536 117.296729,16.8563719 L117.185391,16.8563719 L117.185391,2.38239095 L109.28037,2.38239095 Z M130.378981,27.7675268 C130.378981,28.9551414 130.249088,30.1056258 129.989297,31.2190145 C129.729506,32.3324033 129.32127,33.3158819 128.764575,34.1694799 C128.207881,35.0230779 127.512024,35.7003792 126.676982,36.2014041 C125.841941,36.7024291 124.830628,36.9529378 123.643013,36.9529378 C122.492511,36.9529378 121.490477,36.7024291 120.636878,36.2014041 C119.78328,35.7003792 119.078145,35.0230779 118.521451,34.1694799 C117.964756,33.3158819 117.55652,32.3324033 117.296729,31.2190145 C117.036938,30.1056258 116.907045,28.9551414 116.907045,27.7675268 C116.907045,26.5427992 117.036938,25.3737586 117.296729,24.2603699 C117.55652,23.1469811 117.964756,22.1635025 118.521451,21.3099045 C119.078145,20.4563065 119.78328,19.7790052 120.636878,19.2779803 C121.490477,18.7769553 122.492511,18.5264466 123.643013,18.5264466 C124.830628,18.5264466 125.841941,18.7769553 126.676982,19.2779803 C127.512024,19.7790052 128.207881,20.4563065 128.764575,21.3099045 C129.32127,22.1635025 129.729506,23.1469811 129.989297,24.2603699 C130.249088,25.3737586 130.378981,26.5427992 130.378981,27.7675268 Z M142.960211,22.200611 L150.865231,22.200611 C151.013683,20.6418668 151.533256,19.5284948 152.423967,18.8604616 C153.314678,18.1924283 154.539388,17.8584167 156.098132,17.8584167 C156.803278,17.8584167 157.462023,17.9048072 158.074387,17.9975896 C158.686751,18.090372 159.224881,18.275934 159.688792,18.5542812 C160.152704,18.8326284 160.523828,19.2223086 160.802176,19.7233335 C161.080523,20.2243584 161.219694,20.9016597 161.219694,21.7552578 C161.256807,22.5717428 161.015577,23.1933755 160.495995,23.6201745 C159.976414,24.0469735 159.271278,24.3717071 158.380567,24.5943848 C157.489856,24.8170625 156.469265,24.9840683 155.318764,25.0954072 C154.168262,25.2067461 152.999221,25.3551957 151.811607,25.5407605 C150.623992,25.7263253 149.445673,25.976834 148.276615,26.2922941 C147.107557,26.6077542 146.06841,27.0809373 145.159142,27.7118576 C144.249875,28.3427779 143.507627,29.187085 142.932376,30.2448043 C142.357125,31.3025236 142.069504,32.6478481 142.069504,34.2808182 C142.069504,35.7653365 142.320013,37.0457143 142.821038,38.1219901 C143.322063,39.1982658 144.01792,40.0889634 144.908631,40.7941096 C145.799342,41.4992558 146.838489,42.0188294 148.026104,42.352846 C149.213719,42.6868627 150.494096,42.8538685 151.867276,42.8538685 C153.648698,42.8538685 155.392981,42.5940817 157.100177,42.0745003 C158.807373,41.5549189 160.291869,40.645665 161.553709,39.3467115 C161.590822,39.82918 161.655769,40.3023631 161.748551,40.7662751 C161.841334,41.230187 161.961949,41.6848139 162.110401,42.1301694 L170.12676,42.1301694 C169.75563,41.5363621 169.495843,40.6456645 169.347391,39.4580499 C169.198939,38.2704352 169.124715,37.0271698 169.124715,35.7282163 L169.124715,20.7532129 C169.124715,19.0089039 168.735034,17.6079108 167.955662,16.5501915 C167.17629,15.4924723 166.174255,14.6667213 164.949528,14.072914 C163.7248,13.4791067 162.370198,13.0801484 160.885679,12.8760271 C159.401161,12.6719059 157.935221,12.5698468 156.487816,12.5698468 C154.891959,12.5698468 153.305404,12.7275745 151.728103,13.0430346 C150.150802,13.3584948 148.731253,13.8873465 147.469412,14.6296056 C146.207572,15.3718647 145.168425,16.3553434 144.35194,17.580071 C143.535455,18.8047985 143.07155,20.3449632 142.960211,22.200611 Z M161.219694,28.0458726 L161.219694,30.9963379 C161.219694,31.4416934 161.173304,32.0354918 161.080521,32.777751 C160.987739,33.5200101 160.73723,34.25298 160.328988,34.9766827 C159.920745,35.7003853 159.289834,36.322018 158.436236,36.8415995 C157.582638,37.3611809 156.376485,37.6209677 154.817741,37.6209677 C154.186821,37.6209677 153.574466,37.5652991 152.980659,37.4539602 C152.386852,37.3426213 151.867278,37.1477812 151.421923,36.869434 C150.976567,36.5910868 150.623999,36.2106847 150.364209,35.7282163 C150.104418,35.2457479 149.974524,34.6519494 149.974524,33.9468033 C149.974524,33.2045441 150.104418,32.5921895 150.364209,32.1097211 C150.623999,31.6272526 150.967289,31.2282943 151.394088,30.9128342 C151.820887,30.597374 152.321904,30.3468653 152.897155,30.1613005 C153.472406,29.9757358 154.056926,29.8272862 154.650734,29.7159473 C155.281654,29.6046084 155.912565,29.5118274 156.543485,29.4376015 C157.174405,29.3633756 157.777482,29.2705946 158.352733,29.1592557 C158.927984,29.0479168 159.466113,28.9087453 159.967138,28.741737 C160.468163,28.5747287 160.885678,28.3427762 161.219694,28.0458726 Z" id="ba" fill="#333333"></path>
+    </g>
+</svg>
+                </a>
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li ng-class="navClass(menu.home.href)">
+                            <a ng-href="/home" ng-bind="menu.home.label" class="ng-binding" href="/home">Home</a>
+                        </li>
+                        <li ng-class="navClass(menu.documentation.href)" class="active">
+                            <a ng-href="/documentation" ng-bind="menu.documentation.label" class="ng-binding" href="/documentation">Documentation</a>
+                        </li>
+                        <li ng-class="navClass(menu.tryzorba.href)">
+                            <a ng-href="http://try.zorba.io/" ng-bind="menu.tryzorba.label" class="ng-binding" href="http://try.zorba.io/">Live Demo</a>
+                        </li>
+                        <li ng-class="navClass(menu.blog.href)">
+                            <a ng-href="/blog" ng-bind="menu.blog.label" class="ng-binding" href="/blog">Blog</a>
+                        </li>
+                        <li ng-class="navClass(menu.download.href)">
+                            <a ng-href="/download" ng-bind="menu.download.label" class="ng-binding" href="/download">Download</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ng-view"><div class="container ng-scope" id="documentation">
+    <div class="row">
+        <!-- ngIf: state !== 'notfound' && !debug --><div class="col-sm-4 sidebar ng-scope" ng-if="state !== 'notfound' &amp;&amp; !debug">
+            <div class="inner-sidebar">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="dropdown selected-version">
+                    <a class="dropdown-toggle">
+                        <span ng-bind="currentVersion.version" class="ng-binding">3.0</span>
+                        <span ng-bind="currentVersion.codename" class="ng-binding">Kratos</span>
+                        <span ng-show="currentVersion.latest">(latest)</span>
+                        <!--i class="fa fa-caret-down"></i-->
+                    </a>
+                    <!--ul class="dropdown-menu versions">
+                        <li ng-repeat="version in index.versions" ng-show="currentVersion.version != version.version">
+                            <a ng-href="/documentation/{{version.version}}">
+                                <span ng-bind="version.version"></span>
+                                <span ng-bind="version.codename"></span>
+                                <span ng-show="version.latest">(latest)</span>
+                            </a>
+                        </li>
+                    </ul-->
+                    <ul class="versions">
+                        <!-- ngRepeat: version in index.versions --><li ng-repeat="version in index.versions" ng-show="currentVersion.version != version.version" class="ng-scope" style="display: none; ">
+                            <a ng-href="/documentation/3.0" href="/documentation/3.0">
+                                <span ng-bind="version.version" class="ng-binding">3.0</span>
+                                <span ng-bind="version.codename" class="ng-binding">Kratos</span>
+                                <span ng-show="version.latest">(latest)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="slider">
+                <!-- Current -->
+                <div class="current" ng-show="panel.status === 'current'">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="path.split('/').length &gt; 3">
+                            <a href="/documentation/3.0/modules" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/expath/http" ng-click="next(item)" href="/documentation/3.0/modules/expath/http">
+                                <span ng-bind="item.label" class="ng-binding">HTTP</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/expath/file" ng-click="next(item)" href="/documentation/3.0/modules/expath/file">
+                                <span ng-bind="item.label" class="ng-binding">File</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope active">
+                            <a ng-href="/documentation/3.0/modules/expath/geo" ng-click="next(item)" href="/documentation/3.0/modules/expath/geo">
+                                <span ng-bind="item.label" class="ng-binding">Geo</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/expath/error-codes" ng-click="next(item)" href="/documentation/3.0/modules/expath/error-codes">
+                                <span ng-bind="item.label" class="ng-binding">Error Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Next -->
+                <div class="next slideRight" ng-show="panel.status === 'next'" next="" style="display: none; ">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="menu &amp;&amp; path.split('/').length &gt; 4">
+                            <a ng-href="/documentation/3.0" ng-click="previous()" href="/documentation/3.0">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.parent.children --><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">JSONiq</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">JSound</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">FunctX</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">W3C</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">EXPath</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Data Connectors</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Zorba</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="/documentation/3.0/modules" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/expath/http" ng-click="next(item)" href="/documentation/3.0/modules/expath/http">
+                                <span ng-bind="item.label" class="ng-binding">HTTP</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/expath/file" ng-click="next(item)" href="/documentation/3.0/modules/expath/file">
+                                <span ng-bind="item.label" class="ng-binding">File</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/expath/geo" ng-click="next(item)" href="/documentation/3.0/modules/expath/geo">
+                                <span ng-bind="item.label" class="ng-binding">Geo</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/expath/error-codes" ng-click="next(item)" href="/documentation/3.0/modules/expath/error-codes">
+                                <span ng-bind="item.label" class="ng-binding">Error Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Previous -->
+                <div class="previous slideLeft" ng-show="panel.status === 'previous'" previous="" style="display: none; ">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="menu &amp;&amp; path.split('/').length &gt; 3">
+                            <a ng-href="/documentation/3.0/modules" ng-click="previous()" href="/documentation/3.0/modules">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/expath/http" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">HTTP</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/expath/file" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">File</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/expath/geo" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Geo</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/expath/error-codes" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Error Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="/documentation/3.0" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in panel.previous.children -->
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="content col-sm-8" ng-switch="" on="state" ng-class="{ 'col-sm-8': state !== 'notfound', 'col-sm-12': state === 'notfound' }">
+            
+                <ol class="breadcrumb">
+                    <li>
+                        <a ng-href="/documentation/latest" class="ng-binding" href="/documentation/latest">
+                            Zorba 3.0 Documentation
+                        </a>
+                    </li>
+                    <!-- ngRepeat: crumb in getBreadCrumbs() --><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/modules" href="/documentation/latest/modules">
+                            <span ng-bind="crumb.label" class="ng-binding">Modules</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/modules/expath" href="/documentation/latest/modules/expath">
+                            <span ng-bind="crumb.label" class="ng-binding">EXPath</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope active">
+                        <a ng-href="/documentation/latest/modules/expath/geo" href="/documentation/latest/modules/expath/geo">
+                            <span ng-bind="crumb.label" class="ng-binding">Geo</span>
+                        </a>
+                    </li>
+                </ol>
+            
+            <!-- ngSwitchWhen: loading -->
+            <!-- ngSwitchWhen: zorba -->
+            <!-- ngSwitchWhen: api -->
+            <!-- ngSwitchWhen: modules --><div ng-switch-when="modules" class="ng-scope">
+                <h1 class="ng-binding">http://expath.org/ns/geo</h1>
+                <p>View as <a ng-href="/documentation/3.0-Kratos/modules/xml/expath.org_ns_geo.xml" target="_blank" href="/documentation/3.0-Kratos/modules/xml/expath.org_ns_geo.xml">XML</a> or <a ng-href="/documentation/3.0-Kratos/modules/expath.org_ns_geo.json" target="_blank" href="/documentation/3.0-Kratos/modules/expath.org_ns_geo.json">JSON</a>.</p>
+                <div ng-bind-html-unsafe="normalizeAnchor(content.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Function library providing geo processing using Simple Features api API GMLSF format.
+ It uses the GEOS third party library, license LGPL. Version 3.2.2 or above is required.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ </p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">The data format supported is GML SF profile 0/1.
+ This is a subset of GML, and covers the basic geometries of Point, Line and Surface and collections of those.
+ GMLSF nodes have the namespace "http://www.opengis.net/gml".</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ </p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">Possible GMLSF geometric structures are:</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0"></p><dl>
+  <dt><b>Point</b></dt>
+  <pre class="ace-static" ace-mode="xquery">&lt;gml:Point [srsDimension='2|3']?&gt;
+    &lt;gml:pos [srsDimension='2|3']?&gt;double_x double_y &lt;/gml:pos&gt;
+  &lt;/gml:Point&gt;</pre>
+  <dt><b>LineString</b></dt>
+  <pre class="ace-static" ace-mode="xquery">&lt;gml:LineString [srsDimension='2|3']?&gt;
+    &lt;gml:posList [srsDimension='2|3']?&gt; double_x1 double_y1 double_x2 double_y2 ... &lt;/gml:posList&gt;
+  &lt;/gml:LineString&gt;</pre>
+  <dt><b>Curve</b></dt>
+  <pre class="ace-static" ace-mode="xquery">&lt;gml:Curve [srsDimension='2|3']?&gt;
+    &lt;gml:segments&gt;
+    [&lt;gml:LineStringSegment interpolation="linear" [srsDimension='2|3']?&gt;
+       &lt;gml:posList [srsDimension='2|3']?&gt; double_x1 double_y1 double_x2 double_y2 ... &lt;/gml:posList&gt;;
+     &lt;gml:LineStringSegment&gt;]*
+    &lt;/gml:segments&gt;
+  &lt;/gml:Curve&gt;</pre>
+  <dt><b>LinearRing</b></dt>
+  <pre class="ace-static" ace-mode="xquery">&lt;gml:LinearRing [srsDimension='2|3']?&gt;
+    &lt;gml:posList [srsDimension='2|3']?&gt; double_x1 double_y1 double_x2 double_y2 ... &lt;/gml:posList&gt;
+  &lt;/gml:LinearRing&gt;</pre>
+  <dt><b>Surface</b></dt>
+  <pre class="ace-static" ace-mode="xquery">&lt;gml:Surface [srsDimension='2|3']?&gt;
+    &lt;gml:patches&gt;
+    [&lt;gml:PolygonPatch [srsDimension='2|3']?&gt;
+       &lt;gml:exterior&gt;
+         &lt;gml:LinearRing&gt; ... &lt;/gml:LinearRing&gt;
+       &lt;/gml:exterior&gt;
+       &lt;gml:interior&gt;
+         &lt;gml:LinearRing&gt; ... &lt;/gml:LinearRing&gt;
+       &lt;/gml:interior&gt;]*
+     &lt;/gml:PolygonPatch&gt;]*
+    &lt;/gml:patches&gt;
+  &lt;/gml:Surface&gt;</pre>
+  <dt><b>Polygon</b></dt>
+  <pre class="ace-static" ace-mode="xquery">&lt;gml:Polygon [srsDimension='2|3']?&gt;
+    &lt;gml:exterior&gt;
+      &lt;gml:LinearRing&gt; ... &lt;/gml:LinearRing&gt;
+    &lt;/gml:exterior&gt;
+    [&lt;gml:interior&gt;
+       &lt;gml:LinearRing&gt; ... &lt;/gml:LinearRing&gt;
+     &lt;/gml:interior&gt;]*
+  &lt;/gml:Polygon&gt;</pre>
+  <dt><b>MultiPoint</b></dt>
+  <pre class="ace-static" ace-mode="xquery">&lt;gml:MultiPoint [srsDimension='2|3']?&gt;
+    [&lt;gml:Point&gt; ... &lt;/gml:Point&gt;]*
+  &lt;/gml:MultiPoint&gt;</pre>
+  <dt><b>MultiCurve</b></dt>
+  <pre class="ace-static" ace-mode="xquery">&lt;gml:MultiCurve [srsDimension='2|3']?&gt;
+    [&lt;gml:LineString&gt; ... &lt;/gml:LineString&gt;]*
+  &lt;/gml:MultiCurve&gt;</pre>
+  <dt><b>MultiSurface</b></dt>
+  <pre class="ace-static" ace-mode="xquery">&lt;gml:MultiSurface [srsDimension='2|3']?&gt;
+    [&lt;gml:Polygon&gt; ... &lt;/gml:Polygon&gt;]*
+  &lt;/gml:MultiSurface&gt;
+  </pre>
+  <dt><b>MultiGeometry (this is from GML 3 schema)</b></dt>
+  <pre class="ace-static" ace-mode="xquery">&lt;gml:MultiGeometry [srsDimension='2|3']?&gt;
+     [&lt;gml:geometryMember&gt;
+          ...one geometry...
+     &lt;/gml:geometryMember&gt;]*
+    [&lt;gml:geometryMembers&gt;
+      ...a list of geometries...
+    &lt;/gml:geometryMembers&gt;]?
+  &lt;/gml:MultiGeometry&gt;</pre>
+ </dl><p></p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Note: When using gml:posList, it is possible to replace this element with a list of gml:pos.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Note: XLink referencing is not supported.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Note: The <i>srsDimension</i> optional attribute specifies the coordinate dimension. The default value is 2 (for 2D).
+    Another possible value is 3 (for 3D) in which case every point has to have three double values (x, y, z).
+    This is an extension borrowed from GML 3 spec.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">The operations made on 3D objects work only on x-y coordinates, the z coordinate is not taken into account.
+ When returning the result, the original z-coordinates of the points are preserved.
+ For computed points, the z-coordinate is interpolated.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ </p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">The coordinates values have to be in cartesian coordinates, not in polar coordinates.
+ Converting between coordinate systems and doing projections from polar to cartesian is outside the scope of this geo module.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ </p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">For operations between two geometries, the DE-9IM matrix is used. The DE-9IM matrix is defined like this:</p>
+ <table xmlns:xqdoc="http://www.xqdoc.org/1.0">
+	<tbody><tr>
+		 <td>
+		 </td><td><b>Interior</b></td>
+		 <td><b>Boundary</b></td>
+		 <td><b>Exterior</b></td>
+		</tr>
+		<tr>
+		 <td><b>Interior</b></td>
+		 <td>dim(intersection of interior1 and interior2)</td>
+		 <td>dim(intersection of interior1 and boundary2)</td>
+		 <td>dim(intersection of interior1 and exterior2)</td>
+		</tr>
+		<tr>
+		 <td><b>Boundary</b></td>
+		 <td>dim(intersection of boundary1 and interior2)</td>
+		 <td>dim(intersection of boundary1 and boundary2)</td>
+		 <td>dim(intersection of boundary1 and exterior2)</td>
+		</tr>
+		<tr>
+		 <td><b>Exterior</b></td>
+		 <td>dim(intersection of exterior1 and interior2)</td>
+		 <td>dim(intersection of exterior1 and boundary2)</td>
+		 <td>dim(intersection of exterior1 and exterior2)</td>
+		</tr>
+	</tbody></table>
+	<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+	</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">The values in the DE-9IM can be T, F, *, 0, 1, 2.</p>
+  <p xmlns:xqdoc="http://www.xqdoc.org/1.0">- T means the intersection gives a non-empty result.</p>
+  <p xmlns:xqdoc="http://www.xqdoc.org/1.0">- F means the intersection gives an empty result.</p>
+  <p xmlns:xqdoc="http://www.xqdoc.org/1.0">- * means any result.</p>
+  <p xmlns:xqdoc="http://www.xqdoc.org/1.0">- 0, 1, 2 gives the expected dimension of the result (point, curve, surface)</p>
+  <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+</p></div>
+                <div ng-show="content.functions.length &gt; 0" class="function-summary">
+                    <h2>Function Summary</h2>
+                    <table class="table">
+                        <tbody><!-- ngRepeat: fn in content.functions --><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=area-1" ng-bind="fn.name" class="ng-binding">area</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as xs:double external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns the area of this geometry.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=as-binary-1" ng-bind="fn.name" class="ng-binding">as-binary</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as xs:base64Binary external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the Well-known Binary Representation of Geometry.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=as-text-1" ng-bind="fn.name" class="ng-binding">as-text</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as xs:string external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the Well-known Text Representation of Geometry.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=boundary-1" ng-bind="fn.name" class="ng-binding">boundary</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as element(*)* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  A boundary is a set that represents the limit of an geometry.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=bounding-polygons-2" ng-bind="fn.name" class="ng-binding">bounding-polygons</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($polyhedral-surface as element(gml:Surface), $polygon as element(*)) as element(gml:PolygonPatch)* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the list of PolygonPatches that share a boundary with the given $polygon.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=buffer-2" ng-bind="fn.name" class="ng-binding">buffer</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*), $distance as xs:double) as element(*) external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns a polygon that represents all Points whose distance
+   from this geometric object is less than or equal to distance.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=centroid-1" ng-bind="fn.name" class="ng-binding">centroid</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as element(gml:Point) external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns a Point that is the mathematical centroid of this geometry.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=contains-2" ng-bind="fn.name" class="ng-binding">contains</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if geometry1 contains geometry2.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=convex-hull-1" ng-bind="fn.name" class="ng-binding">convex-hull</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as element(*) external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns the smallest convex Polygon that contains all the points in the Geometry.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=coordinate-dimension-1" ng-bind="fn.name" class="ng-binding">coordinate-dimension</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as xs:integer external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the coordinate dimension of the geo object, as specified in the srsDimension attribute.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=covers-2" ng-bind="fn.name" class="ng-binding">covers</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if geometry1 covers geometry2.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=crosses-2" ng-bind="fn.name" class="ng-binding">crosses</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if geometry1 crosses geometry2.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=difference-2" ng-bind="fn.name" class="ng-binding">difference</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*)) as element(*)? external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns a geometric object that represents the Point set difference of
+    geometry1 and geometry2.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=dimension-1" ng-bind="fn.name" class="ng-binding">dimension</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as xs:integer external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the dimension of the geo object.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=disjoint-2" ng-bind="fn.name" class="ng-binding">disjoint</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if geometry1 does not touch or intersects geometry2.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=distance-2" ng-bind="fn.name" class="ng-binding">distance</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*)) as xs:double external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Compute the shortest distance between any two Points in geometry1 and geometry2.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=end-point-1" ng-bind="fn.name" class="ng-binding">end-point</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($line as element(*)) as element(gml:Point) external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns the end Point of a line.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=envelope-1" ng-bind="fn.name" class="ng-binding">envelope</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as element(gml:Envelope) external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  The envelope is the minimum bounding box of this geometry.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=equals-2" ng-bind="fn.name" class="ng-binding">equals</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if the two geometries are equal.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=exterior-ring-1" ng-bind="fn.name" class="ng-binding">exterior-ring</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($polygon as element(gml:Polygon)) as element(gml:LinearRing) external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the exterior ring of a Polygon.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=geometry-n-2" ng-bind="fn.name" class="ng-binding">geometry-n</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*), $n as xs:unsignedInt) as element(*) external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the n-th geometry in the collection.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=geometry-type-1" ng-bind="fn.name" class="ng-binding">geometry-type</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as xs:QName? external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the qname type of geo object.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=interior-ring-n-2" ng-bind="fn.name" class="ng-binding">interior-ring-n</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($polygon as element(gml:Polygon), $n as xs:unsignedInt) as element(gml:LinearRing) external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the n-th interior ring of a Polygon.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=intersection-2" ng-bind="fn.name" class="ng-binding">intersection</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*)) as element(*)? external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns a geometric object that represents the Point set intersection of
+    geometry1 and geometry2.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=intersects-2" ng-bind="fn.name" class="ng-binding">intersects</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if geometry1 intersects geometry2.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=is-3d-1" ng-bind="fn.name" class="ng-binding">is-3d</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if this geometric object is 2D or 3D, as specified in srsDimension optional attribute.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=is-closed-1" ng-bind="fn.name" class="ng-binding">is-closed</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geom as element(*)) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if the line is closed loop.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=is-empty-1" ng-bind="fn.name" class="ng-binding">is-empty</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)?) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if the argument is empty or not and if it is a valid geometry or not.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=is-measured-1" ng-bind="fn.name" class="ng-binding">is-measured</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if this geometric object has measurements.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=is-ring-1" ng-bind="fn.name" class="ng-binding">is-ring</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($line as element(*)) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if the line is a ring.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=is-simple-1" ng-bind="fn.name" class="ng-binding">is-simple</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if this geometric object has no anomalous geometric points, such
+	as self intersection or self tangency.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=is-within-distance-3" ng-bind="fn.name" class="ng-binding">is-within-distance</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*), $distance as xs:double) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if geometry2 is within a certain distance of geometry1.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=length-1" ng-bind="fn.name" class="ng-binding">length</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as xs:double external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns the length of the lines of this geometry.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=m-1" ng-bind="fn.name" class="ng-binding">m</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($point as element(gml:Point)) as xs:double? external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Should return the Measure of a Point, but is not implemented,
+ because it is not specified in GMLSF.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=num-geometries-1" ng-bind="fn.name" class="ng-binding">num-geometries</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as xs:unsignedInt external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the number of geometries in the collection, or 1 for non-collection.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=num-interior-ring-1" ng-bind="fn.name" class="ng-binding">num-interior-ring</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($polygon as element(gml:Polygon)) as xs:unsignedInt external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the number of interior rings of a Polygon.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=num-patches-1" ng-bind="fn.name" class="ng-binding">num-patches</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($polyhedral-surface as element(gml:Surface)) as xs:integer external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the number of surface patches inside a gml:Surface.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=num-points-1" ng-bind="fn.name" class="ng-binding">num-points</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($line as element(*)) as xs:unsignedInt external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the number of Points in a line.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=overlaps-2" ng-bind="fn.name" class="ng-binding">overlaps</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if geometry1 overlaps with geometry2.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=patch-n-2" ng-bind="fn.name" class="ng-binding">patch-n</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($polyhedral-surface as element(gml:Surface), $n as xs:unsignedInt) as element(gml:PolygonPatch) external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the n-th Surface patch of a Surface.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=point-n-2" ng-bind="fn.name" class="ng-binding">point-n</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($line as element(*), $n as xs:unsignedInt) as element(gml:Point) external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the n-th Point in a line.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=point-on-surface-1" ng-bind="fn.name" class="ng-binding">point-on-surface</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as element(gml:Point) external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns a Point that is interior of this geometry.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=relate-3" ng-bind="fn.name" class="ng-binding">relate</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*), $intersection_matrix as xs:string) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if geometry1 relates with geometry2 relative to a DE-9IM matrix.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=srid-1" ng-bind="fn.name" class="ng-binding">srid</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry as element(*)) as xs:anyURI? external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Return the srid URI of geo object.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=start-point-1" ng-bind="fn.name" class="ng-binding">start-point</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($line as element(*)) as element(gml:Point) external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns the start Point of a line.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=sym-difference-2" ng-bind="fn.name" class="ng-binding">sym-difference</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*)) as element(*)? external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns a geometric object that represents the Point set symmetric difference of
+    geometry1 and geometry2.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=touches-2" ng-bind="fn.name" class="ng-binding">touches</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if geometry1 touches geometry2.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=union-2" ng-bind="fn.name" class="ng-binding">union</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*)) as element(*) external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns a geometric object that represents the Point set union of
+    geometry1 and geometry2.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=within-2" ng-bind="fn.name" class="ng-binding">within</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Checks if geometry1 is within geometry2.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=x-1" ng-bind="fn.name" class="ng-binding">x</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($point as element(gml:Point)) as xs:double external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns the X coordinate of a Point.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=y-1" ng-bind="fn.name" class="ng-binding">y</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($point as element(gml:Point)) as xs:double external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns the Y coordinate of a Point.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/geo/?anchor=z-1" ng-bind="fn.name" class="ng-binding">z</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($point as element(gml:Point)) as xs:double? external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p>  Returns the Z coordinate of a Point, if is 3D.</p></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>
+                <div ng-show="content.variables.length &gt; 0" class="variable-summary" style="display: none; ">
+                    <h2>Variable Summary</h2>
+                    <ul class="list-unstyled">
+                        <!-- ngRepeat: var in content.variables -->
+                    </ul>
+                </div>
+                <div ng-show="content.functions.length &gt; 0" class="functions">
+                    <h2>Functions</h2>
+                    <!-- ngRepeat: fn in content.functions --><div ng-repeat="fn in content.functions" class="function ng-scope" id="area-1">
+                        <h3 class="ng-binding">area#1</h3>
+                        <pre class="ng-binding">declare  function geo:area($geometry as element(*)) as xs:double external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns the area of this geometry.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns zero for Point and Lines.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">geometry area as xs:double.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="as-binary-1">
+                        <h3 class="ng-binding">as-binary#1</h3>
+                        <pre class="ng-binding">declare  function geo:as-binary($geometry as element(*)) as xs:base64Binary external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the Well-known Binary Representation of Geometry.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">This is defined in the Simple Features spec from OGC.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">gml:Curve is represented as MultiLineString.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">gml:Surface is represented as MultiPolygon.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:base64Binary</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the Well-known Binary Representation for the geo object as base64.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="as-text-1">
+                        <h3 class="ng-binding">as-text#1</h3>
+                        <pre class="ng-binding">declare  function geo:as-text($geometry as element(*)) as xs:string external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the Well-known Text Representation of Geometry.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">This is defined in the Simple Features spec from OGC.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">gml:Curve is represented as MultiLineString.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">gml:Surface is represented as MultiPolygon.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the Well-known Text Representation for the geo object.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="boundary-1">
+                        <h3 class="ng-binding">boundary#1</h3>
+                        <pre class="ng-binding">declare  function geo:boundary($geometry as element(*)) as element(*)* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">A boundary is a set that represents the limit of an geometry.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For a Point or MultiPoint, the boundary is the empty geometry, nothing is returned.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For a LineString, the boundary is the MultiPoint set of start point and end point.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For a LinearRing, the boundary is empty MultiPoint.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For a Curve, it is treated as a MultiCurve.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For a Polygon, the boundary is the MultiCurve set of exterior and interior rings.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For a Surface, the boundary is the MultiCurve set formed from the exterior ring of all patches
+  seen as a single surface and all the interior rings from all patches.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For MultiCurve, the boundary is the MultiPoint set of all start and end points that appear
+  in an odd number of linestrings.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For MultiGeometry, a sequence of boundaries is returned, corresponding to each child geometry.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:LinearRing, gml:Curve, gml:Polygon, gml:Surface, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(*)*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the boundary of a Geometry as a set of Geometries of the next lower dimension.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="bounding-polygons-2">
+                        <h3 class="ng-binding">bounding-polygons#2</h3>
+                        <pre class="ng-binding">declare  function geo:bounding-polygons($polyhedral-surface as element(gml:Surface), $polygon as element(*)) as element(gml:PolygonPatch)* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the list of PolygonPatches that share a boundary with the given $polygon.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">The gml:PolygonPatch has the same content as gml:Polygon.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">This function tests the exterior ring of each polygon patch if it overlaps
+ with the exterior ring of the given polygon.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">polyhedral-surface as element(gml:Surface)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Surface</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">polygon as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0">, of type gml:Polygon or gml:PolygonPatch</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(gml:PolygonPatch)*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the list of neibourghing gml:PolygonPatch-es</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="buffer-2">
+                        <h3 class="ng-binding">buffer#2</h3>
+                        <pre class="ng-binding">declare  function geo:buffer($geometry as element(*), $distance as xs:double) as element(*) external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns a polygon that represents all Points whose distance
+   from this geometric object is less than or equal to distance.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">distance as xs:double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the distance from geometry, expressed in units of the current coordinate system</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">new geometry surrounding the input geometry.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="centroid-1">
+                        <h3 class="ng-binding">centroid#1</h3>
+                        <pre class="ng-binding">declare  function geo:centroid($geometry as element(*)) as element(gml:Point) external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns a Point that is the mathematical centroid of this geometry.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">The result is not guaranteed to be on the surface.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(gml:Point)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">centroid Point.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="contains-2">
+                        <h3 class="ng-binding">contains#2</h3>
+                        <pre class="ng-binding">declare  function geo:contains($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if geometry1 contains geometry2.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns true if within(geometry2, geometry1) is true.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if geometry1 contains geometry2.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="convex-hull-1">
+                        <h3 class="ng-binding">convex-hull#1</h3>
+                        <pre class="ng-binding">declare  function geo:convex-hull($geometry as element(*)) as element(*) external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns the smallest convex Polygon that contains all the points in the Geometry.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Actually returns the object of smallest dimension possible (possible Point or LineString).</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the convex polygon node.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="coordinate-dimension-1">
+                        <h3 class="ng-binding">coordinate-dimension#1</h3>
+                        <pre class="ng-binding">declare  function geo:coordinate-dimension($geometry as element(*)) as xs:integer external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the coordinate dimension of the geo object, as specified in the srsDimension attribute.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Only two-dimensional and three-dimensional coordinates are supported.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">2 for 2D, 3 for 3D.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="covers-2">
+                        <h3 class="ng-binding">covers#2</h3>
+                        <pre class="ng-binding">declare  function geo:covers($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if geometry1 covers geometry2.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">It has to fulfill one of these conditions:</p>
+  <p xmlns:xqdoc="http://www.xqdoc.org/1.0">- every point of geometry2 is a point of geometry1.</p>
+  <p xmlns:xqdoc="http://www.xqdoc.org/1.0">- the DE-9IM Intersection Matrix for the two geometries is
+     T*****FF* or *T****FF* or ***T**FF* or ****T*FF*.</p>
+ Unlike contains it does not distinguish between points in the boundary and in the interior of geometries.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if geometry1 covers geometry2.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="crosses-2">
+                        <h3 class="ng-binding">crosses#2</h3>
+                        <pre class="ng-binding">declare  function geo:crosses($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if geometry1 crosses geometry2.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">That is if the geometries have some but not all interior points in common.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns true if the DE-9IM intersection matrix for the two
+ geometries is:</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">T*T****** (for P/L, P/A, and L/A situations).</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">T*****T** (for L/P, A/P, and A/L situations).</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">0******** (for L/L situations).</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">This applies for situations:  P/L, P/A, L/L, L/A, L/P, A/P and A/L.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For other situations it returns false.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if geometry1 crosses geometry2.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="difference-2">
+                        <h3 class="ng-binding">difference#2</h3>
+                        <pre class="ng-binding">declare  function geo:difference($geometry1 as element(*), $geometry2 as element(*)) as element(*)? external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns a geometric object that represents the Point set difference of
+    geometry1 and geometry2. Points that are in geometry1 and are not in geometry2.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">If difference is empty geometry, empty sequence is returned.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(*)?</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">point set geometry node.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="dimension-1">
+                        <h3 class="ng-binding">dimension#1</h3>
+                        <pre class="ng-binding">declare  function geo:dimension($geometry as element(*)) as xs:integer external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the dimension of the geo object.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">0 for point, 1 for line, 2 for surface.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="disjoint-2">
+                        <h3 class="ng-binding">disjoint#2</h3>
+                        <pre class="ng-binding">declare  function geo:disjoint($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if geometry1 does not touch or intersects geometry2.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">It has to fulfill these conditions:</p>
+  <p xmlns:xqdoc="http://www.xqdoc.org/1.0">- they have no point in common</p>
+  <p xmlns:xqdoc="http://www.xqdoc.org/1.0">- the DE-9IM Intersection Matrix for the two geometries is
+     FF*FF****.</p>
+  <p xmlns:xqdoc="http://www.xqdoc.org/1.0">- geometry1 does not intersect geometry2.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if geometry1 and geometry2 are disjoint.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="distance-2">
+                        <h3 class="ng-binding">distance#2</h3>
+                        <pre class="ng-binding">declare  function geo:distance($geometry1 as element(*), $geometry2 as element(*)) as xs:double external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Compute the shortest distance between any two Points in geometry1 and geometry2.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">minimum distance as xs:double.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="end-point-1">
+                        <h3 class="ng-binding">end-point#1</h3>
+                        <pre class="ng-binding">declare  function geo:end-point($line as element(*)) as element(gml:Point) external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns the end Point of a line.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">line as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:LineString, gml:LinearRing, gml:Curve</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(gml:Point)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the end gml:Point, constructed with the last coordinates in the line.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="envelope-1">
+                        <h3 class="ng-binding">envelope#1</h3>
+                        <pre class="ng-binding">declare  function geo:envelope($geometry as element(*)) as element(gml:Envelope) external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">The envelope is the minimum bounding box of this geometry.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(gml:Envelope)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">An gml:Envelope element with content &lt;gml:Envelope&gt; &lt;gml:lowerCorner&gt;<i xmlns:xqdoc="http://www.xqdoc.org/1.0">minx miny</i>&lt;/gml:lowerCorner&gt; &lt;gml:upperCorner&gt;<i xmlns:xqdoc="http://www.xqdoc.org/1.0">maxx maxy</i>&lt;/gml:upperCorner&gt; &lt;/gml:Envelope&gt;</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="equals-2">
+                        <h3 class="ng-binding">equals#2</h3>
+                        <pre class="ng-binding">declare  function geo:equals($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if the two geometries are equal.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ </p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">Note: Does not work for gml:Surface and gml:MultiSurface if they have multiple Polygons.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if the DE-9IM intersection matrix for the two Geometrys is T*F**FFF*.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="exterior-ring-1">
+                        <h3 class="ng-binding">exterior-ring#1</h3>
+                        <pre class="ng-binding">declare  function geo:exterior-ring($polygon as element(gml:Polygon)) as element(gml:LinearRing) external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the exterior ring of a Polygon.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">polygon as element(gml:Polygon)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Polygon</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(gml:LinearRing)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the original gml:LinearRing node for exterior ring</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="geometry-n-2">
+                        <h3 class="ng-binding">geometry-n#2</h3>
+                        <pre class="ng-binding">declare  function geo:geometry-n($geometry as element(*), $n as xs:unsignedInt) as element(*) external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the n-th geometry in the collection.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return this geometry if it is not a collection.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For gml:Point, gml:LineString, gml:LinearRing, gml:Polygon, return this item if n is zero, otherwise error.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For gml:Curve and gml:Surface, they are treated as geometric collections.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">n as xs:unsignedInt</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> zero-based index in the collection</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">n-th geometry in collection. The node is the original node, not a copy.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="geometry-type-1">
+                        <h3 class="ng-binding">geometry-type#1</h3>
+                        <pre class="ng-binding">declare  function geo:geometry-type($geometry as element(*)) as xs:QName? external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the qname type of geo object.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns empty sequence if the geometry is not recognized.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:QName?</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">"gml:Point" for Point, "gml:LineString" for LineString, "gml:Curve" for Curve, "gml:LineString" for LinearRing, "gml:Surface" for Surface, "gml:Polygon" for Polygon and PolygonPatch, "gml:MultiPoint" for MultiPoint, "gml:MultiCurve" for MultiCurve, "gml:MultiSurface" for MultiSurface, "gml:MultiGeometry" for MultiGeometry</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="interior-ring-n-2">
+                        <h3 class="ng-binding">interior-ring-n#2</h3>
+                        <pre class="ng-binding">declare  function geo:interior-ring-n($polygon as element(gml:Polygon), $n as xs:unsignedInt) as element(gml:LinearRing) external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the n-th interior ring of a Polygon.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">polygon as element(gml:Polygon)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Polygon</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">n as xs:unsignedInt</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> index in the list of interior rings, zero based.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(gml:LinearRing)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">n-th interior ring. The node is the original node, not a copy.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="intersection-2">
+                        <h3 class="ng-binding">intersection#2</h3>
+                        <pre class="ng-binding">declare  function geo:intersection($geometry1 as element(*), $geometry2 as element(*)) as element(*)? external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns a geometric object that represents the Point set intersection of
+    geometry1 and geometry2.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For intersection of two polygons interiors, returns a polygon.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">If intersection is void, empty sequence is returned.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(*)?</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">point set geometry node.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="intersects-2">
+                        <h3 class="ng-binding">intersects#2</h3>
+                        <pre class="ng-binding">declare  function geo:intersects($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if geometry1 intersects geometry2.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">This is true if disjoint returns false.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if geometry1 and geometry2 are not disjoint.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-3d-1">
+                        <h3 class="ng-binding">is-3d#1</h3>
+                        <pre class="ng-binding">declare  function geo:is-3d($geometry as element(*)) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if this geometric object is 2D or 3D, as specified in srsDimension optional attribute.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if $geometry is 3D.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-closed-1">
+                        <h3 class="ng-binding">is-closed#1</h3>
+                        <pre class="ng-binding">declare  function geo:is-closed($geom as element(*)) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if the line is closed loop. That is, if the start Point is same with end Point.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For gml:Curve, checks if the start point of the first segment is the same with the
+   last point of the last segment. It also checks that all the segments are connected together,
+   and returns false if they aren't.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For gml:MultiCurve, checks recursively for each LineString.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For gml:Surface, checks if the exterior boundary of each patch touches completely other patches,
+   so the Surface encloses a solid.
+   For this to happen there is a need for 3D objects, and full 3D processing is not supported in GEOS library,
+   so the function always returns false in this case.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geom as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:LineString, gml:LinearRing, gml:Curve, gml:MultiCurve, gml:Surface</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if the line or surface is closed.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-empty-1">
+                        <h3 class="ng-binding">is-empty#1</h3>
+                        <pre class="ng-binding">declare  function geo:is-empty($geometry as element(*)?) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if the argument is empty or not and if it is a valid geometry or not.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">A geometry is considered empty if it has no points.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if $geometry is not a valid gmlsf object or if is empty.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-measured-1">
+                        <h3 class="ng-binding">is-measured#1</h3>
+                        <pre class="ng-binding">declare  function geo:is-measured($geometry as element(*)) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if this geometric object has measurements.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Measurements is not supported in this geo module, so the function returns false.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">false.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-ring-1">
+                        <h3 class="ng-binding">is-ring#1</h3>
+                        <pre class="ng-binding">declare  function geo:is-ring($line as element(*)) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if the line is a ring. That is, if the line is closed and simple.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">line as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:LineString, gml:LinearRing, gml:Curve</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if the line is a closed ring.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-simple-1">
+                        <h3 class="ng-binding">is-simple#1</h3>
+                        <pre class="ng-binding">declare  function geo:is-simple($geometry as element(*)) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if this geometric object has no anomalous geometric points, such
+	as self intersection or self tangency.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Does not work for gml:Surface and gml:MultiGeometry.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:LinearRing, gml:Curve, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if $geometry is simple.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-within-distance-3">
+                        <h3 class="ng-binding">is-within-distance#3</h3>
+                        <pre class="ng-binding">declare  function geo:is-within-distance($geometry1 as element(*), $geometry2 as element(*), $distance as xs:double) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if geometry2 is within a certain distance of geometry1.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">distance as xs:double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the distance from geometry1, expressed in units of the current coordinate system</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if distance from geometry1 to geometry2 is less than $distance.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="length-1">
+                        <h3 class="ng-binding">length#1</h3>
+                        <pre class="ng-binding">declare  function geo:length($geometry as element(*)) as xs:double external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns the length of the lines of this geometry.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns zero for Points.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">geometry length as xs:double.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="m-1">
+                        <h3 class="ng-binding">m#1</h3>
+                        <pre class="ng-binding">declare  function geo:m($point as element(gml:Point)) as xs:double? external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Should return the Measure of a Point, but is not implemented,
+ because it is not specified in GMLSF.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">point as element(gml:Point)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:double?</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">always empty sequence</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="num-geometries-1">
+                        <h3 class="ng-binding">num-geometries#1</h3>
+                        <pre class="ng-binding">declare  function geo:num-geometries($geometry as element(*)) as xs:unsignedInt external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the number of geometries in the collection, or 1 for non-collection.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For gml:Point, gml:LineString, gml:LinearRing, gml:Polygon, return 1.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For gml:Curve and gml:Surface, they are treated as geometric collections.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:unsignedInt</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">number of geometries in collection</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="num-interior-ring-1">
+                        <h3 class="ng-binding">num-interior-ring#1</h3>
+                        <pre class="ng-binding">declare  function geo:num-interior-ring($polygon as element(gml:Polygon)) as xs:unsignedInt external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the number of interior rings of a Polygon.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">polygon as element(gml:Polygon)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Polygon</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:unsignedInt</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the number of interior rings</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="num-patches-1">
+                        <h3 class="ng-binding">num-patches#1</h3>
+                        <pre class="ng-binding">declare  function geo:num-patches($polyhedral-surface as element(gml:Surface)) as xs:integer external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the number of surface patches inside a gml:Surface.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">This function has the same effect as num-geometries(), only it is restricted to gml:Surface.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">polyhedral-surface as element(gml:Surface)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Surface</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the number of surface patches</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="num-points-1">
+                        <h3 class="ng-binding">num-points#1</h3>
+                        <pre class="ng-binding">declare  function geo:num-points($line as element(*)) as xs:unsignedInt external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the number of Points in a line.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">line as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:LineString, gml:LinearRing, gml:Curve, gml:MultiCurve</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:unsignedInt</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">number of points in the line</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="overlaps-2">
+                        <h3 class="ng-binding">overlaps#2</h3>
+                        <pre class="ng-binding">declare  function geo:overlaps($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if geometry1 overlaps with geometry2.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns true if DE-9IM intersection matrix for the two
+ geometries is T*T***T** (for two points or two surfaces)
+	 or * 1*T***T** (for two curves).</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if geometry1 overlaps geometry2.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="patch-n-2">
+                        <h3 class="ng-binding">patch-n#2</h3>
+                        <pre class="ng-binding">declare  function geo:patch-n($polyhedral-surface as element(gml:Surface), $n as xs:unsignedInt) as element(gml:PolygonPatch) external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the n-th Surface patch of a Surface.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Only polygonal Surfaces are supported, so a gml:PolygonPatch is returned.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">The gml:PolygonPatch has the same content as gml:Polygon.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">This function has the same effect as geometry-n(), only it is restricted to gml:Surface.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">polyhedral-surface as element(gml:Surface)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Surface</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">n as xs:unsignedInt</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> index in the list of surface patches, zero based.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(gml:PolygonPatch)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">n-th polygon patch. The node is the original node, not a copy.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="point-n-2">
+                        <h3 class="ng-binding">point-n#2</h3>
+                        <pre class="ng-binding">declare  function geo:point-n($line as element(*), $n as xs:unsignedInt) as element(gml:Point) external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the n-th Point in a line.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">line as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:LineString, gml:LinearRing, gml:Curve, gml:MultiCurve</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">n as xs:unsignedInt</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> index in the list of coordinates, zero based.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(gml:Point)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">n-th point in the line, zero-based. The node is gml:Point constructed with n-th coordinate from line.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="point-on-surface-1">
+                        <h3 class="ng-binding">point-on-surface#1</h3>
+                        <pre class="ng-binding">declare  function geo:point-on-surface($geometry as element(*)) as element(gml:Point) external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns a Point that is interior of this geometry.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">If it cannot be inside the geometry, then it will be on the boundary.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(gml:Point)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">a Point inside the geometry.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="relate-3">
+                        <h3 class="ng-binding">relate#3</h3>
+                        <pre class="ng-binding">declare  function geo:relate($geometry1 as element(*), $geometry2 as element(*), $intersection_matrix as xs:string) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if geometry1 relates with geometry2 relative to a DE-9IM matrix.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">The DE-9IM matrix is defined like this:</p>
+ <table xmlns:xqdoc="http://www.xqdoc.org/1.0">
+	<tbody><tr>
+		 <td>
+		 </td><td><b>Interior</b></td>
+		 <td><b>Boundary</b></td>
+		 <td><b>Exterior</b></td>
+		</tr>
+		<tr>
+		 <td><b>Interior</b></td>
+		 <td>dim(intersection of interior1 and interior2)</td>
+		 <td>dim(intersection of interior1 and boundary2)</td>
+		 <td>dim(intersection of interior1 and exterior2)</td>
+		</tr>
+		<tr>
+		 <td><b>Boundary</b></td>
+		 <td>dim(intersection of boundary1 and interior2)</td>
+		 <td>dim(intersection of boundary1 and boundary2)</td>
+		 <td>dim(intersection of boundary1 and exterior2)</td>
+		</tr>
+		<tr>
+		 <td><b>Exterior</b></td>
+		 <td>dim(intersection of exterior1 and interior2)</td>
+		 <td>dim(intersection of exterior1 and boundary2)</td>
+		 <td>dim(intersection of exterior1 and exterior2)</td>
+		</tr>
+	</tbody></table>
+	<p xmlns:xqdoc="http://www.xqdoc.org/1.0">The values in the DE-9IM can be T, F, *, 0, 1, 2 .</p>
+  <p xmlns:xqdoc="http://www.xqdoc.org/1.0">- T means the intersection gives a non-empty result.</p>
+  <p xmlns:xqdoc="http://www.xqdoc.org/1.0">- F means the intersection gives an empty result.</p>
+  <p xmlns:xqdoc="http://www.xqdoc.org/1.0">- * means any result.</p>
+  <p xmlns:xqdoc="http://www.xqdoc.org/1.0">- 0, 1, 2 gives the expected dimension of the result (point, curve, surface)</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">For example, the matrix of "T*T***T**" checks for intersections of interior1 with interior2,
+ interior1 with exterior2 and exterior1 with interior2.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:LinearRing, gml:Polygon</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:LinearRing, gml:Polygon</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">intersection_matrix as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the DE-9IM matrix, with nine chars, three chars for each line in DE-9IM matrix.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if geometry1 relates to geometry2 according to the intersection matrix.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="srid-1">
+                        <h3 class="ng-binding">srid#1</h3>
+                        <pre class="ng-binding">declare  function geo:srid($geometry as element(*)) as xs:anyURI? external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Return the srid URI of geo object.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">SRID is contained in the srsName attribute in the geo element, or one of the parents,
+ or in the boundedBy/Envelope element in one of the parents.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">This function searches recursively from this element up to the top-most parent.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:anyURI?</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the SRID if it is found</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="start-point-1">
+                        <h3 class="ng-binding">start-point#1</h3>
+                        <pre class="ng-binding">declare  function geo:start-point($line as element(*)) as element(gml:Point) external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns the start Point of a line.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">line as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:LineString, gml:LinearRing, gml:Curve</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(gml:Point)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the starting gml:Point, constructed with the first coordinates in the line.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="sym-difference-2">
+                        <h3 class="ng-binding">sym-difference#2</h3>
+                        <pre class="ng-binding">declare  function geo:sym-difference($geometry1 as element(*), $geometry2 as element(*)) as element(*)? external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns a geometric object that represents the Point set symmetric difference of
+    geometry1 and geometry2. Points that are in geometry1 and are not in geometry2
+    and points that are in geometry2 and are not in geometry1.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">If difference is empty geometry, empty sequence is returned.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(*)?</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">point set geometry node.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="touches-2">
+                        <h3 class="ng-binding">touches#2</h3>
+                        <pre class="ng-binding">declare  function geo:touches($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if geometry1 touches geometry2.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns true if the DE-9IM intersection matrix for the two
+ geometries is FT*******, F**T***** or F***T****.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if geometry1 touches geometry2.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="union-2">
+                        <h3 class="ng-binding">union#2</h3>
+                        <pre class="ng-binding">declare  function geo:union($geometry1 as element(*), $geometry2 as element(*)) as element(*) external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns a geometric object that represents the Point set union of
+    geometry1 and geometry2.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">point set geometry node.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="within-2">
+                        <h3 class="ng-binding">within#2</h3>
+                        <pre class="ng-binding">declare  function geo:within($geometry1 as element(*), $geometry2 as element(*)) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Checks if geometry1 is within geometry2.</p>
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns true if the DE-9IM intersection matrix for the two
+  geometries is T*F**F***.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry1 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">geometry2 as element(*)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if geometry1 is within geometry2.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="x-1">
+                        <h3 class="ng-binding">x#1</h3>
+                        <pre class="ng-binding">declare  function geo:x($point as element(gml:Point)) as xs:double external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns the X coordinate of a Point.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">point as element(gml:Point)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the X coordinate</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="y-1">
+                        <h3 class="ng-binding">y#1</h3>
+                        <pre class="ng-binding">declare  function geo:y($point as element(gml:Point)) as xs:double external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns the Y coordinate of a Point.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">point as element(gml:Point)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the Y coordinate</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="z-1">
+                        <h3 class="ng-binding">z#1</h3>
+                        <pre class="ng-binding">declare  function geo:z($point as element(gml:Point)) as xs:double? external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> <p xmlns:xqdoc="http://www.xqdoc.org/1.0">Returns the Z coordinate of a Point, if is 3D.</p>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">point as element(gml:Point)</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> node of one of GMLSF objects: gml:Point</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:double?</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the Z coordinate, or empty sequence if 2D</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div ng-show="content.variables.length &gt; 0" class="variables" style="display: none; ">
+                    <h2>Variables</h2>
+                    <!-- ngRepeat: var in content.variables -->
+                </div>
+                <div id="disqus" class="disqus" disqus="">
+                    <div id="disqus_thread" class="content-panel-content"><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" tabindex="0" title="Disqus" style="width: 100% !important; border-top-style: none !important; border-right-style: none !important; border-bottom-style: none !important; border-left-style: none !important; border-width: initial !important; border-color: initial !important; overflow-x: hidden !important; overflow-y: hidden !important; height: 928px !important; " width="100%" src="http://disqus.com/embed/comments/?disqus_version=1df9d712&amp;base=default&amp;f=28msec&amp;t_i=%2Fdocumentation%2F3.0%2Fmodules%2Fexpath%2Fgeo%2F&amp;t_u=http%3A%2F%2Fwww.28.io%2Fdocumentation%2F3.0%2Fmodules%2Fexpath%2Fgeo%2F&amp;t_d=Zorba%20-%20The%20NoSQL%20Query%20Processor&amp;t_t=Zorba%20-%20The%20NoSQL%20Query%20Processor&amp;s_o=default#2" scrolling="no" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+                </div>
+            </div>
+            <!-- ngSwitchWhen: notfound -->
+            <!-- ngSwitchDefault:  -->
+        </div>
+    </div>
+</div></div>
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3>Get Involved</h3>
+                        <ul>
+                            <li><a href="https://groups.google.com/forum/#!forum/zorba-users" target="_blank">Users List on Google Groups</a></li>
+                            <li><a href="https://groups.google.com/forum/#!forum/zorba-dev" target="_blank">Developers List on Google Groups</a></li>
+                            <li><a href="https://bugs.launchpad.net/zorba/+bugs" target="_blank">Bug Tracker</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Resources</h3>
+                        <li><a href="http://jsoniq.org" target="_blank">JSONiq</a></li>
+                        <li><a href="http://www.w3.org/TR/xquery-30/" target="_blank">XQuery 3.0</a></li>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Quick Links</h3>
+                        <li><a href="https://code.launchpad.net/zorba" target="_blank">Source Code</a></li>
+                        <li><a href="/download">Download</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </div>
+                </div>
+                <p class="text-center copyright">
+                    <small>
+                    ©&nbsp;2013 Zorba.
+                    </small>
+                </p>
+            </div>        
+        </footer>
+    <script type="text/javascript" async="" src="http://stats.g.doubleclick.net/dc.js"></script><script charset="ISO-8859-1" src="http://fast.wistia.com/static/concat/E-v1.js"></script>
+    <script src="/scripts/scripts.js"></script>
+    <script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-4281090-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; 
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+        </script>
+  
+<script type="text/javascript" async="" src="http://28msec.disqus.com/embed.js"></script></body></html><script type="text/javascript">location.href = '/#' + location.pathname;</script>

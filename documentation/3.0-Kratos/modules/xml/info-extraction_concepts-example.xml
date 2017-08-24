@@ -1,0 +1,24 @@
+<doxygen><compounddef id="concepts.xq-example" kind="example"><detaileddescription><para><h3>Content of concepts.xq example</h3><programlisting type="example">import module namespace ex = 'http://zorba.io/modules/info-extraction';
+
+import schema namespace schema = 'http://zorba.io/modules/info-extraction';
+
+let $result := ex:concepts("President Obama called Wednesday on Congress to extend a tax break for students included in last year's economic stimulus package, arguing that the policy provides more generous assistance.")
+
+return count ( for $c in $result return validate { $c } ) &amp;gt; 0
+    
+(:
+
+&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+&amp;lt;!-- The ex:concepts function should return the following list of results for the input provided in the example --&amp;gt;
+&amp;lt;ex:concept xmlns:ex="http://zorba.io/modules/info-extraction"&amp;gt;
+  &amp;lt;ex:entity start="0" end="14"&amp;gt;President Obama&amp;lt;/ex:entity&amp;gt;
+  &amp;lt;ex:wikipedia_url&amp;gt;http://en.wikipedia.com/wiki/Barack_Obama&amp;lt;/ex:wikipedia_url&amp;gt;
+&amp;lt;/ex:concept&amp;gt;
+&amp;lt;ex:concept xmlns:ex="http://zorba.io/modules/info-extraction"&amp;gt;
+  &amp;lt;ex:entity start="36" end="43"&amp;gt;
+    &amp;lt;ex:type&amp;gt;organization&amp;lt;/ex:type&amp;gt;Congress&amp;lt;/ex:entity&amp;gt;
+  &amp;lt;ex:wikipedia_url&amp;gt;http://en.wikipedia.com/wiki/United_States_Congress&amp;lt;/ex:wikipedia_url&amp;gt;
+&amp;lt;/ex:concept&amp;gt;
+
+:)
+</programlisting></para></detaileddescription></compounddef></doxygen>

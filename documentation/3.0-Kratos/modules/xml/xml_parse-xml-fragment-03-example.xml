@@ -1,0 +1,13 @@
+<doxygen><compounddef id="parse-xml-fragment-03.xq-example" kind="example"><detaileddescription><para><h3>Content of parse-xml-fragment-03.xq example</h3><programlisting type="example">import module namespace x = "http://zorba.io/modules/xml";
+import schema namespace opt = "http://zorba.io/modules/xml-options";
+
+x:parse("&amp;lt;?xml version='1.0'?&amp;gt;
+&amp;lt;from1&amp;gt;Jani&amp;lt;/from1&amp;gt;
+&amp;lt;from2&amp;gt;Jani&amp;lt;/from2&amp;gt;
+&amp;lt;from3&amp;gt;Jani&amp;lt;/from3&amp;gt;
+", 
+  &amp;lt;opt:options&amp;gt;
+    &amp;lt;opt:parse-external-parsed-entity/&amp;gt;
+  &amp;lt;/opt:options&amp;gt;
+)
+</programlisting></para></detaileddescription></compounddef></doxygen>

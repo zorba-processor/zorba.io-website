@@ -1,0 +1,507 @@
+<doxygen><compounddef id="html-module" kind="module"><detaileddescription><para><h3>Content of html module</h3><programlisting type="module">xquery version "3.0";
+
+(:
+ : Copyright 2008-2011 The FLWOR Foundation.
+ :
+ : Licensed under the Apache License, Version 2.0 (the "License");
+ : you may not use this file except in compliance with the License.
+ : You may obtain a copy of the License at
+ :
+ : http://www.apache.org/licenses/LICENSE-2.0
+ :
+ : Unless required by applicable law or agreed to in writing, software
+ : distributed under the License is distributed on an "AS IS" BASIS,
+ : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ : See the License for the specific language governing permissions and
+ : limitations under the License.
+:)
+
+(:~
+ : Convert an XQDoc document into an HTML document.
+ :
+ : This module contains a single &amp;lt;code&amp;gt;convert()&amp;lt;/code&amp;gt; function
+ : that transform an XQDoc document into an HTML document.
+ : Usage:
+ : &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;
+ : let $xqdoc := xqdoc:xqdoc("http://expath.org/ns/file")
+ : return html:convert($xqdoc)
+ : &amp;lt;/pre&amp;gt;
+ :
+ : @author William Candillon &amp;lt;a href="#"&amp;gt;wcandillon at gmail dot com&amp;lt;/a&amp;gt;
+ : @project Zorba/XQDoc/HTML
+ :)
+
+module namespace html = "http://www.zorba-xquery.com/modules/xqdoc/html";
+
+declare namespace xq = "http://www.xqdoc.org/1.0";
+declare namespace o = "http://www.w3.org/2010/xslt-xquery-serialization";
+
+declare copy-namespaces no-preserve, inherit;
+
+declare namespace ver = "http://zorba.io/options/versioning";
+declare option ver:module-version "2.0";
+
+declare %private variable $html:empty-tags-to-delete := ("tt");
+
+declare function html:convert($xqdoc as element(xq:xqdoc))
+as element(div)
+{
+let $module := $xqdoc/xq:module
+let $ns := normalize-space($module/xq:uri/text())
+let $comment := $module/xq:comment
+let $namespaces := $module/xq:custom[@tag = "namespaces"]/xq:namespace
+let $prefix := $xqdoc/xq:functions/xq:function[1]/xq:name/text()/substring-before(., ":")
+let $prefix := if(exists($prefix)) then $prefix else $xqdoc/xq:variables/xq:variable[1]/xq:uri/text()/substring-before(., ":")
+let $variables := for $variable in $xqdoc/xq:variables/xq:variable order by $variable/xq:name/text() ascending return $variable
+let $functions := for $function in $xqdoc/xq:functions/xq:function[not(html:is-function-private(.))] order by concat($function/xq:name/text(), $function/@arity) ascending return $function
+let $description := $comment/xq:description/node()
+return
+html:normalize(
+&amp;lt;div&amp;gt;
+  &amp;lt;h1&amp;gt;{$ns}&amp;lt;/h1&amp;gt;
+  &amp;lt;section id="description"&amp;gt;
+    &amp;lt;h2&amp;gt;Description&amp;lt;/h2&amp;gt;
+    &amp;lt;p&amp;gt;Before using any of the functions below please remember to import the module namespace:&amp;lt;/p&amp;gt;
+    &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;import module namespace {$prefix} = "{$ns}";&amp;lt;/pre&amp;gt;
+    {
+      if($description instance of text()) then
+        &amp;lt;p&amp;gt;{$description}&amp;lt;/p&amp;gt;
+      else
+        $comment/xq:description/node()
+    }
+    {
+      let $schemas := $xqdoc/xq:imports//xq:import[@type = "schema"]
+      return
+        if(exists($schemas)) then
+          &amp;lt;section&amp;gt;
+            &amp;lt;h4&amp;gt;Imported Schemas&amp;lt;/h4&amp;gt;
+            &amp;lt;ul&amp;gt;
+            {
+              for $schema in $schemas
+              let $uri  := $schema/xq:uri/text()
+              let $href := replace(replace($uri, "http://", ""), "/", "_") || ".xsd" 
+              return &amp;lt;li&amp;gt;
+                &amp;lt;a href="schemas/{$href}" class="schema-link"&amp;gt;{$uri}&amp;lt;/a&amp;gt;
+              &amp;lt;/li&amp;gt;
+            }
+            &amp;lt;/ul&amp;gt;
+            &amp;lt;p&amp;gt;Please note that the schemas are not automatically imported in the modules that import this module.&amp;lt;/p&amp;gt;
+            &amp;lt;p&amp;gt;In order to import and use the schemas, please add:&amp;lt;/p&amp;gt;
+            &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;{
+            let $namespaces := $xqdoc/xq:module//xq:custom[@tag = "namespaces"]
+            return
+              string-join(
+                for $import in $xqdoc/xq:imports//xq:import[@type = "schema"]
+                return
+                  concat('import schema namespace ',
+                         $namespaces//xq:namespace[(@uri = $import/xq:uri/text()) and (@isSchema = "true")]/@prefix,
+                         ' =  "',
+                         string($import/xq:uri/text()),'";'),"
+             ")
+           }&amp;lt;/pre&amp;gt;
+         &amp;lt;/section&amp;gt;
+        else
+          ()
+    }
+    {
+      let $sees := $comment/xq:see
+      return
+        if(exists($sees)) then
+          &amp;lt;section&amp;gt;
+          &amp;lt;h4&amp;gt;See also&amp;lt;/h4&amp;gt;
+          {
+            for $see in $sees
+            let $see := if(exists($see/a) and exists($see/text())) then $see/node() else if(exists($see/node())) then &amp;lt;a href="{$see/node()}"&amp;gt;{$see/node()}&amp;lt;/a&amp;gt; else ""
+            return &amp;lt;p&amp;gt;{$see}&amp;lt;/p&amp;gt;
+          }
+          &amp;lt;/section&amp;gt;
+        else ()
+    }
+    {
+      let $authors := $comment/xq:author
+      return
+        if(exists($authors)) then
+         &amp;lt;section&amp;gt;
+           &amp;lt;h4&amp;gt;{concat("Author", if(count($authors) gt 1) then "s" else "")}&amp;lt;/h4&amp;gt;
+           {
+             for $author in $authors
+             return &amp;lt;p&amp;gt;{$author/node()}&amp;lt;/p&amp;gt;
+           }
+         &amp;lt;/section&amp;gt;
+        else ()
+    }
+    {
+      let $version  := $comment/xq:custom[@tag = "XQuery version"]/text()
+      let $encoding := $comment/xq:custom[@tag = "encoding"]/text()
+      return
+        if(exists($version)) then
+          &amp;lt;section&amp;gt;
+            &amp;lt;h4&amp;gt;XQuery version and encoding&amp;lt;/h4&amp;gt;
+            &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;xquery version "{$version}"{if(exists($encoding)) then concat(' encoding "', $encoding, '"')  else ()};&amp;lt;/pre&amp;gt;
+          &amp;lt;/section&amp;gt;
+        else ()
+    }
+  &amp;lt;/section&amp;gt;
+  {
+    let $examples := $module//xq:custom[@tag="example"]/text()
+    let $module-name := tokenize($module/xq:uri/text(),"/")[last()]
+    return
+      if(exists($examples)) then
+        &amp;lt;section class="examples"&amp;gt;
+           &amp;lt;h4&amp;gt;Examples&amp;lt;/h4&amp;gt;
+           &amp;lt;ul&amp;gt;
+           {
+             for $example in $examples
+             let $example-name := tokenize($example,"/")[last()]
+             return &amp;lt;li&amp;gt;&amp;lt;a href="{concat("examples/",$module-name,"_",$example-name)}" class="example-link"&amp;gt;{$example-name}&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+           }
+           &amp;lt;/ul&amp;gt;
+        &amp;lt;/section&amp;gt;
+      else ()
+  }
+  {
+    if(exists($namespaces)) then
+      &amp;lt;section id="namespaces"&amp;gt;
+      &amp;lt;div&amp;gt;
+        &amp;lt;h2&amp;gt;Namespaces&amp;lt;/h2&amp;gt;
+        &amp;lt;table&amp;gt;
+        {
+          for $ns in $namespaces
+          return
+            &amp;lt;tr&amp;gt;
+              &amp;lt;td&amp;gt;{string($ns/@prefix)}&amp;lt;/td&amp;gt;
+              &amp;lt;td&amp;gt;{string($ns/@uri)}&amp;lt;/td&amp;gt;
+            &amp;lt;/tr&amp;gt;
+        }
+        &amp;lt;/table&amp;gt;
+      &amp;lt;/div&amp;gt;
+    &amp;lt;/section&amp;gt;
+    else ()
+  }
+  {
+    if(exists($variables)) then
+    &amp;lt;section id="variable-summary"&amp;gt;
+      &amp;lt;div&amp;gt;
+        &amp;lt;h2&amp;gt;Variable Summary&amp;lt;/h2&amp;gt;
+        &amp;lt;dl&amp;gt;
+        {
+          for $variable in $variables
+          let $varname := $variable/xq:uri/text()
+          return &amp;lt;dd&amp;gt;
+            &amp;lt;a href="#{$varname}"&amp;gt;{$varname}&amp;lt;/a&amp;gt;
+          &amp;lt;/dd&amp;gt;
+        }
+        &amp;lt;/dl&amp;gt;
+      &amp;lt;/div&amp;gt;
+    &amp;lt;/section&amp;gt;
+    else()
+  }
+  {
+    if(exists($functions)) then
+  &amp;lt;section id="function-summary"&amp;gt;
+      &amp;lt;div&amp;gt;
+        &amp;lt;h2&amp;gt;Function Summary&amp;lt;/h2&amp;gt;
+        &amp;lt;table&amp;gt;
+        {
+          for $function in $functions
+          let $name  := $function/xq:name/text()/substring-after(., ":")
+          let $arity := number($function/@arity)
+          return &amp;lt;tr&amp;gt;
+            &amp;lt;td&amp;gt;{html:function-properties($function)}&amp;lt;/td&amp;gt;
+            &amp;lt;td&amp;gt;
+              &amp;lt;code&amp;gt;
+              {if(exists($function//xq:deprecated)) then attribute class { "deprecated" } else ()}
+              &amp;lt;a href="#{$name}-{$arity}"&amp;gt;{$name}&amp;lt;/a&amp;gt;{substring-after($function/xq:signature/text(), $function/xq:name/text())}&amp;lt;/code&amp;gt;
+              { 
+                let $description := $function/xq:comment/xq:description
+                return
+                  if(exists($description)) then
+                    html:description-summary($description)
+                  else ()
+              }
+            &amp;lt;/td&amp;gt;
+          &amp;lt;/tr&amp;gt;
+        }
+        &amp;lt;/table&amp;gt;
+      &amp;lt;/div&amp;gt;
+  &amp;lt;/section&amp;gt;
+    else ()
+  }
+  {
+    if(exists($variables)) then
+  &amp;lt;section id="variables"&amp;gt;
+      &amp;lt;div class="variables"&amp;gt;
+        &amp;lt;h2&amp;gt;Variables&amp;lt;/h2&amp;gt;
+        {
+          for $variable at $i in $variables
+          let $name := $variable/xq:uri/text()
+          let $type := $variable/xq:comment/xq:custom[@tag = "type"]/text()
+          return &amp;lt;section id="{$name}" class="variable var-{$i}"&amp;gt;
+            &amp;lt;h3&amp;gt;${$name}{if(exists($type)) then concat(" as ", $type) else ()}&amp;lt;/h3&amp;gt;
+            &amp;lt;p&amp;gt;{$variable/xq:comment/xq:description/node()}&amp;lt;/p&amp;gt;
+          &amp;lt;/section&amp;gt;
+        }
+      &amp;lt;/div&amp;gt;
+  &amp;lt;/section&amp;gt;
+    else ()
+  }
+  {
+    if(exists($functions)) then
+  &amp;lt;section id="functions"&amp;gt;
+      &amp;lt;div class="functions"&amp;gt;
+        &amp;lt;h2&amp;gt;Functions&amp;lt;/h2&amp;gt;
+        {
+          for $function at $i in $functions
+          let $qname  := $function/xq:name/text()
+          let $name   := $qname/substring-after(., ":")
+          let $arity  := string($function/@arity)
+          let $params := $function/xq:parameters/xq:parameter
+          let $return := $function/xq:return
+          let $errors := $function/xq:comment/xq:error
+          return &amp;lt;section class="function fn-{$i}"&amp;gt;
+            &amp;lt;h3 id="{$name}-{$arity}"&amp;gt;{$name}#{$arity}&amp;lt;/h3&amp;gt;
+            &amp;lt;pre class="ace-static{if(exists($function//xq:deprecated)) then " deprecated" else ()}" ace-mode="xquery"&amp;gt;{concat("declare", html:serialize-annotations($function/xq:annotations), if(html:is-function-updating($function)) then " updating " else " ")}function {$qname}({html:serialize-params($function/xq:parameters)}) as {let $return := $function/xq:return/xq:type/text() return if(empty($return)) then "item()*" else $return}{if(html:is-function-external($function)) then " external" else ()}&amp;lt;/pre&amp;gt;
+            {if(exists($function//xq:deprecated)) then &amp;lt;h4&amp;gt;This function is deprecated&amp;lt;/h4&amp;gt; else ()}
+            &amp;lt;p&amp;gt;{$function/xq:comment/xq:description/node()}&amp;lt;/p&amp;gt;
+            {
+               if(exists($params)) then
+                &amp;lt;section class="parameters-section"&amp;gt;
+                  &amp;lt;h4&amp;gt;Parameters&amp;lt;/h4&amp;gt;
+                  &amp;lt;ul class="parameters"&amp;gt;
+                  {
+                    for $param in $params
+                    return &amp;lt;li&amp;gt;
+                    &amp;lt;code&amp;gt;{concat("$", $param/xq:name/text())} as {concat($param/xq:type/text(), $param/xq:type/@occurence)}&amp;lt;/code&amp;gt;
+                    {
+                      let $variable := concat('$', $param/xq:name/text())
+                      let $description := $function/xq:comment/xq:param[starts-with(./text()[1], $variable)][1]
+                      let $description := if(exists($description)) then
+                                            copy $d := $description
+                                            modify (
+                                              rename node $d as "div",
+                                              let $text-node := $d/text()[starts-with(., $variable)]
+                                              return
+                                                replace value of node $text-node with replace($text-node, concat("\$", $param/xq:name/text()), "")
+                                            )
+                                            return $d
+                                          else ()
+                      return $description
+                    } 
+                    &amp;lt;/li&amp;gt;
+                  }
+                  &amp;lt;/ul&amp;gt;
+                &amp;lt;/section&amp;gt;
+               else ()
+            }
+            {
+              if(exists($return)) then
+                &amp;lt;section class="returns-section"&amp;gt;
+                  &amp;lt;h4&amp;gt;Returns&amp;lt;/h4&amp;gt;
+                  &amp;lt;ul class="returns"&amp;gt;
+                    &amp;lt;li&amp;gt;
+                      &amp;lt;code&amp;gt;{$return/xq:type/text()}&amp;lt;/code&amp;gt;
+                      &amp;lt;p&amp;gt;{$function/xq:comment/xq:return/node()}&amp;lt;/p&amp;gt;
+                    &amp;lt;/li&amp;gt;
+                  &amp;lt;/ul&amp;gt;
+                &amp;lt;/section&amp;gt;
+              else ()
+            }
+            {
+              if(exists($errors)) then
+                &amp;lt;section class="errors-section"&amp;gt;
+                  &amp;lt;h4&amp;gt;Errors&amp;lt;/h4&amp;gt;
+                  &amp;lt;ul class="errors"&amp;gt;
+                  {
+                    for $error in $errors
+                    return &amp;lt;li&amp;gt;
+                    {$error/node()}
+                    &amp;lt;/li&amp;gt;
+                  }
+                  &amp;lt;/ul&amp;gt;
+                &amp;lt;/section&amp;gt;
+              else ()
+            }
+            {
+              let $examples := $function//xq:custom[@tag="example"]/text()
+              let $module-name := tokenize($module/xq:uri/text(),"/")[last()]
+              return
+                if(exists($examples)) then
+                  &amp;lt;section class="examples"&amp;gt;
+                     &amp;lt;h4&amp;gt;Examples&amp;lt;/h4&amp;gt;
+                     &amp;lt;ul&amp;gt;
+                     {
+                       for $example in $examples
+                       let $example-name := tokenize($example,"/")[last()]
+                       return &amp;lt;li&amp;gt;&amp;lt;a href="{concat("examples/",$module-name,"_",$example-name)}" class="example-link"&amp;gt;{$example-name}&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;
+                     }
+                     &amp;lt;/ul&amp;gt;
+                  &amp;lt;/section&amp;gt;
+                else ()
+            }
+            {
+              let $sees := $function/xq:comment/xq:see
+              return
+                if(exists($sees)) then
+                  &amp;lt;section&amp;gt;
+                    &amp;lt;h4&amp;gt;See also&amp;lt;/h4&amp;gt;
+                    {
+                      for $see in $sees
+                      let $see := if(exists($see/a) and exists($see/text())) then $see/node() else if(exists($see/node())) then &amp;lt;a href="{$see/node()}"&amp;gt;{$see/node()}&amp;lt;/a&amp;gt; else ""
+                      return &amp;lt;p&amp;gt;{$see}&amp;lt;/p&amp;gt;
+                    }
+                  &amp;lt;/section&amp;gt;
+                else ()
+            }
+          &amp;lt;/section&amp;gt;
+        }
+      &amp;lt;/div&amp;gt;
+  &amp;lt;/section&amp;gt;
+    else ()
+  }
+&amp;lt;/div&amp;gt;)
+};
+
+declare %private function html:normalize-pre($pre as element(pre))
+as element(pre)
+{
+  &amp;lt;pre&amp;gt;
+  {$pre/attribute()}
+  {serialize($pre/node(), &amp;lt;o:serialization-parameters&amp;gt;&amp;lt;/o:serialization-parameters&amp;gt;)}
+  &amp;lt;/pre&amp;gt;
+};
+
+declare %private function html:normalize($nodes as node()*)
+as item()*
+{
+  copy $html := $nodes
+  modify (
+    for $node in $html//*[empty(./node()[not(. instance of attribute())]) and local-name(.) = $html:empty-tags-to-delete]
+    return delete node $node,
+    for $pre in $html//pre[exists(*)]
+    return replace node $pre with html:normalize-pre($pre)
+  )
+  return $html
+};
+
+declare %private function html:text($nodes as node()*)
+as xs:string?
+{
+  string-join( 
+    for $node in $nodes
+    return
+      if($node instance of text()) then
+        $node
+      else
+        html:text($node/node())
+  , " ")
+};
+
+declare %private function html:description-summary($description as element(xq:description))
+as element(p)
+{
+  let $text := html:text($description)
+  let $text := if(contains($text, ".")) then concat(substring-before($text, "."), ".") else $text
+  return
+     &amp;lt;p&amp;gt;{$text}&amp;lt;/p&amp;gt;
+};
+
+declare %private function html:serialize-params($params as element(xq:parameters)?)
+as xs:string*
+{
+  let $params :=
+    for $param in $params/xq:parameter
+    return
+      concat("$", $param/xq:name/text(), " as ", $param/xq:type/text(), $param/xq:type/@occurrence)
+  return
+    if(exists($params)) then
+      concat("
+    ", string-join($params, ",
+    "), "
+")
+    else ()
+};
+
+declare %private function html:serialize-annotations($annotations as element(xq:annotations)?)
+as xs:string?
+{
+  let $result :=
+    string-join(
+      let $namespaces := $annotations/ancestor::*[empty(..)]//xq:module/xq:custom[@tag = "namespaces"]/xq:namespace
+      for $annotation in $annotations/xq:annotation
+      let $ns := $annotation/@namespace/string(.)
+      let $prefix := $annotation/@prefix/string(.)
+      return
+        concat("%", if(exists($prefix)) then concat($prefix, ":") else (), $annotation/@localname)
+    , " ")
+  return
+    if($result != "") then
+      concat(" ", $result)
+    else
+      $result
+};
+
+declare %private function html:function-properties($function as element(xq:function))
+as element(span)*
+{
+  if(html:is-function-external($function)) then
+    &amp;lt;span class="external"&amp;gt;&amp;amp;#160;&amp;lt;/span&amp;gt;
+  else(),
+  if(html:is-function-sequential($function)) then
+    &amp;lt;span class="sequential"&amp;gt;&amp;amp;#160;&amp;lt;/span&amp;gt;
+  else(),
+  if(html:is-function-updating($function)) then
+    &amp;lt;span class="updating"&amp;gt;&amp;amp;#160;&amp;lt;/span&amp;gt;
+  else (),
+  if(html:is-function-variadic($function)) then
+    &amp;lt;span class="variadic"&amp;gt;&amp;amp;#160;&amp;lt;/span&amp;gt;
+  else (),
+  if(html:is-function-streamable($function)) then
+    &amp;lt;span class="streamable"&amp;gt;&amp;amp;#160;&amp;lt;/span&amp;gt;
+  else (),
+  if(html:is-function-nondeterministic($function)) then
+    &amp;lt;span class="nondeterministic"&amp;gt;&amp;amp;#160;&amp;lt;/span&amp;gt;
+  else ()
+};
+
+declare %private function html:is-function-updating($function as element(xq:function))
+as xs:boolean
+{
+  $function/xq:signature/text()/contains(substring-before(., $function/xq:name/text()), " updating ")
+};
+
+declare %private function html:is-function-private($function as element(xq:function))
+as xs:boolean
+{
+  exists($function/xq:annotations/xq:annotation[@localname = "private" and @namespace = "http://www.w3.org/2005/xpath-functions"])
+};
+
+declare %private function html:is-function-nondeterministic($function as element(xq:function))
+as xs:boolean
+{
+  exists($function//xq:annotation[@namespace = "http://zorba.io/annotations" and @localname = "nondeterministic"]) 
+};
+
+declare %private function html:is-function-streamable($function as element(xq:function))
+as xs:boolean
+{
+  exists($function//xq:annotation[@namespace = "http://zorba.io/annotations" and @localname = "streamable"]) 
+};
+
+declare %private function html:is-function-variadic($function as element(xq:function))
+as xs:boolean
+{
+  exists($function//xq:annotation[@namespace = "http://zorba.io/annotations" and @localname = "variadic"]) 
+};
+
+declare %private function html:is-function-sequential($function as element(xq:function))
+as xs:boolean
+{
+  exists($function//xq:annotation[@namespace = "http://zorba.io/annotations" and @localname = "sequential"]) 
+};
+
+declare %private function html:is-function-external($function as element(xq:function))
+as xs:boolean
+{
+  $function/xq:signature/text()/ends-with(., " external")
+};
+</programlisting></para></detaileddescription></compounddef></doxygen>

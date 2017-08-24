@@ -1,0 +1,277 @@
+<doxygen><compounddef id="www.zorba-xquery.com_schemas_xdm-schema" kind="schema"><detaileddescription><para><h3>Content of www.zorba-xquery.com_schemas_xdm schema</h3><programlisting type="schema">&lt;!--
+  ******************************************************
+  28msec schema for representing an XDM instance as XML.
+  ******************************************************
+--&gt;&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xdm="http://www.zorba-xquery.com/schemas/xdm" targetNamespace="http://www.zorba-xquery.com/schemas/xdm" elementFormDefault="qualified"&gt;
+
+  &lt;!--
+    ****************
+    The root element
+    ****************
+  --&gt;
+  &lt;xs:element name="sequence-of-items" type="xdm:sequence-of-items-type"/&gt;
+
+  &lt;!--
+    ************************************************
+    Serialization of an atomic item (type specified)
+    ************************************************
+  --&gt;
+  &lt;xs:element name="atomic-value"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:simpleContent&gt;
+        &lt;xs:extension base="xs:string"&gt;
+          &lt;xs:attribute name="type" type="xs:QName"/&gt;
+        &lt;/xs:extension&gt;
+      &lt;/xs:simpleContent&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  
+  &lt;!--
+    **********************************************************************************
+    XDM-to-XML Proprietary serialization: the seven kinds of nodes and their accessors
+    For each node kind, the accessors that are always empty are ignored.
+    **********************************************************************************
+  --&gt;
+  &lt;xs:element name="document"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;!--
+          dm:children($n as node()) as node()*
+
+          The dm:children accessor returns the children of a node as a sequence containing
+          zero or more nodes.
+        --&gt;
+        &lt;xs:element name="children" type="xdm:children-sequence-type" minOccurs="0"/&gt;
+      &lt;/xs:sequence&gt;
+      &lt;!--
+        dm:base-uri($n as node()) as xs:anyURI?
+        
+        The dm:base-uri accessor returns the base URI of a node as a sequence containing
+        zero or one URI reference. For more information about base URIs, see [XML Base].
+      --&gt;
+      &lt;xs:attribute name="base-uri" type="xs:anyURI"/&gt;
+      &lt;!--
+        dm:document-uri($node as node()) as xs:anyURI?
+        
+        The dm:document-uri accessor returns the absolute URI of the resource from which
+        the Document Node was constructed, if the absolute URI is available. If there is
+        no URI available, or if it cannot be made absolute when the Document Node is
+        constructed, or if it is used on a node other than a Document Node, the empty
+        sequence is returned.
+      --&gt;
+      &lt;xs:attribute name="document-uri" type="xs:anyURI"/&gt;
+      &lt;!--
+        dm:reference-uri($node as node()) as xs:anyURI?
+        
+        An additional, proprietary accessor reference-uri is used to store Sausalito's
+        UUID references.
+      --&gt;
+      &lt;xs:attribute name="reference-uri" type="xs:anyURI"/&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="element"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;!--
+          dm:attributes($n as node()) as attribute()*
+          
+          The dm:attributes accessor returns the attributes of a node as a sequence
+          containing zero or more Attribute Nodes. The order of Attribute Nodes is
+          stable but implementation dependent.
+        --&gt;
+        &lt;xs:element name="attributes" type="xdm:attributes-sequence-type" minOccurs="0"/&gt;
+        &lt;xs:element name="children" type="xdm:children-sequence-type" minOccurs="0"/&gt;
+        &lt;!--
+          dm:namespace-nodes($n as node()) as node()*
+          
+          The dm:namespace-nodes accessor returns the dynamic, in-scope namespaces associated
+          with a node as a sequence containing zero or more Namespace Nodes. The order of Namespace
+          Nodes is stable but implementation dependent.
+        --&gt;
+        &lt;xs:element name="namespace-nodes" type="xdm:namespaces-sequence-type" minOccurs="0"/&gt;
+      &lt;/xs:sequence&gt;
+      &lt;!--
+        dm:node-name($n as node()) as xs:QName?
+        
+        The dm:node-name accessor returns the name of the node as a sequence of zero or one
+        xs:QNames. Note that the QName value includes an optional prefix as described in 3.3.3
+        QNames and NOTATIONS.
+      --&gt;
+      &lt;xs:attribute name="node-name" type="xs:QName" use="required"/&gt;
+      &lt;!--
+        dm:type-name($n as node()) as xs:QName?
+        
+        The dm:type-name accessor returns the name of the schema type of a node as a sequence of
+        zero or one xs:QNames.
+      --&gt;
+      &lt;xs:attribute name="type-name" type="xs:QName" use="required"/&gt;
+      &lt;!--
+        dm:is-id($node as node()) as xs:boolean?
+        
+        The dm:is-id accessor returns true if the node is an XML ID. Exactly what constitutes
+        an ID depends in part on how the data model was constructed, see 6.2 Element Nodes
+        and 6.3 Attribute Nodes.
+      --&gt;
+      &lt;xs:attribute name="is-id" type="xs:boolean" default="false"/&gt;
+      &lt;!--
+        dm:is-idrefs($node as node()) as xs:boolean?
+
+        The dm:is-idrefs accessor returns true if the node is an XML IDREF or IDREFS. Exactly
+        what constitutes an IDREF or IDREFS depends in part on how the data model was
+        constructed, see 6.2 Element Nodes and 6.3 Attribute Nodes.
+      --&gt;
+      &lt;xs:attribute name="is-idrefs" type="xs:boolean" default="false"/&gt;
+      &lt;!--
+        dm:nilled($n as node()) as xs:boolean?
+        
+        The dm:nilled accessor returns true if the node is "nilled". [Schema Part 1] introduced
+        the nilled mechanism to signal that an element should be accepted as valid when it has
+        no content even when it has a content type which does not require or even necessarily
+        allow empty content.
+      --&gt;
+      &lt;xs:attribute name="nilled" type="xs:boolean" default="false"/&gt;
+      &lt;xs:attribute name="reference-uri" type="xs:anyURI"/&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="attribute"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:simpleContent&gt;
+        &lt;xs:extension base="xs:string"&gt;
+          &lt;xs:attribute name="node-name" type="xs:QName" use="required"/&gt;
+          &lt;xs:attribute name="type-name" type="xs:QName" use="required"/&gt;
+          &lt;xs:attribute name="is-id" type="xs:boolean" default="false"/&gt;
+          &lt;xs:attribute name="is-idrefs" type="xs:boolean" default="false"/&gt;
+          &lt;xs:attribute name="reference-uri" type="xs:anyURI"/&gt;
+        &lt;/xs:extension&gt;
+      &lt;/xs:simpleContent&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="namespace"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:simpleContent&gt;
+        &lt;xs:extension base="xs:string"&gt;
+          &lt;xs:attribute name="node-name" type="xs:QName" use="required"/&gt;
+          &lt;xs:attribute name="reference-uri" type="xs:anyURI"/&gt;
+        &lt;/xs:extension&gt;
+      &lt;/xs:simpleContent&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="processing-instruction"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:simpleContent&gt;
+        &lt;xs:extension base="xs:string"&gt;
+          &lt;xs:attribute name="node-name" type="xs:NCName" use="required"/&gt;
+          &lt;xs:attribute name="reference-uri" type="xs:anyURI"/&gt;
+        &lt;/xs:extension&gt;
+      &lt;/xs:simpleContent&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="comment"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:simpleContent&gt;
+        &lt;xs:extension base="xs:string"&gt;
+          &lt;xs:attribute name="reference-uri" type="xs:anyURI"/&gt;
+        &lt;/xs:extension&gt;
+      &lt;/xs:simpleContent&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element name="text"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:simpleContent&gt;
+        &lt;xs:extension base="xs:string"&gt;
+          &lt;xs:attribute name="reference-uri" type="xs:anyURI"/&gt;
+        &lt;/xs:extension&gt;
+      &lt;/xs:simpleContent&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+
+  &lt;!--
+    *************************************************************************************
+    Types that are sequences of items (restricted on the kinds of nodes that are allowed)
+    *************************************************************************************
+  --&gt;
+  &lt;xs:complexType name="sequence-of-items-type"&gt;
+    &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
+      &lt;xs:element ref="xdm:document"/&gt;
+      &lt;xs:element ref="xdm:element"/&gt;
+      &lt;xs:element ref="xdm:comment"/&gt;
+      &lt;xs:element ref="xdm:text"/&gt;
+      &lt;xs:element ref="xdm:processing-instruction"/&gt;
+      &lt;xs:element ref="xdm:attribute"/&gt;
+      &lt;xs:element ref="xdm:namespace"/&gt;
+      &lt;xs:element ref="xdm:atomic-value"/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="attributes-sequence-type"&gt;
+    &lt;xs:sequence minOccurs="0" maxOccurs="unbounded"&gt;
+      &lt;xs:element ref="xdm:attribute"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:complexType name="children-sequence-type"&gt;
+    &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
+      &lt;xs:element ref="xdm:element"/&gt;
+      &lt;xs:element ref="xdm:comment"/&gt;
+      &lt;xs:element ref="xdm:text"/&gt;
+      &lt;xs:element ref="xdm:processing-instruction"/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:complexType name="namespaces-sequence-type"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element ref="xdm:namespace" minOccurs="0" maxOccurs="unbounded"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="children-or-attributes-sequence-type"&gt;
+    &lt;xs:choice&gt;
+      &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
+        &lt;xs:element ref="xdm:element"/&gt;
+        &lt;xs:element ref="xdm:comment"/&gt;
+        &lt;xs:element ref="xdm:text"/&gt;
+        &lt;xs:element ref="xdm:processing-instruction"/&gt;
+      &lt;/xs:choice&gt;
+      &lt;xs:element ref="xdm:attribute" minOccurs="0" maxOccurs="unbounded"/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:complexType&gt;
+  
+  &lt;xs:complexType name="zero-or-one-text-node-type"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element ref="xdm:text" minOccurs="0"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="one-document-or-element-node-type"&gt;
+    &lt;xs:choice&gt;
+      &lt;xs:element ref="xdm:document"/&gt;
+      &lt;xs:element ref="xdm:element"/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:complexType&gt;
+  
+  &lt;xs:complexType name="one-document-node-type"&gt;
+    &lt;xs:choice&gt;
+      &lt;xs:element ref="xdm:document"/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:complexType&gt;
+  
+  &lt;xs:complexType name="nodes-sequence-no-namespaces-type"&gt;
+    &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
+      &lt;xs:element ref="xdm:document"/&gt;
+      &lt;xs:element ref="xdm:element"/&gt;
+      &lt;xs:element ref="xdm:comment"/&gt;
+      &lt;xs:element ref="xdm:text"/&gt;
+      &lt;xs:element ref="xdm:processing-instruction"/&gt;
+      &lt;xs:element ref="xdm:attribute"/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="one-node-no-namespace-type"&gt;
+    &lt;xs:choice&gt;
+      &lt;xs:element ref="xdm:document"/&gt;
+      &lt;xs:element ref="xdm:element"/&gt;
+      &lt;xs:element ref="xdm:comment"/&gt;
+      &lt;xs:element ref="xdm:text"/&gt;
+      &lt;xs:element ref="xdm:processing-instruction"/&gt;
+      &lt;xs:element ref="xdm:attribute"/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:complexType&gt;
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

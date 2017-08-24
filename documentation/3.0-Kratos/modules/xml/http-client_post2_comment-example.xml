@@ -1,0 +1,9 @@
+<doxygen><compounddef id="post2_comment.xq-example" kind="example"><detaileddescription><para><h3>Content of post2_comment.xq example</h3><programlisting type="example">import module namespace http="http://www.zorba-xquery.com/modules/http-client";
+
+variable $arg := &amp;lt;!-- comment --&amp;gt;;
+variable $result :=
+  http:post("http://zorbatest.lambda.nu:8080/cgi-bin/test-text", $arg);
+
+$result[2]
+
+</programlisting></para></detaileddescription></compounddef></doxygen>

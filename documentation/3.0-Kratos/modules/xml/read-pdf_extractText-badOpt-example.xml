@@ -1,0 +1,18 @@
+<doxygen><compounddef id="extractText-badOpt.xq-example" kind="example"><detaileddescription><para><h3>Content of extractText-badOpt.xq example</h3><programlisting type="example">import module namespace read-pdf = "http://www.zorba-xquery.com/modules/read-pdf";
+import module namespace file = "http://expath.org/ns/file";
+
+declare namespace rpo =
+      "http://www.zorba-xquery.com/modules/read-pdf/read-pdf-options";
+
+
+let $pdf := file:read-binary(resolve-uri("28msec-NoSQLNow.pdf"))
+let $options  := 
+    &amp;lt;rpo:extract-text-options&amp;gt;
+        &amp;lt;rpo:bad-option&amp;gt;123&amp;lt;/rpo:bad-option&amp;gt;
+    &amp;lt;/rpo:extract-text-options&amp;gt; 
+return
+    read-pdf:extract-text($pdf, $options)
+
+
+
+</programlisting></para></detaileddescription></compounddef></doxygen>

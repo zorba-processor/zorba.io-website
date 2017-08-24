@@ -1,0 +1,19 @@
+<doxygen><compounddef id="www.evaluescience.com_schemas_forms-schema" kind="schema"><detaileddescription><para><h3>Content of www.evaluescience.com_schemas_forms schema</h3><programlisting type="schema">&lt;xs:schema xmlns="http://www.evaluescience.com/schemas/forms" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.evaluescience.com/schemas/forms" elementFormDefault="qualified"&gt;
+
+    &lt;xs:complexType name="Form"&gt;
+     &lt;xs:sequence&gt;
+      &lt;xs:any namespace="##targetNamespace" minOccurs="0" maxOccurs="unbounded"&gt;
+      &lt;/xs:any&gt;
+     &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+
+    &lt;xs:element name="form" type="Form"/&gt;
+
+    &lt;xs:complexType name="Hidden"&gt;
+      &lt;xs:attribute name="name" type="xs:string" use="required"/&gt;
+      &lt;xs:attribute name="value" type="xs:anySimpleType" use="optional"/&gt;
+    &lt;/xs:complexType&gt;
+
+    &lt;xs:element name="hidden" type="Hidden"/&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

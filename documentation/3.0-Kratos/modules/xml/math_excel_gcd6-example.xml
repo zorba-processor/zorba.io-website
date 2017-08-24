@@ -1,0 +1,9 @@
+<doxygen><compounddef id="excel_gcd6.xq-example" kind="example"><detaileddescription><para><h3>Content of excel_gcd6.xq example</h3><programlisting type="example">import module namespace
+math="http://zorba.io/modules/math";
+
+math:gcd((-5, 0, 2))
+
+(:
+Output: Error [ZXQP0021] gcd function: numbers should be greater than zero or equal
+:)
+</programlisting></para></detaileddescription></compounddef></doxygen>

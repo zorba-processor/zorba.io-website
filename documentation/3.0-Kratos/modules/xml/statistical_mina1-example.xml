@@ -1,0 +1,5 @@
+<doxygen><compounddef id="mina1.xq-example" kind="example"><detaileddescription><para><h3>Content of mina1.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/statistical";
+
+excel:mina((fn:false(), 0.2, 0.5, 0.4, 0.8) )
+</programlisting></para></detaileddescription></compounddef></doxygen>

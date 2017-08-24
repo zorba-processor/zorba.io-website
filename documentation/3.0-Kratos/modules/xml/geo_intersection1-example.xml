@@ -1,0 +1,15 @@
+<doxygen><compounddef id="intersection1.xq-example" kind="example"><detaileddescription><para><h3>Content of intersection1.xq example</h3><programlisting type="example">(:
+Geo module test.
+Compute the intersection between a group of lines and a point on one line.
+Result: 3.000000 3.000000
+:)
+
+import module namespace geo = "http://expath.org/ns/geo";
+declare namespace gml="http://www.opengis.net/gml";
+
+geo:intersection(&amp;lt;gml:Curve&amp;gt;&amp;lt;gml:segments&amp;gt;
+                &amp;lt;gml:LineStringSegment interpolation="linear"&amp;gt;&amp;lt;gml:posList&amp;gt; 1 1 2 2&amp;lt;/gml:posList&amp;gt;&amp;lt;/gml:LineStringSegment&amp;gt;
+                &amp;lt;gml:LineStringSegment&amp;gt;&amp;lt;gml:posList&amp;gt; 1 1 2 2 4 4&amp;lt;/gml:posList&amp;gt;&amp;lt;/gml:LineStringSegment&amp;gt;
+              &amp;lt;/gml:segments&amp;gt;&amp;lt;/gml:Curve&amp;gt;,
+           &amp;lt;gml:Point&amp;gt;&amp;lt;gml:pos&amp;gt; 3 3&amp;lt;/gml:pos&amp;gt;&amp;lt;/gml:Point&amp;gt;
+              )</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,4 @@
+<doxygen><compounddef id="reflection-invoke-01.xq-example" kind="example"><detaileddescription><para><h3>Content of reflection-invoke-01.xq example</h3><programlisting type="example">import module namespace ref = "http://zorba.io/modules/reflection";
+
+ref:invoke(xs:QName("fn:max"), (1,2,3))
+</programlisting></para></detaileddescription></compounddef></doxygen>

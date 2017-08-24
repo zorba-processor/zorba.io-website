@@ -1,0 +1,1802 @@
+<!DOCTYPE html><html lang="en" class="js cssanimations ng-scope" ng-app="28.ioApp" prefix="og: http://ogp.me/ns#" ng-controller="MainCtrl"><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Zorba - The NoSQL Query Processor</title>
+        <meta name="description" content="Zorba - The NoSQL Query Processor">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+
+        <meta content="28.io" name="apple-mobile-web-app-title">
+        <link href="/images/iphone-icon.png" rel="apple-touch-icon-precomposed">
+        <link href="/favicon.png" rel="icon" type="image/png">
+
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="http://www.zorba.io/blog/atom.xml">
+        <base href="/">
+        <link rel="stylesheet" href="/styles/index.css">
+    <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\:form{display:block;}</style></head>
+    <body ready="" class="" ng-cloak="undefined">
+        <!--[if lt IE 9]>
+            <script type="text/javascript">location.href = "/outdated";</script>
+        <![endif]-->
+        <div class="navbar navbar-default navbar-fixed-top" id="top-menu" navbar-toggle="">
+            <div class="container">
+                <a href="/home" id="logo">
+<svg width="172px" height="44px" viewBox="0 0 172 44" version="1.1" xmlns="http://www.w3.org/2000/svg" style="margin-right: 30px">
+    <defs></defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="g3354-1-3-0" transform="translate(70.000000, 3.000000)" fill="#3498DB">
+            <path d="M36.8599281,6.08695652 C23.7462235,7.46138534 17.3241713,7.87186266 12.0855118,12.5394913 C9.61392853,8.89602738 2.41221529,6.6246591 0,6.89251341 L0.0401259499,9.84221332 C11.3218642,17.172198 8.15927521,31.2798979 5.60530924,40 L18.0693794,40 C15.1069036,30.4981162 15.7891093,23.8890354 16.4644797,20.4999181 C17.5216924,12.0444371 30.0443188,9.56353073 37,7.95199463 L36.8599281,6.08695652 Z" id="path3217-2-16-8-3-4-8-9"></path>
+            <path d="M17.2092989,4.7826087 C17.2112417,6.18001565 16.3916489,7.47202866 15.0597079,8.1712421 C13.7277668,8.87045553 12.0861867,8.87045553 10.7542456,8.1712421 C9.42230457,7.47202866 8.60271176,6.18001565 8.60465461,4.7826087 C8.60271176,3.38520174 9.42230457,2.09318873 10.7542456,1.39397529 C12.0861867,0.694761858 13.7277668,0.694761858 15.0597079,1.39397529 C16.3916489,2.09318873 17.2112417,3.38520174 17.2092989,4.7826087 L17.2092989,4.7826087 Z" id="path3830-2-4-8-2-3-6-0-4" transform="translate(12.906977, 4.782609) rotate(-12.486691) translate(-12.906977, -4.782609) "></path>
+        </g>
+        <path d="M0.896,35.2271939 L0.896,42.1301694 L34.4088328,42.1301694 L34.4088328,34.7818406 L12.5308539,34.7818406 L33.8521412,9.28536648 L33.8521412,2.38239095 L2.56607473,2.38239095 L2.56607473,9.73071974 L22.2172873,9.73071974 L0.896,35.2271939 Z M37.8046514,27.7675268 C37.8046514,30.0685301 38.1572192,32.1468246 38.8623654,34.0024724 C39.5675116,35.8581203 40.5695464,37.4446754 41.8684999,38.7621854 C43.1674534,40.0796954 44.7261743,41.0910083 46.5447092,41.7961545 C48.3632441,42.5013007 50.4044261,42.8538685 52.6683165,42.8538685 C54.9322069,42.8538685 56.982667,42.5013007 58.8197584,41.7961545 C60.6568498,41.0910083 62.2248487,40.0796954 63.5238022,38.7621854 C64.8227557,37.4446754 65.8247905,35.8581203 66.5299367,34.0024724 C67.2350829,32.1468246 67.5876507,30.0685301 67.5876507,27.7675268 C67.5876507,25.4665234 67.2350829,23.3789509 66.5299367,21.5047466 C65.8247905,19.6305422 64.8227557,18.034709 63.5238022,16.717199 C62.2248487,15.399689 60.6568498,14.379098 58.8197584,13.6553953 C56.982667,12.9316927 54.9322069,12.5698468 52.6683165,12.5698468 C50.4044261,12.5698468 48.3632441,12.9316927 46.5447092,13.6553953 C44.7261743,14.379098 43.1674534,15.399689 41.8684999,16.717199 C40.5695464,18.034709 39.5675116,19.6305422 38.8623654,21.5047466 C38.1572192,23.3789509 37.8046514,25.4665234 37.8046514,27.7675268 Z M45.7096718,27.7675268 C45.7096718,26.6170251 45.821009,25.4850969 46.0436867,24.3717082 C46.2663645,23.2583195 46.6467666,22.2748408 47.1849045,21.4212428 C47.7230424,20.5676448 48.4374561,19.8717873 49.328167,19.3336494 C50.218878,18.7955115 51.33225,18.5264466 52.6683165,18.5264466 C54.0043829,18.5264466 55.1270331,18.7955115 56.0363005,19.3336494 C56.945568,19.8717873 57.6692598,20.5676448 58.2073977,21.4212428 C58.7455355,22.2748408 59.1259376,23.2583195 59.3486154,24.3717082 C59.5712931,25.4850969 59.6826303,26.6170251 59.6826303,27.7675268 C59.6826303,28.9180285 59.5712931,30.0406786 59.3486154,31.1355108 C59.1259376,32.230343 58.7455355,33.2138217 58.2073977,34.0859762 C57.6692598,34.9581306 56.945568,35.6539882 56.0363005,36.1735696 C55.1270331,36.693151 54.0043829,36.9529378 52.6683165,36.9529378 C51.33225,36.9529378 50.218878,36.693151 49.328167,36.1735696 C48.4374561,35.6539882 47.7230424,34.9581306 47.1849045,34.0859762 C46.6467666,33.2138217 46.2663645,32.230343 46.0436867,31.1355108 C45.821009,30.0406786 45.7096718,28.9180285 45.7096718,27.7675268 Z" id="Zo" fill="#333333"></path>
+        <path d="M109.28037,2.38239095 L109.28037,42.1301694 L116.795707,42.1301694 L116.795707,38.456005 L116.907045,38.456005 C117.760643,40.0518622 119.022465,41.1837904 120.692548,41.8518236 C122.362631,42.5198569 124.255363,42.8538685 126.370802,42.8538685 C127.818207,42.8538685 129.247034,42.5569693 130.657327,41.9631619 C132.067619,41.3693546 133.338719,40.4601008 134.470664,39.2353732 C135.602609,38.0106456 136.521141,36.4426467 137.226287,34.5313294 C137.931434,32.6200121 138.284001,30.3468776 138.284001,27.7118576 C138.284001,25.0768377 137.931434,22.8037031 137.226287,20.8923858 C136.521141,18.9810685 135.602609,17.4130696 134.470664,16.188342 C133.338719,14.9636144 132.067619,14.0543606 130.657327,13.4605533 C129.247034,12.866746 127.818207,12.5698468 126.370802,12.5698468 C124.58938,12.5698468 122.872931,12.9131365 121.221405,13.5997262 C119.569878,14.2863159 118.261666,15.3718536 117.296729,16.8563719 L117.185391,16.8563719 L117.185391,2.38239095 L109.28037,2.38239095 Z M130.378981,27.7675268 C130.378981,28.9551414 130.249088,30.1056258 129.989297,31.2190145 C129.729506,32.3324033 129.32127,33.3158819 128.764575,34.1694799 C128.207881,35.0230779 127.512024,35.7003792 126.676982,36.2014041 C125.841941,36.7024291 124.830628,36.9529378 123.643013,36.9529378 C122.492511,36.9529378 121.490477,36.7024291 120.636878,36.2014041 C119.78328,35.7003792 119.078145,35.0230779 118.521451,34.1694799 C117.964756,33.3158819 117.55652,32.3324033 117.296729,31.2190145 C117.036938,30.1056258 116.907045,28.9551414 116.907045,27.7675268 C116.907045,26.5427992 117.036938,25.3737586 117.296729,24.2603699 C117.55652,23.1469811 117.964756,22.1635025 118.521451,21.3099045 C119.078145,20.4563065 119.78328,19.7790052 120.636878,19.2779803 C121.490477,18.7769553 122.492511,18.5264466 123.643013,18.5264466 C124.830628,18.5264466 125.841941,18.7769553 126.676982,19.2779803 C127.512024,19.7790052 128.207881,20.4563065 128.764575,21.3099045 C129.32127,22.1635025 129.729506,23.1469811 129.989297,24.2603699 C130.249088,25.3737586 130.378981,26.5427992 130.378981,27.7675268 Z M142.960211,22.200611 L150.865231,22.200611 C151.013683,20.6418668 151.533256,19.5284948 152.423967,18.8604616 C153.314678,18.1924283 154.539388,17.8584167 156.098132,17.8584167 C156.803278,17.8584167 157.462023,17.9048072 158.074387,17.9975896 C158.686751,18.090372 159.224881,18.275934 159.688792,18.5542812 C160.152704,18.8326284 160.523828,19.2223086 160.802176,19.7233335 C161.080523,20.2243584 161.219694,20.9016597 161.219694,21.7552578 C161.256807,22.5717428 161.015577,23.1933755 160.495995,23.6201745 C159.976414,24.0469735 159.271278,24.3717071 158.380567,24.5943848 C157.489856,24.8170625 156.469265,24.9840683 155.318764,25.0954072 C154.168262,25.2067461 152.999221,25.3551957 151.811607,25.5407605 C150.623992,25.7263253 149.445673,25.976834 148.276615,26.2922941 C147.107557,26.6077542 146.06841,27.0809373 145.159142,27.7118576 C144.249875,28.3427779 143.507627,29.187085 142.932376,30.2448043 C142.357125,31.3025236 142.069504,32.6478481 142.069504,34.2808182 C142.069504,35.7653365 142.320013,37.0457143 142.821038,38.1219901 C143.322063,39.1982658 144.01792,40.0889634 144.908631,40.7941096 C145.799342,41.4992558 146.838489,42.0188294 148.026104,42.352846 C149.213719,42.6868627 150.494096,42.8538685 151.867276,42.8538685 C153.648698,42.8538685 155.392981,42.5940817 157.100177,42.0745003 C158.807373,41.5549189 160.291869,40.645665 161.553709,39.3467115 C161.590822,39.82918 161.655769,40.3023631 161.748551,40.7662751 C161.841334,41.230187 161.961949,41.6848139 162.110401,42.1301694 L170.12676,42.1301694 C169.75563,41.5363621 169.495843,40.6456645 169.347391,39.4580499 C169.198939,38.2704352 169.124715,37.0271698 169.124715,35.7282163 L169.124715,20.7532129 C169.124715,19.0089039 168.735034,17.6079108 167.955662,16.5501915 C167.17629,15.4924723 166.174255,14.6667213 164.949528,14.072914 C163.7248,13.4791067 162.370198,13.0801484 160.885679,12.8760271 C159.401161,12.6719059 157.935221,12.5698468 156.487816,12.5698468 C154.891959,12.5698468 153.305404,12.7275745 151.728103,13.0430346 C150.150802,13.3584948 148.731253,13.8873465 147.469412,14.6296056 C146.207572,15.3718647 145.168425,16.3553434 144.35194,17.580071 C143.535455,18.8047985 143.07155,20.3449632 142.960211,22.200611 Z M161.219694,28.0458726 L161.219694,30.9963379 C161.219694,31.4416934 161.173304,32.0354918 161.080521,32.777751 C160.987739,33.5200101 160.73723,34.25298 160.328988,34.9766827 C159.920745,35.7003853 159.289834,36.322018 158.436236,36.8415995 C157.582638,37.3611809 156.376485,37.6209677 154.817741,37.6209677 C154.186821,37.6209677 153.574466,37.5652991 152.980659,37.4539602 C152.386852,37.3426213 151.867278,37.1477812 151.421923,36.869434 C150.976567,36.5910868 150.623999,36.2106847 150.364209,35.7282163 C150.104418,35.2457479 149.974524,34.6519494 149.974524,33.9468033 C149.974524,33.2045441 150.104418,32.5921895 150.364209,32.1097211 C150.623999,31.6272526 150.967289,31.2282943 151.394088,30.9128342 C151.820887,30.597374 152.321904,30.3468653 152.897155,30.1613005 C153.472406,29.9757358 154.056926,29.8272862 154.650734,29.7159473 C155.281654,29.6046084 155.912565,29.5118274 156.543485,29.4376015 C157.174405,29.3633756 157.777482,29.2705946 158.352733,29.1592557 C158.927984,29.0479168 159.466113,28.9087453 159.967138,28.741737 C160.468163,28.5747287 160.885678,28.3427762 161.219694,28.0458726 Z" id="ba" fill="#333333"></path>
+    </g>
+</svg>
+                </a>
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li ng-class="navClass(menu.home.href)">
+                            <a ng-href="/home" ng-bind="menu.home.label" class="ng-binding" href="/home">Home</a>
+                        </li>
+                        <li ng-class="navClass(menu.documentation.href)" class="active">
+                            <a ng-href="/documentation" ng-bind="menu.documentation.label" class="ng-binding" href="/documentation">Documentation</a>
+                        </li>
+                        <li ng-class="navClass(menu.tryzorba.href)">
+                            <a ng-href="http://try.zorba.io/" ng-bind="menu.tryzorba.label" class="ng-binding" href="http://try.zorba.io/">Live Demo</a>
+                        </li>
+                        <li ng-class="navClass(menu.blog.href)">
+                            <a ng-href="/blog" ng-bind="menu.blog.label" class="ng-binding" href="/blog">Blog</a>
+                        </li>
+                        <li ng-class="navClass(menu.download.href)">
+                            <a ng-href="/download" ng-bind="menu.download.label" class="ng-binding" href="/download">Download</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ng-view"><div class="container ng-scope" id="documentation">
+    <div class="row">
+        <!-- ngIf: state !== 'notfound' && !debug --><div class="col-sm-4 sidebar ng-scope" ng-if="state !== 'notfound' &amp;&amp; !debug">
+            <div class="inner-sidebar">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="dropdown selected-version">
+                    <a class="dropdown-toggle">
+                        <span ng-bind="currentVersion.version" class="ng-binding">3.0</span>
+                        <span ng-bind="currentVersion.codename" class="ng-binding">Kratos</span>
+                        <span ng-show="currentVersion.latest">(latest)</span>
+                        <!--i class="fa fa-caret-down"></i-->
+                    </a>
+                    <!--ul class="dropdown-menu versions">
+                        <li ng-repeat="version in index.versions" ng-show="currentVersion.version != version.version">
+                            <a ng-href="/documentation/{{version.version}}">
+                                <span ng-bind="version.version"></span>
+                                <span ng-bind="version.codename"></span>
+                                <span ng-show="version.latest">(latest)</span>
+                            </a>
+                        </li>
+                    </ul-->
+                    <ul class="versions">
+                        <!-- ngRepeat: version in index.versions --><li ng-repeat="version in index.versions" ng-show="currentVersion.version != version.version" class="ng-scope" style="display: none; ">
+                            <a ng-href="/documentation/3.0" href="/documentation/3.0">
+                                <span ng-bind="version.version" class="ng-binding">3.0</span>
+                                <span ng-bind="version.codename" class="ng-binding">Kratos</span>
+                                <span ng-show="version.latest">(latest)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="slider">
+                <!-- Current -->
+                <div class="current" ng-show="panel.status === 'current'">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="path.split('/').length &gt; 3">
+                            <a href="/documentation/3.0/modules" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/w3c/xpath-functions" ng-click="next(item)" href="/documentation/3.0/modules/w3c/xpath-functions">
+                                <span ng-bind="item.label" class="ng-binding">XPath Functions</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/w3c/xpath-functions-math" ng-click="next(item)" href="/documentation/3.0/modules/w3c/xpath-functions-math">
+                                <span ng-bind="item.label" class="ng-binding">XPath Math Functions</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope active">
+                            <a ng-href="/documentation/3.0/modules/w3c/xpath-error-codes" ng-click="next(item)" href="/documentation/3.0/modules/w3c/xpath-error-codes">
+                                <span ng-bind="item.label" class="ng-binding">XPath Error Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Next -->
+                <div class="next slideRight" ng-show="panel.status === 'next'" next="" style="display: none; ">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="menu &amp;&amp; path.split('/').length &gt; 4">
+                            <a ng-href="/documentation/3.0" ng-click="previous()" href="/documentation/3.0">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.parent.children --><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">JSONiq</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">JSound</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">FunctX</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">W3C</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">EXPath</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Data Connectors</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Zorba</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="/documentation/3.0/modules" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/w3c/xpath-functions" ng-click="next(item)" href="/documentation/3.0/modules/w3c/xpath-functions">
+                                <span ng-bind="item.label" class="ng-binding">XPath Functions</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/w3c/xpath-functions-math" ng-click="next(item)" href="/documentation/3.0/modules/w3c/xpath-functions-math">
+                                <span ng-bind="item.label" class="ng-binding">XPath Math Functions</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/w3c/xpath-error-codes" ng-click="next(item)" href="/documentation/3.0/modules/w3c/xpath-error-codes">
+                                <span ng-bind="item.label" class="ng-binding">XPath Error Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Previous -->
+                <div class="previous slideLeft" ng-show="panel.status === 'previous'" previous="" style="display: none; ">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="menu &amp;&amp; path.split('/').length &gt; 3">
+                            <a ng-href="/documentation/3.0/modules" ng-click="previous()" href="/documentation/3.0/modules">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/w3c/xpath-functions" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">XPath Functions</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/w3c/xpath-functions-math" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">XPath Math Functions</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/w3c/xpath-error-codes" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">XPath Error Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="/documentation/3.0" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in panel.previous.children -->
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="content col-sm-8" ng-switch="" on="state" ng-class="{ 'col-sm-8': state !== 'notfound', 'col-sm-12': state === 'notfound' }">
+            
+                <ol class="breadcrumb">
+                    <li>
+                        <a ng-href="/documentation/latest" class="ng-binding" href="/documentation/latest">
+                            Zorba 3.0 Documentation
+                        </a>
+                    </li>
+                    <!-- ngRepeat: crumb in getBreadCrumbs() --><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/modules" href="/documentation/latest/modules">
+                            <span ng-bind="crumb.label" class="ng-binding">Modules</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/modules/w3c" href="/documentation/latest/modules/w3c">
+                            <span ng-bind="crumb.label" class="ng-binding">W3C</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope active">
+                        <a ng-href="/documentation/latest/modules/w3c/xpath-error-codes" href="/documentation/latest/modules/w3c/xpath-error-codes">
+                            <span ng-bind="crumb.label" class="ng-binding">XPath Error Codes</span>
+                        </a>
+                    </li>
+                </ol>
+            
+            <!-- ngSwitchWhen: loading -->
+            <!-- ngSwitchWhen: zorba -->
+            <!-- ngSwitchWhen: api -->
+            <!-- ngSwitchWhen: modules --><div ng-switch-when="modules" class="ng-scope">
+                <h1 class="ng-binding">http://www.w3.org/2005/xqt-errors</h1>
+                <p>View as <a ng-href="/documentation/3.0-Kratos/modules/xml/www.w3.org_2005_xqt-errors.xml" target="_blank" href="/documentation/3.0-Kratos/modules/xml/www.w3.org_2005_xqt-errors.xml">XML</a> or <a ng-href="/documentation/3.0-Kratos/modules/www.w3.org_2005_xqt-errors.json" target="_blank" href="/documentation/3.0-Kratos/modules/www.w3.org_2005_xqt-errors.json">JSON</a>.</p>
+                <div ng-bind-html-unsafe="normalizeAnchor(content.description)" class="ng-binding"> This module contains one variable declaration for each diagnostic of the
+ http://www.w3.org/2005/xqt-errors namespace.
+ The variables serves as documentation for the errors but can also
+ be used in the code. For example, one useful scenario is to compare
+ an error caught in the catch clause of a try-catch expression with one of
+ the variables.
+</div>
+                <div ng-show="content.functions.length &gt; 0" class="function-summary" style="display: none; ">
+                    <h2>Function Summary</h2>
+                    <table class="table">
+                        <tbody><!-- ngRepeat: fn in content.functions -->
+                    </tbody></table>
+                </div>
+                <div ng-show="content.variables.length &gt; 0" class="variable-summary">
+                    <h2>Variable Summary</h2>
+                    <ul class="list-unstyled">
+                        <!-- ngRepeat: var in content.variables --><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FODC0007" class="ng-binding">$err:FODC0007</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FODF1280" class="ng-binding">$err:FODF1280</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FODF1310" class="ng-binding">$err:FODF1310</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FODT0001" class="ng-binding">$err:FODT0001</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FODT0002" class="ng-binding">$err:FODT0002</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FODT0003" class="ng-binding">$err:FODT0003</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FONS0004" class="ng-binding">$err:FONS0004</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FONS0005" class="ng-binding">$err:FONS0005</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FORG0001" class="ng-binding">$err:FORG0001</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FORG0002" class="ng-binding">$err:FORG0002</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FORG0003" class="ng-binding">$err:FORG0003</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FORG0004" class="ng-binding">$err:FORG0004</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FORG0005" class="ng-binding">$err:FORG0005</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FORG0006" class="ng-binding">$err:FORG0006</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FORG0008" class="ng-binding">$err:FORG0008</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FORG0009" class="ng-binding">$err:FORG0009</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FORX0001" class="ng-binding">$err:FORX0001</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FORX0002" class="ng-binding">$err:FORX0002</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FORX0003" class="ng-binding">$err:FORX0003</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FORX0004" class="ng-binding">$err:FORX0004</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOTY0012" class="ng-binding">$err:FOTY0012</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOTY0013" class="ng-binding">$err:FOTY0013</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOTY0014" class="ng-binding">$err:FOTY0014</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOTY0015" class="ng-binding">$err:FOTY0015</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FTST0009" class="ng-binding">$err:FTST0009</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FTDY0016" class="ng-binding">$err:FTDY0016</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FTDY0017" class="ng-binding">$err:FTDY0017</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FTST0018" class="ng-binding">$err:FTST0018</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FTST0019" class="ng-binding">$err:FTST0019</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FTDY0020" class="ng-binding">$err:FTDY0020</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOER0000" class="ng-binding">$err:FOER0000</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOAR0001" class="ng-binding">$err:FOAR0001</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOAR0002" class="ng-binding">$err:FOAR0002</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOCA0001" class="ng-binding">$err:FOCA0001</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOCA0002" class="ng-binding">$err:FOCA0002</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOCA0003" class="ng-binding">$err:FOCA0003</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOCA0005" class="ng-binding">$err:FOCA0005</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOCA0006" class="ng-binding">$err:FOCA0006</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOCH0001" class="ng-binding">$err:FOCH0001</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOCH0002" class="ng-binding">$err:FOCH0002</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOCH0003" class="ng-binding">$err:FOCH0003</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOCH0004" class="ng-binding">$err:FOCH0004</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FODC0001" class="ng-binding">$err:FODC0001</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FODC0002" class="ng-binding">$err:FODC0002</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FODC0003" class="ng-binding">$err:FODC0003</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FODC0004" class="ng-binding">$err:FODC0004</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FODC0005" class="ng-binding">$err:FODC0005</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FODC0006" class="ng-binding">$err:FODC0006</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUDY0023" class="ng-binding">$err:XUDY0023</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUDY0024" class="ng-binding">$err:XUDY0024</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUDY0027" class="ng-binding">$err:XUDY0027</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUST0028" class="ng-binding">$err:XUST0028</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUDY0029" class="ng-binding">$err:XUDY0029</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUDY0030" class="ng-binding">$err:XUDY0030</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUDY0031" class="ng-binding">$err:XUDY0031</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOUP0001" class="ng-binding">$err:FOUP0001</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOUP0002" class="ng-binding">$err:FOUP0002</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SENR0001" class="ng-binding">$err:SENR0001</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SERE0003" class="ng-binding">$err:SERE0003</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SEPM0004" class="ng-binding">$err:SEPM0004</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SERE0005" class="ng-binding">$err:SERE0005</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SERE0006" class="ng-binding">$err:SERE0006</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SESU0007" class="ng-binding">$err:SESU0007</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SERE0008" class="ng-binding">$err:SERE0008</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SEPM0009" class="ng-binding">$err:SEPM0009</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SEPM0010" class="ng-binding">$err:SEPM0010</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SESU0011" class="ng-binding">$err:SESU0011</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SERE0012" class="ng-binding">$err:SERE0012</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SESU0013" class="ng-binding">$err:SESU0013</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SERE0014" class="ng-binding">$err:SERE0014</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SERE0015" class="ng-binding">$err:SERE0015</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:SEPM0016" class="ng-binding">$err:SEPM0016</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOUT1170" class="ng-binding">$err:FOUT1170</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOUT1190" class="ng-binding">$err:FOUT1190</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOFL0001" class="ng-binding">$err:FOFL0001</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOCZ0001" class="ng-binding">$err:FOCZ0001</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUST0001" class="ng-binding">$err:XUST0001</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUST0002" class="ng-binding">$err:XUST0002</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUST0003" class="ng-binding">$err:XUST0003</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUTY0004" class="ng-binding">$err:XUTY0004</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUTY0005" class="ng-binding">$err:XUTY0005</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUTY0006" class="ng-binding">$err:XUTY0006</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUTY0007" class="ng-binding">$err:XUTY0007</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUTY0008" class="ng-binding">$err:XUTY0008</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUDY0009" class="ng-binding">$err:XUDY0009</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUTY0010" class="ng-binding">$err:XUTY0010</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUTY0011" class="ng-binding">$err:XUTY0011</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUTY0012" class="ng-binding">$err:XUTY0012</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUTY0013" class="ng-binding">$err:XUTY0013</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUDY0014" class="ng-binding">$err:XUDY0014</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUDY0015" class="ng-binding">$err:XUDY0015</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUDY0016" class="ng-binding">$err:XUDY0016</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUDY0017" class="ng-binding">$err:XUDY0017</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUDY0018" class="ng-binding">$err:XUDY0018</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUDY0019" class="ng-binding">$err:XUDY0019</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUDY0021" class="ng-binding">$err:XUDY0021</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XUTY0022" class="ng-binding">$err:XUTY0022</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0032" class="ng-binding">$err:XQST0032</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0033" class="ng-binding">$err:XQST0033</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0034" class="ng-binding">$err:XQST0034</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0035" class="ng-binding">$err:XQST0035</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0036" class="ng-binding">$err:XQST0036</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0038" class="ng-binding">$err:XQST0038</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0039" class="ng-binding">$err:XQST0039</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0040" class="ng-binding">$err:XQST0040</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0045" class="ng-binding">$err:XQST0045</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0046" class="ng-binding">$err:XQST0046</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0047" class="ng-binding">$err:XQST0047</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0048" class="ng-binding">$err:XQST0048</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0049" class="ng-binding">$err:XQST0049</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0052" class="ng-binding">$err:XQST0052</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0054" class="ng-binding">$err:XQST0054</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0055" class="ng-binding">$err:XQST0055</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0057" class="ng-binding">$err:XQST0057</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0058" class="ng-binding">$err:XQST0058</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0059" class="ng-binding">$err:XQST0059</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0060" class="ng-binding">$err:XQST0060</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0065" class="ng-binding">$err:XQST0065</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0066" class="ng-binding">$err:XQST0066</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0067" class="ng-binding">$err:XQST0067</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0068" class="ng-binding">$err:XQST0068</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:NS" class="ng-binding">$err:NS</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPST0001" class="ng-binding">$err:XPST0001</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPST0003" class="ng-binding">$err:XPST0003</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPST0005" class="ng-binding">$err:XPST0005</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPST0008" class="ng-binding">$err:XPST0008</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPST0017" class="ng-binding">$err:XPST0017</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPST0051" class="ng-binding">$err:XPST0051</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPST0080" class="ng-binding">$err:XPST0080</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPST0081" class="ng-binding">$err:XPST0081</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPST0083" class="ng-binding">$err:XPST0083</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPTY0004" class="ng-binding">$err:XPTY0004</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPTY0018" class="ng-binding">$err:XPTY0018</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPTY0019" class="ng-binding">$err:XPTY0019</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPTY0020" class="ng-binding">$err:XPTY0020</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPTY0117" class="ng-binding">$err:XPTY0117</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQTY0024" class="ng-binding">$err:XQTY0024</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQTY0030" class="ng-binding">$err:XQTY0030</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQTY0086" class="ng-binding">$err:XQTY0086</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQTY0105" class="ng-binding">$err:XQTY0105</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0009" class="ng-binding">$err:XQST0009</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0012" class="ng-binding">$err:XQST0012</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0013" class="ng-binding">$err:XQST0013</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0022" class="ng-binding">$err:XQST0022</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0031" class="ng-binding">$err:XQST0031</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0127" class="ng-binding">$err:XQST0127</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0128" class="ng-binding">$err:XQST0128</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPDY0002" class="ng-binding">$err:XPDY0002</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XPDY0050" class="ng-binding">$err:XPDY0050</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0025" class="ng-binding">$err:XQDY0025</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0026" class="ng-binding">$err:XQDY0026</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0027" class="ng-binding">$err:XQDY0027</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0041" class="ng-binding">$err:XQDY0041</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0044" class="ng-binding">$err:XQDY0044</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0054" class="ng-binding">$err:XQDY0054</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0061" class="ng-binding">$err:XQDY0061</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0064" class="ng-binding">$err:XQDY0064</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0072" class="ng-binding">$err:XQDY0072</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0074" class="ng-binding">$err:XQDY0074</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0084" class="ng-binding">$err:XQDY0084</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0091" class="ng-binding">$err:XQDY0091</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0092" class="ng-binding">$err:XQDY0092</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0096" class="ng-binding">$err:XQDY0096</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0101" class="ng-binding">$err:XQDY0101</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQDY0102" class="ng-binding">$err:XQDY0102</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XTDE1310" class="ng-binding">$err:XTDE1310</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOFD1340" class="ng-binding">$err:FOFD1340</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FOFD1350" class="ng-binding">$err:FOFD1350</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:FTST0008" class="ng-binding">$err:FTST0008</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0069" class="ng-binding">$err:XQST0069</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0070" class="ng-binding">$err:XQST0070</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0071" class="ng-binding">$err:XQST0071</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0076" class="ng-binding">$err:XQST0076</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0079" class="ng-binding">$err:XQST0079</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0085" class="ng-binding">$err:XQST0085</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0087" class="ng-binding">$err:XQST0087</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0088" class="ng-binding">$err:XQST0088</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0089" class="ng-binding">$err:XQST0089</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0090" class="ng-binding">$err:XQST0090</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0093" class="ng-binding">$err:XQST0093</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0094" class="ng-binding">$err:XQST0094</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0097" class="ng-binding">$err:XQST0097</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0098" class="ng-binding">$err:XQST0098</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0099" class="ng-binding">$err:XQST0099</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0103" class="ng-binding">$err:XQST0103</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0106" class="ng-binding">$err:XQST0106</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0111" class="ng-binding">$err:XQST0111</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0113" class="ng-binding">$err:XQST0113</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0114" class="ng-binding">$err:XQST0114</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0116" class="ng-binding">$err:XQST0116</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0120" class="ng-binding">$err:XQST0120</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0122" class="ng-binding">$err:XQST0122</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0123" class="ng-binding">$err:XQST0123</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/3.0/modules/w3c/xpath-error-codes/?anchor=err:XQST0126" class="ng-binding">$err:XQST0126</a>
+                        </li>
+                    </ul>
+                </div>
+                <div ng-show="content.functions.length &gt; 0" class="functions" style="display: none; ">
+                    <h2>Functions</h2>
+                    <!-- ngRepeat: fn in content.functions -->
+                </div>
+                <div ng-show="content.variables.length &gt; 0" class="variables">
+                    <h2>Variables</h2>
+                    <!-- ngRepeat: var in content.variables --><div ng-repeat="var in content.variables" id="err:FODC0007" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FODC0007 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Base URI passed to \c fn:parse() is not a valid absolute URI.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FODF1280" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FODF1280 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid decimal format name supplied to \c fn:format-number().
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FODF1310" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FODF1310 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid decimal/integer format picture string.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FODT0001" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FODT0001 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Overflow/underflow in date/time operation.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FODT0002" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FODT0002 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Overflow/underflow in duration operation.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FODT0003" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FODT0003 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid timezone value.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FONS0004" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FONS0004 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> No namespace found for prefix.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FONS0005" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FONS0005 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Base-URI not defined in static context.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FORG0001" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FORG0001 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid value for cast/constructor.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FORG0002" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FORG0002 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid argument to \c fn:resolve-uri().
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FORG0003" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FORG0003 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> \c fn:zero-or-one() called with a sequence containing more than one
+ item.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FORG0004" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FORG0004 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> \c fn:one-or-more() called with a sequence containing no items.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FORG0005" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FORG0005 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> \c fn:exactly-one() called with a sequence containing zero or more
+ than one item.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FORG0006" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FORG0006 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid argument type.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FORG0008" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FORG0008 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> The two arguments to fn:dateTime() have inconsistent timezones.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FORG0009" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FORG0009 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Error in resolving a relative URI against a base URI in
+ \c fn:resolve-uri().
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FORX0001" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FORX0001 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid regular expression flags.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FORX0002" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FORX0002 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid regular expression.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FORX0003" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FORX0003 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Regular expression matches zero-length string.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FORX0004" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FORX0004 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid replacement string.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOTY0012" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOTY0012 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Argument node does not have a typed value.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOTY0013" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOTY0013 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> An argument to \c fn:data() contains a node that does not have a typed
+ value.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOTY0014" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOTY0014 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> The argument to \c fn:string() is a function item.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOTY0015" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOTY0015 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> An argument to \c fn:deep-equal() contains a function item.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FTST0009" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FTST0009 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It may be a static error if, during the static analysis phase, the query
+ is found to contain a language identifier in a language option that the
+ implementation does not support. The implementation may choose not to
+ raise this error and instead provide some other implementation-defined
+ behavior.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FTDY0016" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FTDY0016 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if a weight value is not within the required range
+ of values; it is also a dynamic error if an implementation that does not
+ support negative weights encounters a negative weight value.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FTDY0017" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FTDY0017 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if an implementation encounters a mild not
+ selection, one of whose operands evaluates to an AllMatches that
+ contains a StringExclude.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FTST0018" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FTST0018 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if, during the static analysis phase, the query is
+ found to contain a thesaurus option that refers to a thesaurus that is
+ not found in the statically known thesauri.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FTST0019" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FTST0019 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if, within a single FTMatchOptions, there is more
+ than one match option of any given match option group.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FTDY0020" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FTDY0020 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if, when "wildcards" is in effect, a query string
+ violates wildcard syntax.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOER0000" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOER0000 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Unidentified error.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOAR0001" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOAR0001 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Division by zero.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOAR0002" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOAR0002 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Numeric operation overflow/underflow.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOCA0001" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOCA0001 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Input value too large for decimal.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOCA0002" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOCA0002 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid lexical value.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOCA0003" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOCA0003 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Input value too large for integer.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOCA0005" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOCA0005 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> NaN supplied as float/double value.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOCA0006" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOCA0006 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Raised when casting a string to xs:decimal if the string has more
+ digits of precision than the implementation can represent (the
+ implementation also has the option of rounding).
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOCH0001" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOCH0001 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Code point not valid.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOCH0002" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOCH0002 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Unsupported collation.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOCH0003" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOCH0003 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Unsupported normalization form.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOCH0004" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOCH0004 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Collation does not support collation units.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FODC0001" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FODC0001 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> No context document.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FODC0002" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FODC0002 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Error retrieving resource.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FODC0003" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FODC0003 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Raised by fn:doc, fn:collection to indicate that it is not possible to
+ return a result that is guaranteed deterministic.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FODC0004" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FODC0004 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid argument to \c fn:collection().
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FODC0005" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FODC0005 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid argument to \c fn:doc() or \c fn:doc-available().
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FODC0006" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FODC0006 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid content passed to \c fn:parse().
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUDY0023" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUDY0023 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if an insert, replace, or rename expression
+ affects an element node by introducing a new namespace binding that
+ conflicts with one of its existing namespace bindings.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUDY0024" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUDY0024 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if the effect of a set of updating expressions is
+ to introduce conflicting namespace bindings into an element node.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUDY0027" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUDY0027 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if the target expression of an insert, replace, or
+ rename expression evaluates to an empty sequence.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUST0028" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUST0028 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a function declaration specifies both \c updating
+ and a return type.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUDY0029" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUDY0029 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> In an insert expression where \c before or \c after is specified, it is
+ a dynamic error if the node returned by the target expression does not
+ have a parent.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUDY0030" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUDY0030 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if an insert expression specifies the insertion of
+ an attribute node before or after a child of a document node.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUDY0031" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUDY0031 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if multiple calls to \c fn:put() in the same
+ snapshot specify the same URI (after resolution of relative URIs).
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOUP0001" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOUP0001 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if the first operand of \c fn:put() is not a node
+ of a supported kind.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOUP0002" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOUP0002 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if the second operand of \c fn:put() is not a valid
+ lexical representation of the \c xs:anyURI type.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SENR0001" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SENR0001 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is an error if an item in S6 in sequence normalization is an attribute
+ node or a namespace node.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SERE0003" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SERE0003 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is an error if the serializer is unable to satisfy the rules for
+ either a well-formed XML document entity or a well-formed XML external
+ general parsed entity, or both, except for content modified by the
+ character expansion phase of serialization.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SEPM0004" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SEPM0004 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is an error to specify the doctype-system parameter, or to specify
+ the standalone parameter with a value other than omit, if the instance
+ of the data model contains text nodes or multiple element nodes as
+ children of the root node.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SERE0005" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SERE0005 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is an error if the serialized result would contain an NCName Names
+ that contains a character that is not permitted by the version of
+ Namespaces in XML specified by the version parameter.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SERE0006" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SERE0006 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is an error if the serialized result would contain a character that is
+ not permitted by the version of XML specified by the version parameter.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SESU0007" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SESU0007 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is an error if an output encoding other than UTF-8 or UTF-16 is
+ requested and the serializer does not support that encoding.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SERE0008" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SERE0008 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is an error if a character that cannot be represented in the encoding
+ that the serializer is using for output appears in a context where
+ character references are not allowed (for example if the character
+ occurs in the name of an element).
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SEPM0009" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SEPM0009 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is an error if the omit-xml-declaration parameter has the value yes,
+ and the standalone attribute has a value other than omit; or the version
+ parameter has a value other than 1.0 and the doctype-system parameter is
+ specified.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SEPM0010" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SEPM0010 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is an error if the output method is xml, the value of the
+ undeclare-prefixes parameter is yes, and the value of the version
+ parameter is 1.0.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SESU0011" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SESU0011 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is an error if the value of the normalization-form parameter
+ specifies a normalization form that is not supported by the serializer.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SERE0012" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SERE0012 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is an error if the value of the normalization-form parameter is
+ fully-normalized and any relevant construct of the result begins with a
+ combining character.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SESU0013" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SESU0013 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is an error if the serializer does not support the version of XML or
+ HTML specified by the version parameter.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SERE0014" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SERE0014 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is an error to use the HTML output method when characters which are
+ legal in XML but not in HTML, specifically the control characters
+ #x7F-#x9F, appear in the instance of the data model.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SERE0015" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SERE0015 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is an error to use the HTML output method when \c &gt; appears within a
+ processing instruction in the data model instance being serialized.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:SEPM0016" class="variable ng-scope">
+                        <pre class="ng-binding">$err:SEPM0016 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a an error if a parameter value is invalid for the defined domain.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOUT1170" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOUT1170 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Identifier cannot be used to retrive a resource containing text
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOUT1190" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOUT1190 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Retrieved resource contains octets that cannot be decoded into Unicode
+ using the specified encoding, the resulting characters are not
+ permitted XML characters or requested encoding not supported
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOFL0001" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOFL0001 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> This error is raised if the fn:function-lookup returns a context-dependent function and the context-dependent function is then called.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOCZ0001" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOCZ0001 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid content passed to \c x:canonicalize().
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUST0001" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUST0001 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if an updating expression is used in any position
+ other than one of the following:
+ - The topmost expression in the body of a query.
+ - The \c modify clause of a transform expression.
+ - The \c return clause of a FLWOR expression.
+ - The \c return clauses of a typeswitch expression in which every \c
+ return clause contains an updating expression or a vacuous expression.
+ - The \c then and \c else clauses of a conditional statement in which
+ both the \c then and \c else clauses contain either an updating
+ expression or a vacuous expression.
+ - An operand of a comma expression in which each operand is either an
+ updating expression or a vacuous expression.
+ - The content of a parenthesized expression.
+ - The body of a function declaration in which the keyword \c updating is
+ specified.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUST0002" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUST0002 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a simple expression that is not a vacuous
+ expression is used in one of the following positions:
+ - The \c modify clause of a transform expression.
+ - The top-level expression in the body of a function declaration in
+ which the keyword \c updating is specified.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUST0003" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUST0003 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a Prolog contains more than one revalidation
+ declaration.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUTY0004" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUTY0004 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a type error if the insertion sequence of an insert expression
+ contains an attribute node following a node that is not an attribute
+ node.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUTY0005" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUTY0005 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> In an insert expression where into, as first
+ into, or as last into is specified, it is a type
+ error if the target expression returns a non-empty result that does not
+ consist of a single element or document node.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUTY0006" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUTY0006 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> In an insert expression where \c before or \c after is specified, it is
+ a type error if the target expression returns a non-empty result that
+ does not consist of a single element, text, comment, or processing
+ instruction node.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUTY0007" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUTY0007 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a type error if the target expression of a delete expression does
+ not return a sequence of zero or more nodes.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUTY0008" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUTY0008 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> In a replace expression, it is a type error if the target expression
+ returns a non-empty result that does not consist of a single element,
+ attribute, text, comment, or processing instruction node.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUDY0009" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUDY0009 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> In a replace expression where value of is not specified, it
+ is a dynamic error if the node returned by the target expression does
+ not have a parent.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUTY0010" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUTY0010 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> In a replace expression where value of is not specified and
+ the target is an element, text, comment, or processing instruction node,
+ it is a type error if the replacement sequence does not consist of zero
+ or more element, text, comment, or processing instruction nodes.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUTY0011" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUTY0011 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> In a replace expression where value of is not specified and
+ the target is an attribute node, it is a type error if the replacement
+ sequence does not consist of zero or more attribute nodes.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUTY0012" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUTY0012 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> In a rename expression, it is a type error if the target expression
+ returns a non-empty result that does not consist of a single element,
+ attribute, or processing instruction node.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUTY0013" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUTY0013 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> In a transform expression, it is a type error if a source expression in
+ the \c copy clause does not return a single node.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUDY0014" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUDY0014 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> In a transform expression, it is a dynamic error if the \c modify clause
+ modifies any node that was not created by the \c copy clause.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUDY0015" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUDY0015 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if any node is the target of more than one \c
+ rename expression within the same query.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUDY0016" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUDY0016 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if any node is the target of more than one \c
+ replace expression (without value of being specified)
+ within the same query.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUDY0017" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUDY0017 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if any node is the target of more than one
+ replace value of expression within the same query.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUDY0018" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUDY0018 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if a function that was declared to be \c external
+ but not \c updating returns a non-empty pending update list.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUDY0019" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUDY0019 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if a function that was declared to be both \c
+ external and \c updating returns a non-empty data model instance.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUDY0021" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUDY0021 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if the XDM instance that would result from
+ applying all the updates in a query violates any constraint specified in
+ [XQuery 1.0 and XPath 2.0 Data Model]. In this case, none of the updates
+ in the query are made effective.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XUTY0022" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XUTY0022 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a type error if an insert expression specifies the insertion of an
+ attribute node into a document node.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0032" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0032 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> A static error is raised if a Prolog contains more than one base URI
+ declaration.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0033" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0033 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a module contains multiple bindings for the same
+ namespace prefix.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0034" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0034 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if multiple functions declared or imported by a
+ module have the same number of arguments and their expanded QNames are
+ equal (as defined by the eq operator).
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0035" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0035 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error to import two schema components that both define the
+ same name in the same symbol space and in the same scope.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0036" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0036 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error to import a module if the in-scope schema
+ definitions of the importing module do not include all of the following:
+ -# An in-scope schema type for each type-name that appears:
+ - in the type of a variable that is declared in the imported module
+ and referenced in the importing module, OR
+ - in a parameter-type or result-type of a function that is declared in
+ the imported module and referenced in the importing module.
+ -# An in-scope element declaration for each element-name \c EN such that:
+ - \c schema-element(EN) appears in the declared type of a variable in
+ the imported module, and that variable is referenced in the
+ importing module, OR
+ - \c schema-element(EN) appears in a parameter-type or result-type
+ of a function declared in the imported module, and that function is
+ referenced in the importing module.
+ -# An in-scope attribute declaration for each attribute-name \c AN such
+ that:
+ - \c schema-attribute(AN) appears in the declared type of a variable
+ in the imported module, and that variable is referenced in the
+ importing module, OR
+ - \c schema-attribute(AN) appears in a parameter-type or result-type
+ of a function declared in the imported module, and that function is
+ referenced in the importing module.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0038" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0038 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a Prolog contains more than one default collation
+ declaration, or the value specified by a default collation declaration is
+ not present in statically known collations.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0039" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0039 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error for a function declaration to have more than one
+ parameter with the same name.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0040" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0040 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if the attributes specified by a direct element
+ constructor do not have distinct expanded QNames.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0045" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0045 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if the function name in a function declaration is in
+ one of the following namespaces:
+ http://www.w3.org/XML/1998/namespace,
+ http://www.w3.org/2001/XMLSchema,
+ http://www.w3.org/2001/XMLSchema-instance,
+ http://www.w3.org/2005/xpath-functions.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0046" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0046 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> An implementation MAY raise a static error if the value of a URILiteral
+ is of nonzero length and is not in the lexical space of \c xs:anyURI.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0047" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0047 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if multiple module imports in the same Prolog
+ specify the same target namespace.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0048" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0048 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a function or variable declared in a library
+ module is not in the target namespace of the library module.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0049" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0049 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if two or more variables declared or imported by a
+ module have equal expanded QNames (as defined by the eq operator.)
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0052" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0052 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> The type must be the name of a type defined in the in-scope schema types,
+ and the {variety} of the type must be simple.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0054" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0054 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a variable depends on itself.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0055" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0055 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a Prolog contains more than one copy-namespaces
+ declaration.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0057" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0057 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a schema import binds a namespace prefix but
+ does not specify a target namespace other than a zero-length string.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0058" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0058 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if multiple schema imports specify the same target
+ namespace.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0059" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0059 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if an implementation is unable to process a schema
+ or module import by finding a schema or module with the specified
+ target namespace.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0060" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0060 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if the name of a function in a function declaration
+ is not in a namespace (expanded QName has a null namespace URI).
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0065" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0065 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> A static error is raised if a Prolog contains more than one ordering mode
+ declaration.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0066" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0066 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> A static error is raised if a Prolog contains more than one default
+ element/type namespace declaration, or more than one default function
+ namespace declaration.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0067" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0067 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> A static error is raised if a Prolog contains more than one construction
+ declaration.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0068" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0068 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> A static error is raised if a Prolog contains more than one
+ boundary-space declaration.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:NS" class="variable ng-scope">
+                        <pre class="ng-binding">$err:NS as item()*</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"></div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPST0001" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPST0001 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if analysis of an expression relies on some
+ component of the static context that has not been assigned a value.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPST0003" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPST0003 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if an expression is not a valid instance of the
+ grammar.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPST0005" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPST0005 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> During the analysis phase, it is a static error if the static type
+ assigned to an expression other than the expression \c () or \c data(())
+ is \c empty-sequence().
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPST0008" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPST0008 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if an expression refers to an element name,
+ attribute name, schema type name, namespace prefix, or variable name
+ that is not defined in the static context, except for an ElementName in
+ an ElementTest or an AttributeName in an AttributeTest.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPST0017" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPST0017 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if the expanded QName and number of arguments in a
+ function call do not match the name and arity of a function signature in
+ the static context.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPST0051" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPST0051 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a QName that is used as an AtomicType in a
+ SequenceType is not defined in the in-scope schema types as an atomic
+ type.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPST0080" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPST0080 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if the target type of a \c cast or \c castable
+ expression is \c xs:NOTATION or \c xs:anyAtomicType.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPST0081" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPST0081 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a QName used in a query contains a namespace
+ prefix that cannot be expanded into a namespace URI by using the
+ statically known namespaces.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPST0083" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPST0083 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if the target type of a \c cast expression or
+ constructor function is \c xs:QName or a type derived from \c xs:QName
+ or \c xs:NOTATION, and the argument of the cast expression or
+ constructor function is not a string literal.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPTY0004" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPTY0004 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a type error if, during the static analysis phase, an expression
+ is found to have a static type that is not appropriate for the context
+ in which the expression occurs, or during the dynamic evaluation phase,
+ the dynamic type of a value does not match a required type as specified
+ by the matching rules in 2.5.4 SequenceType Matching.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPTY0018" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPTY0018 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a type error if the result of the last step in a path expression
+ contains both nodes and non-nodes.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPTY0019" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPTY0019 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a type error if the result of a step (other than the last step) in a
+ path expression contains an atomic value.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPTY0020" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPTY0020 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a type error if, in an axis step, the context item is not a node.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPTY0117" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPTY0117 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Attempt to cast to a namespace-sensitive type failed because the namespace
+ bindings for the result can not be determined.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQTY0024" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQTY0024 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a type error if the content sequence in an element constructor
+ contains an attribute node following a node that is not an attribute node.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQTY0030" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQTY0030 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a type error if the argument of a validate expression does not
+ evaluate to exactly one document or element node.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQTY0086" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQTY0086 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a type error if the typed value of a copied element or attribute
+ node is namespace-sensitive when construction mode is \c preserve and
+ copy-namespaces mode is \c no-preserve.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQTY0105" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQTY0105 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a type error if the content sequence in an element constructor contains a function item.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0009" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0009 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> An implementation that does not support the Schema Import Feature must
+ raise a static error if a Prolog contains a schema import.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0012" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0012 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if the set of definitions contained in all schemas
+ imported by a Prolog do not satisfy the conditions for schema validity
+ specified in Sections 3 and 5 of [XML Schema] Part 1--i.e., each
+ definition must be valid, complete, and unique.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0013" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0013 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if an implementation recognizes a pragma but
+ determines that its content is invalid.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0022" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0022 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if the value of a namespace declaration attribute is
+ not a URILiteral.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0031" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0031 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if the version number specified in a version
+ declaration is not supported by the implementation.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0127" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0127 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a given feature is both required and prohibited, directly or indirectly, in a module.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0128" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0128 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a feature name that an implementation supports appears
+ in a prohibit-feature option declaration, and the implementation is unable to
+ disable the feature.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPDY0002" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPDY0002 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if evaluation of an expression relies on some part
+ of the dynamic context that has not been assigned a value.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XPDY0050" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XPDY0050 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if the dynamic type of the operand of a treat
+ expression does not match the sequence type specified by the treat
+ expression. This error might also be raised by a path expression
+ beginning with "/" or "//" if the context node
+ is not in a tree that is rooted at a document node. This is because a
+ leading "/" or "//" in a path expression is an
+ abbreviation for an initial step that includes the clause \c treat as \c
+ document-node().
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0025" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0025 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if any attribute of a constructed element does not
+ have a name that is distinct from the names of all other attributes of
+ the constructed element.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0026" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0026 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if the result of the content expression of a
+ computed processing instruction constructor contains the string "?&gt;".
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0027" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0027 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> In a validate expression, it is a dynamic error if the root element
+ information item in the PSVI resulting from validation does not have the
+ expected validity property: \c valid if validation mode is \c strict, or
+ either \c valid or \c notKnown if validation mode is \c lax.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0041" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0041 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if the value of the name expression in a computed
+ processing instruction constructor cannot be cast to the type
+ \c xs:NCName.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0044" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0044 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error the node-name of a node constructed by a computed
+ attribute constructor has any of the following properties:
+ - Its namespace prefix is \c xmlns.
+ - It has no namespace prefix and its local name is \c xmlns.
+ - Its namespace URI is http://www.w3.org/2000/xmlns/.
+ - Its namespace prefix is \c xml and its namespace URI is not
+ http://www.w3.org/XML/1998/namespace.
+ - Its namespace prefix is other than \c xml and its namespace URI is
+ http://www.w3.org/XML/1998/namespace.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0054" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0054 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if a cycle is encountered in the definition of a
+ module's dynamic context components, for example because of a cycle in
+ variable declarations.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0061" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0061 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if the operand of a validate expression is a
+ document node whose children do not consist of exactly one element node
+ and zero or more comment and processing instruction nodes, in any order.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0064" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0064 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if the value of the name expression in a computed
+ processing instruction constructor is equal to "XML" (in any combination
+ of upper and lower case).
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0072" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0072 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if the result of the content expression of a
+ computed comment constructor contains two adjacent hyphens or ends with
+ a hyphen.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0074" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0074 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if the value of the name expression in a computed
+ element or attribute constructor cannot be converted to an expanded
+ QName (for example, because it contains a namespace prefix not found in
+ statically known namespaces).
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0084" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0084 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error if the element validated by a \c validate statement
+ does not have a top-level element declaration in the in-scope element
+ declarations, if validation mode is \c strict.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0091" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0091 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> An implementation MAY raise a dynamic error if an \c xml:id error, as
+ defined in [XML ID], is encountered during construction of an attribute
+ named \c xml:id.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0092" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0092 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> An implementation MAY raise a dynamic error if a constructed attribute
+ named \c xml:space has a value other than \c preserve or \c default.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0096" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0096 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a dynamic error the node-name of a node constructed by a computed
+ element constructor has any of the following properties:
+ - Its namespace prefix is \c xmlns.
+ - Its namespace URI is http://www.w3.org/2000/xmlns/.
+ - Its namespace prefix is \c xml and its namespace URI is not
+ http://www.w3.org/XML/1998/namespace.
+ - Its namespace prefix is other than \c xml and its namespace URI is
+ http://www.w3.org/XML/1998/namespace.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0101" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0101 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Invalid prefix and/or uri in computed namespace constructor
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQDY0102" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQDY0102 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> In an element constructor, if two or more namespace bindings in the in-scope bindings would have the same prefix, then an error is raised if they have different URIs; if they would have the same prefix and URI, duplicate bindings are ignored.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XTDE1310" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XTDE1310 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a non-recoverable dynamic error if the picture string does not
+ satisfy the format-number function rules.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOFD1340" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOFD1340 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a non-recoverable dynamic error if the $picture, $language,
+ $calendar, or $place argument for fn:format-date, fn:format-time, or
+ fn:format-dateTime is invalid.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FOFD1350" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FOFD1350 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a non-recoverable dynamic error if a component specifier within
+ the picture refers to components that are not available in the given
+ type of $value.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:FTST0008" class="variable ng-scope">
+                        <pre class="ng-binding">$err:FTST0008 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if, during the static analysis phase, the query is
+ found to contain a stop word option that refers to a stop word list that
+ is not found in the statically known stop word lists.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0069" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0069 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> A static error is raised if a Prolog contains more than one empty order
+ declaration.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0070" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0070 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> A static error is raised if one of the predefined prefixes \c xml or \c
+ xmlns appears in a namespace declaration, or if any of the following
+ conditions is statically detected in any expression or declaration:
+ - The prefix \c xml is bound to some namespace URI other than
+ http://www.w3.org/XML/1998/namespace.
+ - A prefix other than \c xml is bound to the namespace URI
+ http://www.w3.org/XML/1998/namespace.
+ - The prefix \c xmlns is bound to any namespace URI.
+ - A prefix other than \c xmlns is bound to the namespace URI
+ http://www.w3.org/2000/xmlns/.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0071" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0071 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> A static error is raised if the namespace declaration attributes of a
+ direct element constructor do not have distinct names.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0076" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0076 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a \c collation subclause in an order by clause
+ of a FLWOR expression does not identify a collation that is present in
+ statically known collations.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0079" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0079 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if an extension expression contains neither a
+ pragma that is recognized by the implementation nor an expression
+ enclosed in curly braces.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0085" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0085 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if the namespace URI in a namespace declaration
+ attribute is a zero-length string, and the implementation does not
+ support [XML Names 1.1].
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0087" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0087 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if the encoding specified in a Version Declaration
+ does not conform to the definition of \c EncName specified in [XML 1.0]
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0088" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0088 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if the literal that specifies the target namespace
+ in a module import or a module declaration is of zero length.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0089" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0089 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a variable bound in a \c for or \c window clause
+ of a FLWOR expression, and its associated positional variable, do not
+ have distinct names (expanded QNames).
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0090" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0090 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a character reference does not identify a valid
+ character in the version of XML that is in use.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0093" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0093 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error to import a module M1 if there exists a sequence of
+ modules M1 ... Mi ... M1 such that each module directly depends on the
+ next module in the sequence (informally, if M1 depends on itself through
+ some chain of module dependencies.)
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0094" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0094 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> In the group by clause of a FLWOR expression, it is a static error if the
+ name of a grouping variable is not equal (by the eq operator on expanded
+ QNames) to the name of a variable that is bound by a for or let clause
+ that precedes the group by clause.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0097" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0097 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error for a decimal-format to specify a value that is
+ not valid for a given property.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0098" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0098 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if, for any named or unnamed decimal format, the
+ properties representing characters used in a picture string do not each
+ have distinct values. These properties are decimal-separator-sign,
+ grouping-separator, percent-sign, per-mille-sign, zero-digit,
+ digit-sign, and pattern-separator-sign.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0099" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0099 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> If a module contains more than one context item declaration, a static error is raised [err:XQST0099].
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0103" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0103 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> All variables in a window clause must have distinct names.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0106" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0106 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a function's annotations contain more than one
+ annotation named \c private or \c public.  It is a static error if a
+ function's annotations contain more than one annotation named \c
+ deterministic or \c nondeterministic.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0111" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0111 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error for a query prolog to contain two decimal formats
+ with the same name, or to contain two default decimal formats.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0113" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0113 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Specifying a VarValue or VarDefaultValue for a context item declaration
+ in a library module is a static error.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0114" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0114 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error for a decimal format declaration to define the
+ same property more than once.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0116" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0116 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a variable declaration contains both a %private
+ and a %public annotation, more than one %private annotation, or more
+ than one %public annotation.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0120" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0120 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if a feature required by require-feature is not
+ supported by the implementation.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0122" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0122 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if the name of a feature in require-feature or
+ prohibit-feature is not in the lexical space of QName.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0123" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0123 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if the name of a feature in require-feature is not
+ recognized by the implementation.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="err:XQST0126" class="variable ng-scope">
+                        <pre class="ng-binding">$err:XQST0126 as xs:QName</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> It is a static error if all-extensions appears in a require-feature option declaration.
+</div>
+                    </div>
+                </div>
+                <div id="disqus" class="disqus" disqus="">
+                    <div id="disqus_thread" class="content-panel-content"><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" tabindex="0" title="Disqus" style="width: 100% !important; border-top-style: none !important; border-right-style: none !important; border-bottom-style: none !important; border-left-style: none !important; border-width: initial !important; border-color: initial !important; overflow-x: hidden !important; overflow-y: hidden !important; height: 928px !important; " width="100%" src="http://disqus.com/embed/comments/?disqus_version=1df9d712&amp;base=default&amp;f=28msec&amp;t_i=%2Fdocumentation%2F3.0%2Fmodules%2Fw3c%2Fxpath-error-codes%2F&amp;t_u=http%3A%2F%2Fwww.28.io%2Fdocumentation%2F3.0%2Fmodules%2Fw3c%2Fxpath-error-codes%2F&amp;t_d=Zorba%20-%20The%20NoSQL%20Query%20Processor&amp;t_t=Zorba%20-%20The%20NoSQL%20Query%20Processor&amp;s_o=default#2" scrolling="no" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+                </div>
+            </div>
+            <!-- ngSwitchWhen: notfound -->
+            <!-- ngSwitchDefault:  -->
+        </div>
+    </div>
+</div></div>
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3>Get Involved</h3>
+                        <ul>
+                            <li><a href="https://groups.google.com/forum/#!forum/zorba-users" target="_blank">Users List on Google Groups</a></li>
+                            <li><a href="https://groups.google.com/forum/#!forum/zorba-dev" target="_blank">Developers List on Google Groups</a></li>
+                            <li><a href="https://bugs.launchpad.net/zorba/+bugs" target="_blank">Bug Tracker</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Resources</h3>
+                        <li><a href="http://jsoniq.org" target="_blank">JSONiq</a></li>
+                        <li><a href="http://www.w3.org/TR/xquery-30/" target="_blank">XQuery 3.0</a></li>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Quick Links</h3>
+                        <li><a href="https://code.launchpad.net/zorba" target="_blank">Source Code</a></li>
+                        <li><a href="/download">Download</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </div>
+                </div>
+                <p class="text-center copyright">
+                    <small>
+                    ©&nbsp;2013 Zorba.
+                    </small>
+                </p>
+            </div>        
+        </footer>
+    <script type="text/javascript" async="" src="http://stats.g.doubleclick.net/dc.js"></script><script charset="ISO-8859-1" src="http://fast.wistia.com/static/concat/E-v1.js"></script>
+    <script src="/scripts/scripts.js"></script>
+    <script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-4281090-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; 
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+        </script>
+  
+<script type="text/javascript" async="" src="http://28msec.disqus.com/embed.js"></script></body></html><script type="text/javascript">location.href = '/#' + location.pathname;</script>

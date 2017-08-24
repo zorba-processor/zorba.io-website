@@ -1,0 +1,9 @@
+<doxygen><compounddef id="put2_element.xq-example" kind="example"><detaileddescription><para><h3>Content of put2_element.xq example</h3><programlisting type="example">import module namespace http="http://www.zorba-xquery.com/modules/http-client";
+
+variable $arg := &amp;lt;hello&amp;gt;there&amp;lt;/hello&amp;gt;;
+variable $result :=
+  http:put("http://zorbatest.lambda.nu:8080/cgi-bin/test-text", $arg);
+
+$result[2]
+
+</programlisting></para></detaileddescription></compounddef></doxygen>

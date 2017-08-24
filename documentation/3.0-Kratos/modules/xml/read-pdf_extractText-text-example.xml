@@ -1,0 +1,25 @@
+<doxygen><compounddef id="extractText-text.xq-example" kind="example"><detaileddescription><para><h3>Content of extractText-text.xq example</h3><programlisting type="example">import module namespace read-pdf = "http://www.zorba-xquery.com/modules/read-pdf";
+import module namespace file = "http://expath.org/ns/file";
+
+declare namespace rpo =
+      "http://www.zorba-xquery.com/modules/read-pdf/read-pdf-options";
+
+
+let $pdf := file:read-binary(resolve-uri("28msec-NoSQLNow.pdf"))
+let $options  :=
+    &amp;lt;rpo:extract-text-options&amp;gt;
+        &amp;lt;rpo:text-kind&amp;gt;simple&amp;lt;/rpo:text-kind&amp;gt;
+    &amp;lt;/rpo:extract-text-options&amp;gt;
+let $str := read-pdf:extract-text($pdf, $options)
+return
+     (fn:contains($str, "JSONiq"),
+      fn:contains($str, 'Processing Language'),
+      fn:contains($str, "Harnessing Flexible Data in the Cloud"),
+      fn:contains($str, "SportsML"),
+      fn:contains($str, "reliability, availability, performance, and scalability"),
+      fn:contains($str, "FLWOR Foundation"),
+      fn:contains($str, "Visit us at our booth!"),
+      fn:string-length($str) &amp;gt; 1000 )
+
+
+</programlisting></para></detaileddescription></compounddef></doxygen>

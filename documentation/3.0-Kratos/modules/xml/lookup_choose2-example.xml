@@ -1,0 +1,7 @@
+<doxygen><compounddef id="choose2.xq-example" kind="example"><detaileddescription><para><h3>Content of choose2.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/lookup";
+
+excel:choose(2, (1, 2, 3), (7,6,5),
+                 (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), (), 
+                 (), (), (), (), (), (), (), (), ())
+</programlisting></para></detaileddescription></compounddef></doxygen>

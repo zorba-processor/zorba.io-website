@@ -1,0 +1,12 @@
+<doxygen><compounddef id="www.zorba-xquery.com_schema_test_triangle_schema-schema" kind="schema"><detaileddescription><para><h3>Content of www.zorba-xquery.com_schema_test_triangle_schema schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="triangle_schema.xsd" targetNamespace="http://www.zorba-xquery.com/schema/test/triangle_schema" elementFormDefault="qualified"&gt;
+
+  &lt;xs:simpleType name="triangle"&gt;
+   &lt;xs:restriction base="xs:string"&gt;
+    &lt;xs:enumeration value="Right"/&gt;
+    &lt;xs:enumeration value="Equilateral"/&gt;
+    &lt;xs:enumeration value="Isosceles"/&gt;
+    &lt;xs:enumeration value="Scalene"/&gt;
+    &lt;xs:enumeration value="Obtuse"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

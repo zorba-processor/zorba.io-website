@@ -1,0 +1,5 @@
+<doxygen><compounddef id="radians3.xq-example" kind="example"><detaileddescription><para><h3>Content of radians3.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/math";
+
+excel:radians(-360 - 90)
+</programlisting></para></detaileddescription></compounddef></doxygen>

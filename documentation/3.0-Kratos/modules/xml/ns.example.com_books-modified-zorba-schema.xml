@@ -1,0 +1,17 @@
+<doxygen><compounddef id="ns.example.com_books-modified-zorba-schema" kind="schema"><detaileddescription><para><h3>Content of ns.example.com_books-modified-zorba schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://ns.example.com/books-modified-zorba" xmlns:b="http://ns.example.com/books-modified-zorba" targetNamespace="http://ns.example.com/books-modified-zorba" elementFormDefault="qualified"&gt;
+           
+ &lt;!-- importing the XML namespace makes xml:id an ID attribute under lax validation --&gt;
+ &lt;xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/&gt;       
+
+ &lt;xs:element name="ITEM" type="itemType"/&gt;
+ 
+ &lt;xs:complexType name="itemType"&gt;
+   &lt;xs:sequence&gt;
+    &lt;xs:element name="TITLE" type="xs:string"/&gt;
+   &lt;/xs:sequence&gt;
+   &lt;xs:attribute name="CAT" type="xs:IDREF" use="required"/&gt;
+   &lt;xs:attribute name="TAX" type="xs:NMTOKEN" use="optional" default="V"/&gt;
+   &lt;!--xs:anyAttribute namespace="##other" processContents="lax"/--&gt;
+  &lt;/xs:complexType&gt;
+   
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

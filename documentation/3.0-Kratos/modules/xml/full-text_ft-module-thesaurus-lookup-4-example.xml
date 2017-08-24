@@ -1,0 +1,8 @@
+<doxygen><compounddef id="ft-module-thesaurus-lookup-4.xq-example" kind="example"><detaileddescription><para><h3>Content of ft-module-thesaurus-lookup-4.xq example</h3><programlisting type="example">import module namespace ft = "http://zorba.io/modules/full-text";
+
+let $synonyms := ft:thesaurus-lookup( "http://wordnet.princeton.edu",
+                                      "breakfast",
+                                      xs:language("en"),
+                                      "BT" )
+return $synonyms = "meal"
+</programlisting></para></detaileddescription></compounddef></doxygen>

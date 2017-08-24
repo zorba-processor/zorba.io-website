@@ -1,0 +1,19 @@
+<doxygen><compounddef id="csv_serialize2.xq-example" kind="example"><detaileddescription><para><h3>Content of csv_serialize2.xq example</h3><programlisting type="example">(: Serialize a sequence of two nodes into two lines of csv :)
+
+import module namespace csv = "http://zorba.io/modules/csv";
+
+csv:serialize(
+(&amp;lt;row&amp;gt;
+    &amp;lt;f1&amp;gt;value1&amp;lt;/f1&amp;gt;
+    &amp;lt;f2&amp;gt;value2&amp;lt;/f2&amp;gt;
+    &amp;lt;f3&amp;gt;value3&amp;lt;/f3&amp;gt;
+    &amp;lt;f4&amp;gt;value4&amp;lt;/f4&amp;gt;
+  &amp;lt;/row&amp;gt;,
+  &amp;lt;row&amp;gt;
+    &amp;lt;f1&amp;gt;value11&amp;lt;/f1&amp;gt;
+    &amp;lt;f2&amp;gt;value12&amp;lt;/f2&amp;gt;
+    &amp;lt;f3&amp;gt;value13&amp;lt;/f3&amp;gt;
+    &amp;lt;f4&amp;gt;value14&amp;lt;/f4&amp;gt;
+  &amp;lt;/row&amp;gt;), 
+  ())
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,69 @@
+<doxygen><compounddef id="csv_serialize5.xq-example" kind="example"><detaileddescription><para><h3>Content of csv_serialize5.xq example</h3><programlisting type="example">(: Serialize xml to csv and then parse it back.
+Note that the last node has element names that do not correpond to the header names taken from the first node,
+so it is not processed.
+:)
+import schema namespace csv-options="http://zorba.io/modules/csv-options";
+import module namespace csv = "http://zorba.io/modules/csv";
+
+
+let $options := 
+validate{
+&amp;lt;csv-options:options&amp;gt;
+  &amp;lt;first-row-is-header ignore-foreign-input="true"/&amp;gt;
+  &amp;lt;csv separator=","
+       quote-char="&amp;amp;quot;"
+       quote-escape="&amp;amp;quot;&amp;amp;quot;"/&amp;gt;
+&amp;lt;/csv-options:options&amp;gt;}
+return
+csv:parse(
+csv:serialize(
+(&amp;lt;row1&amp;gt;
+  &amp;lt;f1&amp;gt;value1&amp;lt;/f1&amp;gt;
+  &amp;lt;f2&amp;gt;"value2"&amp;lt;/f2&amp;gt;
+  &amp;lt;f3&amp;gt;value3,value33&amp;lt;/f3&amp;gt;
+  &amp;lt;f4&amp;gt;value4&amp;lt;/f4&amp;gt;
+&amp;lt;/row1&amp;gt;,
+&amp;lt;row2&amp;gt;
+  &amp;lt;f1&amp;gt;value11&amp;lt;/f1&amp;gt;
+  &amp;lt;f2&amp;gt;value12&amp;lt;/f2&amp;gt;
+  &amp;lt;f3&amp;gt;value13&amp;lt;/f3&amp;gt;
+  &amp;lt;f4&amp;gt;value14&amp;lt;/f4&amp;gt;
+&amp;lt;/row2&amp;gt;,
+&amp;lt;row3&amp;gt;
+  &amp;lt;f11&amp;gt;value21&amp;lt;/f11&amp;gt;
+  &amp;lt;f22&amp;gt;value22&amp;lt;/f22&amp;gt;
+  &amp;lt;f33&amp;gt;value23&amp;lt;/f33&amp;gt;
+  &amp;lt;f44&amp;gt;value24&amp;lt;/f44&amp;gt;
+&amp;lt;/row3&amp;gt;),
+$options),
+$options)
+
+
+(:
+
+Intermediate serialize output:
+
+&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+f1,f2,f3,f4
+value1,"""value2""","value3,value33",value4
+value11,value12,value13,value14
+
+--------------------------------------------------------------------
+
+Final parse output:
+
+&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+&amp;lt;row&amp;gt;
+  &amp;lt;f1&amp;gt;value1&amp;lt;/f1&amp;gt;
+  &amp;lt;f2&amp;gt;"value2"&amp;lt;/f2&amp;gt;
+  &amp;lt;f3&amp;gt;value3,value33&amp;lt;/f3&amp;gt;
+  &amp;lt;f4&amp;gt;value4&amp;lt;/f4&amp;gt;
+&amp;lt;/row&amp;gt;&amp;lt;row&amp;gt;
+  &amp;lt;f1&amp;gt;value11&amp;lt;/f1&amp;gt;
+  &amp;lt;f2&amp;gt;value12&amp;lt;/f2&amp;gt;
+  &amp;lt;f3&amp;gt;value13&amp;lt;/f3&amp;gt;
+  &amp;lt;f4&amp;gt;value14&amp;lt;/f4&amp;gt;
+&amp;lt;/row&amp;gt;
+
+:)
+</programlisting></para></detaileddescription></compounddef></doxygen>

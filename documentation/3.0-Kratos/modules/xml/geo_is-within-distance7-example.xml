@@ -1,0 +1,6 @@
+<doxygen><compounddef id="is-within-distance7.xq-example" kind="example"><detaileddescription><para><h3>Content of is-within-distance7.xq example</h3><programlisting type="example">import module namespace geo = "http://expath.org/ns/geo";
+declare namespace gml="http://www.opengis.net/gml";
+
+geo:is-within-distance(&amp;lt;gml:Point&amp;gt;&amp;lt;gml:pos&amp;gt;0 1&amp;lt;/gml:pos&amp;gt;&amp;lt;/gml:Point&amp;gt;,
+           &amp;lt;gml:LineString&amp;gt;&amp;lt;gml:posList&amp;gt;0 0 2 2&amp;lt;/gml:posList&amp;gt;&amp;lt;/gml:LineString&amp;gt;,
+           0.8 )</programlisting></para></detaileddescription></compounddef></doxygen>

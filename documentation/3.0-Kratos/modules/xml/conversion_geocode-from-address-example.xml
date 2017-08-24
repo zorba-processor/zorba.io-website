@@ -1,0 +1,6 @@
+<doxygen><compounddef id="geocode-from-address.xq-example" kind="example"><detaileddescription><para><h3>Content of geocode-from-address.xq example</h3><programlisting type="example">import module namespace conversion = "http://zorba.io/modules/data-cleaning/conversion";
+
+let $geocode := conversion:geocode-from-address ( ("Lisboa", "Portugal") )
+for $result in $geocode
+return floor($result)
+</programlisting></para></detaileddescription></compounddef></doxygen>

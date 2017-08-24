@@ -1,0 +1,30 @@
+<doxygen><compounddef id="subscribe_unsubscribe_example.xq-example" kind="example"><detaileddescription><para><h3>Content of subscribe_unsubscribe_example.xq example</h3><programlisting type="example">(:
+ : This example shows how to use the subscribe and unsubscribe functions of the
+ : http://www.zorba-xquery.com/modules/email/imap module.
+ :
+ : Using the host information stored in the variable $hostInfo the user
+ : imaptest is subscribed to the folder INBOX.Test on the account. After this,
+ : the user is unsubscribed from this folder using the unsubscribe function.
+ :
+ : Subscribing to a folder will make the folder visible for email clients that
+ : by default only list the subscribed folders.
+ :
+ : If no error is thrown, all operations were successful.
+ :) 
+
+import module namespace imap = 'http://www.zorba-xquery.com/modules/email/imap';
+
+(: This variable contains the information of the account on the IMAP server. :) 
+let $hostInfo :=
+  &amp;lt;hostInfo xmlns="http://www.zorba-xquery.com/modules/email"&amp;gt;
+    &amp;lt;hostName&amp;gt;mail.28msec.com/novalidate-cert&amp;lt;/hostName&amp;gt;
+    &amp;lt;userName&amp;gt;imaptest&amp;lt;/userName&amp;gt;
+    &amp;lt;password&amp;gt;cclient&amp;lt;/password&amp;gt;
+  &amp;lt;/hostInfo&amp;gt;
+
+return
+  {
+    imap:subscribe($hostInfo, "INBOX.Test");
+    imap:unsubscribe($hostInfo, "INBOX.Test")
+  }
+</programlisting></para></detaileddescription></compounddef></doxygen>

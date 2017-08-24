@@ -1,0 +1,3 @@
+<doxygen><compounddef id="www.zorba-xquery.com_import-hello-schema" kind="schema"><detaileddescription><para><h3>Content of www.zorba-xquery.com_import-hello schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.zorba-xquery.com/import-hello" targetNamespace="http://www.zorba-xquery.com/import-hello" elementFormDefault="qualified"&gt;
+  &lt;xs:import schemaLocation="http://zorbatest.lambda.nu:8080/tutorial/helloworld.xsd"/&gt;
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

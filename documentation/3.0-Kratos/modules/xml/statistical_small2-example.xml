@@ -1,0 +1,5 @@
+<doxygen><compounddef id="small2.xq-example" kind="example"><detaileddescription><para><h3>Content of small2.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/statistical";
+
+excel:small((1, 4, 8, 3, 7, 12, 54, 8, 23), 2)
+</programlisting></para></detaileddescription></compounddef></doxygen>

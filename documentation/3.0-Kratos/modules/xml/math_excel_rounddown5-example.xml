@@ -1,0 +1,5 @@
+<doxygen><compounddef id="excel_rounddown5.xq-example" kind="example"><detaileddescription><para><h3>Content of excel_rounddown5.xq example</h3><programlisting type="example">import module namespace
+math="http://zorba.io/modules/math";
+
+math:rounddown(31415.92654, -2)
+</programlisting></para></detaileddescription></compounddef></doxygen>

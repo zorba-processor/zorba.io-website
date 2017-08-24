@@ -1,0 +1,4 @@
+<doxygen><compounddef id="normalize-address.xq-example" kind="example"><detaileddescription><para><h3>Content of normalize-address.xq example</h3><programlisting type="example">import module namespace normalization = "http://zorba.io/modules/data-cleaning/normalization";
+
+normalization:normalize-address ( ( 'Marques de Pombal' , 'Lisboa' ) )
+</programlisting></para></detaileddescription></compounddef></doxygen>

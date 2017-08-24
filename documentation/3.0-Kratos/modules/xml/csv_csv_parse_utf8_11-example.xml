@@ -1,0 +1,6 @@
+<doxygen><compounddef id="csv_parse_utf8_11.xq-example" kind="example"><detaileddescription><para><h3>Content of csv_parse_utf8_11.xq example</h3><programlisting type="example">(: csv-to-xml example with utf8 characters :)
+
+import module namespace csv = "http://zorba.io/modules/csv";
+
+csv:parse("ü,ö,ä, ă,î,ș,ț,â", ())
+</programlisting></para></detaileddescription></compounddef></doxygen>

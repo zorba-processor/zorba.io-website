@@ -1,0 +1,39 @@
+<doxygen><compounddef id="list_example.xq-example" kind="example"><detaileddescription><para><h3>Content of list_example.xq example</h3><programlisting type="example">(:
+ : This example shows how to use the list function of the
+ : http://www.zorba-xquery.com/modules/email/imap module.
+  :
+ : Using the host information stored in the variable $hostInfo, all folders on
+ : the given account that match the pattern "INBOX.Dr*" are listed.
+ :
+ : The resulting XML should look something like this:
+ : 
+ :  &amp;lt;mailbox xmlns="http://www.zorba-xquery.com/modules/email"&amp;gt;
+ :    &amp;lt;hostName/&amp;gt;
+ :    &amp;lt;mailboxName&amp;gt;INBOX.Drafts&amp;lt;/mailboxName&amp;gt;
+ :  &amp;lt;/mailbox&amp;gt; 
+ : 
+ : The parameters for the list function are interesting. The second parameter
+ : is applied to the pattern in an implementation dependent fashion to search
+ : for matching mailbox names. At this point we haven't found an example where
+ : this could be useful or even usable, so you could pass the empty string.
+ :
+ : The fourth and last parameter lets you choose if only subscribed mailboxes
+ : should be considered for the search.
+ :
+ : If no error is thrown, all operations were successful.
+ :) 
+
+import module namespace imap = 'http://www.zorba-xquery.com/modules/email/imap';
+
+
+(: This variable contains the information of the account on the IMAP server. :) 
+let $hostInfo :=
+  &amp;lt;hostInfo xmlns="http://www.zorba-xquery.com/modules/email"&amp;gt;
+    &amp;lt;hostName&amp;gt;mail.28msec.com/novalidate-cert&amp;lt;/hostName&amp;gt;
+    &amp;lt;userName&amp;gt;imaptest&amp;lt;/userName&amp;gt;
+    &amp;lt;password&amp;gt;cclient&amp;lt;/password&amp;gt;
+  &amp;lt;/hostInfo&amp;gt;
+
+return
+  imap:list($hostInfo, "", "INBOX.Dra*", false())
+</programlisting></para></detaileddescription></compounddef></doxygen>

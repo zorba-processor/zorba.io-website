@@ -1,0 +1,9 @@
+<doxygen><compounddef id="www.28msec.com_project1_schemas_simple-schema" kind="schema"><detaileddescription><para><h3>Content of www.28msec.com_project1_schemas_simple schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.28msec.com/project1/schemas/simple" targetNamespace="http://www.28msec.com/project1/schemas/simple" elementFormDefault="qualified"&gt;
+
+  &lt;xs:element name="product" type="ProductType"/&gt;
+
+  &lt;xs:complexType name="ProductType"&gt;
+    &lt;xs:attribute name="string" type="xs:string"/&gt;
+  &lt;/xs:complexType&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

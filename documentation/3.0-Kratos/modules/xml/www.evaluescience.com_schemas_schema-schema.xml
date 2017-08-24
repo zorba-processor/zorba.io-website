@@ -1,0 +1,17 @@
+<doxygen><compounddef id="www.evaluescience.com_schemas_schema-schema" kind="schema"><detaileddescription><para><h3>Content of www.evaluescience.com_schemas_schema schema</h3><programlisting type="schema">&lt;xs:schema xmlns="http://www.evaluescience.com/schemas/schema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.evaluescience.com/schemas/schema" elementFormDefault="qualified"&gt;
+             
+    &lt;xs:complexType name="Group"&gt;
+        &lt;xs:sequence&gt;
+    		&lt;xs:element name="description" type="xs:string"/&gt;
+    		&lt;xs:element name="rolename" type="xs:string" maxOccurs="1" minOccurs="0"/&gt;
+    	&lt;/xs:sequence&gt;
+
+    	&lt;xs:attribute name="id" type="xs:string"/&gt;
+    	&lt;xs:attribute name="open" type="xs:boolean"/&gt;
+    	&lt;xs:attribute name="content" type="xs:string"/&gt;
+    	&lt;xs:attribute name="isrole" type="xs:boolean"/&gt;
+    &lt;/xs:complexType&gt;
+
+    &lt;xs:element name="group" type="Group"/&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

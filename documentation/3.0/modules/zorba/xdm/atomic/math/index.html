@@ -1,0 +1,2208 @@
+<!DOCTYPE html><html lang="en" class="js cssanimations ng-scope" ng-app="28.ioApp" prefix="og: http://ogp.me/ns#" ng-controller="MainCtrl"><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Zorba - The NoSQL Query Processor</title>
+        <meta name="description" content="Zorba - The NoSQL Query Processor">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+
+        <meta content="28.io" name="apple-mobile-web-app-title">
+        <link href="/images/iphone-icon.png" rel="apple-touch-icon-precomposed">
+        <link href="/favicon.png" rel="icon" type="image/png">
+
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="http://www.zorba.io/blog/atom.xml">
+        <base href="/">
+        <link rel="stylesheet" href="/styles/index.css">
+    <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\:form{display:block;}</style></head>
+    <body ready="" class="" ng-cloak="undefined">
+        <!--[if lt IE 9]>
+            <script type="text/javascript">location.href = "/outdated";</script>
+        <![endif]-->
+        <div class="navbar navbar-default navbar-fixed-top" id="top-menu" navbar-toggle="">
+            <div class="container">
+                <a href="/home" id="logo">
+<svg width="172px" height="44px" viewBox="0 0 172 44" version="1.1" xmlns="http://www.w3.org/2000/svg" style="margin-right: 30px">
+    <defs></defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="g3354-1-3-0" transform="translate(70.000000, 3.000000)" fill="#3498DB">
+            <path d="M36.8599281,6.08695652 C23.7462235,7.46138534 17.3241713,7.87186266 12.0855118,12.5394913 C9.61392853,8.89602738 2.41221529,6.6246591 0,6.89251341 L0.0401259499,9.84221332 C11.3218642,17.172198 8.15927521,31.2798979 5.60530924,40 L18.0693794,40 C15.1069036,30.4981162 15.7891093,23.8890354 16.4644797,20.4999181 C17.5216924,12.0444371 30.0443188,9.56353073 37,7.95199463 L36.8599281,6.08695652 Z" id="path3217-2-16-8-3-4-8-9"></path>
+            <path d="M17.2092989,4.7826087 C17.2112417,6.18001565 16.3916489,7.47202866 15.0597079,8.1712421 C13.7277668,8.87045553 12.0861867,8.87045553 10.7542456,8.1712421 C9.42230457,7.47202866 8.60271176,6.18001565 8.60465461,4.7826087 C8.60271176,3.38520174 9.42230457,2.09318873 10.7542456,1.39397529 C12.0861867,0.694761858 13.7277668,0.694761858 15.0597079,1.39397529 C16.3916489,2.09318873 17.2112417,3.38520174 17.2092989,4.7826087 L17.2092989,4.7826087 Z" id="path3830-2-4-8-2-3-6-0-4" transform="translate(12.906977, 4.782609) rotate(-12.486691) translate(-12.906977, -4.782609) "></path>
+        </g>
+        <path d="M0.896,35.2271939 L0.896,42.1301694 L34.4088328,42.1301694 L34.4088328,34.7818406 L12.5308539,34.7818406 L33.8521412,9.28536648 L33.8521412,2.38239095 L2.56607473,2.38239095 L2.56607473,9.73071974 L22.2172873,9.73071974 L0.896,35.2271939 Z M37.8046514,27.7675268 C37.8046514,30.0685301 38.1572192,32.1468246 38.8623654,34.0024724 C39.5675116,35.8581203 40.5695464,37.4446754 41.8684999,38.7621854 C43.1674534,40.0796954 44.7261743,41.0910083 46.5447092,41.7961545 C48.3632441,42.5013007 50.4044261,42.8538685 52.6683165,42.8538685 C54.9322069,42.8538685 56.982667,42.5013007 58.8197584,41.7961545 C60.6568498,41.0910083 62.2248487,40.0796954 63.5238022,38.7621854 C64.8227557,37.4446754 65.8247905,35.8581203 66.5299367,34.0024724 C67.2350829,32.1468246 67.5876507,30.0685301 67.5876507,27.7675268 C67.5876507,25.4665234 67.2350829,23.3789509 66.5299367,21.5047466 C65.8247905,19.6305422 64.8227557,18.034709 63.5238022,16.717199 C62.2248487,15.399689 60.6568498,14.379098 58.8197584,13.6553953 C56.982667,12.9316927 54.9322069,12.5698468 52.6683165,12.5698468 C50.4044261,12.5698468 48.3632441,12.9316927 46.5447092,13.6553953 C44.7261743,14.379098 43.1674534,15.399689 41.8684999,16.717199 C40.5695464,18.034709 39.5675116,19.6305422 38.8623654,21.5047466 C38.1572192,23.3789509 37.8046514,25.4665234 37.8046514,27.7675268 Z M45.7096718,27.7675268 C45.7096718,26.6170251 45.821009,25.4850969 46.0436867,24.3717082 C46.2663645,23.2583195 46.6467666,22.2748408 47.1849045,21.4212428 C47.7230424,20.5676448 48.4374561,19.8717873 49.328167,19.3336494 C50.218878,18.7955115 51.33225,18.5264466 52.6683165,18.5264466 C54.0043829,18.5264466 55.1270331,18.7955115 56.0363005,19.3336494 C56.945568,19.8717873 57.6692598,20.5676448 58.2073977,21.4212428 C58.7455355,22.2748408 59.1259376,23.2583195 59.3486154,24.3717082 C59.5712931,25.4850969 59.6826303,26.6170251 59.6826303,27.7675268 C59.6826303,28.9180285 59.5712931,30.0406786 59.3486154,31.1355108 C59.1259376,32.230343 58.7455355,33.2138217 58.2073977,34.0859762 C57.6692598,34.9581306 56.945568,35.6539882 56.0363005,36.1735696 C55.1270331,36.693151 54.0043829,36.9529378 52.6683165,36.9529378 C51.33225,36.9529378 50.218878,36.693151 49.328167,36.1735696 C48.4374561,35.6539882 47.7230424,34.9581306 47.1849045,34.0859762 C46.6467666,33.2138217 46.2663645,32.230343 46.0436867,31.1355108 C45.821009,30.0406786 45.7096718,28.9180285 45.7096718,27.7675268 Z" id="Zo" fill="#333333"></path>
+        <path d="M109.28037,2.38239095 L109.28037,42.1301694 L116.795707,42.1301694 L116.795707,38.456005 L116.907045,38.456005 C117.760643,40.0518622 119.022465,41.1837904 120.692548,41.8518236 C122.362631,42.5198569 124.255363,42.8538685 126.370802,42.8538685 C127.818207,42.8538685 129.247034,42.5569693 130.657327,41.9631619 C132.067619,41.3693546 133.338719,40.4601008 134.470664,39.2353732 C135.602609,38.0106456 136.521141,36.4426467 137.226287,34.5313294 C137.931434,32.6200121 138.284001,30.3468776 138.284001,27.7118576 C138.284001,25.0768377 137.931434,22.8037031 137.226287,20.8923858 C136.521141,18.9810685 135.602609,17.4130696 134.470664,16.188342 C133.338719,14.9636144 132.067619,14.0543606 130.657327,13.4605533 C129.247034,12.866746 127.818207,12.5698468 126.370802,12.5698468 C124.58938,12.5698468 122.872931,12.9131365 121.221405,13.5997262 C119.569878,14.2863159 118.261666,15.3718536 117.296729,16.8563719 L117.185391,16.8563719 L117.185391,2.38239095 L109.28037,2.38239095 Z M130.378981,27.7675268 C130.378981,28.9551414 130.249088,30.1056258 129.989297,31.2190145 C129.729506,32.3324033 129.32127,33.3158819 128.764575,34.1694799 C128.207881,35.0230779 127.512024,35.7003792 126.676982,36.2014041 C125.841941,36.7024291 124.830628,36.9529378 123.643013,36.9529378 C122.492511,36.9529378 121.490477,36.7024291 120.636878,36.2014041 C119.78328,35.7003792 119.078145,35.0230779 118.521451,34.1694799 C117.964756,33.3158819 117.55652,32.3324033 117.296729,31.2190145 C117.036938,30.1056258 116.907045,28.9551414 116.907045,27.7675268 C116.907045,26.5427992 117.036938,25.3737586 117.296729,24.2603699 C117.55652,23.1469811 117.964756,22.1635025 118.521451,21.3099045 C119.078145,20.4563065 119.78328,19.7790052 120.636878,19.2779803 C121.490477,18.7769553 122.492511,18.5264466 123.643013,18.5264466 C124.830628,18.5264466 125.841941,18.7769553 126.676982,19.2779803 C127.512024,19.7790052 128.207881,20.4563065 128.764575,21.3099045 C129.32127,22.1635025 129.729506,23.1469811 129.989297,24.2603699 C130.249088,25.3737586 130.378981,26.5427992 130.378981,27.7675268 Z M142.960211,22.200611 L150.865231,22.200611 C151.013683,20.6418668 151.533256,19.5284948 152.423967,18.8604616 C153.314678,18.1924283 154.539388,17.8584167 156.098132,17.8584167 C156.803278,17.8584167 157.462023,17.9048072 158.074387,17.9975896 C158.686751,18.090372 159.224881,18.275934 159.688792,18.5542812 C160.152704,18.8326284 160.523828,19.2223086 160.802176,19.7233335 C161.080523,20.2243584 161.219694,20.9016597 161.219694,21.7552578 C161.256807,22.5717428 161.015577,23.1933755 160.495995,23.6201745 C159.976414,24.0469735 159.271278,24.3717071 158.380567,24.5943848 C157.489856,24.8170625 156.469265,24.9840683 155.318764,25.0954072 C154.168262,25.2067461 152.999221,25.3551957 151.811607,25.5407605 C150.623992,25.7263253 149.445673,25.976834 148.276615,26.2922941 C147.107557,26.6077542 146.06841,27.0809373 145.159142,27.7118576 C144.249875,28.3427779 143.507627,29.187085 142.932376,30.2448043 C142.357125,31.3025236 142.069504,32.6478481 142.069504,34.2808182 C142.069504,35.7653365 142.320013,37.0457143 142.821038,38.1219901 C143.322063,39.1982658 144.01792,40.0889634 144.908631,40.7941096 C145.799342,41.4992558 146.838489,42.0188294 148.026104,42.352846 C149.213719,42.6868627 150.494096,42.8538685 151.867276,42.8538685 C153.648698,42.8538685 155.392981,42.5940817 157.100177,42.0745003 C158.807373,41.5549189 160.291869,40.645665 161.553709,39.3467115 C161.590822,39.82918 161.655769,40.3023631 161.748551,40.7662751 C161.841334,41.230187 161.961949,41.6848139 162.110401,42.1301694 L170.12676,42.1301694 C169.75563,41.5363621 169.495843,40.6456645 169.347391,39.4580499 C169.198939,38.2704352 169.124715,37.0271698 169.124715,35.7282163 L169.124715,20.7532129 C169.124715,19.0089039 168.735034,17.6079108 167.955662,16.5501915 C167.17629,15.4924723 166.174255,14.6667213 164.949528,14.072914 C163.7248,13.4791067 162.370198,13.0801484 160.885679,12.8760271 C159.401161,12.6719059 157.935221,12.5698468 156.487816,12.5698468 C154.891959,12.5698468 153.305404,12.7275745 151.728103,13.0430346 C150.150802,13.3584948 148.731253,13.8873465 147.469412,14.6296056 C146.207572,15.3718647 145.168425,16.3553434 144.35194,17.580071 C143.535455,18.8047985 143.07155,20.3449632 142.960211,22.200611 Z M161.219694,28.0458726 L161.219694,30.9963379 C161.219694,31.4416934 161.173304,32.0354918 161.080521,32.777751 C160.987739,33.5200101 160.73723,34.25298 160.328988,34.9766827 C159.920745,35.7003853 159.289834,36.322018 158.436236,36.8415995 C157.582638,37.3611809 156.376485,37.6209677 154.817741,37.6209677 C154.186821,37.6209677 153.574466,37.5652991 152.980659,37.4539602 C152.386852,37.3426213 151.867278,37.1477812 151.421923,36.869434 C150.976567,36.5910868 150.623999,36.2106847 150.364209,35.7282163 C150.104418,35.2457479 149.974524,34.6519494 149.974524,33.9468033 C149.974524,33.2045441 150.104418,32.5921895 150.364209,32.1097211 C150.623999,31.6272526 150.967289,31.2282943 151.394088,30.9128342 C151.820887,30.597374 152.321904,30.3468653 152.897155,30.1613005 C153.472406,29.9757358 154.056926,29.8272862 154.650734,29.7159473 C155.281654,29.6046084 155.912565,29.5118274 156.543485,29.4376015 C157.174405,29.3633756 157.777482,29.2705946 158.352733,29.1592557 C158.927984,29.0479168 159.466113,28.9087453 159.967138,28.741737 C160.468163,28.5747287 160.885678,28.3427762 161.219694,28.0458726 Z" id="ba" fill="#333333"></path>
+    </g>
+</svg>
+                </a>
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li ng-class="navClass(menu.home.href)">
+                            <a ng-href="/home" ng-bind="menu.home.label" class="ng-binding" href="/home">Home</a>
+                        </li>
+                        <li ng-class="navClass(menu.documentation.href)" class="active">
+                            <a ng-href="/documentation" ng-bind="menu.documentation.label" class="ng-binding" href="/documentation">Documentation</a>
+                        </li>
+                        <li ng-class="navClass(menu.tryzorba.href)">
+                            <a ng-href="http://try.zorba.io/" ng-bind="menu.tryzorba.label" class="ng-binding" href="http://try.zorba.io/">Live Demo</a>
+                        </li>
+                        <li ng-class="navClass(menu.blog.href)">
+                            <a ng-href="/blog" ng-bind="menu.blog.label" class="ng-binding" href="/blog">Blog</a>
+                        </li>
+                        <li ng-class="navClass(menu.download.href)">
+                            <a ng-href="/download" ng-bind="menu.download.label" class="ng-binding" href="/download">Download</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ng-view"><div class="container ng-scope" id="documentation">
+    <div class="row">
+        <!-- ngIf: state !== 'notfound' && !debug --><div class="col-sm-4 sidebar ng-scope" ng-if="state !== 'notfound' &amp;&amp; !debug">
+            <div class="inner-sidebar">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="dropdown selected-version">
+                    <a class="dropdown-toggle">
+                        <span ng-bind="currentVersion.version" class="ng-binding">3.0</span>
+                        <span ng-bind="currentVersion.codename" class="ng-binding">Kratos</span>
+                        <span ng-show="currentVersion.latest">(latest)</span>
+                        <!--i class="fa fa-caret-down"></i-->
+                    </a>
+                    <!--ul class="dropdown-menu versions">
+                        <li ng-repeat="version in index.versions" ng-show="currentVersion.version != version.version">
+                            <a ng-href="/documentation/{{version.version}}">
+                                <span ng-bind="version.version"></span>
+                                <span ng-bind="version.codename"></span>
+                                <span ng-show="version.latest">(latest)</span>
+                            </a>
+                        </li>
+                    </ul-->
+                    <ul class="versions">
+                        <!-- ngRepeat: version in index.versions --><li ng-repeat="version in index.versions" ng-show="currentVersion.version != version.version" class="ng-scope" style="display: none; ">
+                            <a ng-href="/documentation/3.0" href="/documentation/3.0">
+                                <span ng-bind="version.version" class="ng-binding">3.0</span>
+                                <span ng-bind="version.codename" class="ng-binding">Kratos</span>
+                                <span ng-show="version.latest">(latest)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="slider">
+                <!-- Current -->
+                <div class="current" ng-show="panel.status === 'current'">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="path.split('/').length &gt; 3">
+                            <a href="/documentation/3.0/modules/zorba/xdm" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/zorba/xdm/atomic/datetime" ng-click="next(item)" href="/documentation/3.0/modules/zorba/xdm/atomic/datetime">
+                                <span ng-bind="item.label" class="ng-binding">Datetime</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope active">
+                            <a ng-href="/documentation/3.0/modules/zorba/xdm/atomic/math" ng-click="next(item)" href="/documentation/3.0/modules/zorba/xdm/atomic/math">
+                                <span ng-bind="item.label" class="ng-binding">Math</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/zorba/xdm/atomic/random" ng-click="next(item)" href="/documentation/3.0/modules/zorba/xdm/atomic/random">
+                                <span ng-bind="item.label" class="ng-binding">Random</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/zorba/xdm/atomic/string" ng-click="next(item)" href="/documentation/3.0/modules/zorba/xdm/atomic/string">
+                                <span ng-bind="item.label" class="ng-binding">String</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/zorba/xdm/atomic/uri" ng-click="next(item)" href="/documentation/3.0/modules/zorba/xdm/atomic/uri">
+                                <span ng-bind="item.label" class="ng-binding">URI</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Next -->
+                <div class="next slideRight" ng-show="panel.status === 'next'" next="" style="display: none; ">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="menu &amp;&amp; path.split('/').length &gt; 4">
+                            <a ng-href="/documentation/3.0/modules/zorba" ng-click="previous()" href="/documentation/3.0/modules/zorba">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.parent.children --><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Atomic</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Item</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Node</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="/documentation/3.0/modules/zorba/xdm" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/zorba/xdm/atomic/datetime" ng-click="next(item)" href="/documentation/3.0/modules/zorba/xdm/atomic/datetime">
+                                <span ng-bind="item.label" class="ng-binding">Datetime</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/zorba/xdm/atomic/math" ng-click="next(item)" href="/documentation/3.0/modules/zorba/xdm/atomic/math">
+                                <span ng-bind="item.label" class="ng-binding">Math</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/zorba/xdm/atomic/random" ng-click="next(item)" href="/documentation/3.0/modules/zorba/xdm/atomic/random">
+                                <span ng-bind="item.label" class="ng-binding">Random</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/zorba/xdm/atomic/string" ng-click="next(item)" href="/documentation/3.0/modules/zorba/xdm/atomic/string">
+                                <span ng-bind="item.label" class="ng-binding">String</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/zorba/xdm/atomic/uri" ng-click="next(item)" href="/documentation/3.0/modules/zorba/xdm/atomic/uri">
+                                <span ng-bind="item.label" class="ng-binding">URI</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Previous -->
+                <div class="previous slideLeft" ng-show="panel.status === 'previous'" previous="" style="display: none; ">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="menu &amp;&amp; path.split('/').length &gt; 3">
+                            <a ng-href="/documentation/3.0/modules/zorba/xdm" ng-click="previous()" href="/documentation/3.0/modules/zorba/xdm">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/zorba/xdm/atomic/datetime" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Datetime</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/zorba/xdm/atomic/math" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Math</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/zorba/xdm/atomic/random" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Random</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/zorba/xdm/atomic/string" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">String</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/zorba/xdm/atomic/uri" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">URI</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="/documentation/3.0/modules/zorba" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in panel.previous.children -->
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="content col-sm-8" ng-switch="" on="state" ng-class="{ 'col-sm-8': state !== 'notfound', 'col-sm-12': state === 'notfound' }">
+            
+                <ol class="breadcrumb">
+                    <li>
+                        <a ng-href="/documentation/latest" class="ng-binding" href="/documentation/latest">
+                            Zorba 3.0 Documentation
+                        </a>
+                    </li>
+                    <!-- ngRepeat: crumb in getBreadCrumbs() --><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/modules" href="/documentation/latest/modules">
+                            <span ng-bind="crumb.label" class="ng-binding">Modules</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/modules/zorba" href="/documentation/latest/modules/zorba">
+                            <span ng-bind="crumb.label" class="ng-binding">Zorba</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/modules/zorba/xdm" href="/documentation/latest/modules/zorba/xdm">
+                            <span ng-bind="crumb.label" class="ng-binding">XML &amp; JSON Data Model</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/modules/zorba/xdm/atomic" href="/documentation/latest/modules/zorba/xdm/atomic">
+                            <span ng-bind="crumb.label" class="ng-binding">Atomic</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope active">
+                        <a ng-href="/documentation/latest/modules/zorba/xdm/atomic/math" href="/documentation/latest/modules/zorba/xdm/atomic/math">
+                            <span ng-bind="crumb.label" class="ng-binding">Math</span>
+                        </a>
+                    </li>
+                </ol>
+            
+            <!-- ngSwitchWhen: loading -->
+            <!-- ngSwitchWhen: zorba -->
+            <!-- ngSwitchWhen: api -->
+            <!-- ngSwitchWhen: modules --><div ng-switch-when="modules" class="ng-scope">
+                <h1 class="ng-binding">http://zorba.io/modules/math</h1>
+                <p>View as <a ng-href="/documentation/3.0-Kratos/modules/xml/zorba.io_modules_math.xml" target="_blank" href="/documentation/3.0-Kratos/modules/xml/zorba.io_modules_math.xml">XML</a> or <a ng-href="/documentation/3.0-Kratos/modules/zorba.io_modules_math.json" target="_blank" href="/documentation/3.0-Kratos/modules/zorba.io_modules_math.json">JSON</a>.</p>
+                <div ng-bind-html-unsafe="normalizeAnchor(content.description)" class="ng-binding"> Extensive math library.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+</p></div>
+                <div ng-show="content.functions.length &gt; 0" class="function-summary">
+                    <h2>Function Summary</h2>
+                    <table class="table">
+                        <tbody><!-- ngRepeat: fn in content.functions --><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=acosh-1" ng-bind="fn.name" class="ng-binding">acosh</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($arg as double) as double external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Inverse hyperbolic cosine.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=asinh-1" ng-bind="fn.name" class="ng-binding">asinh</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($arg as double) as double external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Calculate the inverse hyperbolic sine.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=atanh-1" ng-bind="fn.name" class="ng-binding">atanh</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($arg as double) as double external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Calculate the hyperbolic tangent.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=avedev-1" ng-bind="fn.name" class="ng-binding">avedev</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double+) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the average of the absolute deviations of data points from their mean.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=cast-as-numeric-1" ng-bind="fn.name" class="ng-binding">cast-as-numeric</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as anyAtomicType) as anyAtomicType</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Cast the anyAtomicType to a numeric type.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=ceiling-2" ng-bind="fn.name" class="ng-binding">ceiling</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as double, $significance as double) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns number rounded up, away from zero, to the nearest multiple of significance.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=cosh-1" ng-bind="fn.name" class="ng-binding">cosh</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($arg as double) as double external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the hyperbolic cosine of x.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=deg-to-rad-1" ng-bind="fn.name" class="ng-binding">deg-to-rad</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($deg as double) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Convert angle from degrees to radians.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=even-1" ng-bind="fn.name" class="ng-binding">even</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as double) as integer</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns number rounded up to the nearest even integer.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=fact-1" ng-bind="fn.name" class="ng-binding">fact</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as integer) as integer</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the factorial of a number.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=factdouble-1" ng-bind="fn.name" class="ng-binding">factdouble</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as integer) as integer</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the double factorial of a number.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=floor-2" ng-bind="fn.name" class="ng-binding">floor</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as double, $significance as double) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Rounds number down, toward zero, to the nearest multiple of significance.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=fmod-2" ng-bind="fn.name" class="ng-binding">fmod</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($x as double, $y as double) as double external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Function performing the modulo operation between the two arguments.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=frexp-1" ng-bind="fn.name" class="ng-binding">frexp</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($arg as double) as double+ external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the argument split as mantissa and exponent.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=gcd-1" ng-bind="fn.name" class="ng-binding">gcd</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as integer+) as integer</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the greatest common divisor GCD of a sequence of integers.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=int-1" ng-bind="fn.name" class="ng-binding">int</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as double) as integer</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Rounds a number down to the nearest integer.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=is-a-number-1" ng-bind="fn.name" class="ng-binding">is-a-number</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($value as anyAtomicType) as boolean</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Checks if the anyAtomicType argument is actually a numeric type
+ or can be converted to numeric.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=is_inf-1" ng-bind="fn.name" class="ng-binding">is_inf</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($arg as double) as boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Checks if the double value is positive or negative infinite.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=is_nan-1" ng-bind="fn.name" class="ng-binding">is_nan</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($arg as double) as boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Checks if the double value is Not a Number (NaN).</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=large-2" ng-bind="fn.name" class="ng-binding">large</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double+, $k as integer) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the k-th largest value in a data set.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=lcm-1" ng-bind="fn.name" class="ng-binding">lcm</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as integer+) as integer</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the least common multiple of integers.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=ldexp-2" ng-bind="fn.name" class="ng-binding">ldexp</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($x as double, $i as integer) as double external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Computes a real number from the mantissa and exponent.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=median-1" ng-bind="fn.name" class="ng-binding">median</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double*) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the median of the given numbers.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=mod-2" ng-bind="fn.name" class="ng-binding">mod</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as double, $divisor as double) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the remainder after number is divided by divisor.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=mode-1" ng-bind="fn.name" class="ng-binding">mode</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double*) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the most frequently occurring, or repetitive, value in a sequence.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=modf-1" ng-bind="fn.name" class="ng-binding">modf</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($arg as double) as double+ external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Splits a floating-point value into fractional and integer parts.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=mround-2" ng-bind="fn.name" class="ng-binding">mround</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as decimal, $multiple as double) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns a number rounded to the desired multiple.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=odd-1" ng-bind="fn.name" class="ng-binding">odd</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as double) as integer</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns number rounded up to the nearest odd integer, away from zero.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=percentile-2" ng-bind="fn.name" class="ng-binding">percentile</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double*, $k_at as double) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the k-th percentile of values in a sequence.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=percentrank-2" ng-bind="fn.name" class="ng-binding">percentrank</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double*, $x as double) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the rank of a value in a data set as a percentage of the data set.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=prob-3" ng-bind="fn.name" class="ng-binding">prob</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($x_range as double+, $prob_range as double+, $range_lower_limit as double) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> This is the same as math:prob#4, only that upper_limit is not specified.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=prob-4" ng-bind="fn.name" class="ng-binding">prob</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($x_range as double+, $prob_range as double+, $range_lower_limit as double, $upper_limit as double) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the probability that values in a range are between two limits.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=product-1" ng-bind="fn.name" class="ng-binding">product</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double*) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Multiplies all the numbers given as arguments and returns the product.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=quartile-2" ng-bind="fn.name" class="ng-binding">quartile</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double*, $quart as integer) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the quartile of a data set.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=quotient-2" ng-bind="fn.name" class="ng-binding">quotient</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numerator as double, $denominator as double) as integer</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the integer portion of a division.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=rad-to-deg-1" ng-bind="fn.name" class="ng-binding">rad-to-deg</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($rad as double) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Convert angle from radians to degrees.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=rank-2" ng-bind="fn.name" class="ng-binding">rank</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($x as double, $numbers as double*) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> This RANK function is same as the above, only that $order_ascending is set by default to false.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=rank-3" ng-bind="fn.name" class="ng-binding">rank</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($x as double, $numbers as double*, $order_ascending as boolean) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the rank of a number in a list of numbers.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=roman-1" ng-bind="fn.name" class="ng-binding">roman</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as integer) as string</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Converts an Arabic numeral to roman, as text.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=round-2" ng-bind="fn.name" class="ng-binding">round</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as double, $precision as integer) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Rounds a number to a specified number of digits.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=rounddown-2" ng-bind="fn.name" class="ng-binding">rounddown</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as double, $precision as integer) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Rounds a number down, toward zero.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=roundup-2" ng-bind="fn.name" class="ng-binding">roundup</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as double, $precision as integer) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Rounds a number up, away from 0 (zero).</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=sign-1" ng-bind="fn.name" class="ng-binding">sign</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as double) as integer</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Determines the sign of a number.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=sinh-1" ng-bind="fn.name" class="ng-binding">sinh</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($arg as double) as double external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Calculate the hyperbolic sine.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=slope-2" ng-bind="fn.name" class="ng-binding">slope</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($known_y as double+, $known_x as double+) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the slope of the linear regression line through data points in known_y's and known_x's.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=small-2" ng-bind="fn.name" class="ng-binding">small</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double*, $k as integer) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> This function computes the k-th smallest value in a data set.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=sort-numbers-1" ng-bind="fn.name" class="ng-binding">sort-numbers</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double*) as double*</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Sorts a sequence of numbers or arguments castable to numeric.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=standardize-3" ng-bind="fn.name" class="ng-binding">standardize</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($x as double, $mean as double, $standard_dev as double) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns a normalized value from a distribution characterized by mean and standard_dev.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=stdev-1" ng-bind="fn.name" class="ng-binding">stdev</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double+) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Estimates standard deviation based on a sample.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=stdeva-1" ng-bind="fn.name" class="ng-binding">stdeva</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double+) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Estimates standard deviation based on a sample.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=stdevp-1" ng-bind="fn.name" class="ng-binding">stdevp</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double+) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Calculates standard deviation based on the entire population given as arguments.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=stdevpa-1" ng-bind="fn.name" class="ng-binding">stdevpa</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double+) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Calculates standard deviation based on the entire population given as arguments.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=subtotal-2" ng-bind="fn.name" class="ng-binding">subtotal</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($function_num as integer, $numbers as double*) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns a subtotal in a sequence of numbers.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=sumproduct-2" ng-bind="fn.name" class="ng-binding">sumproduct</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($array1 as double*, $array2 as double*) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Multiplies the elements on the same position in each sequence
+ and sums up the results.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=sumsq-1" ng-bind="fn.name" class="ng-binding">sumsq</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double+) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the sum of the squares of the arguments.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=tanh-1" ng-bind="fn.name" class="ng-binding">tanh</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($arg as double) as double external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Calculate the hyperbolic tangent.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=trunc-1" ng-bind="fn.name" class="ng-binding">trunc</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as double) as integer</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Truncates a number to an integer by removing the fractional part of the number.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=trunc-2" ng-bind="fn.name" class="ng-binding">trunc</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($number as double, $precision as integer) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Truncates a number down to precision.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=var-1" ng-bind="fn.name" class="ng-binding">var</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double+) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Estimates variance based on a sample.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=vara-1" ng-bind="fn.name" class="ng-binding">vara</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double+) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Estimates variance based on a sample.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=varp-1" ng-bind="fn.name" class="ng-binding">varp</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double+) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Calculates variance based on the entire population.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/zorba/xdm/atomic/math/?anchor=varpa-1" ng-bind="fn.name" class="ng-binding">varpa</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($numbers as double+) as double</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Calculates variance based on the entire population.</p></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>
+                <div ng-show="content.variables.length &gt; 0" class="variable-summary" style="display: none; ">
+                    <h2>Variable Summary</h2>
+                    <ul class="list-unstyled">
+                        <!-- ngRepeat: var in content.variables -->
+                    </ul>
+                </div>
+                <div ng-show="content.functions.length &gt; 0" class="functions">
+                    <h2>Functions</h2>
+                    <!-- ngRepeat: fn in content.functions --><div ng-repeat="fn in content.functions" class="function ng-scope" id="acosh-1">
+                        <h3 class="ng-binding">acosh#1</h3>
+                        <pre class="ng-binding">declare  function math:acosh($arg as double) as double external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Inverse hyperbolic cosine.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">arg as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the arg</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the result of acosh(arg)</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="asinh-1">
+                        <h3 class="ng-binding">asinh#1</h3>
+                        <pre class="ng-binding">declare  function math:asinh($arg as double) as double external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Calculate the inverse hyperbolic sine.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">arg as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the arg</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the result of asinh(arg)</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="atanh-1">
+                        <h3 class="ng-binding">atanh#1</h3>
+                        <pre class="ng-binding">declare  function math:atanh($arg as double) as double external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Calculate the hyperbolic tangent.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">arg as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> must be in range -1 ... +1 (exclusive)</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the result of atanh(arg)</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="avedev-1">
+                        <h3 class="ng-binding">avedev#1</h3>
+                        <pre class="ng-binding">declare  function math:avedev($numbers as double+) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the average of the absolute deviations of data points from their mean.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The formula is sum(abs(x - average_x))/n, where n is the count of x in the sequence.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers. Sequence can be of any length from 1 up.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The formula result</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="cast-as-numeric-1">
+                        <h3 class="ng-binding">cast-as-numeric#1</h3>
+                        <pre class="ng-binding">declare  function math:cast-as-numeric($number as anyAtomicType) as anyAtomicType</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Cast the anyAtomicType to a numeric type.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ If the value is already of a numeric type then nothing is changed.
+ Otherwise the value is casted to the numeric type that is most appropriate.
+ </p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as anyAtomicType</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The parameter can be a number, string, boolean value.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">anyAtomicType</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The casted value.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="ceiling-2">
+                        <h3 class="ng-binding">ceiling#2</h3>
+                        <pre class="ng-binding">declare  function math:ceiling($number as double, $significance as double) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns number rounded up, away from zero, to the nearest multiple of significance.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Significance must have the same sign as number.
+ Number and significance must be of a numeric type or castable to numeric.
+ Significance must not be zero.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The value you want to round.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">significance as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The multiple to which you want to round.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The rounded value.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="cosh-1">
+                        <h3 class="ng-binding">cosh#1</h3>
+                        <pre class="ng-binding">declare  function math:cosh($arg as double) as double external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the hyperbolic cosine of x.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ If the result it too large, INF is returned.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">arg as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> must be smaller than 7.104760e+002</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">cosh(arg)</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="deg-to-rad-1">
+                        <h3 class="ng-binding">deg-to-rad#1</h3>
+                        <pre class="ng-binding">declare  function math:deg-to-rad($deg as double) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Convert angle from degrees to radians. <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The parameter is first converted to value range of (-360, 360).
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">deg as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> angle in degrees</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">value in radians (-2PI, 2PI)</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="even-1">
+                        <h3 class="ng-binding">even#1</h3>
+                        <pre class="ng-binding">declare  function math:even($number as double) as integer</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns number rounded up to the nearest even integer.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Regardless of the sign of number, a value is rounded up when adjusted away from zero.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The value to round.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The rounded value casted as numeric type.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="fact-1">
+                        <h3 class="ng-binding">fact#1</h3>
+                        <pre class="ng-binding">declare  function math:fact($number as integer) as integer</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the factorial of a number.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The non-negative number you want the factorial of.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">Returns the factorial of a number. The factorial of a number is equal to 1*2*3*...* number.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="factdouble-1">
+                        <h3 class="ng-binding">factdouble#1</h3>
+                        <pre class="ng-binding">declare  function math:factdouble($number as integer) as integer</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the double factorial of a number.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Computes the double factorial of n as n(n-2)(n-4)...</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The positive integer value.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The result as integer.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="floor-2">
+                        <h3 class="ng-binding">floor#2</h3>
+                        <pre class="ng-binding">declare  function math:floor($number as double, $significance as double) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Rounds number down, toward zero, to the nearest multiple of significance.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Significance must have the same sign as number.
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The value you want to round.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">significance as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The multiple to which you want to round.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The rounded value as numeric type.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="fmod-2">
+                        <h3 class="ng-binding">fmod#2</h3>
+                        <pre class="ng-binding">declare  function math:fmod($x as double, $y as double) as double external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Function performing the modulo operation between the two arguments.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">x as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the x</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">y as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the y</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The remainder of x/y.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="frexp-1">
+                        <h3 class="ng-binding">frexp#1</h3>
+                        <pre class="ng-binding">declare  function math:frexp($arg as double) as double+ external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the argument split as mantissa and exponent.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The recombining formula is (mantissa * 2^exponent).
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">arg as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the double to be split.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double+</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">A sequence of two doubles (mantissa, exponent)</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="gcd-1">
+                        <h3 class="ng-binding">gcd#1</h3>
+                        <pre class="ng-binding">declare  function math:gcd($numbers as integer+) as integer</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the greatest common divisor GCD of a sequence of integers.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The sequence can have one or more positive integers.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The sequence of positive integers.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The GCD as integer.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="int-1">
+                        <h3 class="ng-binding">int#1</h3>
+                        <pre class="ng-binding">declare  function math:int($number as double) as integer</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Rounds a number down to the nearest integer.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Positive numbers are rounded toward zero, negative numbers are rounded away from zero.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The value to be rounded.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The rounded integer.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-a-number-1">
+                        <h3 class="ng-binding">is-a-number#1</h3>
+                        <pre class="ng-binding">declare  function math:is-a-number($value as anyAtomicType) as boolean</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Checks if the anyAtomicType argument is actually a numeric type
+ or can be converted to numeric.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">value as anyAtomicType</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> Parameter to be checked.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if the value can be casted to numeric.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is_inf-1">
+                        <h3 class="ng-binding">is_inf#1</h3>
+                        <pre class="ng-binding">declare  function math:is_inf($arg as double) as boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Checks if the double value is positive or negative infinite.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">arg as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the double to be checked</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">boolean true if argument is pos INF or neg INF</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is_nan-1">
+                        <h3 class="ng-binding">is_nan#1</h3>
+                        <pre class="ng-binding">declare  function math:is_nan($arg as double) as boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Checks if the double value is Not a Number (NaN).
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">arg as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the arg</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">boolean true if the double is NaN</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="large-2">
+                        <h3 class="ng-binding">large#2</h3>
+                        <pre class="ng-binding">declare  function math:large($numbers as double+, $k as integer) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the k-th largest value in a data set. <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ If n is the number of data points in a range,
+   then LARGE(array,1) returns the largest value,
+   and LARGE(array,n) returns the smallest value.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.<br xmlns:xqdoc="http://www.xqdoc.org/1.0">
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers The sequence can be of any length, from 1 up.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">k as integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the position of largest value, with value from 1 to count of values</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The k-th largest value as numeric type</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="lcm-1">
+                        <h3 class="ng-binding">lcm#1</h3>
+                        <pre class="ng-binding">declare  function math:lcm($numbers as integer+) as integer</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the least common multiple of integers.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ LCM for two numbers is computed by multiplying them and dividing with GCD.
+ The function is applied recursively replacing the first two numbers in the sequence with their LCM.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The sequence of one or more positive integers.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The LCM as integer.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="ldexp-2">
+                        <h3 class="ng-binding">ldexp#2</h3>
+                        <pre class="ng-binding">declare  function math:ldexp($x as double, $i as integer) as double external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Computes a real number from the mantissa and exponent.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The formula is (x * 2^i).
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">x as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the mantissa</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">i as integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the exponent</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the computed real number</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="median-1">
+                        <h3 class="ng-binding">median#1</h3>
+                        <pre class="ng-binding">declare  function math:median($numbers as double*) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the median of the given numbers. <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The median is the number in the middle of a set of numbers.
+ Half the numbers have values that are greater than the median,
+ and half the numbers have values that are less than the median. </p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers, of any length</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">for odd count of numbers return the number in the middle of the sorted sequence. For even count of numbers return the average of the two numbers in the middle.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="mod-2">
+                        <h3 class="ng-binding">mod#2</h3>
+                        <pre class="ng-binding">declare  function math:mod($number as double, $divisor as double) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the remainder after number is divided by divisor.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The result has the same sign as divisor.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The number for which you want to find the remainder.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">divisor as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The number by which you want to divide number. This cannot be zero.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The remainder from division as numeric type.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="mode-1">
+                        <h3 class="ng-binding">mode#1</h3>
+                        <pre class="ng-binding">declare  function math:mode($numbers as double*) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the most frequently occurring, or repetitive, value in a sequence.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers, of any length</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The most occuring number</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="modf-1">
+                        <h3 class="ng-binding">modf#1</h3>
+                        <pre class="ng-binding">declare  function math:modf($arg as double) as double+ external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Splits a floating-point value into fractional and integer parts.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Both the fraction and integer keep the original sign of the value.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">arg as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the double to be split.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double+</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">A sequence of two doubles (fraction, integer)</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="mround-2">
+                        <h3 class="ng-binding">mround#2</h3>
+                        <pre class="ng-binding">declare  function math:mround($number as decimal, $multiple as double) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns a number rounded to the desired multiple.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ MROUND rounds up, away from zero, if the remainder of dividing number by multiple
+ is greater than or equal to half the value of multiple.
+ MROUND is computed through math:floor function.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as decimal</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The value to round,</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">multiple as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The multiple to which you want to round number.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The rounded number up to the desired multiple.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="odd-1">
+                        <h3 class="ng-binding">odd#1</h3>
+                        <pre class="ng-binding">declare  function math:odd($number as double) as integer</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns number rounded up to the nearest odd integer, away from zero.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The value to round.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The odd integer.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="percentile-2">
+                        <h3 class="ng-binding">percentile#2</h3>
+                        <pre class="ng-binding">declare  function math:percentile($numbers as double*, $k_at as double) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the k-th percentile of values in a sequence.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ If k is not a multiple of 1/(n - 1),
+   PERCENTILE interpolates to determine the value at the k-th percentile.
+ The function is computed by (max-min)*k + min</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers, of any length</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">k_at as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the percentile, with value between 0 .. 1 inclusive</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The computed percentile</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="percentrank-2">
+                        <h3 class="ng-binding">percentrank#2</h3>
+                        <pre class="ng-binding">declare  function math:percentrank($numbers as double*, $x as double) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the rank of a value in a data set as a percentage of the data set.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ If x does not match one of the values in array,
+   PERCENTRANK interpolates to return the correct percentage rank. <br xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The formula is uses: (RANK - 1) / (size - 1) .</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers. The sequence can be of any length, from 1 up.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">x as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> is the value for which you want to know the rank</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The percentage of rank.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="prob-3">
+                        <h3 class="ng-binding">prob#3</h3>
+                        <pre class="ng-binding">declare  function math:prob($x_range as double+, $prob_range as double+, $range_lower_limit as double) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> This is the same as math:prob#4, only that upper_limit is not specified.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The probability is computed only for range_lower_limit.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">x_range as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> is the range of numeric values of x with which there are associated probabilities. This does not need to be ordered.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">prob_range as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> is a set of probabilities associated with values in x_range.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">range_lower_limit as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> is the value for which you want a probability.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The probability of the range_lower_limit value</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="prob-4">
+                        <h3 class="ng-binding">prob#4</h3>
+                        <pre class="ng-binding">declare  function math:prob($x_range as double+, $prob_range as double+, $range_lower_limit as double, $upper_limit as double) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the probability that values in a range are between two limits.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">x_range as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> is the range of numeric values of x with which there are associated probabilities. This does not need to be ordered.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">prob_range as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> is a set of probabilities associated with values in x_range.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">range_lower_limit as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> is the lower bound on the value for which you want a probability.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">upper_limit as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> is the upper bound on the value for which you want a probability.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The probability of the entire range</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="product-1">
+                        <h3 class="ng-binding">product#1</h3>
+                        <pre class="ng-binding">declare  function math:product($numbers as double*) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Multiplies all the numbers given as arguments and returns the product.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The sequence of arguments convertible to numeric types. The sequence can be of any length.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The multiplication result as numeric type.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="quartile-2">
+                        <h3 class="ng-binding">quartile#2</h3>
+                        <pre class="ng-binding">declare  function math:quartile($numbers as double*, $quart as integer) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the quartile of a data set. <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> sequence of numbers. The sequence can be of any length, from 1 up.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">quart as integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> <dl>one of the values 0, 1, 2, 3, 4 with meaning: <dt>0</dt> <dd> compute minimum value</dd> <dt>1</dt> <dd> compute first quartile (25th percentile)</dd> <dt>2</dt> <dd> compute median value (50th percentile)</dd> <dt>3</dt> <dd> compute third quartile (75th percentile)</dd> <dt>4</dt> <dd> compute maximum value</dd></dl></div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the computed quartile, as numeric type</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="quotient-2">
+                        <h3 class="ng-binding">quotient#2</h3>
+                        <pre class="ng-binding">declare  function math:quotient($numerator as double, $denominator as double) as integer</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the integer portion of a division.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numerator as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The divider.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">denominator as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The divisor. It cannot be zero.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The result value as numeric type.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="rad-to-deg-1">
+                        <h3 class="ng-binding">rad-to-deg#1</h3>
+                        <pre class="ng-binding">declare  function math:rad-to-deg($rad as double) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Convert angle from radians to degrees. <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">rad as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> value in radians</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">value in degrees (-360, 360)</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="rank-2">
+                        <h3 class="ng-binding">rank#2</h3>
+                        <pre class="ng-binding">declare  function math:rank($x as double, $numbers as double*) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> This RANK function is same as the above, only that $order_ascending is set by default to false.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">x as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The number whose rank you want to find.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers. The sequence can be of any length.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The rank of $x.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="rank-3">
+                        <h3 class="ng-binding">rank#3</h3>
+                        <pre class="ng-binding">declare  function math:rank($x as double, $numbers as double*, $order_ascending as boolean) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the rank of a number in a list of numbers. <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The rank of a number is its size relative to other values in a list.
+ (If you were to sort the list, the rank of the number would be its position.)
+ RANK gives duplicate numbers the same rank.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">x as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The number whose rank you want to find.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The sequence of numbers. The sequence can be of any length.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">order_ascending as boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> <dl>A boolean having the meaning: <dt>false</dt><dd>then rank the number as if the sequence was sorted in descending order.</dd> <dt>true</dt> <dd>then rank the number as if the sequence was sorted in ascending order.</dd></dl></div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The rank of $x.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="roman-1">
+                        <h3 class="ng-binding">roman#1</h3>
+                        <pre class="ng-binding">declare  function math:roman($number as integer) as string</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Converts an Arabic numeral to roman, as text.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Only the classic format is supported (out of all formats Excel requires).
+ M is the largest digit, it represents 1000.
+ Numbers bigger than 2000 will be represented by a sequence of "M".
+ D = 500, C = 100, L = 50, X = 10, V = 5, I = 1.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> A positive integer.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The roman string representation.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="round-2">
+                        <h3 class="ng-binding">round#2</h3>
+                        <pre class="ng-binding">declare  function math:round($number as double, $precision as integer) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Rounds a number to a specified number of digits.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ If precision is greater than 0 (zero), then number is rounded
+ to the specified number of decimal places.
+ If num_digits is 0, then number is rounded to the nearest integer.
+ If num_digits is less than 0, then number is rounded to the left of the decimal point.
+ The 0.5 is rounded away from zero. </p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The number to round.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">precision as integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The number of decimal places to keep.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The rounded number as numeric type.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="rounddown-2">
+                        <h3 class="ng-binding">rounddown#2</h3>
+                        <pre class="ng-binding">declare  function math:rounddown($number as double, $precision as integer) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Rounds a number down, toward zero.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ If num_digits is greater than 0 (zero), then number is rounded down
+ to the specified number of decimal places.
+ If num_digits is 0, then number is rounded down to the nearest integer.
+ If num_digits is less than 0, then number is rounded down to the left of the decimal point. </p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The number to round</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">precision as integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The number of decimal places to keep.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the truncated number toward zero, as numeric type.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="roundup-2">
+                        <h3 class="ng-binding">roundup#2</h3>
+                        <pre class="ng-binding">declare  function math:roundup($number as double, $precision as integer) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Rounds a number up, away from 0 (zero).<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ If num_digits is greater than 0 (zero), then number is rounded down
+ to the specified number of decimal places.
+ If num_digits is 0, then number is rounded down to the nearest integer.
+ If num_digits is less than 0, then number is rounded down to the left of the decimal point. </p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The number to round</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">precision as integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The number of decimal places to keep.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The truncated number away from zero, as numeric type.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="sign-1">
+                        <h3 class="ng-binding">sign#1</h3>
+                        <pre class="ng-binding">declare  function math:sign($number as double) as integer</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Determines the sign of a number. <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Returns 1 if the number is positive, zero (0) if the number is 0,
+ and -1 if the number is negative.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The argument</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The sign as (-1, 0, 1).</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="sinh-1">
+                        <h3 class="ng-binding">sinh#1</h3>
+                        <pre class="ng-binding">declare  function math:sinh($arg as double) as double external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Calculate the hyperbolic sine.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">arg as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the arg</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the result of sinh(arg)</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="slope-2">
+                        <h3 class="ng-binding">slope#2</h3>
+                        <pre class="ng-binding">declare  function math:slope($known_y as double+, $known_x as double+) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the slope of the linear regression line through data points in known_y's and known_x's.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The slope is the vertical distance divided by the horizontal distance between
+   any two points on the line, which is the rate of change along the regression line.
+ It computes the formula:</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ sum((x - average_x)(y - average_y)) / sum((x - average_x)^2)</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ where average_x and average_y are computed with AVERAGE function.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">known_y as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of y numbers. The sequence can be of any length, from 1 up.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">known_x as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of x numbers. The sequence can be of any length, from 1 up.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The slope value, as numeric type</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="small-2">
+                        <h3 class="ng-binding">small#2</h3>
+                        <pre class="ng-binding">declare  function math:small($numbers as double*, $k as integer) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> This function computes the k-th smallest value in a data set. <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Use this function to return values with a particular relative standing in a data set.
+ If n is the number of data points in array, SMALL(array,1) equals the smallest value,
+   and SMALL(array,n) equals the largest value.
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> A sequence of numbers. The sequence can be of any length, from 1 up.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">k as integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The position (from the smallest) in the sequence of data to return. Must have value between 1 and size of sequence.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The k-th smallest value of $numbers.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="sort-numbers-1">
+                        <h3 class="ng-binding">sort-numbers#1</h3>
+                        <pre class="ng-binding">declare  function math:sort-numbers($numbers as double*) as double*</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Sorts a sequence of numbers or arguments castable to numeric.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ It first casts all arguments to numeric and then sorts ascending.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Helper function.<br xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The sequence of arguments castable to numeric.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The sorted sequence as numeric types.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="standardize-3">
+                        <h3 class="ng-binding">standardize#3</h3>
+                        <pre class="ng-binding">declare  function math:standardize($x as double, $mean as double, $standard_dev as double) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns a normalized value from a distribution characterized by mean and standard_dev.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The formula is (x - mean) / standard_dev .</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">x as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> is the value you want to normalize</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">mean as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> is the arithmetic mean of the distribution.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">standard_dev as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> is the standard deviation of the distribution.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The normalized x, as numeric type</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="stdev-1">
+                        <h3 class="ng-binding">stdev#1</h3>
+                        <pre class="ng-binding">declare  function math:stdev($numbers as double+) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Estimates standard deviation based on a sample. <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The standard deviation is a measure of how widely values are dispersed
+   from the average value (the mean).
+ It is computed with formula:
+ sqrt( sum((x-average_x)^2) / (n-1) )    = sqrt ( VAR(numbers) )</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers The sequence can be of any length, from 1 up.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the standard deviation, as numeric type</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="stdeva-1">
+                        <h3 class="ng-binding">stdeva#1</h3>
+                        <pre class="ng-binding">declare  function math:stdeva($numbers as double+) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Estimates standard deviation based on a sample. <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The standard deviation is a measure of how widely values are dispersed
+   from the average value (the mean).
+ It is computed with formula:
+ sqrt( sum((x-average_x)^2) / (n-1) )    = sqrt ( VARA(numbers) )</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers. The sequence can be of any length, from 1 up.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the standard deviation, as numeric type</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="stdevp-1">
+                        <h3 class="ng-binding">stdevp#1</h3>
+                        <pre class="ng-binding">declare  function math:stdevp($numbers as double+) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Calculates standard deviation based on the entire population given as arguments. <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The standard deviation is a measure of how widely values are dispersed from
+   the average value (the mean).
+ It is computed with formula:
+ sqrt( sum((x-average_x)^2) / n )    = sqrt ( VARP(numbers) )</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers or values castable to numeric The sequence can be of any length, from 1 up.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the standard deviation, as numeric type</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="stdevpa-1">
+                        <h3 class="ng-binding">stdevpa#1</h3>
+                        <pre class="ng-binding">declare  function math:stdevpa($numbers as double+) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Calculates standard deviation based on the entire population given as arguments. <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The standard deviation is a measure of how widely values are dispersed from
+   the average value (the mean).
+ It is computed with formula:
+ sqrt( sum((x-average_x)^2) / n )    = sqrt ( VARPA(numbers) )</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers or values castable to numeric The sequence can be of any length, from 1 up.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the standard deviation, as numeric type</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="subtotal-2">
+                        <h3 class="ng-binding">subtotal#2</h3>
+                        <pre class="ng-binding">declare  function math:subtotal($function_num as integer, $numbers as double*) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns a subtotal in a sequence of numbers.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The function applied is given by $function_num.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">function_num as integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> <dl>defines the function to be applied on sequence values. The possible values are: <dt>1 or 101</dt> <dd> AVERAGE</dd> <dt>2 or 102</dt> <dd> COUNT</dd> <dt>3 or 103</dt> <dd> COUNTA</dd> <dt>4 or 104</dt> <dd> MAX</dd> <dt>5 or 105</dt> <dd> MIN</dd> <dt>6 or 106</dt> <dd> PRODUCT</dd> <dt>7 or 107</dt> <dd> STDEV</dd> <dt>8 or 108</dt> <dd> STDEVP</dd> <dt>9 or 109</dt> <dd> SUM</dd> <dt>10 or 110</dt> <dd> VAR</dd> <dt>11 or 111</dt> <dd> VARP</dd></dl> In this implementation there is no difference between x and 10x.<br></div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers. The sequence can be of any length.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The function result, as numeric type</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="sumproduct-2">
+                        <h3 class="ng-binding">sumproduct#2</h3>
+                        <pre class="ng-binding">declare  function math:sumproduct($array1 as double*, $array2 as double*) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Multiplies the elements on the same position in each sequence
+ and sums up the results.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">array1 as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequences of numbers</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">array2 as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequences of numbers</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the sum of products</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="sumsq-1">
+                        <h3 class="ng-binding">sumsq#1</h3>
+                        <pre class="ng-binding">declare  function math:sumsq($numbers as double+) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the sum of the squares of the arguments.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ It uses the sumproduct function.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of one or more numbers</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the sum of squared values, as numeric type</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="tanh-1">
+                        <h3 class="ng-binding">tanh#1</h3>
+                        <pre class="ng-binding">declare  function math:tanh($arg as double) as double external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Calculate the hyperbolic tangent.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">arg as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the arg</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the result of tanh(arg)</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="trunc-1">
+                        <h3 class="ng-binding">trunc#1</h3>
+                        <pre class="ng-binding">declare  function math:trunc($number as double) as integer</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Truncates a number to an integer by removing the fractional part of the number.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The argument .</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The integer value.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="trunc-2">
+                        <h3 class="ng-binding">trunc#2</h3>
+                        <pre class="ng-binding">declare  function math:trunc($number as double, $precision as integer) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Truncates a number down to precision.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ This behaves exactly like rounddown.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">number as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The argument castable to numeric type.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">precision as integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The number of decimal places to keep .</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The integer value.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="var-1">
+                        <h3 class="ng-binding">var#1</h3>
+                        <pre class="ng-binding">declare  function math:var($numbers as double+) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Estimates variance based on a sample.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The formula is sum(x - average_x)^2 / (n - 1).
+ average_x is computed with AVERAGE function.
+ n is the count of numbers from the sequence, excluding empty values.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers. The sequence can be of any length, from 1 up.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The variance, as numeric type</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="vara-1">
+                        <h3 class="ng-binding">vara#1</h3>
+                        <pre class="ng-binding">declare  function math:vara($numbers as double+) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Estimates variance based on a sample.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The formula is sum(x - average_x)^2 / (n - 1).
+ average_x is computed with AVERAGE function.
+ n is the size of sequence, including empty values.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers. The sequence can be of any length, from 1 up.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The variance, as numeric type</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="varp-1">
+                        <h3 class="ng-binding">varp#1</h3>
+                        <pre class="ng-binding">declare  function math:varp($numbers as double+) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Calculates variance based on the entire population.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The formula is sum(x - average_x)^2 / n.
+ average_x is computed with AVERAGE function.
+ n is the count of numbers from the sequence, excluding empty values.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.<br xmlns:xqdoc="http://www.xqdoc.org/1.0">
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers. The sequence can be of any length, from 1 up.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The variance, as numeric type</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="varpa-1">
+                        <h3 class="ng-binding">varpa#1</h3>
+                        <pre class="ng-binding">declare  function math:varpa($numbers as double+) as double</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Calculates variance based on the entire population.<p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ The formula is sum(x - average_x)^2 / n.
+ average_x is computed with AVERAGE function.
+ n is the size of sequence, including empty values.</p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Borrowed from excel module.
+</p></div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">numbers as double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> the sequence of numbers. The sequence can be of any length, from 1 up.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">double</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The variance, as numeric type</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div ng-show="content.variables.length &gt; 0" class="variables" style="display: none; ">
+                    <h2>Variables</h2>
+                    <!-- ngRepeat: var in content.variables -->
+                </div>
+                <div id="disqus" class="disqus" disqus="">
+                    <div id="disqus_thread" class="content-panel-content"><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" tabindex="0" title="Disqus" style="width: 100% !important; border-top-style: none !important; border-right-style: none !important; border-bottom-style: none !important; border-left-style: none !important; border-width: initial !important; border-color: initial !important; overflow-x: hidden !important; overflow-y: hidden !important; height: 928px !important; " width="100%" src="http://disqus.com/embed/comments/?disqus_version=1df9d712&amp;base=default&amp;f=28msec&amp;t_i=%2Fdocumentation%2F3.0%2Fmodules%2Fzorba%2Fxdm%2Fatomic%2Fmath%2F&amp;t_u=http%3A%2F%2Fwww.28.io%2Fdocumentation%2F3.0%2Fmodules%2Fzorba%2Fxdm%2Fatomic%2Fmath%2F&amp;t_d=Zorba%20-%20The%20NoSQL%20Query%20Processor&amp;t_t=Zorba%20-%20The%20NoSQL%20Query%20Processor&amp;s_o=default#2" scrolling="no" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+                </div>
+            </div>
+            <!-- ngSwitchWhen: notfound -->
+            <!-- ngSwitchDefault:  -->
+        </div>
+    </div>
+</div></div>
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3>Get Involved</h3>
+                        <ul>
+                            <li><a href="https://groups.google.com/forum/#!forum/zorba-users" target="_blank">Users List on Google Groups</a></li>
+                            <li><a href="https://groups.google.com/forum/#!forum/zorba-dev" target="_blank">Developers List on Google Groups</a></li>
+                            <li><a href="https://bugs.launchpad.net/zorba/+bugs" target="_blank">Bug Tracker</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Resources</h3>
+                        <li><a href="http://jsoniq.org" target="_blank">JSONiq</a></li>
+                        <li><a href="http://www.w3.org/TR/xquery-30/" target="_blank">XQuery 3.0</a></li>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Quick Links</h3>
+                        <li><a href="https://code.launchpad.net/zorba" target="_blank">Source Code</a></li>
+                        <li><a href="/download">Download</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </div>
+                </div>
+                <p class="text-center copyright">
+                    <small>
+                    ©&nbsp;2013 Zorba.
+                    </small>
+                </p>
+            </div>        
+        </footer>
+    <script type="text/javascript" async="" src="http://stats.g.doubleclick.net/dc.js"></script><script charset="ISO-8859-1" src="http://fast.wistia.com/static/concat/E-v1.js"></script>
+    <script src="/scripts/scripts.js"></script>
+    <script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-4281090-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; 
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+        </script>
+  
+<script type="text/javascript" async="" src="http://28msec.disqus.com/embed.js"></script></body></html><script type="text/javascript">location.href = '/#' + location.pathname;</script>

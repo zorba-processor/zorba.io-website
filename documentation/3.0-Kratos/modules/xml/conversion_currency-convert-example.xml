@@ -1,0 +1,4 @@
+<doxygen><compounddef id="currency-convert.xq-example" kind="example"><detaileddescription><para><h3>Content of currency-convert.xq example</h3><programlisting type="example">import module namespace conversion = "http://zorba.io/modules/data-cleaning/conversion";
+
+conversion:currency-convert ( 1, "USD", "EUR", "2011-01-18" )
+</programlisting></para></detaileddescription></compounddef></doxygen>

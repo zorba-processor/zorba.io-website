@@ -1,0 +1,34 @@
+<doxygen><compounddef id="fetch_flags_example.xq-example" kind="example"><detaileddescription><para><h3>Content of fetch_flags_example.xq example</h3><programlisting type="example">(:
+ : This example shows how to use the fetch-flags function of the
+ : http://www.zorba-xquery.com/modules/email/imap module.
+ :
+ : First, the unique identifiers of all messages containing the word "flags" in
+ : the subject are retrieved. Then, the flags of the first message found is
+ : fetched.
+ : 
+ : The resulting XML should look something like this:
+ : 
+ :  &amp;lt;flags xmlns="http://www.zorba-xquery.com/modules/email"&amp;gt;
+ :    &amp;lt;seen/&amp;gt;
+ :    &amp;lt;answered/&amp;gt;
+ :  &amp;lt;/flags&amp;gt;
+ :
+ : If no error is thrown, all operations were successful.
+ :) 
+
+import module namespace imap = 'http://www.zorba-xquery.com/modules/email/imap';
+
+
+(: This variable contains the information of the account on the IMAP server. :) 
+let $hostInfo :=
+  &amp;lt;hostInfo xmlns="http://www.zorba-xquery.com/modules/email"&amp;gt;
+    &amp;lt;hostName&amp;gt;mail.28msec.com/novalidate-cert&amp;lt;/hostName&amp;gt;
+    &amp;lt;userName&amp;gt;imaptest&amp;lt;/userName&amp;gt;
+    &amp;lt;password&amp;gt;cclient&amp;lt;/password&amp;gt;
+  &amp;lt;/hostInfo&amp;gt;
+
+let $uids := imap:search($hostInfo, "INBOX", "SUBJECT flags", true())
+
+return
+  imap:fetch-flags($hostInfo, "INBOX", $uids[1], true())
+</programlisting></para></detaileddescription></compounddef></doxygen>

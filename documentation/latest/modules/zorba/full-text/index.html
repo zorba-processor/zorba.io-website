@@ -1,0 +1,1815 @@
+<!DOCTYPE html><html lang="en" class="js cssanimations ng-scope" ng-app="28.ioApp" prefix="og: http://ogp.me/ns#" ng-controller="MainCtrl"><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Zorba - The NoSQL Query Processor</title>
+        <meta name="description" content="Zorba - The NoSQL Query Processor">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+
+        <meta content="28.io" name="apple-mobile-web-app-title">
+        <link href="/images/iphone-icon.png" rel="apple-touch-icon-precomposed">
+        <link href="/favicon.png" rel="icon" type="image/png">
+
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="http://www.zorba.io/blog/atom.xml">
+        <base href="/">
+        <link rel="stylesheet" href="/styles/index.css">
+    <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\:form{display:block;}</style></head>
+    <body ready="" class="" ng-cloak="undefined">
+        <!--[if lt IE 9]>
+            <script type="text/javascript">location.href = "/outdated";</script>
+        <![endif]-->
+        <div class="navbar navbar-default navbar-fixed-top" id="top-menu" navbar-toggle="">
+            <div class="container">
+                <a href="/home" id="logo">
+<svg width="172px" height="44px" viewBox="0 0 172 44" version="1.1" xmlns="http://www.w3.org/2000/svg" style="margin-right: 30px">
+    <defs></defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="g3354-1-3-0" transform="translate(70.000000, 3.000000)" fill="#3498DB">
+            <path d="M36.8599281,6.08695652 C23.7462235,7.46138534 17.3241713,7.87186266 12.0855118,12.5394913 C9.61392853,8.89602738 2.41221529,6.6246591 0,6.89251341 L0.0401259499,9.84221332 C11.3218642,17.172198 8.15927521,31.2798979 5.60530924,40 L18.0693794,40 C15.1069036,30.4981162 15.7891093,23.8890354 16.4644797,20.4999181 C17.5216924,12.0444371 30.0443188,9.56353073 37,7.95199463 L36.8599281,6.08695652 Z" id="path3217-2-16-8-3-4-8-9"></path>
+            <path d="M17.2092989,4.7826087 C17.2112417,6.18001565 16.3916489,7.47202866 15.0597079,8.1712421 C13.7277668,8.87045553 12.0861867,8.87045553 10.7542456,8.1712421 C9.42230457,7.47202866 8.60271176,6.18001565 8.60465461,4.7826087 C8.60271176,3.38520174 9.42230457,2.09318873 10.7542456,1.39397529 C12.0861867,0.694761858 13.7277668,0.694761858 15.0597079,1.39397529 C16.3916489,2.09318873 17.2112417,3.38520174 17.2092989,4.7826087 L17.2092989,4.7826087 Z" id="path3830-2-4-8-2-3-6-0-4" transform="translate(12.906977, 4.782609) rotate(-12.486691) translate(-12.906977, -4.782609) "></path>
+        </g>
+        <path d="M0.896,35.2271939 L0.896,42.1301694 L34.4088328,42.1301694 L34.4088328,34.7818406 L12.5308539,34.7818406 L33.8521412,9.28536648 L33.8521412,2.38239095 L2.56607473,2.38239095 L2.56607473,9.73071974 L22.2172873,9.73071974 L0.896,35.2271939 Z M37.8046514,27.7675268 C37.8046514,30.0685301 38.1572192,32.1468246 38.8623654,34.0024724 C39.5675116,35.8581203 40.5695464,37.4446754 41.8684999,38.7621854 C43.1674534,40.0796954 44.7261743,41.0910083 46.5447092,41.7961545 C48.3632441,42.5013007 50.4044261,42.8538685 52.6683165,42.8538685 C54.9322069,42.8538685 56.982667,42.5013007 58.8197584,41.7961545 C60.6568498,41.0910083 62.2248487,40.0796954 63.5238022,38.7621854 C64.8227557,37.4446754 65.8247905,35.8581203 66.5299367,34.0024724 C67.2350829,32.1468246 67.5876507,30.0685301 67.5876507,27.7675268 C67.5876507,25.4665234 67.2350829,23.3789509 66.5299367,21.5047466 C65.8247905,19.6305422 64.8227557,18.034709 63.5238022,16.717199 C62.2248487,15.399689 60.6568498,14.379098 58.8197584,13.6553953 C56.982667,12.9316927 54.9322069,12.5698468 52.6683165,12.5698468 C50.4044261,12.5698468 48.3632441,12.9316927 46.5447092,13.6553953 C44.7261743,14.379098 43.1674534,15.399689 41.8684999,16.717199 C40.5695464,18.034709 39.5675116,19.6305422 38.8623654,21.5047466 C38.1572192,23.3789509 37.8046514,25.4665234 37.8046514,27.7675268 Z M45.7096718,27.7675268 C45.7096718,26.6170251 45.821009,25.4850969 46.0436867,24.3717082 C46.2663645,23.2583195 46.6467666,22.2748408 47.1849045,21.4212428 C47.7230424,20.5676448 48.4374561,19.8717873 49.328167,19.3336494 C50.218878,18.7955115 51.33225,18.5264466 52.6683165,18.5264466 C54.0043829,18.5264466 55.1270331,18.7955115 56.0363005,19.3336494 C56.945568,19.8717873 57.6692598,20.5676448 58.2073977,21.4212428 C58.7455355,22.2748408 59.1259376,23.2583195 59.3486154,24.3717082 C59.5712931,25.4850969 59.6826303,26.6170251 59.6826303,27.7675268 C59.6826303,28.9180285 59.5712931,30.0406786 59.3486154,31.1355108 C59.1259376,32.230343 58.7455355,33.2138217 58.2073977,34.0859762 C57.6692598,34.9581306 56.945568,35.6539882 56.0363005,36.1735696 C55.1270331,36.693151 54.0043829,36.9529378 52.6683165,36.9529378 C51.33225,36.9529378 50.218878,36.693151 49.328167,36.1735696 C48.4374561,35.6539882 47.7230424,34.9581306 47.1849045,34.0859762 C46.6467666,33.2138217 46.2663645,32.230343 46.0436867,31.1355108 C45.821009,30.0406786 45.7096718,28.9180285 45.7096718,27.7675268 Z" id="Zo" fill="#333333"></path>
+        <path d="M109.28037,2.38239095 L109.28037,42.1301694 L116.795707,42.1301694 L116.795707,38.456005 L116.907045,38.456005 C117.760643,40.0518622 119.022465,41.1837904 120.692548,41.8518236 C122.362631,42.5198569 124.255363,42.8538685 126.370802,42.8538685 C127.818207,42.8538685 129.247034,42.5569693 130.657327,41.9631619 C132.067619,41.3693546 133.338719,40.4601008 134.470664,39.2353732 C135.602609,38.0106456 136.521141,36.4426467 137.226287,34.5313294 C137.931434,32.6200121 138.284001,30.3468776 138.284001,27.7118576 C138.284001,25.0768377 137.931434,22.8037031 137.226287,20.8923858 C136.521141,18.9810685 135.602609,17.4130696 134.470664,16.188342 C133.338719,14.9636144 132.067619,14.0543606 130.657327,13.4605533 C129.247034,12.866746 127.818207,12.5698468 126.370802,12.5698468 C124.58938,12.5698468 122.872931,12.9131365 121.221405,13.5997262 C119.569878,14.2863159 118.261666,15.3718536 117.296729,16.8563719 L117.185391,16.8563719 L117.185391,2.38239095 L109.28037,2.38239095 Z M130.378981,27.7675268 C130.378981,28.9551414 130.249088,30.1056258 129.989297,31.2190145 C129.729506,32.3324033 129.32127,33.3158819 128.764575,34.1694799 C128.207881,35.0230779 127.512024,35.7003792 126.676982,36.2014041 C125.841941,36.7024291 124.830628,36.9529378 123.643013,36.9529378 C122.492511,36.9529378 121.490477,36.7024291 120.636878,36.2014041 C119.78328,35.7003792 119.078145,35.0230779 118.521451,34.1694799 C117.964756,33.3158819 117.55652,32.3324033 117.296729,31.2190145 C117.036938,30.1056258 116.907045,28.9551414 116.907045,27.7675268 C116.907045,26.5427992 117.036938,25.3737586 117.296729,24.2603699 C117.55652,23.1469811 117.964756,22.1635025 118.521451,21.3099045 C119.078145,20.4563065 119.78328,19.7790052 120.636878,19.2779803 C121.490477,18.7769553 122.492511,18.5264466 123.643013,18.5264466 C124.830628,18.5264466 125.841941,18.7769553 126.676982,19.2779803 C127.512024,19.7790052 128.207881,20.4563065 128.764575,21.3099045 C129.32127,22.1635025 129.729506,23.1469811 129.989297,24.2603699 C130.249088,25.3737586 130.378981,26.5427992 130.378981,27.7675268 Z M142.960211,22.200611 L150.865231,22.200611 C151.013683,20.6418668 151.533256,19.5284948 152.423967,18.8604616 C153.314678,18.1924283 154.539388,17.8584167 156.098132,17.8584167 C156.803278,17.8584167 157.462023,17.9048072 158.074387,17.9975896 C158.686751,18.090372 159.224881,18.275934 159.688792,18.5542812 C160.152704,18.8326284 160.523828,19.2223086 160.802176,19.7233335 C161.080523,20.2243584 161.219694,20.9016597 161.219694,21.7552578 C161.256807,22.5717428 161.015577,23.1933755 160.495995,23.6201745 C159.976414,24.0469735 159.271278,24.3717071 158.380567,24.5943848 C157.489856,24.8170625 156.469265,24.9840683 155.318764,25.0954072 C154.168262,25.2067461 152.999221,25.3551957 151.811607,25.5407605 C150.623992,25.7263253 149.445673,25.976834 148.276615,26.2922941 C147.107557,26.6077542 146.06841,27.0809373 145.159142,27.7118576 C144.249875,28.3427779 143.507627,29.187085 142.932376,30.2448043 C142.357125,31.3025236 142.069504,32.6478481 142.069504,34.2808182 C142.069504,35.7653365 142.320013,37.0457143 142.821038,38.1219901 C143.322063,39.1982658 144.01792,40.0889634 144.908631,40.7941096 C145.799342,41.4992558 146.838489,42.0188294 148.026104,42.352846 C149.213719,42.6868627 150.494096,42.8538685 151.867276,42.8538685 C153.648698,42.8538685 155.392981,42.5940817 157.100177,42.0745003 C158.807373,41.5549189 160.291869,40.645665 161.553709,39.3467115 C161.590822,39.82918 161.655769,40.3023631 161.748551,40.7662751 C161.841334,41.230187 161.961949,41.6848139 162.110401,42.1301694 L170.12676,42.1301694 C169.75563,41.5363621 169.495843,40.6456645 169.347391,39.4580499 C169.198939,38.2704352 169.124715,37.0271698 169.124715,35.7282163 L169.124715,20.7532129 C169.124715,19.0089039 168.735034,17.6079108 167.955662,16.5501915 C167.17629,15.4924723 166.174255,14.6667213 164.949528,14.072914 C163.7248,13.4791067 162.370198,13.0801484 160.885679,12.8760271 C159.401161,12.6719059 157.935221,12.5698468 156.487816,12.5698468 C154.891959,12.5698468 153.305404,12.7275745 151.728103,13.0430346 C150.150802,13.3584948 148.731253,13.8873465 147.469412,14.6296056 C146.207572,15.3718647 145.168425,16.3553434 144.35194,17.580071 C143.535455,18.8047985 143.07155,20.3449632 142.960211,22.200611 Z M161.219694,28.0458726 L161.219694,30.9963379 C161.219694,31.4416934 161.173304,32.0354918 161.080521,32.777751 C160.987739,33.5200101 160.73723,34.25298 160.328988,34.9766827 C159.920745,35.7003853 159.289834,36.322018 158.436236,36.8415995 C157.582638,37.3611809 156.376485,37.6209677 154.817741,37.6209677 C154.186821,37.6209677 153.574466,37.5652991 152.980659,37.4539602 C152.386852,37.3426213 151.867278,37.1477812 151.421923,36.869434 C150.976567,36.5910868 150.623999,36.2106847 150.364209,35.7282163 C150.104418,35.2457479 149.974524,34.6519494 149.974524,33.9468033 C149.974524,33.2045441 150.104418,32.5921895 150.364209,32.1097211 C150.623999,31.6272526 150.967289,31.2282943 151.394088,30.9128342 C151.820887,30.597374 152.321904,30.3468653 152.897155,30.1613005 C153.472406,29.9757358 154.056926,29.8272862 154.650734,29.7159473 C155.281654,29.6046084 155.912565,29.5118274 156.543485,29.4376015 C157.174405,29.3633756 157.777482,29.2705946 158.352733,29.1592557 C158.927984,29.0479168 159.466113,28.9087453 159.967138,28.741737 C160.468163,28.5747287 160.885678,28.3427762 161.219694,28.0458726 Z" id="ba" fill="#333333"></path>
+    </g>
+</svg>
+                </a>
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li ng-class="navClass(menu.home.href)">
+                            <a ng-href="/home" ng-bind="menu.home.label" class="ng-binding" href="/home">Home</a>
+                        </li>
+                        <li ng-class="navClass(menu.documentation.href)" class="active">
+                            <a ng-href="/documentation" ng-bind="menu.documentation.label" class="ng-binding" href="/documentation">Documentation</a>
+                        </li>
+                        <li ng-class="navClass(menu.tryzorba.href)">
+                            <a ng-href="http://try.zorba.io/" ng-bind="menu.tryzorba.label" class="ng-binding" href="http://try.zorba.io/">Live Demo</a>
+                        </li>
+                        <li ng-class="navClass(menu.blog.href)">
+                            <a ng-href="/blog" ng-bind="menu.blog.label" class="ng-binding" href="/blog">Blog</a>
+                        </li>
+                        <li ng-class="navClass(menu.download.href)">
+                            <a ng-href="/download" ng-bind="menu.download.label" class="ng-binding" href="/download">Download</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ng-view"><div class="container ng-scope" id="documentation">
+    <div class="row">
+        <!-- ngIf: state !== 'notfound' && !debug --><div class="col-sm-4 sidebar ng-scope" ng-if="state !== 'notfound' &amp;&amp; !debug">
+            <div class="inner-sidebar">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="dropdown selected-version">
+                    <a class="dropdown-toggle">
+                        <span ng-bind="currentVersion.version" class="ng-binding">3.0</span>
+                        <span ng-bind="currentVersion.codename" class="ng-binding">Kratos</span>
+                        <span ng-show="currentVersion.latest">(latest)</span>
+                        <!--i class="fa fa-caret-down"></i-->
+                    </a>
+                    <!--ul class="dropdown-menu versions">
+                        <li ng-repeat="version in index.versions" ng-show="currentVersion.version != version.version">
+                            <a ng-href="/documentation/{{version.version}}">
+                                <span ng-bind="version.version"></span>
+                                <span ng-bind="version.codename"></span>
+                                <span ng-show="version.latest">(latest)</span>
+                            </a>
+                        </li>
+                    </ul-->
+                    <ul class="versions">
+                        <!-- ngRepeat: version in index.versions --><li ng-repeat="version in index.versions" ng-show="currentVersion.version != version.version" class="ng-scope" style="display: none; ">
+                            <a ng-href="/documentation/3.0" href="/documentation/3.0">
+                                <span ng-bind="version.version" class="ng-binding">3.0</span>
+                                <span ng-bind="version.codename" class="ng-binding">Kratos</span>
+                                <span ng-show="version.latest">(latest)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="slider">
+                <!-- Current -->
+                <div class="current" ng-show="panel.status === 'current'">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="path.split('/').length &gt; 3">
+                            <a href="/documentation/latest/modules" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/error-codes" ng-click="next(item)" href="/documentation/latest/modules/zorba/error-codes">
+                                <span ng-bind="item.label" class="ng-binding">Error Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/warning-codes" ng-click="next(item)" href="/documentation/latest/modules/zorba/warning-codes">
+                                <span ng-bind="item.label" class="ng-binding">Warning Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/xdm" ng-click="next(item)" href="/documentation/latest/modules/zorba/xdm">
+                                <span ng-bind="item.label" class="ng-binding">XML &amp; JSON Data Model</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope active">
+                            <a ng-href="/documentation/latest/modules/zorba/full-text" ng-click="next(item)" href="/documentation/latest/modules/zorba/full-text">
+                                <span ng-bind="item.label" class="ng-binding">Full Text</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/sctx" ng-click="next(item)" href="/documentation/latest/modules/zorba/sctx">
+                                <span ng-bind="item.label" class="ng-binding">Static Context</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/reflection" ng-click="next(item)" href="/documentation/latest/modules/zorba/reflection">
+                                <span ng-bind="item.label" class="ng-binding">Reflection</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/process" ng-click="next(item)" href="/documentation/latest/modules/zorba/process">
+                                <span ng-bind="item.label" class="ng-binding">Process</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/io" ng-click="next(item)" href="/documentation/latest/modules/zorba/io">
+                                <span ng-bind="item.label" class="ng-binding">Input / Output</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/data-store" ng-click="next(item)" href="/documentation/latest/modules/zorba/data-store">
+                                <span ng-bind="item.label" class="ng-binding">Data Store</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/data-processing" ng-click="next(item)" href="/documentation/latest/modules/zorba/data-processing">
+                                <span ng-bind="item.label" class="ng-binding">Data Processing</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/data-converters" ng-click="next(item)" href="/documentation/latest/modules/zorba/data-converters">
+                                <span ng-bind="item.label" class="ng-binding">Data Converters</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/data-formatting" ng-click="next(item)" href="/documentation/latest/modules/zorba/data-formatting">
+                                <span ng-bind="item.label" class="ng-binding">Data Formatting</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/data-cleaning" ng-click="next(item)" href="/documentation/latest/modules/zorba/data-cleaning">
+                                <span ng-bind="item.label" class="ng-binding">Data Cleaning</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/languages" ng-click="next(item)" href="/documentation/latest/modules/zorba/languages">
+                                <span ng-bind="item.label" class="ng-binding">Programming Languages</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/excel" ng-click="next(item)" href="/documentation/latest/modules/zorba/excel">
+                                <span ng-bind="item.label" class="ng-binding">Excel</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/cryptography" ng-click="next(item)" href="/documentation/latest/modules/zorba/cryptography">
+                                <span ng-bind="item.label" class="ng-binding">Cryptography</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/geo-prj" ng-click="next(item)" href="/documentation/latest/modules/zorba/geo-prj">
+                                <span ng-bind="item.label" class="ng-binding">Geo Projection</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/image" ng-click="next(item)" href="/documentation/latest/modules/zorba/image">
+                                <span ng-bind="item.label" class="ng-binding">Image</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/oauth" ng-click="next(item)" href="/documentation/latest/modules/zorba/oauth">
+                                <span ng-bind="item.label" class="ng-binding">OAuth</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/xqdoc" ng-click="next(item)" href="/documentation/latest/modules/zorba/xqdoc">
+                                <span ng-bind="item.label" class="ng-binding">XQDoc</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/util-jvm" ng-click="next(item)" href="/documentation/latest/modules/zorba/util-jvm">
+                                <span ng-bind="item.label" class="ng-binding">JVM Utility</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Next -->
+                <div class="next slideRight" ng-show="panel.status === 'next'" next="" style="display: none; ">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="menu &amp;&amp; path.split('/').length &gt; 4">
+                            <a ng-href="/documentation/latest" ng-click="previous()" href="/documentation/latest">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.parent.children --><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">JSONiq</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">JSound</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">FunctX</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">W3C</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">EXPath</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Data Connectors</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Zorba</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="/documentation/latest/modules" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/error-codes" ng-click="next(item)" href="/documentation/latest/modules/zorba/error-codes">
+                                <span ng-bind="item.label" class="ng-binding">Error Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/warning-codes" ng-click="next(item)" href="/documentation/latest/modules/zorba/warning-codes">
+                                <span ng-bind="item.label" class="ng-binding">Warning Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/xdm" ng-click="next(item)" href="/documentation/latest/modules/zorba/xdm">
+                                <span ng-bind="item.label" class="ng-binding">XML &amp; JSON Data Model</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/full-text" ng-click="next(item)" href="/documentation/latest/modules/zorba/full-text">
+                                <span ng-bind="item.label" class="ng-binding">Full Text</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/sctx" ng-click="next(item)" href="/documentation/latest/modules/zorba/sctx">
+                                <span ng-bind="item.label" class="ng-binding">Static Context</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/reflection" ng-click="next(item)" href="/documentation/latest/modules/zorba/reflection">
+                                <span ng-bind="item.label" class="ng-binding">Reflection</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/process" ng-click="next(item)" href="/documentation/latest/modules/zorba/process">
+                                <span ng-bind="item.label" class="ng-binding">Process</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/io" ng-click="next(item)" href="/documentation/latest/modules/zorba/io">
+                                <span ng-bind="item.label" class="ng-binding">Input / Output</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/data-store" ng-click="next(item)" href="/documentation/latest/modules/zorba/data-store">
+                                <span ng-bind="item.label" class="ng-binding">Data Store</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/data-processing" ng-click="next(item)" href="/documentation/latest/modules/zorba/data-processing">
+                                <span ng-bind="item.label" class="ng-binding">Data Processing</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/data-converters" ng-click="next(item)" href="/documentation/latest/modules/zorba/data-converters">
+                                <span ng-bind="item.label" class="ng-binding">Data Converters</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/data-formatting" ng-click="next(item)" href="/documentation/latest/modules/zorba/data-formatting">
+                                <span ng-bind="item.label" class="ng-binding">Data Formatting</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/data-cleaning" ng-click="next(item)" href="/documentation/latest/modules/zorba/data-cleaning">
+                                <span ng-bind="item.label" class="ng-binding">Data Cleaning</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/languages" ng-click="next(item)" href="/documentation/latest/modules/zorba/languages">
+                                <span ng-bind="item.label" class="ng-binding">Programming Languages</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/excel" ng-click="next(item)" href="/documentation/latest/modules/zorba/excel">
+                                <span ng-bind="item.label" class="ng-binding">Excel</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/cryptography" ng-click="next(item)" href="/documentation/latest/modules/zorba/cryptography">
+                                <span ng-bind="item.label" class="ng-binding">Cryptography</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/geo-prj" ng-click="next(item)" href="/documentation/latest/modules/zorba/geo-prj">
+                                <span ng-bind="item.label" class="ng-binding">Geo Projection</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/image" ng-click="next(item)" href="/documentation/latest/modules/zorba/image">
+                                <span ng-bind="item.label" class="ng-binding">Image</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/oauth" ng-click="next(item)" href="/documentation/latest/modules/zorba/oauth">
+                                <span ng-bind="item.label" class="ng-binding">OAuth</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/xqdoc" ng-click="next(item)" href="/documentation/latest/modules/zorba/xqdoc">
+                                <span ng-bind="item.label" class="ng-binding">XQDoc</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/modules/zorba/util-jvm" ng-click="next(item)" href="/documentation/latest/modules/zorba/util-jvm">
+                                <span ng-bind="item.label" class="ng-binding">JVM Utility</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Previous -->
+                <div class="previous slideLeft" ng-show="panel.status === 'previous'" previous="" style="display: none; ">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="menu &amp;&amp; path.split('/').length &gt; 3">
+                            <a ng-href="/documentation/latest/modules" ng-click="previous()" href="/documentation/latest/modules">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/error-codes" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Error Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/warning-codes" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Warning Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/xdm" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">XML &amp; JSON Data Model</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/full-text" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Full Text</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/sctx" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Static Context</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/reflection" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Reflection</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/process" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Process</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/io" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Input / Output</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/data-store" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Data Store</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/data-processing" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Data Processing</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/data-converters" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Data Converters</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/data-formatting" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Data Formatting</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/data-cleaning" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Data Cleaning</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/languages" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Programming Languages</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/excel" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Excel</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/cryptography" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Cryptography</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/geo-prj" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Geo Projection</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/image" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Image</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/oauth" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">OAuth</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/xqdoc" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">XQDoc</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/modules/zorba/util-jvm" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">JVM Utility</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="/documentation/latest" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in panel.previous.children -->
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="content col-sm-8" ng-switch="" on="state" ng-class="{ 'col-sm-8': state !== 'notfound', 'col-sm-12': state === 'notfound' }">
+            
+                <ol class="breadcrumb">
+                    <li>
+                        <a ng-href="/documentation/latest" class="ng-binding" href="/documentation/latest">
+                            Zorba 3.0 Documentation
+                        </a>
+                    </li>
+                    <!-- ngRepeat: crumb in getBreadCrumbs() --><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/modules" href="/documentation/latest/modules">
+                            <span ng-bind="crumb.label" class="ng-binding">Modules</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/modules/zorba" href="/documentation/latest/modules/zorba">
+                            <span ng-bind="crumb.label" class="ng-binding">Zorba</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope active">
+                        <a ng-href="/documentation/latest/modules/zorba/full-text" href="/documentation/latest/modules/zorba/full-text">
+                            <span ng-bind="crumb.label" class="ng-binding">Full Text</span>
+                        </a>
+                    </li>
+                </ol>
+            
+            <!-- ngSwitchWhen: loading -->
+            <!-- ngSwitchWhen: zorba -->
+            <!-- ngSwitchWhen: api -->
+            <!-- ngSwitchWhen: modules --><div ng-switch-when="modules" class="ng-scope">
+                <h1 class="ng-binding">http://zorba.io/modules/full-text</h1>
+                <p>View as <a ng-href="/documentation/3.0-Kratos/modules/xml/zorba.io_modules_full-text.xml" target="_blank" href="/documentation/3.0-Kratos/modules/xml/zorba.io_modules_full-text.xml">XML</a> or <a ng-href="/documentation/3.0-Kratos/modules/zorba.io_modules_full-text.json" target="_blank" href="/documentation/3.0-Kratos/modules/zorba.io_modules_full-text.json">JSON</a>.</p>
+                <div ng-bind-html-unsafe="normalizeAnchor(content.description)" class="ng-binding"> This module provides an XQuery API to full-text functions.
+ For general information about this implementation of the
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xpath-full-text-10/">XQuery and XPath Full Text 1.0 specification</a>
+ as well as instructions for building an installing a thesaurus,
+ see the <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://zorba.io/documentation/latest/zorba/architecture/ft_intro">Full Text Thesaurus documentation</a>.
+ <h2 xmlns:xqdoc="http://www.xqdoc.org/1.0">Notes on languages</h2>
+ To refer to particular human languages,
+ uses either the
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://en.wikipedia.org/wiki/ISO_639-1">ISO 639-1</a>
+ or
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://en.wikipedia.org/wiki/ISO_639-2">ISO 639-2</a>
+ languages codes.
+ Note that only a subset of the
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">complete list of language codes</a>
+ are supported and not every function supports the same subset.
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ Most functions in this module take a language as a parameter
+ using the
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>
+ XML schema data type.
+ </p><h2 xmlns:xqdoc="http://www.xqdoc.org/1.0">Notes on stemming</h2>
+ The <code xmlns:xqdoc="http://www.xqdoc.org/1.0">stem()</code> functions return the
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://en.wikipedia.org/wiki/Word_stem">stem</a>
+ of a word.
+ The stem of a word itself, however, is not guaranteed to be a word.
+ It is best to consider a stem as an opaque byte sequence.
+ All that is guaranteed about a stem is that,
+ for a given word,
+ the stem of that word will always be the same byte sequence.
+ Hence,
+ you should never compare the result of one of the <code xmlns:xqdoc="http://www.xqdoc.org/1.0">stem()</code>
+ functions against a non-stemmed string,
+ for example:
+ <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">  if ( ft:stem( "apples" ) eq "apple" )             ** WRONG **
+ </pre>
+ Instead do:
+ <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">  if ( ft:stem( "apples" ) eq ft:stem( "apple" ) )  ** CORRECT **
+ </pre>
+ <h2 xmlns:xqdoc="http://www.xqdoc.org/1.0">Notes on the thesaurus</h2>
+ The <code xmlns:xqdoc="http://www.xqdoc.org/1.0">thesaurus-lookup()</code> functions have "levels"
+ and "relationship" parameters.
+ The values for these are implementation-defined.
+ The default implementation uses the
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://wordnet.princeton.edu/">WordNet lexical database</a>,
+ version 3.0.
+ <p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ In WordNet,
+ the number of "levels" that two phrases are apart
+ are how many hierarchical meanings apart they are.
+ For example,
+ "canary" is 5 levels away from "vertebrate"
+ (carary &gt; finch &gt; oscine &gt; passerine &gt; bird &gt; vertebrate).
+ </p><p xmlns:xqdoc="http://www.xqdoc.org/1.0">
+ When using the WordNet implementation,
+ all of the relationships (and their abbreviations)
+ specified by
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=7776">ISO 2788</a>
+ and
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.niso.org/kst/reports/standards?step=2&amp;gid=&amp;project_key=7cc9b583cb5a62e8c15d3099e0bb46bbae9cf38a">ANSI/NISO Z39.19-2005</a>
+ with the exceptions of "HN" (history note)
+ and "X SN" (see scope note for) are supported.
+ These relationships are:
+  </p><table xmlns:xqdoc="http://www.xqdoc.org/1.0">
+    <tbody><tr>
+      <th>Rel.</th>
+      <th>Meaning</th>
+      <th>WordNet Rel.</th>
+    </tr>
+    <tr>
+      <td>BT</td>
+      <td>broader term</td>
+      <td>hypernym</td>
+    </tr>
+    <tr>
+      <td>BTG</td>
+      <td>broader term generic</td>
+      <td>hypernym</td>
+    </tr>
+    <tr>
+      <td>BTI</td>
+      <td>broader term instance</td>
+      <td>instance hypernym</td>
+    </tr>
+    <tr>
+      <td>BTP</td>
+      <td>broader term partitive</td>
+      <td>part meronym</td>
+    </tr>
+    <tr>
+      <td>NT</td>
+      <td>narrower term</td>
+      <td>hyponym</td>
+    </tr>
+    <tr>
+      <td>NTG</td>
+      <td>narrower term generic</td>
+      <td>hyponym</td>
+    </tr>
+    <tr>
+      <td>NTI</td>
+      <td>narrower term instance</td>
+      <td>instance hyponym</td>
+    </tr>
+    <tr>
+      <td>NTP</td>
+      <td>narrower term partitive</td>
+      <td>part holonym</td>
+    </tr>
+    <tr>
+      <td>RT</td>
+      <td>related term</td>
+      <td>also see</td>
+    </tr>
+    <tr>
+      <td>SN</td>
+      <td>scope note</td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <td>TT</td>
+      <td>top term</td>
+      <td>hypernym</td>
+    </tr>
+    <tr>
+      <td>UF</td>
+      <td>non-preferred term</td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <td>USE</td>
+      <td>preferred term</td>
+      <td>n/a</td>
+    </tr>
+  </tbody></table>
+ Note that you can specify relationships
+ either by their abbreviation
+ or their meaning.
+ Relationships are case-insensitive.
+ In addition to the
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=7776">ISO 2788</a>
+ and
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.niso.org/kst/reports/standards?step=2&amp;gid=&amp;project_key=7cc9b583cb5a62e8c15d3099e0bb46bbae9cf38a">ANSI/NISO Z39.19-2005</a>
+ relationships,
+ All of the relationships offered by WordNet are also supported.
+ These relationships are:
+  <table xmlns:xqdoc="http://www.xqdoc.org/1.0" class="ft_rels">
+    <tbody><tr>
+      <th>Relationship</th>
+      <th>Meaning</th>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">also see</td>
+      <td>
+        A word that is related to another,
+        e.g., for "varnished" (furniture)
+        one should <em>also see</em> "finished."
+      </td>
+    </tr>
+    <tr>
+      <td>antonym</td>
+      <td>
+        A word opposite in meaning to another,
+        e.g., "light" is an <em>antonym</em> for "heavy."
+      </td>
+    </tr>
+    <tr>
+      <td>attribute</td>
+      <td>
+        A noun for which adjectives express values,
+        e.g., "weight" is an <em>attribute</em>
+        for which the adjectives "light" and "heavy"
+        express values.
+      </td>
+    </tr>
+    <tr>
+      <td>cause</td>
+      <td>
+        A verb that causes another,
+        e.g., "show" is a <em>cause</em> of "see."
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">derivationally related form</td>
+      <td>
+        A word that is derived from a root word,
+        e.g., "metric" is a <em>derivationally related form</em> of "meter."
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">derived from adjective</td>
+      <td>
+        An adverb that is derived from an adjective,
+        e.g., "correctly" is <em>derived from the adjective</em> "correct."
+      </td>
+    </tr>
+    <tr>
+      <td>entailment</td>
+      <td>
+        A verb that presupposes another,
+        e.g., "snoring" <em>entails</em> "sleeping."
+      </td>
+    </tr>
+    <tr>
+      <td>hypernym</td>
+      <td>
+        A word with a broad meaning that more specific words fall under,
+        e.g., "meal" is a <em>hypernym</em> of "breakfast."
+      </td>
+    </tr>
+    <tr>
+      <td>hyponym</td>
+      <td>
+        A word of more specific meaning than a general term applicable to it,
+        e.g., "breakfast" is a <em>hyponym</em> of "meal."
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">instance hypernym</td>
+      <td>
+        A word that denotes a category of some specific instance,
+        e.g., "author" is an <em>instance hypernym</em> of "Asimov."
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">instance hyponym</td>
+      <td>
+        A term that donotes a specific instance of some general category,
+        e.g., "Asimov" is an <em>instance hyponym</em> of "author."
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">member holonym</td>
+      <td>
+        A word that denotes a collection of individuals,
+        e.g., "faculty" is a <em>member holonym</em> of "professor."
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">member meronym</td>
+      <td>
+        A word that denotes a member of a larger group,
+        e.g., a "person" is a <em>member meronym</em> of a "crowd."
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">part holonym</td>
+      <td>
+        A word that denotes a larger whole comprised of some part,
+        e.g., "car" is a <em>part holonym</em> of "engine."
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">part meronym</td>
+      <td>
+        A word that denotes a part of a larger whole,
+        e.g., an "engine" is <em>part meronym</em> of a "car."
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">participle of verb</td>
+      <td>
+        An adjective that is the participle of some verb,
+        e.g., "breaking" is the <em>participle of the verb</em> "break."
+      </td>
+    </tr>
+    <tr>
+      <td>pertainym</td>
+      <td>
+        An adjective that classifies its noun,
+        e.g., "musical" is a <em>pertainym</em> in "musical instrument."
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">similar to</td>
+      <td>
+        Similar, though not necessarily interchangeable, adjectives.
+        For example, "shiny" is <em>similar to</em> "bright",
+        but they have subtle differences.
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">substance holonym</td>
+      <td>
+        A word that denotes a larger whole containing some constituent
+        substance, e.g., "bread" is a <em>substance holonym</em> of "flour."
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">substance meronym</td>
+      <td>
+        A word that denotes a constituant substance of some larger whole,
+        e.g., "flour" is a <em>substance meronym</em> of "bread."
+      </td>
+    </tr>
+    <tr>
+      <td nowrap="nowrap">verb group</td>
+      <td>
+        A verb that is a member of a group of similar verbs,
+        e.g., "live" is in the <em>verb group</em>
+        of "dwell", "live", "inhabit", etc.
+      </td>
+    </tr>
+  </tbody></table>
+ <h2 xmlns:xqdoc="http://www.xqdoc.org/1.0">Notes on tokenization</h2>
+ For general information about the implementation of tokenization,
+ including what constitutes a token,
+ see the <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://zorba.io/pages/3.0/zorba/ft_tokenizer">Full Text Tokenizer</a> documentation.
+</div>
+                <div ng-show="content.functions.length &gt; 0" class="function-summary">
+                    <h2>Function Summary</h2>
+                    <table class="table">
+                        <tbody><!-- ngRepeat: fn in content.functions --><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=current-compare-options-0" ng-bind="fn.name" class="ng-binding">current-compare-options</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">() as object() external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Gets the current compare options.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=current-lang-0" ng-bind="fn.name" class="ng-binding">current-lang</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">() as xs:language external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Gets the current
+  language :
+ either the language specified by the
+  declare ft-option using 
+  language 
+ statement (if any)
+ or the one returned by  ft:host-lang()  (if none).</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=host-lang-0" ng-bind="fn.name" class="ng-binding">host-lang</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">() as xs:language external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Gets the host's current
+  language .</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=is-stem-lang-supported-1" ng-bind="fn.name" class="ng-binding">is-stem-lang-supported</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($lang as xs:language) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Checks whether the given
+  language 
+ is supported for stemming.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=is-stop-word-lang-supported-1" ng-bind="fn.name" class="ng-binding">is-stop-word-lang-supported</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($lang as xs:language) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Checks whether the given
+  language 
+ is supported for stop words.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=is-stop-word-1" ng-bind="fn.name" class="ng-binding">is-stop-word</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($word as xs:string) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Checks whether the given word is a stop-word.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=is-stop-word-2" ng-bind="fn.name" class="ng-binding">is-stop-word</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($word as xs:string, $lang as xs:language) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Checks whether the given word is a stop-word.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=is-thesaurus-lang-supported-1" ng-bind="fn.name" class="ng-binding">is-thesaurus-lang-supported</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($lang as xs:language) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Checks whether the given
+  language 
+ is supported for look-up using the default thesaurus.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=is-thesaurus-lang-supported-2" ng-bind="fn.name" class="ng-binding">is-thesaurus-lang-supported</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($uri as xs:string, $lang as xs:language) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Checks whether the given
+  language 
+ is supported for look-up using the thesaurus specified by the given URI.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=is-tokenizer-lang-supported-1" ng-bind="fn.name" class="ng-binding">is-tokenizer-lang-supported</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($lang as xs:language) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Checks whether the given
+  language 
+ is supported for tokenization.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=stem-1" ng-bind="fn.name" class="ng-binding">stem</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($word as xs:string) as xs:string external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Stems the given word.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=stem-2" ng-bind="fn.name" class="ng-binding">stem</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($word as xs:string, $lang as xs:language) as xs:string external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Stems the given word.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=strip-diacritics-1" ng-bind="fn.name" class="ng-binding">strip-diacritics</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($string as xs:string) as xs:string external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Strips all diacritical marks from all characters.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=thesaurus-lookup-1" ng-bind="fn.name" class="ng-binding">thesaurus-lookup</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($phrase as xs:string) as xs:string* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Looks-up the given phrase in the default thesaurus.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=thesaurus-lookup-2" ng-bind="fn.name" class="ng-binding">thesaurus-lookup</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($uri as xs:string, $phrase as xs:string) as xs:string* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Looks-up the given phrase in a thesaurus.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=thesaurus-lookup-3" ng-bind="fn.name" class="ng-binding">thesaurus-lookup</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($uri as xs:string, $phrase as xs:string, $lang as xs:language) as xs:string* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Looks-up the given phrase in the thesaurus specified by the given URI.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=thesaurus-lookup-4" ng-bind="fn.name" class="ng-binding">thesaurus-lookup</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($uri as xs:string, $phrase as xs:string, $lang as xs:language, $relationship as xs:string) as xs:string* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Looks-up the given phrase in a thesaurus.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=thesaurus-lookup-6" ng-bind="fn.name" class="ng-binding">thesaurus-lookup</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($uri as xs:string, $phrase as xs:string, $lang as xs:language, $relationship as xs:string, $level-least as xs:integer, $level-most as xs:integer) as xs:string* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Looks-up the given phrase in a thesaurus.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=tokenize-node-1" ng-bind="fn.name" class="ng-binding">tokenize-node</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($node as node()) as object()* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Tokenizes the given node and all of its descendants.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=tokenize-node-2" ng-bind="fn.name" class="ng-binding">tokenize-node</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($node as node(), $lang as xs:language) as object()* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Tokenizes the given node and all of its decendants.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=tokenize-nodes-2" ng-bind="fn.name" class="ng-binding">tokenize-nodes</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($includes as node()+, $excludes as node()*) as object()* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Tokenizes the set of nodes comprising  $includes  (and all of its
+ descendants) but excluding  $excludes  (and all of its
+ descendants), if any.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=tokenize-nodes-3" ng-bind="fn.name" class="ng-binding">tokenize-nodes</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($includes as node()+, $excludes as node()*, $lang as xs:language) as object()* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Tokenizes the set of nodes comprising  $includes  (and all of its
+ descendants) but excluding  $excludes  (and all of its
+ descendants), if any.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=tokenize-string-1" ng-bind="fn.name" class="ng-binding">tokenize-string</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($string as xs:string) as xs:string* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Tokenizes the given string.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=tokenize-string-2" ng-bind="fn.name" class="ng-binding">tokenize-string</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($string as xs:string, $lang as xs:language) as xs:string* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Tokenizes the given string.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=tokenizer-properties-0" ng-bind="fn.name" class="ng-binding">tokenizer-properties</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">() as object() external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Gets properties of the tokenizer for the
+  language 
+ returned by  ft:current-lang() .</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=tokenizer-properties-1" ng-bind="fn.name" class="ng-binding">tokenizer-properties</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($lang as xs:language) as object() external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Gets properties of the tokenizer for the given
+  language .</p></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>
+                <div ng-show="content.variables.length &gt; 0" class="variable-summary">
+                    <h2>Variable Summary</h2>
+                    <ul class="list-unstyled">
+                        <!-- ngRepeat: var in content.variables --><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-DA" class="ng-binding">$ft:LANG-DA</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-DE" class="ng-binding">$ft:LANG-DE</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-EN" class="ng-binding">$ft:LANG-EN</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-ES" class="ng-binding">$ft:LANG-ES</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-FI" class="ng-binding">$ft:LANG-FI</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-FR" class="ng-binding">$ft:LANG-FR</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-HU" class="ng-binding">$ft:LANG-HU</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-IT" class="ng-binding">$ft:LANG-IT</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-NL" class="ng-binding">$ft:LANG-NL</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-NO" class="ng-binding">$ft:LANG-NO</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-PT" class="ng-binding">$ft:LANG-PT</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-RO" class="ng-binding">$ft:LANG-RO</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-RU" class="ng-binding">$ft:LANG-RU</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-SV" class="ng-binding">$ft:LANG-SV</a>
+                        </li><li ng-repeat="var in content.variables" class="ng-scope">
+                        <a href="/documentation/latest/modules/zorba/full-text/?anchor=ft:LANG-TR" class="ng-binding">$ft:LANG-TR</a>
+                        </li>
+                    </ul>
+                </div>
+                <div ng-show="content.functions.length &gt; 0" class="functions">
+                    <h2>Functions</h2>
+                    <!-- ngRepeat: fn in content.functions --><div ng-repeat="fn in content.functions" class="function ng-scope" id="current-compare-options-0">
+                        <h3 class="ng-binding">current-compare-options#0</h3>
+                        <pre class="ng-binding">declare  function ft:current-compare-options() as object() external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Gets the current compare options.
+</div>
+                        <h4 ng-show="fn.parameters.length" style="display: none; ">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters -->
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">object()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">said compare options.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="current-lang-0">
+                        <h3 class="ng-binding">current-lang#0</h3>
+                        <pre class="ng-binding">declare  function ft:current-lang() as xs:language external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Gets the current
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language">language</a>:
+ either the language specified by the
+ <code xmlns:xqdoc="http://www.xqdoc.org/1.0"><a href="http://www.w3.org/TR/xpath-full-text-10/#doc-xquery10-FTOptionDecl">declare ft-option using</a>
+ <a href="http://www.w3.org/TR/xpath-full-text-10/#ftlanguageoption">language</a></code>
+ statement (if any)
+ or the one returned by <code xmlns:xqdoc="http://www.xqdoc.org/1.0">ft:host-lang()</code> (if none).
+</div>
+                        <h4 ng-show="fn.parameters.length" style="display: none; ">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters -->
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">said language.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="host-lang-0">
+                        <h3 class="ng-binding">host-lang#0</h3>
+                        <pre class="ng-binding">declare  function ft:host-lang() as xs:language external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Gets the host's current
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language">language</a>.
+ The "host" is the computer on which the software is running.
+ The host's current language is obtained as follows:
+  <ul xmlns:xqdoc="http://www.xqdoc.org/1.0">
+    <li>
+      For *nix systems:
+      <ol>
+        <li>
+          If <a ref="http://www.cplusplus.com/reference/clibrary/clocale/setlocale/"><code>setlocale</code>(3)</a> returns non-null,
+          the language corresponding to that locale is used.
+        </li>
+        <li>
+          Else, if the <code>LANG</code> environment variable is set,
+          that language is ued.
+        </li>
+        <li>
+          Otherwise, there is no default language.
+        </li>
+      </ol>
+    </li>
+    <li>
+      For Windows systems,
+      the language corresponding to the locale returned by the
+      <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/dd318101(v=vs.85).aspx"><code>GetLocaleInfo()</code></a>
+      function is used.
+    </li>
+  </ul>
+</div>
+                        <h4 ng-show="fn.parameters.length" style="display: none; ">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters -->
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">said language.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-stem-lang-supported-1">
+                        <h3 class="ng-binding">is-stem-lang-supported#1</h3>
+                        <pre class="ng-binding">declare  function ft:is-stem-lang-supported($lang as xs:language) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Checks whether the given
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language">language</a>
+ is supported for stemming.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">lang as xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The language to check.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding"><code xmlns:xqdoc="http://www.xqdoc.org/1.0">true</code> only if the language is supported.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-stop-word-lang-supported-1">
+                        <h3 class="ng-binding">is-stop-word-lang-supported#1</h3>
+                        <pre class="ng-binding">declare  function ft:is-stop-word-lang-supported($lang as xs:language) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Checks whether the given
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language">language</a>
+ is supported for stop words.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">lang as xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The language to check.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding"><code xmlns:xqdoc="http://www.xqdoc.org/1.0">true</code> only if the language is supported.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-stop-word-1">
+                        <h3 class="ng-binding">is-stop-word#1</h3>
+                        <pre class="ng-binding">declare  function ft:is-stop-word($word as xs:string) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Checks whether the given word is a stop-word.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">word as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The word to check. The word's <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> is assumed to be the one returned by <code>ft:current-lang()</code>.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding"><code xmlns:xqdoc="http://www.xqdoc.org/1.0">true</code> only if <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$word</code> is a stop-word.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-stop-word-2">
+                        <h3 class="ng-binding">is-stop-word#2</h3>
+                        <pre class="ng-binding">declare  function ft:is-stop-word($word as xs:string, $lang as xs:language) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Checks whether the given word is a stop-word.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">word as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The word to check.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">lang as xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> of <code>$word</code>.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding"><code xmlns:xqdoc="http://www.xqdoc.org/1.0">true</code> only if <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$word</code> is a stop-word.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-thesaurus-lang-supported-1">
+                        <h3 class="ng-binding">is-thesaurus-lang-supported#1</h3>
+                        <pre class="ng-binding">declare  function ft:is-thesaurus-lang-supported($lang as xs:language) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Checks whether the given
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language">language</a>
+ is supported for look-up using the default thesaurus.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">lang as xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The language to check.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding"><code xmlns:xqdoc="http://www.xqdoc.org/1.0">true</code> only if the language is supported.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-thesaurus-lang-supported-2">
+                        <h3 class="ng-binding">is-thesaurus-lang-supported#2</h3>
+                        <pre class="ng-binding">declare  function ft:is-thesaurus-lang-supported($uri as xs:string, $lang as xs:language) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Checks whether the given
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language">language</a>
+ is supported for look-up using the thesaurus specified by the given URI.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">uri as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The URI specifying the thesaurus to use.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">lang as xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The language to check.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding"><code xmlns:xqdoc="http://www.xqdoc.org/1.0">true</code> only if the language is supported.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-tokenizer-lang-supported-1">
+                        <h3 class="ng-binding">is-tokenizer-lang-supported#1</h3>
+                        <pre class="ng-binding">declare  function ft:is-tokenizer-lang-supported($lang as xs:language) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Checks whether the given
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language">language</a>
+ is supported for tokenization.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">lang as xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The language to check.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding"><code xmlns:xqdoc="http://www.xqdoc.org/1.0">true</code> only if the language is supported.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="stem-1">
+                        <h3 class="ng-binding">stem#1</h3>
+                        <pre class="ng-binding">declare  function ft:stem($word as xs:string) as xs:string external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Stems the given word.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">word as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The word to stem. The word's <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> is assumed to be the one returned by <code>ft:current-lang()</code>.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the stem of <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$word</code>.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="stem-2">
+                        <h3 class="ng-binding">stem#2</h3>
+                        <pre class="ng-binding">declare  function ft:stem($word as xs:string, $lang as xs:language) as xs:string external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Stems the given word.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">word as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The word to stem.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">lang as xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> of <code>$word</code>.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the stem of <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$word</code>.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="strip-diacritics-1">
+                        <h3 class="ng-binding">strip-diacritics#1</h3>
+                        <pre class="ng-binding">declare  function ft:strip-diacritics($string as xs:string) as xs:string external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Strips all diacritical marks from all characters.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">string as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The string to strip diacritical marks from.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding"><code xmlns:xqdoc="http://www.xqdoc.org/1.0">$string</code> with diacritical marks stripped.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="thesaurus-lookup-1">
+                        <h3 class="ng-binding">thesaurus-lookup#1</h3>
+                        <pre class="ng-binding">declare  function ft:thesaurus-lookup($phrase as xs:string) as xs:string* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Looks-up the given phrase in the default thesaurus.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">phrase as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The phrase to look up. The phrase's <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> is assumed to be the one returned by <code>ft:current-lang()</code>.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the related phrases if <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$phrase</code> is found in the thesaurus or the empty sequence if not.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="thesaurus-lookup-2">
+                        <h3 class="ng-binding">thesaurus-lookup#2</h3>
+                        <pre class="ng-binding">declare  function ft:thesaurus-lookup($uri as xs:string, $phrase as xs:string) as xs:string* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Looks-up the given phrase in a thesaurus.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">uri as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The URI specifying the thesaurus to use.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">phrase as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The phrase to look up. The phrase's <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> is assumed to be the one the one returned by <code>ft:current-lang()</code>.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the related phrases if <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$phrase</code> is found in the thesaurus or the empty sequence if not.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="thesaurus-lookup-3">
+                        <h3 class="ng-binding">thesaurus-lookup#3</h3>
+                        <pre class="ng-binding">declare  function ft:thesaurus-lookup($uri as xs:string, $phrase as xs:string, $lang as xs:language) as xs:string* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Looks-up the given phrase in the thesaurus specified by the given URI.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">uri as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The URI specifying the thesaurus to use.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">phrase as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The phrase to look up.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">lang as xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> of <code>$phrase</code>.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the related phrases if <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$phrase</code> is found in the thesaurus or the empty sequence if not.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="thesaurus-lookup-4">
+                        <h3 class="ng-binding">thesaurus-lookup#4</h3>
+                        <pre class="ng-binding">declare  function ft:thesaurus-lookup($uri as xs:string, $phrase as xs:string, $lang as xs:language, $relationship as xs:string) as xs:string* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Looks-up the given phrase in a thesaurus.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">uri as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The URI specifying the thesaurus to use.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">phrase as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The phrase to look up.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">lang as xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> of <code>$phrase</code>.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">relationship as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The relationship the results are to have to <code>$phrase</code>.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the related phrases if <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$phrase</code> is found in the thesaurus or the empty sequence if not.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="thesaurus-lookup-6">
+                        <h3 class="ng-binding">thesaurus-lookup#6</h3>
+                        <pre class="ng-binding">declare  function ft:thesaurus-lookup($uri as xs:string, $phrase as xs:string, $lang as xs:language, $relationship as xs:string, $level-least as xs:integer, $level-most as xs:integer) as xs:string* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Looks-up the given phrase in a thesaurus.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">uri as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The URI specifying the thesaurus to use.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">phrase as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The phrase to look up.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">lang as xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> of <code>$phrase</code>.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">relationship as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The relationship the results are to have to <code>$phrase</code>.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">level-least as xs:integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The minimum number of levels within the thesaurus to be traversed.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">level-most as xs:integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The maximum number of levels within the thesaurus to be traversed.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">the related phrases if <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$phrase</code> is found in the thesaurus or the empty sequence if not.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="tokenize-node-1">
+                        <h3 class="ng-binding">tokenize-node#1</h3>
+                        <pre class="ng-binding">declare  function ft:tokenize-node($node as node()) as object()* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Tokenizes the given node and all of its descendants.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">node as node()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The node to tokenize. The node's default <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> is assumed to be the one returned by <code>ft:current-lang()</code>.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">object()*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">a (possibly empty) sequence of tokens.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="tokenize-node-2">
+                        <h3 class="ng-binding">tokenize-node#2</h3>
+                        <pre class="ng-binding">declare  function ft:tokenize-node($node as node(), $lang as xs:language) as object()* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Tokenizes the given node and all of its decendants.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">node as node()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The node to tokenize.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">lang as xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The default <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> of <code>$node</code>.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">object()*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">a (possibly empty) sequence of tokens.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="tokenize-nodes-2">
+                        <h3 class="ng-binding">tokenize-nodes#2</h3>
+                        <pre class="ng-binding">declare  function ft:tokenize-nodes($includes as node()+, $excludes as node()*) as object()* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Tokenizes the set of nodes comprising <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$includes</code> (and all of its
+ descendants) but excluding <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$excludes</code> (and all of its
+ descendants), if any.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">includes as node()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The set of nodes (and its descendants) to include. The default <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> is assumed to be the one returned by <code>ft:current-lang()</code>.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">excludes as node()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The set of nodes (and its descendants) to exclude.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">object()*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">a (possibly empty) sequence of tokens.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="tokenize-nodes-3">
+                        <h3 class="ng-binding">tokenize-nodes#3</h3>
+                        <pre class="ng-binding">declare  function ft:tokenize-nodes($includes as node()+, $excludes as node()*, $lang as xs:language) as object()* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Tokenizes the set of nodes comprising <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$includes</code> (and all of its
+ descendants) but excluding <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$excludes</code> (and all of its
+ descendants), if any.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">includes as node()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The set of nodes (and its descendants) to include.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">excludes as node()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The set of nodes (and its descendants) to exclude.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">lang as xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The default <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> for nodes.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">object()*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">a (possibly empty) sequence of tokens.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="tokenize-string-1">
+                        <h3 class="ng-binding">tokenize-string#1</h3>
+                        <pre class="ng-binding">declare  function ft:tokenize-string($string as xs:string) as xs:string* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Tokenizes the given string.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">string as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The string to tokenize. The string's <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> is assumed to be the one returned by <code>ft:current-lang()</code>.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">a (possibly empty) sequence of tokens.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="tokenize-string-2">
+                        <h3 class="ng-binding">tokenize-string#2</h3>
+                        <pre class="ng-binding">declare  function ft:tokenize-string($string as xs:string, $lang as xs:language) as xs:string* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Tokenizes the given string.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">string as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The string to tokenize.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">lang as xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The <a href="http://www.w3.org/TR/xmlschema-2/#language">language</a> of <code>$string</code>.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">a (possibly empty) sequence of tokens.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="tokenizer-properties-0">
+                        <h3 class="ng-binding">tokenizer-properties#0</h3>
+                        <pre class="ng-binding">declare  function ft:tokenizer-properties() as object() external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Gets properties of the tokenizer for the
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language">language</a>
+ returned by <code xmlns:xqdoc="http://www.xqdoc.org/1.0">ft:current-lang()</code>.
+</div>
+                        <h4 ng-show="fn.parameters.length" style="display: none; ">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters -->
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">object()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">said properties.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="tokenizer-properties-1">
+                        <h3 class="ng-binding">tokenizer-properties#1</h3>
+                        <pre class="ng-binding">declare  function ft:tokenizer-properties($lang as xs:language) as object() external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Gets properties of the tokenizer for the given
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language">language</a>.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">lang as xs:language</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The language of the tokenizer to get the properties of.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">object()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">said properties.</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div ng-show="content.variables.length &gt; 0" class="variables">
+                    <h2>Variables</h2>
+                    <!-- ngRepeat: var in content.variables --><div ng-repeat="var in content.variables" id="ft:LANG-DA" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-DA as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the Danish
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="ft:LANG-DE" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-DE as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the German
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="ft:LANG-EN" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-EN as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the English
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="ft:LANG-ES" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-ES as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the Spanish
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="ft:LANG-FI" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-FI as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the Finnish
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="ft:LANG-FR" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-FR as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the French
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="ft:LANG-HU" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-HU as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the Hungarian
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="ft:LANG-IT" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-IT as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the Italian
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="ft:LANG-NL" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-NL as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the Dutch
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="ft:LANG-NO" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-NO as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the Norwegian
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="ft:LANG-PT" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-PT as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the Portuguese
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="ft:LANG-RO" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-RO as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the Romanian
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="ft:LANG-RU" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-RU as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the Russian
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="ft:LANG-SV" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-SV as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the Swedish
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div><div ng-repeat="var in content.variables" id="ft:LANG-TR" class="variable ng-scope">
+                        <pre class="ng-binding">$ft:LANG-TR as xs:language</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(var.description)" class="ng-binding"> Predeclared constant for the Turkish
+ <a xmlns:xqdoc="http://www.xqdoc.org/1.0" href="http://www.w3.org/TR/xmlschema-2/#language"><code>xs:language</code></a>.
+</div>
+                    </div>
+                </div>
+                <div id="disqus" class="disqus" disqus="">
+                    <div id="disqus_thread" class="content-panel-content"><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" tabindex="0" title="Disqus" style="width: 100% !important; border-top-style: none !important; border-right-style: none !important; border-bottom-style: none !important; border-left-style: none !important; border-width: initial !important; border-color: initial !important; overflow-x: hidden !important; overflow-y: hidden !important; height: 928px !important; " width="100%" src="http://disqus.com/embed/comments/?disqus_version=1df9d712&amp;base=default&amp;f=28msec&amp;t_i=%2Fdocumentation%2Flatest%2Fmodules%2Fzorba%2Ffull-text%2F&amp;t_u=http%3A%2F%2Fwww.28.io%2Fdocumentation%2Flatest%2Fmodules%2Fzorba%2Ffull-text%2F&amp;t_d=Zorba%20-%20The%20NoSQL%20Query%20Processor&amp;t_t=Zorba%20-%20The%20NoSQL%20Query%20Processor&amp;s_o=default#2" scrolling="no" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+                </div>
+            </div>
+            <!-- ngSwitchWhen: notfound -->
+            <!-- ngSwitchDefault:  -->
+        </div>
+    </div>
+</div></div>
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3>Get Involved</h3>
+                        <ul>
+                            <li><a href="https://groups.google.com/forum/#!forum/zorba-users" target="_blank">Users List on Google Groups</a></li>
+                            <li><a href="https://groups.google.com/forum/#!forum/zorba-dev" target="_blank">Developers List on Google Groups</a></li>
+                            <li><a href="https://bugs.launchpad.net/zorba/+bugs" target="_blank">Bug Tracker</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Resources</h3>
+                        <li><a href="http://jsoniq.org" target="_blank">JSONiq</a></li>
+                        <li><a href="http://www.w3.org/TR/xquery-30/" target="_blank">XQuery 3.0</a></li>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Quick Links</h3>
+                        <li><a href="https://code.launchpad.net/zorba" target="_blank">Source Code</a></li>
+                        <li><a href="/download">Download</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </div>
+                </div>
+                <p class="text-center copyright">
+                    <small>
+                    ©&nbsp;2013 Zorba.
+                    </small>
+                </p>
+            </div>        
+        </footer>
+    <script type="text/javascript" async="" src="http://stats.g.doubleclick.net/dc.js"></script><script charset="ISO-8859-1" src="http://fast.wistia.com/static/concat/E-v1.js"></script>
+    <script src="/scripts/scripts.js"></script>
+    <script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-4281090-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; 
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+        </script>
+  
+<script type="text/javascript" async="" src="http://28msec.disqus.com/embed.js"></script></body></html><script type="text/javascript">location.href = '/#' + location.pathname;</script>

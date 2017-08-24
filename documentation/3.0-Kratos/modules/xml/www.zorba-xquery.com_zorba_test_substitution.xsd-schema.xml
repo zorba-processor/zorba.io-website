@@ -1,0 +1,31 @@
+<doxygen><compounddef id="www.zorba-xquery.com_zorba_test_substitution.xsd-schema" kind="schema"><detaileddescription><para><h3>Content of www.zorba-xquery.com_zorba_test_substitution.xsd schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.zorba-xquery.com/zorba/test/substitution.xsd" targetNamespace="http://www.zorba-xquery.com/zorba/test/substitution.xsd" elementFormDefault="qualified"&gt;
+
+  &lt;xs:element name="basket" type="BasketType"/&gt;
+  &lt;xs:element name="fruit" type="FruitType"/&gt;
+  &lt;xs:element name="apple" substitutionGroup="fruit" type="FruitType"/&gt;
+  &lt;xs:element name="berry" substitutionGroup="fruit" type="BerryType"/&gt;
+
+
+  &lt;xs:complexType name="BasketType"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element ref="fruit" maxOccurs="unbounded"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="FruitType"&gt;
+    &lt;xs:sequence&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attribute name="name" type="xs:string"/&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="BerryType"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension base="FruitType"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name="wild" type="xs:boolean"/&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

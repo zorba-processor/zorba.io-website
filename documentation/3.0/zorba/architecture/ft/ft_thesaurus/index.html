@@ -1,0 +1,623 @@
+<!DOCTYPE html><html lang="en" class="js cssanimations ng-scope" ng-app="28.ioApp" prefix="og: http://ogp.me/ns#" ng-controller="MainCtrl"><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Zorba - The NoSQL Query Processor</title>
+        <meta name="description" content="Zorba - The NoSQL Query Processor">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+
+        <meta content="28.io" name="apple-mobile-web-app-title">
+        <link href="/images/iphone-icon.png" rel="apple-touch-icon-precomposed">
+        <link href="/favicon.png" rel="icon" type="image/png">
+
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="http://www.zorba.io/blog/atom.xml">
+        <base href="/">
+        <link rel="stylesheet" href="/styles/index.css">
+    <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\:form{display:block;}</style></head>
+    <body ready="" class="" ng-cloak="undefined">
+        <!--[if lt IE 9]>
+            <script type="text/javascript">location.href = "/outdated";</script>
+        <![endif]-->
+        <div class="navbar navbar-default navbar-fixed-top" id="top-menu" navbar-toggle="">
+            <div class="container">
+                <a href="/home" id="logo">
+<svg width="172px" height="44px" viewBox="0 0 172 44" version="1.1" xmlns="http://www.w3.org/2000/svg" style="margin-right: 30px">
+    <defs></defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="g3354-1-3-0" transform="translate(70.000000, 3.000000)" fill="#3498DB">
+            <path d="M36.8599281,6.08695652 C23.7462235,7.46138534 17.3241713,7.87186266 12.0855118,12.5394913 C9.61392853,8.89602738 2.41221529,6.6246591 0,6.89251341 L0.0401259499,9.84221332 C11.3218642,17.172198 8.15927521,31.2798979 5.60530924,40 L18.0693794,40 C15.1069036,30.4981162 15.7891093,23.8890354 16.4644797,20.4999181 C17.5216924,12.0444371 30.0443188,9.56353073 37,7.95199463 L36.8599281,6.08695652 Z" id="path3217-2-16-8-3-4-8-9"></path>
+            <path d="M17.2092989,4.7826087 C17.2112417,6.18001565 16.3916489,7.47202866 15.0597079,8.1712421 C13.7277668,8.87045553 12.0861867,8.87045553 10.7542456,8.1712421 C9.42230457,7.47202866 8.60271176,6.18001565 8.60465461,4.7826087 C8.60271176,3.38520174 9.42230457,2.09318873 10.7542456,1.39397529 C12.0861867,0.694761858 13.7277668,0.694761858 15.0597079,1.39397529 C16.3916489,2.09318873 17.2112417,3.38520174 17.2092989,4.7826087 L17.2092989,4.7826087 Z" id="path3830-2-4-8-2-3-6-0-4" transform="translate(12.906977, 4.782609) rotate(-12.486691) translate(-12.906977, -4.782609) "></path>
+        </g>
+        <path d="M0.896,35.2271939 L0.896,42.1301694 L34.4088328,42.1301694 L34.4088328,34.7818406 L12.5308539,34.7818406 L33.8521412,9.28536648 L33.8521412,2.38239095 L2.56607473,2.38239095 L2.56607473,9.73071974 L22.2172873,9.73071974 L0.896,35.2271939 Z M37.8046514,27.7675268 C37.8046514,30.0685301 38.1572192,32.1468246 38.8623654,34.0024724 C39.5675116,35.8581203 40.5695464,37.4446754 41.8684999,38.7621854 C43.1674534,40.0796954 44.7261743,41.0910083 46.5447092,41.7961545 C48.3632441,42.5013007 50.4044261,42.8538685 52.6683165,42.8538685 C54.9322069,42.8538685 56.982667,42.5013007 58.8197584,41.7961545 C60.6568498,41.0910083 62.2248487,40.0796954 63.5238022,38.7621854 C64.8227557,37.4446754 65.8247905,35.8581203 66.5299367,34.0024724 C67.2350829,32.1468246 67.5876507,30.0685301 67.5876507,27.7675268 C67.5876507,25.4665234 67.2350829,23.3789509 66.5299367,21.5047466 C65.8247905,19.6305422 64.8227557,18.034709 63.5238022,16.717199 C62.2248487,15.399689 60.6568498,14.379098 58.8197584,13.6553953 C56.982667,12.9316927 54.9322069,12.5698468 52.6683165,12.5698468 C50.4044261,12.5698468 48.3632441,12.9316927 46.5447092,13.6553953 C44.7261743,14.379098 43.1674534,15.399689 41.8684999,16.717199 C40.5695464,18.034709 39.5675116,19.6305422 38.8623654,21.5047466 C38.1572192,23.3789509 37.8046514,25.4665234 37.8046514,27.7675268 Z M45.7096718,27.7675268 C45.7096718,26.6170251 45.821009,25.4850969 46.0436867,24.3717082 C46.2663645,23.2583195 46.6467666,22.2748408 47.1849045,21.4212428 C47.7230424,20.5676448 48.4374561,19.8717873 49.328167,19.3336494 C50.218878,18.7955115 51.33225,18.5264466 52.6683165,18.5264466 C54.0043829,18.5264466 55.1270331,18.7955115 56.0363005,19.3336494 C56.945568,19.8717873 57.6692598,20.5676448 58.2073977,21.4212428 C58.7455355,22.2748408 59.1259376,23.2583195 59.3486154,24.3717082 C59.5712931,25.4850969 59.6826303,26.6170251 59.6826303,27.7675268 C59.6826303,28.9180285 59.5712931,30.0406786 59.3486154,31.1355108 C59.1259376,32.230343 58.7455355,33.2138217 58.2073977,34.0859762 C57.6692598,34.9581306 56.945568,35.6539882 56.0363005,36.1735696 C55.1270331,36.693151 54.0043829,36.9529378 52.6683165,36.9529378 C51.33225,36.9529378 50.218878,36.693151 49.328167,36.1735696 C48.4374561,35.6539882 47.7230424,34.9581306 47.1849045,34.0859762 C46.6467666,33.2138217 46.2663645,32.230343 46.0436867,31.1355108 C45.821009,30.0406786 45.7096718,28.9180285 45.7096718,27.7675268 Z" id="Zo" fill="#333333"></path>
+        <path d="M109.28037,2.38239095 L109.28037,42.1301694 L116.795707,42.1301694 L116.795707,38.456005 L116.907045,38.456005 C117.760643,40.0518622 119.022465,41.1837904 120.692548,41.8518236 C122.362631,42.5198569 124.255363,42.8538685 126.370802,42.8538685 C127.818207,42.8538685 129.247034,42.5569693 130.657327,41.9631619 C132.067619,41.3693546 133.338719,40.4601008 134.470664,39.2353732 C135.602609,38.0106456 136.521141,36.4426467 137.226287,34.5313294 C137.931434,32.6200121 138.284001,30.3468776 138.284001,27.7118576 C138.284001,25.0768377 137.931434,22.8037031 137.226287,20.8923858 C136.521141,18.9810685 135.602609,17.4130696 134.470664,16.188342 C133.338719,14.9636144 132.067619,14.0543606 130.657327,13.4605533 C129.247034,12.866746 127.818207,12.5698468 126.370802,12.5698468 C124.58938,12.5698468 122.872931,12.9131365 121.221405,13.5997262 C119.569878,14.2863159 118.261666,15.3718536 117.296729,16.8563719 L117.185391,16.8563719 L117.185391,2.38239095 L109.28037,2.38239095 Z M130.378981,27.7675268 C130.378981,28.9551414 130.249088,30.1056258 129.989297,31.2190145 C129.729506,32.3324033 129.32127,33.3158819 128.764575,34.1694799 C128.207881,35.0230779 127.512024,35.7003792 126.676982,36.2014041 C125.841941,36.7024291 124.830628,36.9529378 123.643013,36.9529378 C122.492511,36.9529378 121.490477,36.7024291 120.636878,36.2014041 C119.78328,35.7003792 119.078145,35.0230779 118.521451,34.1694799 C117.964756,33.3158819 117.55652,32.3324033 117.296729,31.2190145 C117.036938,30.1056258 116.907045,28.9551414 116.907045,27.7675268 C116.907045,26.5427992 117.036938,25.3737586 117.296729,24.2603699 C117.55652,23.1469811 117.964756,22.1635025 118.521451,21.3099045 C119.078145,20.4563065 119.78328,19.7790052 120.636878,19.2779803 C121.490477,18.7769553 122.492511,18.5264466 123.643013,18.5264466 C124.830628,18.5264466 125.841941,18.7769553 126.676982,19.2779803 C127.512024,19.7790052 128.207881,20.4563065 128.764575,21.3099045 C129.32127,22.1635025 129.729506,23.1469811 129.989297,24.2603699 C130.249088,25.3737586 130.378981,26.5427992 130.378981,27.7675268 Z M142.960211,22.200611 L150.865231,22.200611 C151.013683,20.6418668 151.533256,19.5284948 152.423967,18.8604616 C153.314678,18.1924283 154.539388,17.8584167 156.098132,17.8584167 C156.803278,17.8584167 157.462023,17.9048072 158.074387,17.9975896 C158.686751,18.090372 159.224881,18.275934 159.688792,18.5542812 C160.152704,18.8326284 160.523828,19.2223086 160.802176,19.7233335 C161.080523,20.2243584 161.219694,20.9016597 161.219694,21.7552578 C161.256807,22.5717428 161.015577,23.1933755 160.495995,23.6201745 C159.976414,24.0469735 159.271278,24.3717071 158.380567,24.5943848 C157.489856,24.8170625 156.469265,24.9840683 155.318764,25.0954072 C154.168262,25.2067461 152.999221,25.3551957 151.811607,25.5407605 C150.623992,25.7263253 149.445673,25.976834 148.276615,26.2922941 C147.107557,26.6077542 146.06841,27.0809373 145.159142,27.7118576 C144.249875,28.3427779 143.507627,29.187085 142.932376,30.2448043 C142.357125,31.3025236 142.069504,32.6478481 142.069504,34.2808182 C142.069504,35.7653365 142.320013,37.0457143 142.821038,38.1219901 C143.322063,39.1982658 144.01792,40.0889634 144.908631,40.7941096 C145.799342,41.4992558 146.838489,42.0188294 148.026104,42.352846 C149.213719,42.6868627 150.494096,42.8538685 151.867276,42.8538685 C153.648698,42.8538685 155.392981,42.5940817 157.100177,42.0745003 C158.807373,41.5549189 160.291869,40.645665 161.553709,39.3467115 C161.590822,39.82918 161.655769,40.3023631 161.748551,40.7662751 C161.841334,41.230187 161.961949,41.6848139 162.110401,42.1301694 L170.12676,42.1301694 C169.75563,41.5363621 169.495843,40.6456645 169.347391,39.4580499 C169.198939,38.2704352 169.124715,37.0271698 169.124715,35.7282163 L169.124715,20.7532129 C169.124715,19.0089039 168.735034,17.6079108 167.955662,16.5501915 C167.17629,15.4924723 166.174255,14.6667213 164.949528,14.072914 C163.7248,13.4791067 162.370198,13.0801484 160.885679,12.8760271 C159.401161,12.6719059 157.935221,12.5698468 156.487816,12.5698468 C154.891959,12.5698468 153.305404,12.7275745 151.728103,13.0430346 C150.150802,13.3584948 148.731253,13.8873465 147.469412,14.6296056 C146.207572,15.3718647 145.168425,16.3553434 144.35194,17.580071 C143.535455,18.8047985 143.07155,20.3449632 142.960211,22.200611 Z M161.219694,28.0458726 L161.219694,30.9963379 C161.219694,31.4416934 161.173304,32.0354918 161.080521,32.777751 C160.987739,33.5200101 160.73723,34.25298 160.328988,34.9766827 C159.920745,35.7003853 159.289834,36.322018 158.436236,36.8415995 C157.582638,37.3611809 156.376485,37.6209677 154.817741,37.6209677 C154.186821,37.6209677 153.574466,37.5652991 152.980659,37.4539602 C152.386852,37.3426213 151.867278,37.1477812 151.421923,36.869434 C150.976567,36.5910868 150.623999,36.2106847 150.364209,35.7282163 C150.104418,35.2457479 149.974524,34.6519494 149.974524,33.9468033 C149.974524,33.2045441 150.104418,32.5921895 150.364209,32.1097211 C150.623999,31.6272526 150.967289,31.2282943 151.394088,30.9128342 C151.820887,30.597374 152.321904,30.3468653 152.897155,30.1613005 C153.472406,29.9757358 154.056926,29.8272862 154.650734,29.7159473 C155.281654,29.6046084 155.912565,29.5118274 156.543485,29.4376015 C157.174405,29.3633756 157.777482,29.2705946 158.352733,29.1592557 C158.927984,29.0479168 159.466113,28.9087453 159.967138,28.741737 C160.468163,28.5747287 160.885678,28.3427762 161.219694,28.0458726 Z" id="ba" fill="#333333"></path>
+    </g>
+</svg>
+                </a>
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li ng-class="navClass(menu.home.href)">
+                            <a ng-href="/home" ng-bind="menu.home.label" class="ng-binding" href="/home">Home</a>
+                        </li>
+                        <li ng-class="navClass(menu.documentation.href)" class="active">
+                            <a ng-href="/documentation" ng-bind="menu.documentation.label" class="ng-binding" href="/documentation">Documentation</a>
+                        </li>
+                        <li ng-class="navClass(menu.tryzorba.href)">
+                            <a ng-href="http://try.zorba.io/" ng-bind="menu.tryzorba.label" class="ng-binding" href="http://try.zorba.io/">Live Demo</a>
+                        </li>
+                        <li ng-class="navClass(menu.blog.href)">
+                            <a ng-href="/blog" ng-bind="menu.blog.label" class="ng-binding" href="/blog">Blog</a>
+                        </li>
+                        <li ng-class="navClass(menu.download.href)">
+                            <a ng-href="/download" ng-bind="menu.download.label" class="ng-binding" href="/download">Download</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ng-view"><div class="container ng-scope" id="documentation">
+    <div class="row">
+        <!-- ngIf: state !== 'notfound' && !debug --><div class="col-sm-4 sidebar ng-scope" ng-if="state !== 'notfound' &amp;&amp; !debug">
+            <div class="inner-sidebar">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="dropdown selected-version">
+                    <a class="dropdown-toggle">
+                        <span ng-bind="currentVersion.version" class="ng-binding">3.0</span>
+                        <span ng-bind="currentVersion.codename" class="ng-binding">Kratos</span>
+                        <span ng-show="currentVersion.latest">(latest)</span>
+                        <!--i class="fa fa-caret-down"></i-->
+                    </a>
+                    <!--ul class="dropdown-menu versions">
+                        <li ng-repeat="version in index.versions" ng-show="currentVersion.version != version.version">
+                            <a ng-href="/documentation/{{version.version}}">
+                                <span ng-bind="version.version"></span>
+                                <span ng-bind="version.codename"></span>
+                                <span ng-show="version.latest">(latest)</span>
+                            </a>
+                        </li>
+                    </ul-->
+                    <ul class="versions">
+                        <!-- ngRepeat: version in index.versions --><li ng-repeat="version in index.versions" ng-show="currentVersion.version != version.version" class="ng-scope" style="display: none; ">
+                            <a ng-href="/documentation/3.0" href="/documentation/3.0">
+                                <span ng-bind="version.version" class="ng-binding">3.0</span>
+                                <span ng-bind="version.codename" class="ng-binding">Kratos</span>
+                                <span ng-show="version.latest">(latest)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="slider">
+                <!-- Current -->
+                <div class="current" ng-show="panel.status === 'current'">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="path.split('/').length &gt; 3">
+                            <a href="/documentation/3.0/zorba/architecture" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/zorba/architecture/ft/ft_intro" ng-click="next(item)" href="/documentation/3.0/zorba/architecture/ft/ft_intro">
+                                <span ng-bind="item.label" class="ng-binding">Overview</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/zorba/architecture/ft/ft_stemmer" ng-click="next(item)" href="/documentation/3.0/zorba/architecture/ft/ft_stemmer">
+                                <span ng-bind="item.label" class="ng-binding">Stemming</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope active">
+                            <a ng-href="/documentation/3.0/zorba/architecture/ft/ft_thesaurus" ng-click="next(item)" href="/documentation/3.0/zorba/architecture/ft/ft_thesaurus">
+                                <span ng-bind="item.label" class="ng-binding">Thesaurus</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/zorba/architecture/ft/ft_tokenizer" ng-click="next(item)" href="/documentation/3.0/zorba/architecture/ft/ft_tokenizer">
+                                <span ng-bind="item.label" class="ng-binding">Tokenizer</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Next -->
+                <div class="next slideRight" ng-show="panel.status === 'next'" next="" style="display: none; ">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="menu &amp;&amp; path.split('/').length &gt; 4">
+                            <a ng-href="/documentation/3.0/zorba" ng-click="previous()" href="/documentation/3.0/zorba">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.parent.children --><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Data Lifecycle</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Schema Lifecycle</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">URI Resolvers</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Data Converters</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Full Text</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Errors and Warnings</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Dependencies</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Memory Management</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Memory Leaks</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="/documentation/3.0/zorba/architecture" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/zorba/architecture/ft/ft_intro" ng-click="next(item)" href="/documentation/3.0/zorba/architecture/ft/ft_intro">
+                                <span ng-bind="item.label" class="ng-binding">Overview</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/zorba/architecture/ft/ft_stemmer" ng-click="next(item)" href="/documentation/3.0/zorba/architecture/ft/ft_stemmer">
+                                <span ng-bind="item.label" class="ng-binding">Stemming</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/zorba/architecture/ft/ft_thesaurus" ng-click="next(item)" href="/documentation/3.0/zorba/architecture/ft/ft_thesaurus">
+                                <span ng-bind="item.label" class="ng-binding">Thesaurus</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/zorba/architecture/ft/ft_tokenizer" ng-click="next(item)" href="/documentation/3.0/zorba/architecture/ft/ft_tokenizer">
+                                <span ng-bind="item.label" class="ng-binding">Tokenizer</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Previous -->
+                <div class="previous slideLeft" ng-show="panel.status === 'previous'" previous="" style="display: none; ">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="menu &amp;&amp; path.split('/').length &gt; 3">
+                            <a ng-href="/documentation/3.0/zorba/architecture" ng-click="previous()" href="/documentation/3.0/zorba/architecture">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/zorba/architecture/ft/ft_intro" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Overview</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/zorba/architecture/ft/ft_stemmer" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Stemming</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/zorba/architecture/ft/ft_thesaurus" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Thesaurus</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/zorba/architecture/ft/ft_tokenizer" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Tokenizer</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="/documentation/3.0/zorba" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in panel.previous.children -->
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="content col-sm-8" ng-switch="" on="state" ng-class="{ 'col-sm-8': state !== 'notfound', 'col-sm-12': state === 'notfound' }">
+            
+                <ol class="breadcrumb">
+                    <li>
+                        <a ng-href="/documentation/latest" class="ng-binding" href="/documentation/latest">
+                            Zorba 3.0 Documentation
+                        </a>
+                    </li>
+                    <!-- ngRepeat: crumb in getBreadCrumbs() --><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/zorba" href="/documentation/latest/zorba">
+                            <span ng-bind="crumb.label" class="ng-binding">End-User Docs</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/zorba/architecture" href="/documentation/latest/zorba/architecture">
+                            <span ng-bind="crumb.label" class="ng-binding">General Architecture</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/zorba/architecture/ft" href="/documentation/latest/zorba/architecture/ft">
+                            <span ng-bind="crumb.label" class="ng-binding">Full Text</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope active">
+                        <a ng-href="/documentation/latest/zorba/architecture/ft/ft_thesaurus" href="/documentation/latest/zorba/architecture/ft/ft_thesaurus">
+                            <span ng-bind="crumb.label" class="ng-binding">Thesaurus</span>
+                        </a>
+                    </li>
+                </ol>
+            
+            <!-- ngSwitchWhen: loading -->
+            <!-- ngSwitchWhen: zorba --><div ng-switch-when="zorba" class="ng-scope">
+                <p>View as <a ng-href="http://bazaar.launchpad.net/~zorba-coders/zorba/trunk/view/head:/doc/zorba/ft_thesaurus.dox" target="_blank" href="http://bazaar.launchpad.net/~zorba-coders/zorba/trunk/view/head:/doc/zorba/ft_thesaurus.dox">source file</a> or <a ng-href="/documentation/3.0-Kratos/zorba/xml/ft_thesaurus.xml" target="_blank" href="/documentation/3.0-Kratos/zorba/xml/ft_thesaurus.xml">XML</a>.</p>
+                <div ng-bind-html-unsafe="content" class="ng-binding"><div class="doxygen">
+  <div><h1 class="title">Full Text Thesaurus</h1>
+<div id="ft_thesaurus_intro" class="sect1"><h2>Introduction</h2>
+The Zorba XQuery engine implements the <a href="http://www.w3.org/TR/xpath-full-text-10/" target="_blank">XQuery and XPath Full Text 1.0</a> specification that, among other things, adds the ability to use a thesaurus for text-matching via the <a href="http://www.w3.org/TR/xpath-full-text-10/#ftthesaurusoption" target="_blank">thesaurus option</a>. For example, the query:<pre class="ace-static" ace-mode="xquery"><span class="normal">let<span>&nbsp;</span>$x<span>&nbsp;</span>:=<span>&nbsp;</span>&lt;msg&gt;affluent<span>&nbsp;</span>man&lt;/msg&gt;</span>
+<span class="normal"><span class="keywordflow">return</span><span class="normal"><span>&nbsp;</span>$x<span>&nbsp;</span>contains<span>&nbsp;</span>text<span>&nbsp;</span></span><span class="stringliteral">"wealthy"</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">using</span><span class="normal"><span>&nbsp;</span>thesaurus<span>&nbsp;</span></span><span class="keywordflow">default</span>
+</span></span></pre>returns <tt>true</tt> because <tt>$x</tt> contains "wealthy" that the thesaurus identified as a synonym of "affluent".The initial implementation of the thesaurus option uses the <a href="http://wordnet.princeton.edu/" target="_blank">WordNet lexical database</a>, version 3.0.The stock WordNet database files are plain ASCII text files. In many ways this is very convenient for portability, grep-ability, vi-ability, etc. However, the sum total of the files is approximately 27MB (which is quite large) and accessing the database would be inefficient since the files would have to be parsed for every access.Instead, the database files are compiled into a single binary file that is 6MB and can be efficiently accessed from Zorba using <a href="http://en.wikipedia.org/wiki/Mmap" target="_blank">mmap(2)</a> with no parsing of the data. The only caveat of the binary format is that it is endian-dependent, i.e., a binary file created on a computer having a little-endian CPU won't work on a computer having a big-endian CPU.</div>
+<div id="ft_thesaurus_download_install_wordnet" class="sect1"><h2>Downloading &amp; Installing the WordNet Database</h2>
+To download and install the WordNet database on a Unix-like system, follow these steps:<ol>
+<li>Download the WordNet database from <a href="http://wordnet.princeton.edu/wordnet/download/" target="_blank">here</a>. All you really need are just the database files (<tt>WNdb-3.0.tar.gz</tt>).</li><li>Un-gzip and untar the files. This will result in a directory dict containing the database files.</li><li>Move the dict directory somewhere of your choosing, e.g., <tt>/usr/local/wordnet-3.0/dict</tt>.</li><li>Compile the <tt>dict</tt> directory into a Zorba-compatible binary thesaurus as described below.</li></ol>
+To compile the WordNet database files, use the <tt>zt-wn-compile</tt> script found in the <tt>scripts</tt> subdirectory of the Zorba distribution. (Note: this script is written in perl.) The usage message is:<pre class="ace-static" ace-mode="xquery"><span class="normal">zt-wn-compile<span>&nbsp;</span>[-v]<span>&nbsp;</span>wordnet_dict_dir<span>&nbsp;</span>[thesaurus_file]</span>
+</pre><ul>
+<li>The <tt>-v</tt> option specifies verbose output.</li><li>The <em>wordnet_dict_dir</em> specifies the full path of the WordNet <tt>dict</tt> directory.</li><li>The <em>thesaurus_file</em> specifies the name of the resulting binary file. If none is given, it defaults to <tt>wordnet-en.zth</tt> ("en" for English and "zth" for "Zorba Thesaurus file").</li></ul>
+For example:<pre class="ace-static" ace-mode="xquery"><span class="normal">zt-wn-compile<span>&nbsp;</span>-v<span>&nbsp;</span>/usr/local/wordnet-3.0/dict</span>
+</pre>To install the <tt>wordnet-en.zth</tt> file, move it onto Zorba's <em>library path</em>:<pre class="ace-static" ace-mode="xquery"><span class="normal">LIB_PATH/edu/princeton/wordnet/wordnet-<a href="/pages/3.0/zorba/namespacezorba_1_1locale_1_1iso639__1?anchor=aafd6e55905dc8efe50a3f9fd38616781a11f5307e1dac2a5918c6cdf5097e6961">en</a>.zth</span>
+</pre><div id="ft_thesaurus_precompiled" class="sect2"><h3>Downloading a Precompiled WordNet Database</h3>
+Alternatively, you can download a precompiled, little-endian (Intel) CPU WordNet database from <a href="http://www.zorba.io/downloads/WordNet-3.0/wordnet-en.zip" target="_blank">here</a>.</div>
+</div>
+<div id="ft_thesaurus_mappings" class="sect1"><h2>Thesauri Mappings</h2>
+In order to use thesauri, you need to specify what symbolic URI(s) <em>map</em> to what thesauri. A mapping is of the form:<em>from_uri</em><tt>:=</tt><em>implementation-scheme</em><tt>:</tt><em>to_uri</em>For example:<pre class="ace-static" ace-mode="xquery"><span class="normal">http:</span><span class="comment">//wordnet.princeton.edu:=wordnet://wordnet.princeton.edu</span>
+</pre>says that the symbolic URI  maps to the WordNet implementation having a database file at the given sub-path <tt>edu/princeton/wordnet</tt> on Zorba's library path. Once a mapping is established for a symbolic URI, it can be used in a query:<pre class="ace-static" ace-mode="xquery"><span class="normal">let<span>&nbsp;</span>$x<span>&nbsp;</span>:=<span>&nbsp;</span>&lt;msg&gt;affluent<span>&nbsp;</span>man&lt;/msg&gt;</span>
+<span class="normal"><span class="keywordflow">return</span><span class="normal"><span>&nbsp;</span>$x<span>&nbsp;</span>contains<span>&nbsp;</span>text<span>&nbsp;</span></span><span class="stringliteral">"wealthy"</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">using</span><span class="normal"><span>&nbsp;</span>thesaurus<span>&nbsp;</span>at<span>&nbsp;</span></span><span class="stringliteral">"http://wordnet.princeton.edu"</span>
+</span></span></pre>As a special-case, the <em>from_uri</em> can be <tt>default</tt> or <tt>##default</tt> to allow for specifying the default thesaurus as was done for the first example on this page.</div>
+<div id="ft_thesaurus_mappings_to_zorba" class="sect1"><h2>Specifying Thesauri Mappings to Zorba</h2>
+To specify the location of the thesaurus to Zorba from the command-line, use one or more –thesaurus options:<pre class="ace-static" ace-mode="xquery"><span class="normal">zorba<span>&nbsp;</span>--thesaurus<span>&nbsp;</span></span><span class="keywordflow">default</span><span class="normal">:=wordnet:</span><span class="comment">//wordnet.princeton.edu<span>&nbsp;</span>...</span>
+</pre></div>
+<div id="ft_thesaurus_rels" class="sect1"><h2>Thesaurus Relationships</h2>
+Using the WordNet database, Zorba supports all of the thesaurus relationships specified by [ISO 2788] and [ANSI/NISO Z39.19-2005] with the exceptions of "HN" (history note) and "X SN" (see scope note for).<div id="ft_thesaurus_iso_rels" class="sect2"><h3>ISO 2788 and ANSI/NISO Z39.19-2005 Relationships</h3>
+These relationships are:<div class="center"> <table class="table table-bordered"><tbody><tr>
+<th>Rel. </th><th>Meaning </th><th>WordNet Rel.  </th></tr>
+<tr>
+<td>BT </td><td>broader term </td><td>hypernym  </td></tr>
+<tr>
+<td>BTG </td><td>broader term generic </td><td>hypernym  </td></tr>
+<tr>
+<td>BTI </td><td>broader term instance </td><td>instance hypernym  </td></tr>
+<tr>
+<td>BTP </td><td>broader term partitive </td><td>part meronym  </td></tr>
+<tr>
+<td>NT </td><td>narrower term </td><td>hyponym  </td></tr>
+<tr>
+<td>NTG </td><td>narrower term generic </td><td>hyponym  </td></tr>
+<tr>
+<td>NTI </td><td>narrower term instance </td><td>instance hyponym  </td></tr>
+<tr>
+<td>NTP </td><td>narrower term partitive </td><td>part holonym  </td></tr>
+<tr>
+<td>RT </td><td>related term </td><td>also see  </td></tr>
+<tr>
+<td>SN </td><td>scope note </td><td>n/a  </td></tr>
+<tr>
+<td>TT </td><td>top term </td><td>hypernym  </td></tr>
+<tr>
+<td>UF </td><td>non-preferred term </td><td>n/a  </td></tr>
+<tr>
+<td>USE </td><td>preferred term </td><td>n/a  </td></tr>
+</tbody></table>
+</div>and can be used in a query like:<pre class="ace-static" ace-mode="xquery"><span class="normal">let<span>&nbsp;</span>$x<span>&nbsp;</span>:=<span>&nbsp;</span>&lt;msg&gt;breakfast<span>&nbsp;</span>of<span>&nbsp;</span>champions&lt;/msg&gt;</span>
+<span class="normal"><span class="keywordflow">return</span><span class="normal"><span>&nbsp;</span>$x<span>&nbsp;</span>contains<span>&nbsp;</span>text<span>&nbsp;</span></span><span class="stringliteral">"meal"</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">using</span><span class="normal"><span>&nbsp;</span>thesaurus<span>&nbsp;</span>at<span>&nbsp;</span></span><span class="stringliteral">"http://wordnet.princeton.edu"</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>relationship<span>&nbsp;</span></span><span class="stringliteral">"NT"</span>
+</span></span></span></pre>that returns <tt>true</tt> because <tt>$x</tt> contains "breakfast" that the thesaurus identified as a "narrower term" (NT) of "meal."Note that you can specify relationships either by their abbreviation or their meaning. Relationships are case-insensitive. The above query is equivalent to:<pre class="ace-static" ace-mode="xquery"><span class="normal">let<span>&nbsp;</span>$x<span>&nbsp;</span>:=<span>&nbsp;</span>&lt;msg&gt;breakfast<span>&nbsp;</span>of<span>&nbsp;</span>champions&lt;/msg&gt;</span>
+<span class="normal"><span class="keywordflow">return</span><span class="normal"><span>&nbsp;</span>$x<span>&nbsp;</span>contains<span>&nbsp;</span>text<span>&nbsp;</span></span><span class="stringliteral">"meal"</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">using</span><span class="normal"><span>&nbsp;</span>thesaurus<span>&nbsp;</span>at<span>&nbsp;</span></span><span class="stringliteral">"http://wordnet.princeton.edu"</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>relationship<span>&nbsp;</span></span><span class="stringliteral">"narrower<span>&nbsp;</span>term"</span>
+</span></span></span></pre>Since Zorba's thesaurus is implemented using WordNet, the [ISO 2788] relationships map to WordNet relationships that are shown in the "WordNet Rel." column. WordNet relationships are explained in the next section.</div>
+<div id="ft_thesaurus_wordnet_rels" class="sect2"><h3>WordNet Relationships</h3>
+In addition to the [ISO 2788] and [ANSI/NISO Z39.19-2005] relationships, Zorba also supports all of the relationships offered by WordNet. These relationships are:<div class="center"> <table class="table table-bordered"><tbody><tr>
+<th>Relationship </th><th>Meaning  </th></tr>
+<tr>
+<td>also<span>&nbsp;</span>see </td><td>A word that is related to another, e.g., for "varnished" (furniture) one should <em>also see</em> "finished."   </td></tr>
+<tr>
+<td>antonym </td><td>A word opposite in meaning to another, e.g., "light" is an <em>antonym</em> for "heavy."   </td></tr>
+<tr>
+<td>attribute </td><td>A noun for which adjectives express values, e.g., "weight" is an <em>attribute</em> for which the adjectives "light" and "heavy" express values.   </td></tr>
+<tr>
+<td>cause </td><td>A verb that causes another, e.g., "show" is a <em>cause</em> of "see."   </td></tr>
+<tr>
+<td>derivationally<span>&nbsp;</span>related<span>&nbsp;</span>form </td><td>A word that is derived from a root word, e.g., "metric" is a <em>derivationally related form</em> of "meter."   </td></tr>
+<tr>
+<td>derived<span>&nbsp;</span>from<span>&nbsp;</span>adjective </td><td>An adverb that is derived from an adjective, e.g., "correctly" is <em>derived from the adjective</em> "correct."   </td></tr>
+<tr>
+<td>entailment </td><td>A verb that presupposes another, e.g., "snoring" <em>entails</em> "sleeping."   </td></tr>
+<tr>
+<td>hypernym </td><td>A word with a broad meaning that more specific words fall under, e.g., "meal" is a <em>hypernym</em> of "breakfast."   </td></tr>
+<tr>
+<td>hyponym </td><td>A word of more specific meaning than a general term applicable to it, e.g., "breakfast" is a <em>hyponym</em> of "meal."   </td></tr>
+<tr>
+<td>instance<span>&nbsp;</span>hypernym </td><td>A word that denotes a category of some specific instance, e.g., "author" is an <em>instance hypernym</em> of "Asimov."   </td></tr>
+<tr>
+<td>instance<span>&nbsp;</span>hyponym </td><td>A term that donotes a specific instance of some general category, e.g., "Asimov" is an <em>instance hyponym</em> of "author."   </td></tr>
+<tr>
+<td>member<span>&nbsp;</span>holonym </td><td>A word that denotes a collection of individuals, e.g., "faculty" is a <em>member holonym</em> of "professor."   </td></tr>
+<tr>
+<td>member<span>&nbsp;</span>meronym </td><td>A word that denotes a member of a larger group, e.g., a "person" is a <em>member meronym</em> of a "crowd."   </td></tr>
+<tr>
+<td>part<span>&nbsp;</span>holonym </td><td>A word that denotes a larger whole comprised of some part, e.g., "car" is a <em>part holonym</em> of "engine."   </td></tr>
+<tr>
+<td>part<span>&nbsp;</span>meronym </td><td>A word that denotes a part of a larger whole, e.g., an "engine" is <em>part meronym</em> of a "car."   </td></tr>
+<tr>
+<td>participle<span>&nbsp;</span>of<span>&nbsp;</span>verb </td><td>An adjective that is the participle of some verb, e.g., "breaking" is the <em>participle of the verb</em> "break."   </td></tr>
+<tr>
+<td>pertainym </td><td>An adjective that classifies its noun, e.g., "musical" is a <em>pertainym</em> in "musical instrument."   </td></tr>
+<tr>
+<td>similar<span>&nbsp;</span>to </td><td>Similar, though not necessarily interchangeable, adjectives. For example, "shiny" is <em>similar to</em> "bright", but they have subtle differences.   </td></tr>
+<tr>
+<td>substance<span>&nbsp;</span>holonym </td><td>A word that denotes a larger whole containing some constituent substance, e.g., "bread" is a <em>substance holonym</em> of "flour."   </td></tr>
+<tr>
+<td>substance<span>&nbsp;</span>meronym </td><td>A word that denotes a constituant substance of some larger whole, e.g., "flour" is a <em>substance meronym</em> of "bread."   </td></tr>
+<tr>
+<td>verb<span>&nbsp;</span>group </td><td>A verb that is a member of a group of similar verbs, e.g., "live" is in the <em>verb group</em> of "dwell", "live", "inhabit", etc.   </td></tr>
+</tbody></table>
+</div></div>
+<div id="ft_thesaurus_wordnet_levels" class="sect2"><h3>WordNet Levels</h3>
+If no levels are specified in a query, Zorba defaults the WordNet implementation to be 2 levels. (The rationale can be found <a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=11444" target="_blank">here</a>.)</div>
+</div>
+<div id="ft_thesaurus_providing" class="sect1"><h2>Providing Your Own Thesaurus</h2>
+Using the Zorba C++ API, you can provide your own thesaurus by deriving from four classes: <tt>Thesaurus</tt>, <tt>Thesaurus::iterator</tt>, <tt>ThesaurusProvider</tt>, and <tt>URLResolver</tt>.<div id="ft_class_thesaurus" class="sect2"><h3>The Thesaurus Class</h3>
+The <tt>Thesaurus</tt> class is:<pre class="ace-static" ace-mode="xquery"><span class="keyword">class<span>&nbsp;</span></span><span class="normal">Thesaurus<span>&nbsp;</span>{</span>
+<span class="normal"><span class="keyword">public</span><span class="normal">:</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">typedef</span><span class="normal"><span>&nbsp;</span></span><span class="comment">/*<span>&nbsp;</span>implementation-defined<span>&nbsp;</span>*/</span><span class="normal"><span>&nbsp;</span>ptr;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">typedef</span><span class="normal"><span>&nbsp;</span></span><span class="comment">/*<span>&nbsp;</span>implementation-defined<span>&nbsp;</span>*/</span><span class="normal"><span>&nbsp;</span>range_type;</span>
+<span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">class<span>&nbsp;</span></span><span class="normal">iterator<span>&nbsp;</span>{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">public</span><span class="normal">:</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">typedef</span><span class="normal"><span>&nbsp;</span></span><span class="comment">/*<span>&nbsp;</span>implementation-defined<span>&nbsp;</span>*/</span><span class="normal"><span>&nbsp;</span>ptr;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">virtual</span><span class="normal"><span>&nbsp;</span></span><span class="keywordtype">void</span><span class="normal"><span>&nbsp;</span>destroy()<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>=<span>&nbsp;</span>0;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">virtual</span><span class="normal"><span>&nbsp;</span></span><span class="keywordtype">bool</span><span class="normal"><span>&nbsp;</span>next(<span>&nbsp;</span>String<span>&nbsp;</span>*synonym<span>&nbsp;</span>)<span>&nbsp;</span>=<span>&nbsp;</span>0;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">protected</span><span class="normal">:</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">virtual</span><span class="normal"><span>&nbsp;</span>~iterator();</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>};</span>
+<span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">virtual</span><span class="normal"><span>&nbsp;</span>iterator::ptr<span>&nbsp;</span>lookup(<span>&nbsp;</span>String<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>&amp;phrase,<span>&nbsp;</span>String<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>&amp;relationship,<span>&nbsp;</span>range_type<span>&nbsp;</span>at_least,<span>&nbsp;</span>range_type<span>&nbsp;</span>at_most<span>&nbsp;</span>)<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>=<span>&nbsp;</span>0;</span>
+<span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">virtual</span><span class="normal"><span>&nbsp;</span></span><span class="keywordtype">void</span><span class="normal"><span>&nbsp;</span>destroy()<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>=<span>&nbsp;</span>0;</span>
+<span class="normal"><span class="keyword">protected</span><span class="normal">:</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">virtual</span><span class="normal"><span>&nbsp;</span>~Thesaurus();</span>
+<span class="normal">};</span>
+</span></span></span></span></span></pre>For details about the <tt>ptr</tt> types, the <tt>destroy()</tt> functions, and why the destructors are <tt>protected</tt>, see the <a href="/pages/3.0/zorba/memory_management">Memory Management</a> document.To implement the <tt>Thesaurus</tt> you need to implement the <tt>lookup()</tt> function where:<table class="table table-bordered"><tbody><tr>
+<td><tt>phrase</tt>  </td><td>The phrase to be looked-up.  </td></tr>
+<tr>
+<td><tt>relationship</tt>  </td><td>The relationship the results are to have to the phrase, if any.  </td></tr>
+<tr>
+<td><tt>at_least</tt>  </td><td>The minimum number of levels within the thesaurus to be traversed.  </td></tr>
+<tr>
+<td><tt>at_most</tt>  </td><td>The maximum number of levels within the thesaurus to be traversed.  </td></tr>
+</tbody></table>
+The <tt>lookup()</tt> function returns a pointer to an <tt>iterator</tt> that is used to iterate over the phrase's synonyms. You also need to implement an <tt>iterator</tt>. A very simple <tt>Thesaurus</tt> and its <tt>iterator</tt> can be implemented as:<pre class="ace-static" ace-mode="xquery"><span class="keyword">class<span>&nbsp;</span></span><span class="normal">MyThesaurus<span>&nbsp;</span>:<span>&nbsp;</span></span><span class="keyword">public</span><span class="normal"><span>&nbsp;</span>Thesaurus<span>&nbsp;</span>{</span>
+<span class="normal"><span class="keyword">public</span><span class="normal">:</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordtype">void</span><span class="normal"><span>&nbsp;</span>destroy()<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal">;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>iterator::ptr<span>&nbsp;</span>lookup(<span>&nbsp;</span>String<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>&amp;phrase,<span>&nbsp;</span>String<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>&amp;relationship,<span>&nbsp;</span>range_type<span>&nbsp;</span>at_least,<span>&nbsp;</span>range_type<span>&nbsp;</span>at_most<span>&nbsp;</span>)<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal">;</span>
+<span class="normal"><span class="keyword">private</span><span class="normal">:</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//<span>&nbsp;</span>Define<span>&nbsp;</span>a<span>&nbsp;</span>simple<span>&nbsp;</span>thesaurus<span>&nbsp;</span>data<span>&nbsp;</span>structure<span>&nbsp;</span>as<span>&nbsp;</span>a<span>&nbsp;</span>map<span>&nbsp;</span>from<span>&nbsp;</span>a<span>&nbsp;</span>phrase<span>&nbsp;</span>to<span>&nbsp;</span>a<span>&nbsp;</span>list<span>&nbsp;</span>of<span>&nbsp;</span>its<span>&nbsp;</span>synonyms.</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">typedef</span><span class="normal"><span>&nbsp;</span>std::list&lt;String&gt;<span>&nbsp;</span>synonyms_type;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">typedef</span><span class="normal"><span>&nbsp;</span>std::map&lt;String,synonyms_type<span>&nbsp;</span>const*&gt;<span>&nbsp;</span>thesaurus_data_type;</span>
+<span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">static</span><span class="normal"><span>&nbsp;</span>thesaurus_data_type<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal">&amp;<span>&nbsp;</span>get_thesaurus_data();</span>
+<span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">class<span>&nbsp;</span></span><span class="normal">iterator<span>&nbsp;</span>:<span>&nbsp;</span></span><span class="keyword">public</span><span class="normal"><span>&nbsp;</span>Thesaurus::iterator<span>&nbsp;</span>{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">public</span><span class="normal">:</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>iterator(<span>&nbsp;</span>synonyms_type<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>&amp;s<span>&nbsp;</span>)<span>&nbsp;</span>:<span>&nbsp;</span>synonyms_(<span>&nbsp;</span>s<span>&nbsp;</span>),<span>&nbsp;</span>i_(<span>&nbsp;</span>s.begin()<span>&nbsp;</span>)<span>&nbsp;</span>{<span>&nbsp;</span>}</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordtype">void</span><span class="normal"><span>&nbsp;</span>destroy();</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordtype">bool</span><span class="normal"><span>&nbsp;</span>next(<span>&nbsp;</span>String<span>&nbsp;</span>*synonym<span>&nbsp;</span>);</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">private</span><span class="normal">:</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>synonyms_type<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>&amp;synonyms_;<span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//<span>&nbsp;</span>synonyms<span>&nbsp;</span>to<span>&nbsp;</span>iterate<span>&nbsp;</span>over</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>synonyms_type::const_iterator<span>&nbsp;</span>i_;<span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//<span>&nbsp;</span>current<span>&nbsp;</span>iterator<span>&nbsp;</span>position</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>};</span>
+<span class="normal">};</span>
+<span class="normal">
+<span class="normal"><span class="keywordtype">void</span><span class="normal"><span>&nbsp;</span>MyThesaurus::destroy()</span><span class="keyword"><span>&nbsp;</span>const<span>&nbsp;</span></span><span class="normal">{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//<span>&nbsp;</span>Do<span>&nbsp;</span>nothing<span>&nbsp;</span>since<span>&nbsp;</span>we<span>&nbsp;</span>statically<span>&nbsp;</span>allocate<span>&nbsp;</span>a<span>&nbsp;</span>singleton<span>&nbsp;</span>instance<span>&nbsp;</span>of<span>&nbsp;</span>our<span>&nbsp;</span>Thesaurus.</span><span class="normal">
+<span class="normal">}</span>
+<span class="normal">
+<span class="normal">MyThesaurus::thesaurus_data_type<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal">&amp;<span>&nbsp;</span>MyThesaurus::get_thesaurus_data()<span>&nbsp;</span>{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">static</span><span class="normal"><span>&nbsp;</span>thesaurus_data_type<span>&nbsp;</span>thesaurus_data;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">if</span><span class="normal"><span>&nbsp;</span>(<span>&nbsp;</span>thesaurus_data.empty()<span>&nbsp;</span>)<span>&nbsp;</span>{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//<span>&nbsp;</span>Construct<span>&nbsp;</span>thesaurus<span>&nbsp;</span>data<span>&nbsp;</span>"by<span>&nbsp;</span>hand"<span>&nbsp;</span>for<span>&nbsp;</span>this<span>&nbsp;</span>example.<span>&nbsp;</span><span>&nbsp;</span>A<span>&nbsp;</span>real<span>&nbsp;</span>thesaurus<span>&nbsp;</span>would<span>&nbsp;</span>probably<span>&nbsp;</span>be<span>&nbsp;</span>read<span>&nbsp;</span>from<span>&nbsp;</span>disk.</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//<span>&nbsp;</span>Note<span>&nbsp;</span>that<span>&nbsp;</span>every<span>&nbsp;</span>list<span>&nbsp;</span>of<span>&nbsp;</span>synonyms<span>&nbsp;</span>must<span>&nbsp;</span>always<span>&nbsp;</span>include<span>&nbsp;</span>the<span>&nbsp;</span>original<span>&nbsp;</span>phrase.</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">static</span><span class="normal"><span>&nbsp;</span>synonyms_type<span>&nbsp;</span>synonyms;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>synonyms.push_back(<span>&nbsp;</span></span><span class="stringliteral">"foo"</span><span class="normal"><span>&nbsp;</span>);</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>synonyms.push_back(<span>&nbsp;</span></span><span class="stringliteral">"foobar"</span><span class="normal"><span>&nbsp;</span>);</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>thesaurus_data[<span>&nbsp;</span></span><span class="stringliteral">"foo"</span><span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>]<span>&nbsp;</span>=<span>&nbsp;</span>&amp;synonyms;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>thesaurus_data[<span>&nbsp;</span></span><span class="stringliteral">"foobar"</span><span class="normal"><span>&nbsp;</span>]<span>&nbsp;</span>=<span>&nbsp;</span>&amp;synonyms;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>}</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">return</span><span class="normal"><span>&nbsp;</span>thesaurus_data;</span>
+<span class="normal">}</span>
+<span class="normal">
+<span class="normal">MyThesaurus::iterator::ptr<span>&nbsp;</span>MyThesaurus::lookup(<span>&nbsp;</span>String<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>&amp;phrase,<span>&nbsp;</span>String<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>&amp;relationship,</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>range_type<span>&nbsp;</span>at_least,<span>&nbsp;</span>range_type<span>&nbsp;</span>at_most<span>&nbsp;</span>)</span><span class="keyword"><span>&nbsp;</span>const<span>&nbsp;</span></span><span class="normal">{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">static</span><span class="normal"><span>&nbsp;</span>thesaurus_data_type<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>&amp;thesaurus_data<span>&nbsp;</span>=<span>&nbsp;</span>get_thesaurus_data();</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>thesaurus_data_type::const_iterator<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>entry<span>&nbsp;</span>=<span>&nbsp;</span>thesaurus_data.find(<span>&nbsp;</span>phrase<span>&nbsp;</span>);</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>iterator::ptr<span>&nbsp;</span>result;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">if</span><span class="normal"><span>&nbsp;</span>(<span>&nbsp;</span>entry<span>&nbsp;</span>!=<span>&nbsp;</span>thesaurus_data.end()<span>&nbsp;</span>)</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>result.reset(<span>&nbsp;</span></span><span class="keyword">new</span><span class="normal"><span>&nbsp;</span>iterator(<span>&nbsp;</span>*entry-&gt;second<span>&nbsp;</span>)<span>&nbsp;</span>);</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">return</span><span class="normal"><span>&nbsp;</span><a href="/pages/3.0/zorba/namespacestd?anchor=ae27ad1e46de908333a2e28e540ea0b46">std::move</a>(<span>&nbsp;</span>result<span>&nbsp;</span>);</span>
+<span class="normal">}</span>
+<span class="normal">
+<span class="normal"><span class="keywordtype">void</span><span class="normal"><span>&nbsp;</span>MyThesaurus::iterator::destroy()</span><span class="keyword"><span>&nbsp;</span>const<span>&nbsp;</span></span><span class="normal">{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">delete</span><span class="normal"><span>&nbsp;</span></span><span class="keyword">this</span><span class="normal">;</span>
+<span class="normal">}</span>
+<span class="normal">
+<span class="normal"><span class="keywordtype">bool</span><span class="normal"><span>&nbsp;</span>MyThesaurus::iterator::next(<span>&nbsp;</span>String<span>&nbsp;</span>*synonym<span>&nbsp;</span>)<span>&nbsp;</span>{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">if</span><span class="normal"><span>&nbsp;</span>(<span>&nbsp;</span>i_<span>&nbsp;</span>!=<span>&nbsp;</span>synonyms_.end()<span>&nbsp;</span>)<span>&nbsp;</span>{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>*synonym<span>&nbsp;</span>=<span>&nbsp;</span>*i_;<span>&nbsp;</span></span><span class="comment">//<span>&nbsp;</span>not<span>&nbsp;</span>*i_++<span>&nbsp;</span>since<span>&nbsp;</span>post-increment<span>&nbsp;</span>is<span>&nbsp;</span>less<span>&nbsp;</span>efficient</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>++i_;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">return</span><span class="normal"><span>&nbsp;</span></span><span class="keyword">true</span><span class="normal">;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>}</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">return</span><span class="normal"><span>&nbsp;</span></span><span class="keyword">false</span><span class="normal">;</span>
+<span class="normal">}</span>
+</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>A real thesaurus would load a large number of synonyms, of course.</div>
+<div id="ft_class_thesaurus_provider" class="sect2"><h3>The ThesaurusProvider Class</h3>
+The <tt>ThesaurusProvider</tt> class is:<pre class="ace-static" ace-mode="xquery"><span class="keyword">class<span>&nbsp;</span></span><span class="normal">ThesaurusProvider<span>&nbsp;</span>:<span>&nbsp;</span></span><span class="keyword">public</span><span class="normal"><span>&nbsp;</span>Resource<span>&nbsp;</span>{</span>
+<span class="normal"><span class="keyword">public</span><span class="normal">:</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">typedef</span><span class="normal"><span>&nbsp;</span></span><span class="comment">/*<span>&nbsp;</span>implementation-defined<span>&nbsp;</span>*/</span><span class="normal"><span>&nbsp;</span>ptr;</span>
+<span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">virtual</span><span class="normal"><span>&nbsp;</span></span><span class="keywordtype">bool</span><span class="normal"><span>&nbsp;</span>getThesaurus(<span>&nbsp;</span><a href="/pages/3.0/zorba/namespacezorba_1_1time_1_1calendar?anchor=a7c8c84a1ed5401ddae49da3f01861c87">locale::iso639_1::type</a><span>&nbsp;</span>lang,<span>&nbsp;</span>Thesaurus::ptr<span>&nbsp;</span>*thesaurus<span>&nbsp;</span>=<span>&nbsp;</span>0<span>&nbsp;</span>)<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>=<span>&nbsp;</span>0;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordtype">void</span><span class="normal"><span>&nbsp;</span>destroy()<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal">;<span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//<span>&nbsp;</span>inherited<span>&nbsp;</span>from<span>&nbsp;</span>Resource</span><span class="normal">
+<span class="normal">};</span>
+</span></span></span></pre>To implement a <tt>ThesaurusProvider</tt>, you need to implement the <tt>getThesaurus()</tt> function where:<table class="table table-bordered"><tbody><tr>
+<td><tt>lang</tt>  </td><td>The desired language of the thesaurus.  </td></tr>
+<tr>
+<td><tt>thesaurus</tt>  </td><td>If not <tt>null</tt>, set to point to a thesaurus for <tt>lang</tt>.  </td></tr>
+</tbody></table>
+The <tt>getThesaurus()</tt> function returns <tt>true</tt> only if it can provide a thesaurus for the given language. Continuing with the example, a very simple <tt>ThesaurusProvider</tt> can be implemented as:<pre class="ace-static" ace-mode="xquery"><span class="keyword">class<span>&nbsp;</span></span><span class="normal">MyThesaurusProvider<span>&nbsp;</span>:<span>&nbsp;</span>pulic<span>&nbsp;</span>ThesaurusProvider<span>&nbsp;</span>{</span>
+<span class="normal"><span class="keyword">public</span><span class="normal">:</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordtype">void</span><span class="normal"><span>&nbsp;</span>destroy()<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal">;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordtype">bool</span><span class="normal"><span>&nbsp;</span>getThesaurus(<span>&nbsp;</span><a href="/pages/3.0/zorba/namespacezorba_1_1time_1_1calendar?anchor=a7c8c84a1ed5401ddae49da3f01861c87">iso639_1::type</a><span>&nbsp;</span>lang,<span>&nbsp;</span>Thesaurus::ptr*<span>&nbsp;</span>=<span>&nbsp;</span>0<span>&nbsp;</span>)<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal">;</span>
+<span class="normal">};</span>
+<span class="normal">
+<span class="normal"><span class="keywordtype">void</span><span class="normal"><span>&nbsp;</span>MyThesaurusProvider::destroy()</span><span class="keyword"><span>&nbsp;</span>const<span>&nbsp;</span></span><span class="normal">{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//<span>&nbsp;</span>Do<span>&nbsp;</span>nothing<span>&nbsp;</span>since<span>&nbsp;</span>we<span>&nbsp;</span>statically<span>&nbsp;</span>allocate<span>&nbsp;</span>a<span>&nbsp;</span>singleton<span>&nbsp;</span>instance<span>&nbsp;</span>of<span>&nbsp;</span>our<span>&nbsp;</span>ThesaurusProvider.</span><span class="normal">
+<span class="normal">}</span>
+<span class="normal">
+<span class="normal"><span class="keywordtype">bool</span><span class="normal"><span>&nbsp;</span>MyThesaurusProvider::getThesaurus(<span>&nbsp;</span><a href="/pages/3.0/zorba/namespacezorba_1_1time_1_1calendar?anchor=a7c8c84a1ed5401ddae49da3f01861c87">iso639_1::type</a><span>&nbsp;</span>lang,<span>&nbsp;</span>Thesaurus::ptr<span>&nbsp;</span>*result<span>&nbsp;</span>)</span><span class="keyword"><span>&nbsp;</span>const<span>&nbsp;</span></span><span class="normal">{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//<span>&nbsp;</span>Since<span>&nbsp;</span>our<span>&nbsp;</span>tiny<span>&nbsp;</span>thesaurus<span>&nbsp;</span>contains<span>&nbsp;</span>only<span>&nbsp;</span>universally<span>&nbsp;</span>known<span>&nbsp;</span>words,<span>&nbsp;</span>we<span>&nbsp;</span>don't<span>&nbsp;</span>bother<span>&nbsp;</span>checking<span>&nbsp;</span>lang</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//<span>&nbsp;</span>and<span>&nbsp;</span>always<span>&nbsp;</span>return<span>&nbsp;</span>true.</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="comment">//</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">static</span><span class="normal"><span>&nbsp;</span>MyThesaurus<span>&nbsp;</span>thesaurus;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">if</span><span class="normal"><span>&nbsp;</span>(<span>&nbsp;</span>result<span>&nbsp;</span>)</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>result-&gt;reset(<span>&nbsp;</span>&amp;thesaurus<span>&nbsp;</span>);</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">return</span><span class="normal"><span>&nbsp;</span></span><span class="keyword">true</span><span class="normal">;</span>
+<span class="normal">}</span>
+</span></span></span></span></span></span></span></span></span></span></pre></div>
+<div id="ft_class_thesaurus_resolver" class="sect2"><h3>A Thesaurus URL Resolver Class</h3>
+In addition to a <tt>Thesaurus</tt> and <tt>ThesaurusProvider</tt>, you must also implement a "thesaurus resolver" class that, given a URI, provides a <tt>ThesaurusProvider</tt> for that URI. A simple <tt>ThesaurusURLResolver</tt> for our simple thesaurus can be implemented as:<pre class="ace-static" ace-mode="xquery"><span class="keyword">class<span>&nbsp;</span></span><span class="normal">ThesaurusURLResolver<span>&nbsp;</span>:<span>&nbsp;</span></span><span class="keyword">public</span><span class="normal"><span>&nbsp;</span>URLResolver<span>&nbsp;</span>{</span>
+<span class="normal"><span class="keyword">public</span><span class="normal">:</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>ThesaurusURLResolver(<span>&nbsp;</span>String<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>&amp;url<span>&nbsp;</span>)<span>&nbsp;</span>:<span>&nbsp;</span>url_(<span>&nbsp;</span>url<span>&nbsp;</span>)<span>&nbsp;</span>{<span>&nbsp;</span>}</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>Resource*<span>&nbsp;</span>resolveURL(<span>&nbsp;</span>String<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>&amp;url,<span>&nbsp;</span>EntityData<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal">*<span>&nbsp;</span>);<span>&nbsp;</span></span><span class="comment">//<span>&nbsp;</span>inherited</span><span class="normal">
+<span class="normal"><span class="keyword">private</span><span class="normal">:</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>String<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>url_;</span>
+<span class="normal">};</span>
+<span class="normal">
+<span class="normal">Resource*<span>&nbsp;</span>ThesaurusURLResolver::resolveURL(<span>&nbsp;</span>String<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>&amp;url,<span>&nbsp;</span>EntityData<span>&nbsp;</span></span><span class="keyword">const</span><span class="normal"><span>&nbsp;</span>*data<span>&nbsp;</span>)</span><span class="keyword"><span>&nbsp;</span>const<span>&nbsp;</span></span><span class="normal">{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">if</span><span class="normal"><span>&nbsp;</span>(<span>&nbsp;</span>data-&gt;getKind()<span>&nbsp;</span>==<span>&nbsp;</span>EntityData::THESAURUS<span>&nbsp;</span>)</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">static</span><span class="normal"><span>&nbsp;</span>MyThesaurusProvider<span>&nbsp;</span>provider;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">if</span><span class="normal"><span>&nbsp;</span>(<span>&nbsp;</span>uri<span>&nbsp;</span>==<span>&nbsp;</span>uri_<span>&nbsp;</span>)</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">return</span><span class="normal"><span>&nbsp;</span>&amp;provider;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>}</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">return</span><span class="normal"><span>&nbsp;</span>0;</span>
+<span class="normal">}</span>
+</span></span></span></span></pre>For more on <tt>URLResolver</tt>, see <a href="/pages/3.0/zorba/uriresolvers">URI Resolvers</a>.</div>
+<div id="ft_thesaurus_enable" class="sect2"><h3>Using Your Thesaurus</h3>
+To enable your thesaurus to be used, you need to add it to a static context:<pre class="ace-static" ace-mode="xquery"><span class="normal"><a href="/pages/3.0/zorba/namespacezorba?anchor=a24d7241f6bf20badc1017264d30b2af5">StaticContext_t</a><span>&nbsp;</span>sctx<span>&nbsp;</span>=<span>&nbsp;</span>zorba-&gt;createStaticContext();</span>
+<span class="normal">ThesaurusURLResolver<span>&nbsp;</span>resolver(<span>&nbsp;</span></span><span class="stringliteral">"http://www.example.com"</span><span class="normal"><span>&nbsp;</span>);</span>
+<span class="normal">sctx-&gt;registerURLResolver(<span>&nbsp;</span>&amp;resolver<span>&nbsp;</span>);</span>
+</pre>You can then perform a query using your thesaurus:<pre class="ace-static" ace-mode="xquery"><span class="normal">let<span>&nbsp;</span>$x<span>&nbsp;</span>:=<span>&nbsp;</span>&lt;msg&gt;foobar&lt;/msg&gt;</span>
+<span class="normal"><span class="keywordflow">return</span><span class="normal"><span>&nbsp;</span>$x<span>&nbsp;</span>contains<span>&nbsp;</span>text<span>&nbsp;</span></span><span class="stringliteral">"foo"</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">using</span><span class="normal"><span>&nbsp;</span>thesaurus<span>&nbsp;</span>at<span>&nbsp;</span></span><span class="stringliteral">"http://www.example.com"</span><span class="normal">;</span>
+</span></span></pre> </div>
+</div>
+    </div>
+</div></div>
+                <div id="disqus" class="disqus" disqus="">
+                    <div id="disqus_thread" class="content-panel-content"><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" tabindex="0" title="Disqus" style="width: 100% !important; border-top-style: none !important; border-right-style: none !important; border-bottom-style: none !important; border-left-style: none !important; border-width: initial !important; border-color: initial !important; overflow-x: hidden !important; overflow-y: hidden !important; height: 928px !important; " width="100%" src="http://disqus.com/embed/comments/?disqus_version=1df9d712&amp;base=default&amp;f=28msec&amp;t_i=%2Fdocumentation%2F3.0%2Fzorba%2Farchitecture%2Fft%2Fft_thesaurus%2F&amp;t_u=http%3A%2F%2Fwww.28.io%2Fdocumentation%2F3.0%2Fzorba%2Farchitecture%2Fft%2Fft_thesaurus%2F&amp;t_d=Zorba%20-%20The%20NoSQL%20Query%20Processor&amp;t_t=Zorba%20-%20The%20NoSQL%20Query%20Processor&amp;s_o=default#2" scrolling="no" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+                </div>
+            </div>
+            <!-- ngSwitchWhen: api -->
+            <!-- ngSwitchWhen: modules -->
+            <!-- ngSwitchWhen: notfound -->
+            <!-- ngSwitchDefault:  -->
+        </div>
+    </div>
+</div></div>
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3>Get Involved</h3>
+                        <ul>
+                            <li><a href="https://groups.google.com/forum/#!forum/zorba-users" target="_blank">Users List on Google Groups</a></li>
+                            <li><a href="https://groups.google.com/forum/#!forum/zorba-dev" target="_blank">Developers List on Google Groups</a></li>
+                            <li><a href="https://bugs.launchpad.net/zorba/+bugs" target="_blank">Bug Tracker</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Resources</h3>
+                        <li><a href="http://jsoniq.org" target="_blank">JSONiq</a></li>
+                        <li><a href="http://www.w3.org/TR/xquery-30/" target="_blank">XQuery 3.0</a></li>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Quick Links</h3>
+                        <li><a href="https://code.launchpad.net/zorba" target="_blank">Source Code</a></li>
+                        <li><a href="/download">Download</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </div>
+                </div>
+                <p class="text-center copyright">
+                    <small>
+                    ©&nbsp;2013 Zorba.
+                    </small>
+                </p>
+            </div>        
+        </footer>
+    <script type="text/javascript" async="" src="http://stats.g.doubleclick.net/dc.js"></script><script charset="ISO-8859-1" src="http://fast.wistia.com/static/concat/E-v1.js"></script>
+    <script src="/scripts/scripts.js"></script>
+    <script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-4281090-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; 
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+        </script>
+  
+<script type="text/javascript" async="" src="http://28msec.disqus.com/embed.js"></script></body></html><script type="text/javascript">location.href = '/#' + location.pathname;</script>

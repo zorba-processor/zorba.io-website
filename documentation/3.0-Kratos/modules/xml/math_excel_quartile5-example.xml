@@ -1,0 +1,5 @@
+<doxygen><compounddef id="excel_quartile5.xq-example" kind="example"><detaileddescription><para><h3>Content of excel_quartile5.xq example</h3><programlisting type="example">import module namespace
+math="http://zorba.io/modules/math";
+
+math:quartile((1, 2, 4, 7, 8, 9, 10, 12), 4)
+</programlisting></para></detaileddescription></compounddef></doxygen>

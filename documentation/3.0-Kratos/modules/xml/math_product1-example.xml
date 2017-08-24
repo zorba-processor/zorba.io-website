@@ -1,0 +1,4 @@
+<doxygen><compounddef id="product1.xq-example" kind="example"><detaileddescription><para><h3>Content of product1.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/math";
+
+excel:product((2, 0.5))</programlisting></para></detaileddescription></compounddef></doxygen>

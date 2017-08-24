@@ -1,0 +1,63 @@
+<doxygen><compounddef id="text_with_image.xq-example" kind="example"><detaileddescription><para><h3>Content of text_with_image.xq example</h3><programlisting type="example">(:
+ : This example uses the send function of the SMTP module to send an email
+ : containing a simple text message with an image as attachement from a GMail
+ : account.
+ : To make things really interesting, the image is made on the spot with the
+ : help o the image modules available in Zorba.
+ :)
+
+import module namespace smtp = 'http://www.zorba-xquery.com/modules/email/smtp'; 
+import module namespace basic = 'http://www.zorba-xquery.com/modules/image/basic';
+import module namespace paint = 'http://www.zorba-xquery.com/modules/image/paint';
+
+
+(: This variable contains the information of the account from which the email should be sent. :) 
+let $hostInfo :=
+  &amp;lt;hostInfo xmlns="http://www.zorba-xquery.com/modules/email"&amp;gt;
+    &amp;lt;hostName&amp;gt;smtp.gmail.com:587/tls/novalidate-cert&amp;lt;/hostName&amp;gt;
+    &amp;lt;userName&amp;gt;zorba.smtp.sender&amp;lt;/userName&amp;gt;
+    &amp;lt;password&amp;gt;1openssl!!&amp;lt;/password&amp;gt;
+  &amp;lt;/hostInfo&amp;gt;
+
+(: The base64 representation of the image to be sent. :) 
+let $image := paint:paint(
+  basic:create(xs:unsignedInt(200), xs:unsignedInt(200), "GIF"),
+  &amp;lt;text xmlns="http://www.zorba-xquery.com/modules/image/image"&amp;gt;
+    &amp;lt;origin&amp;gt;&amp;lt;x&amp;gt;20&amp;lt;/x&amp;gt;&amp;lt;y&amp;gt;50&amp;lt;/y&amp;gt;&amp;lt;/origin&amp;gt;
+    &amp;lt;text&amp;gt;Zorba really rocks.&amp;lt;/text&amp;gt;
+    &amp;lt;font&amp;gt;Arial&amp;lt;/font&amp;gt;
+    &amp;lt;font-size&amp;gt;14&amp;lt;/font-size&amp;gt;
+  &amp;lt;/text&amp;gt;)
+
+(: the XML representation of the email to be sent, as described by the XML schema
+   http://www.zorba-xquery.com/modules/email :)
+let $email := 
+  &amp;lt;message xmlns="http://www.zorba-xquery.com/modules/email"&amp;gt;
+    &amp;lt;envelope&amp;gt;
+      &amp;lt;date&amp;gt;2010-11-26T15:50:39-04:01&amp;lt;/date&amp;gt;
+      &amp;lt;subject&amp;gt;An important Image message&amp;lt;/subject&amp;gt;
+      &amp;lt;recipient&amp;gt;
+        &amp;lt;to&amp;gt;
+          &amp;lt;name&amp;gt;Test Account&amp;lt;/name&amp;gt;
+          &amp;lt;email&amp;gt;imaptest@28msec.com&amp;lt;/email&amp;gt;
+        &amp;lt;/to&amp;gt;
+      &amp;lt;/recipient&amp;gt;
+    &amp;lt;/envelope&amp;gt;
+    &amp;lt;body&amp;gt;
+      &amp;lt;multipart contentType="multipart/mixed" charset="UTF-8" contentTransferEncoding="ENC8BIT"&amp;gt;
+        &amp;lt;content contentType="text/plain" charset="UTF-8" contentTransferEncoding="ENC8BIT"&amp;gt;
+          Zorba really rocks. 
+        &amp;lt;/content&amp;gt;
+        &amp;lt;content contentType="image/gif" charset="UTF-8" contentTransferEncoding="ENCBASE64"
+          contentDisposition="attachement" contentDisposition-filename="the-truth.gif"&amp;gt;{
+
+          $image
+
+        }&amp;lt;/content&amp;gt;
+      &amp;lt;/multipart&amp;gt;  
+    &amp;lt;/body&amp;gt;
+  &amp;lt;/message&amp;gt;
+
+return
+  smtp:send($hostInfo, $email)
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,5 @@
+<doxygen><compounddef id="excel_ceiling6.xq-example" kind="example"><detaileddescription><para><h3>Content of excel_ceiling6.xq example</h3><programlisting type="example">import module namespace
+math="http://zorba.io/modules/math";
+
+math:ceiling(-20.1, -20.2)
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,10 @@
+<doxygen><compounddef id="zorba-xquery.com_test_vsimple.xsd-schema" kind="schema"><detaileddescription><para><h3>Content of zorba-xquery.com_test_vsimple.xsd schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:simple="http://zorba-xquery.com/test/vsimple.xsd" targetNamespace="http://zorba-xquery.com/test/vsimple.xsd" elementFormDefault="qualified" attributeFormDefault="qualified"&gt;
+    &lt;xs:element name="duration" type="xs:duration"/&gt;
+    &lt;xs:element name="dd"&gt;
+      &lt;xs:complexType&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element ref="simple:duration"/&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

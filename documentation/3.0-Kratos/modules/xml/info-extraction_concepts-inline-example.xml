@@ -1,0 +1,16 @@
+<doxygen><compounddef id="concepts-inline.xq-example" kind="example"><detaileddescription><para><h3>Content of concepts-inline.xq example</h3><programlisting type="example">import module namespace ex = 'http://zorba.io/modules/info-extraction';
+
+import schema namespace schema = 'http://zorba.io/modules/info-extraction';
+
+let $result := ex:concepts-inline("President Obama called Wednesday on Congress to extend a tax break for students included in last year's economic stimulus package, arguing that the policy provides more generous assistance.")
+
+return count ( for $c in &amp;lt;aux&amp;gt;{$result}&amp;lt;/aux&amp;gt;/ex:concept return validate { $c } ) &amp;gt; 0
+
+(:
+
+&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+&amp;lt;!-- The ex:concepts-inline function should return the following list of results for the input provided in the example --&amp;gt;
+President Obama called Wednesday on &amp;lt;concept start="36" end="43" url="http://en.wikipedia.com/wiki/United_States_Congress"&amp;gt;Congress&amp;lt;/concept&amp;gt; to extend a tax break for students included in last year's economic stimulus package, arguing that the policy provides more generous assistance.
+
+:)
+</programlisting></para></detaileddescription></compounddef></doxygen>

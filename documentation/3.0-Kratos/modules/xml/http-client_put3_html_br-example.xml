@@ -1,0 +1,11 @@
+<doxygen><compounddef id="put3_html_br.xq-example" kind="example"><detaileddescription><para><h3>Content of put3_html_br.xq example</h3><programlisting type="example">import module namespace http="http://www.zorba-xquery.com/modules/http-client";
+
+(: Should get serialized as "&amp;lt;br&amp;gt;" with HTML output method :)
+variable $arg := &amp;lt;br&amp;gt;&amp;lt;/br&amp;gt;;
+variable $result :=
+  http:put("http://zorbatest.lambda.nu:8080/cgi-bin/test-text", $arg,
+           "text/html");
+
+$result[2]
+
+</programlisting></para></detaileddescription></compounddef></doxygen>

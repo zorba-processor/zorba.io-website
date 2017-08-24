@@ -1,0 +1,6 @@
+<doxygen><compounddef id="excel_trunc3.xq-example" kind="example"><detaileddescription><para><h3>Content of excel_trunc3.xq example</h3><programlisting type="example">declare namespace math="http://www.w3.org/2005/xpath-functions/math";
+import module namespace
+zorba-math="http://zorba.io/modules/math";
+
+zorba-math:trunc(math:pi(), 2)
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,22 @@
+<doxygen><compounddef id="www.zorba-xquery.com_modules_image_image-schema" kind="schema"><detaileddescription><para><h3>Content of www.zorba-xquery.com_modules_image_image schema</h3><programlisting type="schema">&lt;xs:schema xmlns:http="http://expath.org/ns/http-client" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.zorba-xquery.com/modules/image/image" elementFormDefault="qualified"&gt; 
+    &lt;xs:annotation xml:lang="en"&gt;
+        &lt;xs:documentation&gt;
+            This schema defines the different types used in the modules under:
+            http://www.zorba-xquery.com/modules/images/
+        &lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    
+    &lt;xs:simpleType name="imageType"&gt;
+        &lt;xs:annotation xml:lang="en"&gt;
+            &lt;xs:documentation&gt;
+                This type defines the different names that are allowed for image types.
+            &lt;/xs:documentation&gt;
+        &lt;/xs:annotation&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+            &lt;xs:enumeration value="GIF"/&gt;
+            &lt;xs:enumeration value="PNG"/&gt;
+            &lt;xs:enumeration value="JPEG"/&gt;
+            &lt;xs:enumeration value="TIFF"/&gt;
+        &lt;/xs:restriction&gt;
+    &lt;/xs:simpleType&gt;  
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

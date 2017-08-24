@@ -1,0 +1,23 @@
+<doxygen><compounddef id="www.28msec.com_modules_http-schema" kind="schema"><detaileddescription><para><h3>Content of www.28msec.com_modules_http schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:http="http://www.28msec.com/modules/http" targetNamespace="http://www.28msec.com/modules/http" elementFormDefault="qualified"&gt;
+
+  &lt;xs:simpleType name="cookieString"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="[^;,%&amp;quot;= \t\n\r{}]*"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+ &lt;xs:element name="cookie"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="david" type="xs:string"/&gt;
+      &lt;/xs:sequence&gt;
+      &lt;xs:attribute name="name" type="cookieString"/&gt;
+      &lt;xs:attribute name="expires" type="xs:dateTime"/&gt;
+      &lt;xs:attribute name="domain" type="xs:string"/&gt;
+      &lt;xs:attribute name="path" type="xs:string"/&gt;
+      &lt;xs:attribute name="secure" type="xs:boolean"/&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;  
+
+  
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

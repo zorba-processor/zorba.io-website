@@ -1,0 +1,4 @@
+<doxygen><compounddef id="cosine-ngrams.xq-example" kind="example"><detaileddescription><para><h3>Content of cosine-ngrams.xq example</h3><programlisting type="example">import module namespace simt = "http://zorba.io/modules/data-cleaning/token-based-string-similarity";
+
+simt:cosine-ngrams("DWAYNE", "DUANE", 2 )
+</programlisting></para></detaileddescription></compounddef></doxygen>

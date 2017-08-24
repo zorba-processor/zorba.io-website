@@ -1,0 +1,16 @@
+<doxygen><compounddef id="entities-inline.xq-example" kind="example"><detaileddescription><para><h3>Content of entities-inline.xq example</h3><programlisting type="example">import module namespace ex = 'http://zorba.io/modules/info-extraction';
+
+import schema namespace schema = 'http://zorba.io/modules/info-extraction';
+
+let $result := ex:entities-inline("President Obama called Wednesday on Congress to extend a tax break for students included in last year's economic stimulus package, arguing that the policy provides more generous assistance.")
+
+return count ( for $c in &amp;lt;aux&amp;gt;{$result}&amp;lt;/aux&amp;gt;/ex:entity return validate { $c } ) &amp;gt; 0
+
+(:
+
+&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+&amp;lt;!-- The ex:entities-inline function should return the following list of results for the input provided in the example --&amp;gt;
+&amp;lt;ex:entity xmlns:ex="http://zorba.io/modules/info-extraction" start="0" end="14"&amp;gt;President Obama&amp;lt;/ex:entity&amp;gt; called Wednesday on &amp;lt;ex:entity xmlns:ex="http://zorba.io/modules/info-extraction" start="36" end="43" type="organization"&amp;gt;Congress&amp;lt;/ex:entity&amp;gt; to extend a &amp;lt;ex:entity xmlns:ex="http://zorba.io/modules/info-extraction" start="57" end="65"&amp;gt;tax break&amp;lt;/ex:entity&amp;gt; for students included in last year's &amp;lt;ex:entity xmlns:ex="http://zorba.io/modules/info-extraction" start="104" end="128"&amp;gt;economic stimulus package&amp;lt;/ex:entity&amp;gt;, arguing that the policy provides more &amp;lt;ex:entity xmlns:ex="http://zorba.io/modules/info-extraction" start="169" end="187"&amp;gt;generous assistance&amp;lt;/ex:entity&amp;gt;.
+
+:)
+</programlisting></para></detaileddescription></compounddef></doxygen>

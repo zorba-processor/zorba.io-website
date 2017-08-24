@@ -1,0 +1,12 @@
+<doxygen><compounddef id="copy1.xq-example" kind="example"><detaileddescription><para><h3>Content of copy1.xq example</h3><programlisting type="example">import module namespace stack = "http://zorba.io/modules/stack";
+
+variable $stName := fn:QName("", "stack1");
+variable $stCopy := fn:QName("", "stackcopy");
+stack:create($stName);
+stack:push($stName, &amp;lt;a/&amp;gt;);
+stack:push($stName, &amp;lt;b/&amp;gt;);
+stack:push($stName, &amp;lt;c/&amp;gt;);
+stack:copy($stCopy, $stName);
+(stack:top($stName),
+stack:top($stCopy))
+</programlisting></para></detaileddescription></compounddef></doxygen>

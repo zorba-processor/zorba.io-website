@@ -1,0 +1,1490 @@
+<!DOCTYPE html><html lang="en" class="js cssanimations ng-scope" ng-app="28.ioApp" prefix="og: http://ogp.me/ns#" ng-controller="MainCtrl"><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Zorba - The NoSQL Query Processor</title>
+        <meta name="description" content="Zorba - The NoSQL Query Processor">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+
+        <meta content="28.io" name="apple-mobile-web-app-title">
+        <link href="/images/iphone-icon.png" rel="apple-touch-icon-precomposed">
+        <link href="/favicon.png" rel="icon" type="image/png">
+
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="http://www.zorba.io/blog/atom.xml">
+        <base href="/">
+        <link rel="stylesheet" href="/styles/index.css">
+    <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\:form{display:block;}</style></head>
+    <body ready="" class="" ng-cloak="undefined">
+        <!--[if lt IE 9]>
+            <script type="text/javascript">location.href = "/outdated";</script>
+        <![endif]-->
+        <div class="navbar navbar-default navbar-fixed-top" id="top-menu" navbar-toggle="">
+            <div class="container">
+                <a href="/home" id="logo">
+<svg width="172px" height="44px" viewBox="0 0 172 44" version="1.1" xmlns="http://www.w3.org/2000/svg" style="margin-right: 30px">
+    <defs></defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="g3354-1-3-0" transform="translate(70.000000, 3.000000)" fill="#3498DB">
+            <path d="M36.8599281,6.08695652 C23.7462235,7.46138534 17.3241713,7.87186266 12.0855118,12.5394913 C9.61392853,8.89602738 2.41221529,6.6246591 0,6.89251341 L0.0401259499,9.84221332 C11.3218642,17.172198 8.15927521,31.2798979 5.60530924,40 L18.0693794,40 C15.1069036,30.4981162 15.7891093,23.8890354 16.4644797,20.4999181 C17.5216924,12.0444371 30.0443188,9.56353073 37,7.95199463 L36.8599281,6.08695652 Z" id="path3217-2-16-8-3-4-8-9"></path>
+            <path d="M17.2092989,4.7826087 C17.2112417,6.18001565 16.3916489,7.47202866 15.0597079,8.1712421 C13.7277668,8.87045553 12.0861867,8.87045553 10.7542456,8.1712421 C9.42230457,7.47202866 8.60271176,6.18001565 8.60465461,4.7826087 C8.60271176,3.38520174 9.42230457,2.09318873 10.7542456,1.39397529 C12.0861867,0.694761858 13.7277668,0.694761858 15.0597079,1.39397529 C16.3916489,2.09318873 17.2112417,3.38520174 17.2092989,4.7826087 L17.2092989,4.7826087 Z" id="path3830-2-4-8-2-3-6-0-4" transform="translate(12.906977, 4.782609) rotate(-12.486691) translate(-12.906977, -4.782609) "></path>
+        </g>
+        <path d="M0.896,35.2271939 L0.896,42.1301694 L34.4088328,42.1301694 L34.4088328,34.7818406 L12.5308539,34.7818406 L33.8521412,9.28536648 L33.8521412,2.38239095 L2.56607473,2.38239095 L2.56607473,9.73071974 L22.2172873,9.73071974 L0.896,35.2271939 Z M37.8046514,27.7675268 C37.8046514,30.0685301 38.1572192,32.1468246 38.8623654,34.0024724 C39.5675116,35.8581203 40.5695464,37.4446754 41.8684999,38.7621854 C43.1674534,40.0796954 44.7261743,41.0910083 46.5447092,41.7961545 C48.3632441,42.5013007 50.4044261,42.8538685 52.6683165,42.8538685 C54.9322069,42.8538685 56.982667,42.5013007 58.8197584,41.7961545 C60.6568498,41.0910083 62.2248487,40.0796954 63.5238022,38.7621854 C64.8227557,37.4446754 65.8247905,35.8581203 66.5299367,34.0024724 C67.2350829,32.1468246 67.5876507,30.0685301 67.5876507,27.7675268 C67.5876507,25.4665234 67.2350829,23.3789509 66.5299367,21.5047466 C65.8247905,19.6305422 64.8227557,18.034709 63.5238022,16.717199 C62.2248487,15.399689 60.6568498,14.379098 58.8197584,13.6553953 C56.982667,12.9316927 54.9322069,12.5698468 52.6683165,12.5698468 C50.4044261,12.5698468 48.3632441,12.9316927 46.5447092,13.6553953 C44.7261743,14.379098 43.1674534,15.399689 41.8684999,16.717199 C40.5695464,18.034709 39.5675116,19.6305422 38.8623654,21.5047466 C38.1572192,23.3789509 37.8046514,25.4665234 37.8046514,27.7675268 Z M45.7096718,27.7675268 C45.7096718,26.6170251 45.821009,25.4850969 46.0436867,24.3717082 C46.2663645,23.2583195 46.6467666,22.2748408 47.1849045,21.4212428 C47.7230424,20.5676448 48.4374561,19.8717873 49.328167,19.3336494 C50.218878,18.7955115 51.33225,18.5264466 52.6683165,18.5264466 C54.0043829,18.5264466 55.1270331,18.7955115 56.0363005,19.3336494 C56.945568,19.8717873 57.6692598,20.5676448 58.2073977,21.4212428 C58.7455355,22.2748408 59.1259376,23.2583195 59.3486154,24.3717082 C59.5712931,25.4850969 59.6826303,26.6170251 59.6826303,27.7675268 C59.6826303,28.9180285 59.5712931,30.0406786 59.3486154,31.1355108 C59.1259376,32.230343 58.7455355,33.2138217 58.2073977,34.0859762 C57.6692598,34.9581306 56.945568,35.6539882 56.0363005,36.1735696 C55.1270331,36.693151 54.0043829,36.9529378 52.6683165,36.9529378 C51.33225,36.9529378 50.218878,36.693151 49.328167,36.1735696 C48.4374561,35.6539882 47.7230424,34.9581306 47.1849045,34.0859762 C46.6467666,33.2138217 46.2663645,32.230343 46.0436867,31.1355108 C45.821009,30.0406786 45.7096718,28.9180285 45.7096718,27.7675268 Z" id="Zo" fill="#333333"></path>
+        <path d="M109.28037,2.38239095 L109.28037,42.1301694 L116.795707,42.1301694 L116.795707,38.456005 L116.907045,38.456005 C117.760643,40.0518622 119.022465,41.1837904 120.692548,41.8518236 C122.362631,42.5198569 124.255363,42.8538685 126.370802,42.8538685 C127.818207,42.8538685 129.247034,42.5569693 130.657327,41.9631619 C132.067619,41.3693546 133.338719,40.4601008 134.470664,39.2353732 C135.602609,38.0106456 136.521141,36.4426467 137.226287,34.5313294 C137.931434,32.6200121 138.284001,30.3468776 138.284001,27.7118576 C138.284001,25.0768377 137.931434,22.8037031 137.226287,20.8923858 C136.521141,18.9810685 135.602609,17.4130696 134.470664,16.188342 C133.338719,14.9636144 132.067619,14.0543606 130.657327,13.4605533 C129.247034,12.866746 127.818207,12.5698468 126.370802,12.5698468 C124.58938,12.5698468 122.872931,12.9131365 121.221405,13.5997262 C119.569878,14.2863159 118.261666,15.3718536 117.296729,16.8563719 L117.185391,16.8563719 L117.185391,2.38239095 L109.28037,2.38239095 Z M130.378981,27.7675268 C130.378981,28.9551414 130.249088,30.1056258 129.989297,31.2190145 C129.729506,32.3324033 129.32127,33.3158819 128.764575,34.1694799 C128.207881,35.0230779 127.512024,35.7003792 126.676982,36.2014041 C125.841941,36.7024291 124.830628,36.9529378 123.643013,36.9529378 C122.492511,36.9529378 121.490477,36.7024291 120.636878,36.2014041 C119.78328,35.7003792 119.078145,35.0230779 118.521451,34.1694799 C117.964756,33.3158819 117.55652,32.3324033 117.296729,31.2190145 C117.036938,30.1056258 116.907045,28.9551414 116.907045,27.7675268 C116.907045,26.5427992 117.036938,25.3737586 117.296729,24.2603699 C117.55652,23.1469811 117.964756,22.1635025 118.521451,21.3099045 C119.078145,20.4563065 119.78328,19.7790052 120.636878,19.2779803 C121.490477,18.7769553 122.492511,18.5264466 123.643013,18.5264466 C124.830628,18.5264466 125.841941,18.7769553 126.676982,19.2779803 C127.512024,19.7790052 128.207881,20.4563065 128.764575,21.3099045 C129.32127,22.1635025 129.729506,23.1469811 129.989297,24.2603699 C130.249088,25.3737586 130.378981,26.5427992 130.378981,27.7675268 Z M142.960211,22.200611 L150.865231,22.200611 C151.013683,20.6418668 151.533256,19.5284948 152.423967,18.8604616 C153.314678,18.1924283 154.539388,17.8584167 156.098132,17.8584167 C156.803278,17.8584167 157.462023,17.9048072 158.074387,17.9975896 C158.686751,18.090372 159.224881,18.275934 159.688792,18.5542812 C160.152704,18.8326284 160.523828,19.2223086 160.802176,19.7233335 C161.080523,20.2243584 161.219694,20.9016597 161.219694,21.7552578 C161.256807,22.5717428 161.015577,23.1933755 160.495995,23.6201745 C159.976414,24.0469735 159.271278,24.3717071 158.380567,24.5943848 C157.489856,24.8170625 156.469265,24.9840683 155.318764,25.0954072 C154.168262,25.2067461 152.999221,25.3551957 151.811607,25.5407605 C150.623992,25.7263253 149.445673,25.976834 148.276615,26.2922941 C147.107557,26.6077542 146.06841,27.0809373 145.159142,27.7118576 C144.249875,28.3427779 143.507627,29.187085 142.932376,30.2448043 C142.357125,31.3025236 142.069504,32.6478481 142.069504,34.2808182 C142.069504,35.7653365 142.320013,37.0457143 142.821038,38.1219901 C143.322063,39.1982658 144.01792,40.0889634 144.908631,40.7941096 C145.799342,41.4992558 146.838489,42.0188294 148.026104,42.352846 C149.213719,42.6868627 150.494096,42.8538685 151.867276,42.8538685 C153.648698,42.8538685 155.392981,42.5940817 157.100177,42.0745003 C158.807373,41.5549189 160.291869,40.645665 161.553709,39.3467115 C161.590822,39.82918 161.655769,40.3023631 161.748551,40.7662751 C161.841334,41.230187 161.961949,41.6848139 162.110401,42.1301694 L170.12676,42.1301694 C169.75563,41.5363621 169.495843,40.6456645 169.347391,39.4580499 C169.198939,38.2704352 169.124715,37.0271698 169.124715,35.7282163 L169.124715,20.7532129 C169.124715,19.0089039 168.735034,17.6079108 167.955662,16.5501915 C167.17629,15.4924723 166.174255,14.6667213 164.949528,14.072914 C163.7248,13.4791067 162.370198,13.0801484 160.885679,12.8760271 C159.401161,12.6719059 157.935221,12.5698468 156.487816,12.5698468 C154.891959,12.5698468 153.305404,12.7275745 151.728103,13.0430346 C150.150802,13.3584948 148.731253,13.8873465 147.469412,14.6296056 C146.207572,15.3718647 145.168425,16.3553434 144.35194,17.580071 C143.535455,18.8047985 143.07155,20.3449632 142.960211,22.200611 Z M161.219694,28.0458726 L161.219694,30.9963379 C161.219694,31.4416934 161.173304,32.0354918 161.080521,32.777751 C160.987739,33.5200101 160.73723,34.25298 160.328988,34.9766827 C159.920745,35.7003853 159.289834,36.322018 158.436236,36.8415995 C157.582638,37.3611809 156.376485,37.6209677 154.817741,37.6209677 C154.186821,37.6209677 153.574466,37.5652991 152.980659,37.4539602 C152.386852,37.3426213 151.867278,37.1477812 151.421923,36.869434 C150.976567,36.5910868 150.623999,36.2106847 150.364209,35.7282163 C150.104418,35.2457479 149.974524,34.6519494 149.974524,33.9468033 C149.974524,33.2045441 150.104418,32.5921895 150.364209,32.1097211 C150.623999,31.6272526 150.967289,31.2282943 151.394088,30.9128342 C151.820887,30.597374 152.321904,30.3468653 152.897155,30.1613005 C153.472406,29.9757358 154.056926,29.8272862 154.650734,29.7159473 C155.281654,29.6046084 155.912565,29.5118274 156.543485,29.4376015 C157.174405,29.3633756 157.777482,29.2705946 158.352733,29.1592557 C158.927984,29.0479168 159.466113,28.9087453 159.967138,28.741737 C160.468163,28.5747287 160.885678,28.3427762 161.219694,28.0458726 Z" id="ba" fill="#333333"></path>
+    </g>
+</svg>
+                </a>
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li ng-class="navClass(menu.home.href)">
+                            <a ng-href="/home" ng-bind="menu.home.label" class="ng-binding" href="/home">Home</a>
+                        </li>
+                        <li ng-class="navClass(menu.documentation.href)" class="active">
+                            <a ng-href="/documentation" ng-bind="menu.documentation.label" class="ng-binding" href="/documentation">Documentation</a>
+                        </li>
+                        <li ng-class="navClass(menu.tryzorba.href)">
+                            <a ng-href="http://try.zorba.io/" ng-bind="menu.tryzorba.label" class="ng-binding" href="http://try.zorba.io/">Live Demo</a>
+                        </li>
+                        <li ng-class="navClass(menu.blog.href)">
+                            <a ng-href="/blog" ng-bind="menu.blog.label" class="ng-binding" href="/blog">Blog</a>
+                        </li>
+                        <li ng-class="navClass(menu.download.href)">
+                            <a ng-href="/download" ng-bind="menu.download.label" class="ng-binding" href="/download">Download</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ng-view"><div class="container ng-scope" id="documentation">
+    <div class="row">
+        <!-- ngIf: state !== 'notfound' && !debug --><div class="col-sm-4 sidebar ng-scope" ng-if="state !== 'notfound' &amp;&amp; !debug">
+            <div class="inner-sidebar">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="dropdown selected-version">
+                    <a class="dropdown-toggle">
+                        <span ng-bind="currentVersion.version" class="ng-binding">3.0</span>
+                        <span ng-bind="currentVersion.codename" class="ng-binding">Kratos</span>
+                        <span ng-show="currentVersion.latest">(latest)</span>
+                        <!--i class="fa fa-caret-down"></i-->
+                    </a>
+                    <!--ul class="dropdown-menu versions">
+                        <li ng-repeat="version in index.versions" ng-show="currentVersion.version != version.version">
+                            <a ng-href="/documentation/{{version.version}}">
+                                <span ng-bind="version.version"></span>
+                                <span ng-bind="version.codename"></span>
+                                <span ng-show="version.latest">(latest)</span>
+                            </a>
+                        </li>
+                    </ul-->
+                    <ul class="versions">
+                        <!-- ngRepeat: version in index.versions --><li ng-repeat="version in index.versions" ng-show="currentVersion.version != version.version" class="ng-scope" style="display: none; ">
+                            <a ng-href="/documentation/3.0" href="/documentation/3.0">
+                                <span ng-bind="version.version" class="ng-binding">3.0</span>
+                                <span ng-bind="version.codename" class="ng-binding">Kratos</span>
+                                <span ng-show="version.latest">(latest)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="slider">
+                <!-- Current -->
+                <div class="current" ng-show="panel.status === 'current'">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="path.split('/').length &gt; 3">
+                            <a href="/documentation/3.0/modules" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/expath/http" ng-click="next(item)" href="/documentation/3.0/modules/expath/http">
+                                <span ng-bind="item.label" class="ng-binding">HTTP</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope active">
+                            <a ng-href="/documentation/3.0/modules/expath/file" ng-click="next(item)" href="/documentation/3.0/modules/expath/file">
+                                <span ng-bind="item.label" class="ng-binding">File</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/expath/geo" ng-click="next(item)" href="/documentation/3.0/modules/expath/geo">
+                                <span ng-bind="item.label" class="ng-binding">Geo</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/expath/error-codes" ng-click="next(item)" href="/documentation/3.0/modules/expath/error-codes">
+                                <span ng-bind="item.label" class="ng-binding">Error Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Next -->
+                <div class="next slideRight" ng-show="panel.status === 'next'" next="" style="display: none; ">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="menu &amp;&amp; path.split('/').length &gt; 4">
+                            <a ng-href="/documentation/3.0" ng-click="previous()" href="/documentation/3.0">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.parent.children --><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">JSONiq</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">JSound</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">FunctX</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">W3C</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">EXPath</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Data Connectors</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Zorba</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="/documentation/3.0/modules" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/expath/http" ng-click="next(item)" href="/documentation/3.0/modules/expath/http">
+                                <span ng-bind="item.label" class="ng-binding">HTTP</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/expath/file" ng-click="next(item)" href="/documentation/3.0/modules/expath/file">
+                                <span ng-bind="item.label" class="ng-binding">File</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/expath/geo" ng-click="next(item)" href="/documentation/3.0/modules/expath/geo">
+                                <span ng-bind="item.label" class="ng-binding">Geo</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/3.0/modules/expath/error-codes" ng-click="next(item)" href="/documentation/3.0/modules/expath/error-codes">
+                                <span ng-bind="item.label" class="ng-binding">Error Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Previous -->
+                <div class="previous slideLeft" ng-show="panel.status === 'previous'" previous="" style="display: none; ">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="menu &amp;&amp; path.split('/').length &gt; 3">
+                            <a ng-href="/documentation/3.0/modules" ng-click="previous()" href="/documentation/3.0/modules">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/expath/http" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">HTTP</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/expath/file" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">File</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/expath/geo" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Geo</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/3.0/modules/expath/error-codes" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Error Codes</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="/documentation/3.0" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in panel.previous.children -->
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="content col-sm-8" ng-switch="" on="state" ng-class="{ 'col-sm-8': state !== 'notfound', 'col-sm-12': state === 'notfound' }">
+            
+                <ol class="breadcrumb">
+                    <li>
+                        <a ng-href="/documentation/latest" class="ng-binding" href="/documentation/latest">
+                            Zorba 3.0 Documentation
+                        </a>
+                    </li>
+                    <!-- ngRepeat: crumb in getBreadCrumbs() --><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/modules" href="/documentation/latest/modules">
+                            <span ng-bind="crumb.label" class="ng-binding">Modules</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/modules/expath" href="/documentation/latest/modules/expath">
+                            <span ng-bind="crumb.label" class="ng-binding">EXPath</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope active">
+                        <a ng-href="/documentation/latest/modules/expath/file" href="/documentation/latest/modules/expath/file">
+                            <span ng-bind="crumb.label" class="ng-binding">File</span>
+                        </a>
+                    </li>
+                </ol>
+            
+            <!-- ngSwitchWhen: loading -->
+            <!-- ngSwitchWhen: zorba -->
+            <!-- ngSwitchWhen: api -->
+            <!-- ngSwitchWhen: modules --><div ng-switch-when="modules" class="ng-scope">
+                <h1 class="ng-binding">http://expath.org/ns/file</h1>
+                <p>View as <a ng-href="/documentation/3.0-Kratos/modules/xml/expath.org_ns_file.xml" target="_blank" href="/documentation/3.0-Kratos/modules/xml/expath.org_ns_file.xml">XML</a> or <a ng-href="/documentation/3.0-Kratos/modules/expath.org_ns_file.json" target="_blank" href="/documentation/3.0-Kratos/modules/expath.org_ns_file.json">JSON</a>.</p>
+                <div ng-bind-html-unsafe="normalizeAnchor(content.description)" class="ng-binding"> This module implements the file API EXPath specification available at http://expath.org/spec/file
+</div>
+                <div ng-show="content.functions.length &gt; 0" class="function-summary">
+                    <h2>Function Summary</h2>
+                    <table class="table">
+                        <tbody><!-- ngRepeat: fn in content.functions --><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=append-binary-2" ng-bind="fn.name" class="ng-binding">append-binary</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string, $content as xs:base64Binary) as empty-sequence() external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Appends a sequence of Base64 items as binary to a file.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=append-text-lines-2" ng-bind="fn.name" class="ng-binding">append-text-lines</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string, $content as xs:string*) as empty-sequence()</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Appends a sequence of string to a file, each followed by a
+ platform-dependent newline character(s), using the UTF-8 character encoding.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=append-text-lines-3" ng-bind="fn.name" class="ng-binding">append-text-lines</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string, $content as xs:string*, $encoding as xs:string) as empty-sequence() external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Appends a sequence of string items to a file, each followed by a
+ platform-dependent newline character(s).</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=append-text-2" ng-bind="fn.name" class="ng-binding">append-text</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string, $content as xs:string) as empty-sequence()</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Appends a sequence of string items to a file.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=append-text-3" ng-bind="fn.name" class="ng-binding">append-text</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string, $content as xs:string, $encoding as xs:string) as empty-sequence() external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Appends a sequence of string items to a file.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=base-name-1" ng-bind="fn.name" class="ng-binding">base-name</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string) as xs:string external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the last component from the  $path , deleting any
+ trailing directory-separator characters.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=base-name-2" ng-bind="fn.name" class="ng-binding">base-name</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string, $suffix as xs:string) as xs:string</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Returns the last component from the  $path , deleting any
+ trailing directory-separator characters and the  $suffix .</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=copy-2" ng-bind="fn.name" class="ng-binding">copy</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($source as xs:string, $destination as xs:string) as empty-sequence()</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Copies a file or a directory given a source and a destination path/URI.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=create-directory-1" ng-bind="fn.name" class="ng-binding">create-directory</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($dir as xs:string) as empty-sequence() external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Creates a directory.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=delete-1" ng-bind="fn.name" class="ng-binding">delete</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string) as empty-sequence()</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Deletes a file or a directory from the file system.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=dir-name-1" ng-bind="fn.name" class="ng-binding">dir-name</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string) as xs:string external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> This function is the converse of  file:base-name .</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=directory-separator-0" ng-bind="fn.name" class="ng-binding">directory-separator</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">() as xs:string external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> This function returns the value of the operating system specific directory
+ separator.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=exists-1" ng-bind="fn.name" class="ng-binding">exists</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string) as xs:boolean</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Tests if a path/URI is already used in the file system.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=exists-2" ng-bind="fn.name" class="ng-binding">exists</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string, $follow-symlinks as xs:boolean) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Tests if a path/URI is already used in the file system.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=glob-to-regex-1" ng-bind="fn.name" class="ng-binding">glob-to-regex</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($pattern as xs:string) as xs:string</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> A helper function that performs a trivial (not complete) glob to regex
+ pattern translation.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=is-directory-1" ng-bind="fn.name" class="ng-binding">is-directory</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Tests if a path/URI points to a directory.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=is-file-1" ng-bind="fn.name" class="ng-binding">is-file</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Tests if a path/URI points to a file.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=is-symlink-1" ng-bind="fn.name" class="ng-binding">is-symlink</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string) as xs:boolean external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Tests if a path/URI points to symbolic link.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=last-modified-1" ng-bind="fn.name" class="ng-binding">last-modified</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string) as xs:dateTime external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Retrieves the timestamp of the last modification of the file system item
+ pointed by the path/URI.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=list-1" ng-bind="fn.name" class="ng-binding">list</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($dir as xs:string) as xs:string* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Lists the file system items in a certain directory.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=list-2" ng-bind="fn.name" class="ng-binding">list</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string, $recursive as xs:boolean) as xs:string*</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Lists the file system items in a certain directory.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=list-3" ng-bind="fn.name" class="ng-binding">list</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string, $recursive as xs:boolean, $pattern as xs:string) as xs:string*</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Lists all files matching the given pattern in a given directory.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=move-2" ng-bind="fn.name" class="ng-binding">move</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($source as xs:string, $destination as xs:string) as empty-sequence()</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Moves a file or directory given a source and a destination paths/URIs.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=path-separator-0" ng-bind="fn.name" class="ng-binding">path-separator</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">() as xs:string external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> This function returns the value of the operating system specific path
+ separator.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=path-to-native-1" ng-bind="fn.name" class="ng-binding">path-to-native</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string) as xs:string external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Transforms a URI, an absolute path, or relative path to a native path on the
+ running platform.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=path-to-uri-1" ng-bind="fn.name" class="ng-binding">path-to-uri</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string) as xs:anyURI external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Transforms a file system path into a URI with the file:// scheme.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=read-binary-1" ng-bind="fn.name" class="ng-binding">read-binary</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string) as xs:base64Binary external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Reads the content of a file and returns a Base64 representation of the
+ content.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=read-text-lines-1" ng-bind="fn.name" class="ng-binding">read-text-lines</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string) as xs:string*</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Reads the content of a file and returns a sequence of strings representing
+ the lines in the content of the file.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=read-text-lines-2" ng-bind="fn.name" class="ng-binding">read-text-lines</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string, $encoding as xs:string) as xs:string* external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Reads the content of a file using the specified encoding and returns a
+ sequence of strings representing the lines in the content of the file.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=read-text-1" ng-bind="fn.name" class="ng-binding">read-text</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string) as xs:string</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Reads the content of a file and returns a string representation of the
+ content.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=read-text-2" ng-bind="fn.name" class="ng-binding">read-text</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string, $encoding as xs:string) as xs:string external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Reads the content of a file using the specified encoding and returns a
+ string representation of the content.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=resolve-path-1" ng-bind="fn.name" class="ng-binding">resolve-path</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($path as xs:string) as xs:string external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Transforms a relative path/URI into an absolute operating system path by
+ resolving it against the current working directory.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=size-1" ng-bind="fn.name" class="ng-binding">size</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string) as xs:integer external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Retrieves the size of a file.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=write-binary-2" ng-bind="fn.name" class="ng-binding">write-binary</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string, $content as xs:base64Binary) as empty-sequence() external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Writes a sequence of Base64 items as binary to a file.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=write-text-lines-2" ng-bind="fn.name" class="ng-binding">write-text-lines</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string, $content as xs:string*) as empty-sequence()</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Writes a sequence of strings to a file, each followed by a
+ platform-dependent newline character(s), using the UTF-8 character encoding.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=write-text-lines-3" ng-bind="fn.name" class="ng-binding">write-text-lines</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string, $content as xs:string*, $encoding as xs:string) as empty-sequence() external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Writes a sequence of strings to a file, each followed by a
+ platform-dependent newline character(s).</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=write-text-2" ng-bind="fn.name" class="ng-binding">write-text</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string, $content as xs:string) as empty-sequence()</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Writes a sequence of strings to a file using the UTF-8 character encoding.</p></div>
+                                </div>
+                            </td>
+                        </tr><tr ng-repeat="fn in content.functions" class="ng-scope">
+                            <td>
+                                <div>
+                                    <code>
+                                        <!--span ng-bind="fn.annotation_str"></span-->
+                                        <a href="/documentation/3.0/modules/expath/file/?anchor=write-text-3" ng-bind="fn.name" class="ng-binding">write-text</a>
+                                        <span ng-bind="fn.signature" class="ng-binding">($file as xs:string, $content as xs:string, $encoding as xs:string) as empty-sequence() external</span>
+                                    </code>
+                                    <div ng-bind-html-unsafe="normalizeAnchor(fn.summary)" class="ng-binding"><p> Writes a sequence of strings to a file.</p></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>
+                <div ng-show="content.variables.length &gt; 0" class="variable-summary" style="display: none; ">
+                    <h2>Variable Summary</h2>
+                    <ul class="list-unstyled">
+                        <!-- ngRepeat: var in content.variables -->
+                    </ul>
+                </div>
+                <div ng-show="content.functions.length &gt; 0" class="functions">
+                    <h2>Functions</h2>
+                    <!-- ngRepeat: fn in content.functions --><div ng-repeat="fn in content.functions" class="function ng-scope" id="append-binary-2">
+                        <h3 class="ng-binding">append-binary#2</h3>
+                        <pre class="ng-binding">declare  %an:sequential function file:append-binary($file as xs:string, $content as xs:base64Binary) as empty-sequence() external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Appends a sequence of Base64 items as binary to a file. If the file pointed
+ by <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">$file</pre> does not exist, a new file will be created.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI of the file to write the content to.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">content as xs:base64Binary</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The content to be written to the file.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">empty-sequence()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The empty sequence.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="append-text-lines-2">
+                        <h3 class="ng-binding">append-text-lines#2</h3>
+                        <pre class="ng-binding">declare  %an:sequential function file:append-text-lines($file as xs:string, $content as xs:string*) as empty-sequence()</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Appends a sequence of string to a file, each followed by a
+ platform-dependent newline character(s), using the UTF-8 character encoding.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI of the file to write the content to.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">content as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The content to be written to the file.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">empty-sequence()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The empty sequence.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="append-text-lines-3">
+                        <h3 class="ng-binding">append-text-lines#3</h3>
+                        <pre class="ng-binding">declare  %an:sequential function file:append-text-lines($file as xs:string, $content as xs:string*, $encoding as xs:string) as empty-sequence() external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Appends a sequence of string items to a file, each followed by a
+ platform-dependent newline character(s).
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI of the file to write the content to.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">content as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The content to be written to the file.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">encoding as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The character encoding to append <code>$content</code> as.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">empty-sequence()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The empty sequence.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="append-text-2">
+                        <h3 class="ng-binding">append-text#2</h3>
+                        <pre class="ng-binding">declare  %an:sequential function file:append-text($file as xs:string, $content as xs:string) as empty-sequence()</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Appends a sequence of string items to a file.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI of the file to write the content to.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">content as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The content to be written to the file.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">empty-sequence()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The empty sequence.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="append-text-3">
+                        <h3 class="ng-binding">append-text#3</h3>
+                        <pre class="ng-binding">declare  %an:sequential function file:append-text($file as xs:string, $content as xs:string, $encoding as xs:string) as empty-sequence() external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Appends a sequence of string items to a file.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI of the file to write the content to.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">content as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The content to be written to the file.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">encoding as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The character encoding to append <code>$content</code> as.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">empty-sequence()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The empty sequence.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="base-name-1">
+                        <h3 class="ng-binding">base-name#1</h3>
+                        <pre class="ng-binding">declare  function file:base-name($path as xs:string) as xs:string external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the last component from the <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">$path</pre>, deleting any
+ trailing directory-separator characters. If <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">$path</pre> consists
+ entirely directory-separator characters, the empty string is returned. If
+ <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">$path</pre> is the empty string, the string <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">"."</pre> is returned,
+ signifying the current directory.
+ No path existence check is made.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> A file path/URI.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The base name of this file.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="base-name-2">
+                        <h3 class="ng-binding">base-name#2</h3>
+                        <pre class="ng-binding">declare  function file:base-name($path as xs:string, $suffix as xs:string) as xs:string</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Returns the last component from the <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">$path</pre>, deleting any
+ trailing directory-separator characters and the <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">$suffix</pre>. If path
+ consists entirely directory-separator characters, the empty string is
+ returned. If path is the empty string, the string <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">"."</pre> is
+ returned, signifying the current directory.
+ No path existence check is made.
+ The <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">$suffix</pre> can be used for example to eliminate file extensions.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> A file path/URI.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">suffix as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> A suffix which should get deleted from the result.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The base-name of $path with a deleted $suffix.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="copy-2">
+                        <h3 class="ng-binding">copy#2</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic %an:sequential function file:copy($source as xs:string, $destination as xs:string) as empty-sequence()</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Copies a file or a directory given a source and a destination path/URI.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">source as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI of the file or directory to copy.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">destination as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The destination path/URI.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">empty-sequence()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The empty sequence.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="create-directory-1">
+                        <h3 class="ng-binding">create-directory#1</h3>
+                        <pre class="ng-binding">declare  %an:sequential function file:create-directory($dir as xs:string) as empty-sequence() external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Creates a directory.
+ The operation is will create all the missing parent directories from the
+ given path.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">dir as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI denoting the directory to be created.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">empty-sequence()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The empty sequence.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="delete-1">
+                        <h3 class="ng-binding">delete#1</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic %an:sequential function file:delete($path as xs:string) as empty-sequence()</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Deletes a file or a directory from the file system.
+ If <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">$path</pre> points to a directory the directory will be deleted
+ recursively.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI of the file or directory to delete.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">empty-sequence()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The empty sequence.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="dir-name-1">
+                        <h3 class="ng-binding">dir-name#1</h3>
+                        <pre class="ng-binding">declare  function file:dir-name($path as xs:string) as xs:string external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> This function is the converse of <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">file:base-name</pre>. It returns a
+ string denoting the parent directory of the <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">$path</pre>. Any trailing
+ directory-separator characters are not counted as part of the directory
+ name. If path is the empty string or contains no directory-separator string,
+ <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">"."</pre> is returned, signifying the current directory.
+ No path existence check is made.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The filename, of which the dirname should be get.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The name of the directory the file is in.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="directory-separator-0">
+                        <h3 class="ng-binding">directory-separator#0</h3>
+                        <pre class="ng-binding">declare  function file:directory-separator() as xs:string external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> This function returns the value of the operating system specific directory
+ separator. For example, <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">/</pre> on Unix-based systems and <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">\</pre>
+ on Windows systems.
+</div>
+                        <h4 ng-show="fn.parameters.length" style="display: none; ">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters -->
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The operating system specific directory separator.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="exists-1">
+                        <h3 class="ng-binding">exists#1</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:exists($path as xs:string) as xs:boolean</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Tests if a path/URI is already used in the file system.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI to test.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$path</code> points to an existing file system item; for symbolic links, retuns true if the linked-to item exists.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="exists-2">
+                        <h3 class="ng-binding">exists#2</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:exists($path as xs:string, $follow-symlinks as xs:boolean) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Tests if a path/URI is already used in the file system.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI to test.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">follow-symlinks as xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> if <code>true</code>, follows symbolic links.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$path</code> points to an existing file system item.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="glob-to-regex-1">
+                        <h3 class="ng-binding">glob-to-regex#1</h3>
+                        <pre class="ng-binding">declare  function file:glob-to-regex($pattern as xs:string) as xs:string</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> A helper function that performs a trivial (not complete) glob to regex
+ pattern translation.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">pattern as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The glob pattern.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">A regex pattern corresponding to the glob pattern provided.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-directory-1">
+                        <h3 class="ng-binding">is-directory#1</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:is-directory($path as xs:string) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Tests if a path/URI points to a directory. On Unix-based systems, the root
+ and the volume roots are considered directories.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI to test.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$path</code> points to a directory; for symbolic links, returns true if the linked-to item is a directory.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-file-1">
+                        <h3 class="ng-binding">is-file#1</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:is-file($path as xs:string) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Tests if a path/URI points to a file.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI to test.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$path</code> points to a file; for symbolic links, returns true if the linked-to item is a file.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="is-symlink-1">
+                        <h3 class="ng-binding">is-symlink#1</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:is-symlink($path as xs:string) as xs:boolean external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Tests if a path/URI points to symbolic link.  This works on all Unix-based
+ systems as well as Windows Vista or later.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI to test.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">true if <code xmlns:xqdoc="http://www.xqdoc.org/1.0">$path</code> points to a symbolic link.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="last-modified-1">
+                        <h3 class="ng-binding">last-modified#1</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:last-modified($path as xs:string) as xs:dateTime external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Retrieves the timestamp of the last modification of the file system item
+ pointed by the path/URI.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The file system item to read the last modification timestamp from.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:dateTime</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The date and time of the last modification of the item.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="list-1">
+                        <h3 class="ng-binding">list#1</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:list($dir as xs:string) as xs:string* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Lists the file system items in a certain directory.
+ The operation is equivalent to calling:
+ <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">file:list($dir, fn:false())</pre>.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">dir as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI of the directory to retrieve the children from.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The sequence of names of the direct children.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="list-2">
+                        <h3 class="ng-binding">list#2</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:list($path as xs:string, $recursive as xs:boolean) as xs:string*</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Lists the file system items in a certain directory. The order of the items
+ in the resulting sequence is not defined. The "." and ".." items are not
+ returned. The returned paths are relative to the provided <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">$path</pre>.
+ If <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">$recursive</pre> evaluates to <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">fn:true()</pre>, the operation
+ will recurse in the subdirectories.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">recursive as xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> A boolean flag indicating whether the operation should be performed recursively.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">A sequence of relative paths.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="list-3">
+                        <h3 class="ng-binding">list#3</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:list($path as xs:string, $recursive as xs:boolean, $pattern as xs:string) as xs:string*</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Lists all files matching the given pattern in a given directory.
+ The order of the items in the result is not defined.
+ The "." and ".." items are not considered for the match.
+ The file paths are relative to the provided $path.
+ The pattern is a glob expression supporting:
+ <ul xmlns:xqdoc="http://www.xqdoc.org/1.0">
+   <li><pre>*</pre> for matching any number of unknown characters</li>
+   <li><pre>?</pre> for matching one unknown character</li>
+ </ul>
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI to retrieve the children from.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">recursive as xs:boolean</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> A boolean flag indicating whether the operation should be performed recursively.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">pattern as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The file name pattern.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">A sequence of file names matching the pattern.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="move-2">
+                        <h3 class="ng-binding">move#2</h3>
+                        <pre class="ng-binding">declare  %an:sequential function file:move($source as xs:string, $destination as xs:string) as empty-sequence()</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Moves a file or directory given a source and a destination paths/URIs.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">source as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI of the file to move.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">destination as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The destination path/URI.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">empty-sequence()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The empty sequence.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="path-separator-0">
+                        <h3 class="ng-binding">path-separator#0</h3>
+                        <pre class="ng-binding">declare  function file:path-separator() as xs:string external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> This function returns the value of the operating system specific path
+ separator. For example, <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">:</pre> on Unix-based systems and <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">;</pre>
+ on Windows systems.
+</div>
+                        <h4 ng-show="fn.parameters.length" style="display: none; ">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters -->
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The operating system specific path separator.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="path-to-native-1">
+                        <h3 class="ng-binding">path-to-native#1</h3>
+                        <pre class="ng-binding">declare  function file:path-to-native($path as xs:string) as xs:string external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Transforms a URI, an absolute path, or relative path to a native path on the
+ running platform.
+ No path existence check is made.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The uri or path to normalize.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The native path corresponding to <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">$path</pre>.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="path-to-uri-1">
+                        <h3 class="ng-binding">path-to-uri#1</h3>
+                        <pre class="ng-binding">declare  function file:path-to-uri($path as xs:string) as xs:anyURI external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Transforms a file system path into a URI with the file:// scheme. If the
+ path is relative, it is first resolved against the current working
+ directory.
+ No path existence check is made.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path to transform.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:anyURI</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The file URI corresponding to <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">path</pre>.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="read-binary-1">
+                        <h3 class="ng-binding">read-binary#1</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:read-binary($file as xs:string) as xs:base64Binary external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Reads the content of a file and returns a Base64 representation of the
+ content.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The file to read.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:base64Binary</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The content of the file as Base64.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="read-text-lines-1">
+                        <h3 class="ng-binding">read-text-lines#1</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:read-text-lines($file as xs:string) as xs:string*</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Reads the content of a file and returns a sequence of strings representing
+ the lines in the content of the file.
+ The operation is equivalent to calling:
+ <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">file:read-text-lines($file, "UTF-8")</pre>.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The file to read.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The content of the file as a sequence of strings.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="read-text-lines-2">
+                        <h3 class="ng-binding">read-text-lines#2</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:read-text-lines($file as xs:string, $encoding as xs:string) as xs:string* external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Reads the content of a file using the specified encoding and returns a
+ sequence of strings representing the lines in the content of the file.
+ This implementation considers the LF (
+) character as the line
+ separator. If a resulting line ends with the CR () character, this is
+ trimmed as well. This implementation will uniformly treat LF and CRLF as
+ line separators.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The file to read.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">encoding as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The encoding used when reading the file. If compiled with ICU, then Zorba supports any encoding that ICU supports; otherwise Zorba only supports ASCII and UTF-8. The encoding parameter is case insensitive.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string*</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The content of the file as a sequence of strings.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="read-text-1">
+                        <h3 class="ng-binding">read-text#1</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:read-text($file as xs:string) as xs:string</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Reads the content of a file and returns a string representation of the
+ content.
+ The operation is equivalent to calling:
+ <pre xmlns:xqdoc="http://www.xqdoc.org/1.0">file:read-text($file, "UTF-8")</pre>.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The file to read.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The content of the file as string.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="read-text-2">
+                        <h3 class="ng-binding">read-text#2</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:read-text($file as xs:string, $encoding as xs:string) as xs:string external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Reads the content of a file using the specified encoding and returns a
+ string representation of the content.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The file to read.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">encoding as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The encoding used when reading the file. If compiled with ICU, then Zorba supports any encoding that ICU supports; otherwise Zorba only supports ASCII and UTF-8. The encoding parameter is case insensitive.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The content of the file as string.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="resolve-path-1">
+                        <h3 class="ng-binding">resolve-path#1</h3>
+                        <pre class="ng-binding">declare  function file:resolve-path($path as xs:string) as xs:string external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Transforms a relative path/URI into an absolute operating system path by
+ resolving it against the current working directory.
+ No path existence check is made.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">path as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI to transform.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The operating system file path.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="size-1">
+                        <h3 class="ng-binding">size#1</h3>
+                        <pre class="ng-binding">declare  %an:nondeterministic function file:size($file as xs:string) as xs:integer external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Retrieves the size of a file.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The file get the size.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">xs:integer</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">An integer representing the size in bytes of the file.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="write-binary-2">
+                        <h3 class="ng-binding">write-binary#2</h3>
+                        <pre class="ng-binding">declare  %an:sequential function file:write-binary($file as xs:string, $content as xs:base64Binary) as empty-sequence() external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Writes a sequence of Base64 items as binary to a file.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI of the file to write the content to.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">content as xs:base64Binary</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The content to be written to the file.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">empty-sequence()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The empty sequence.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="write-text-lines-2">
+                        <h3 class="ng-binding">write-text-lines#2</h3>
+                        <pre class="ng-binding">declare  %an:sequential function file:write-text-lines($file as xs:string, $content as xs:string*) as empty-sequence()</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Writes a sequence of strings to a file, each followed by a
+ platform-dependent newline character(s), using the UTF-8 character encoding.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI of the file to write the content to.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">content as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The content to be written to the file.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">empty-sequence()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The empty sequence.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="write-text-lines-3">
+                        <h3 class="ng-binding">write-text-lines#3</h3>
+                        <pre class="ng-binding">declare  %an:sequential function file:write-text-lines($file as xs:string, $content as xs:string*, $encoding as xs:string) as empty-sequence() external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Writes a sequence of strings to a file, each followed by a
+ platform-dependent newline character(s).
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI of the file to write the content to.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">content as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The content to be written to the file.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">encoding as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The character encoding to write <code>$content</code> as.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">empty-sequence()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The empty sequence.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="write-text-2">
+                        <h3 class="ng-binding">write-text#2</h3>
+                        <pre class="ng-binding">declare  %an:sequential function file:write-text($file as xs:string, $content as xs:string) as empty-sequence()</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Writes a sequence of strings to a file using the UTF-8 character encoding.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI of the file to write the content to.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">content as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The content to be written to the file.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">empty-sequence()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The empty sequence.</dd>
+                        </dl>
+                    </div><div ng-repeat="fn in content.functions" class="function ng-scope" id="write-text-3">
+                        <h3 class="ng-binding">write-text#3</h3>
+                        <pre class="ng-binding">declare  %an:sequential function file:write-text($file as xs:string, $content as xs:string, $encoding as xs:string) as empty-sequence() external</pre>
+                        <div ng-bind-html-unsafe="normalizeAnchor(fn.description)" class="ng-binding"> Writes a sequence of strings to a file.
+</div>
+                        <h4 ng-show="fn.parameters.length">Parameters</h4>
+                        <!-- ngRepeat: param in fn.parameters --><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">file as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The path/URI of the file to write the content to.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">content as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The content to be written to the file.</div></dd>
+                        </dl><dl ng-repeat="param in fn.parameters" class="ng-scope">
+                            <dt class="ng-binding">encoding as xs:string</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(param.description)" class="ng-binding"><div xmlns:xqdoc="http://www.xqdoc.org/1.0"> The character encoding to write <code>$content</code> as.</div></dd>
+                        </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                            <dt class="ng-binding">empty-sequence()</dt>
+                            <dd ng-bind-html-unsafe="normalizeAnchor(fn.returns.description)" class="ng-binding">The empty sequence.</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div ng-show="content.variables.length &gt; 0" class="variables" style="display: none; ">
+                    <h2>Variables</h2>
+                    <!-- ngRepeat: var in content.variables -->
+                </div>
+                <div id="disqus" class="disqus" disqus="">
+                    <div id="disqus_thread" class="content-panel-content"><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" tabindex="0" title="Disqus" style="width: 100% !important; border-top-style: none !important; border-right-style: none !important; border-bottom-style: none !important; border-left-style: none !important; border-width: initial !important; border-color: initial !important; overflow-x: hidden !important; overflow-y: hidden !important; height: 928px !important; " width="100%" src="http://disqus.com/embed/comments/?disqus_version=1df9d712&amp;base=default&amp;f=28msec&amp;t_i=%2Fdocumentation%2F3.0%2Fmodules%2Fexpath%2Ffile%2F&amp;t_u=http%3A%2F%2Fwww.28.io%2Fdocumentation%2F3.0%2Fmodules%2Fexpath%2Ffile%2F&amp;t_d=Zorba%20-%20The%20NoSQL%20Query%20Processor&amp;t_t=Zorba%20-%20The%20NoSQL%20Query%20Processor&amp;s_o=default#2" scrolling="no" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+                </div>
+            </div>
+            <!-- ngSwitchWhen: notfound -->
+            <!-- ngSwitchDefault:  -->
+        </div>
+    </div>
+</div></div>
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3>Get Involved</h3>
+                        <ul>
+                            <li><a href="https://groups.google.com/forum/#!forum/zorba-users" target="_blank">Users List on Google Groups</a></li>
+                            <li><a href="https://groups.google.com/forum/#!forum/zorba-dev" target="_blank">Developers List on Google Groups</a></li>
+                            <li><a href="https://bugs.launchpad.net/zorba/+bugs" target="_blank">Bug Tracker</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Resources</h3>
+                        <li><a href="http://jsoniq.org" target="_blank">JSONiq</a></li>
+                        <li><a href="http://www.w3.org/TR/xquery-30/" target="_blank">XQuery 3.0</a></li>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Quick Links</h3>
+                        <li><a href="https://code.launchpad.net/zorba" target="_blank">Source Code</a></li>
+                        <li><a href="/download">Download</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </div>
+                </div>
+                <p class="text-center copyright">
+                    <small>
+                    ©&nbsp;2013 Zorba.
+                    </small>
+                </p>
+            </div>        
+        </footer>
+    <script type="text/javascript" async="" src="http://stats.g.doubleclick.net/dc.js"></script><script charset="ISO-8859-1" src="http://fast.wistia.com/static/concat/E-v1.js"></script>
+    <script src="/scripts/scripts.js"></script>
+    <script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-4281090-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; 
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+        </script>
+  
+<script type="text/javascript" async="" src="http://28msec.disqus.com/embed.js"></script></body></html><script type="text/javascript">location.href = '/#' + location.pathname;</script>

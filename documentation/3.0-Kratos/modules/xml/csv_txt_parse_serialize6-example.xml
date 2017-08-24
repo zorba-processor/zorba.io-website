@@ -1,0 +1,74 @@
+<doxygen><compounddef id="txt_parse_serialize6.xq-example" kind="example"><detaileddescription><para><h3>Content of txt_parse_serialize6.xq example</h3><programlisting type="example">(:
+Parse a text with fixed size columns, and then serialize it back with different alignments.
+The align attributes are ignored in the parse function.
+The data file is taken from http://data.gov.
+:)
+import schema namespace csv-options="http://zorba.io/modules/csv-options";
+import module namespace csv = "http://zorba.io/modules/csv";
+import module namespace file="http://expath.org/ns/file";
+
+let $options :=
+validate{
+&amp;lt;csv-options:options&amp;gt;
+  &amp;lt;column-widths align="right"&amp;gt;
+    &amp;lt;column-width align="left"&amp;gt;20&amp;lt;/column-width&amp;gt;
+    &amp;lt;column-width&amp;gt;45&amp;lt;/column-width&amp;gt;
+    &amp;lt;column-width&amp;gt;35&amp;lt;/column-width&amp;gt;
+    &amp;lt;column-width&amp;gt;17&amp;lt;/column-width&amp;gt;
+    &amp;lt;column-width align="left"&amp;gt;19&amp;lt;/column-width&amp;gt;
+    &amp;lt;column-width&amp;gt;4&amp;lt;/column-width&amp;gt;
+    &amp;lt;column-width&amp;gt;2&amp;lt;/column-width&amp;gt;
+    &amp;lt;column-width&amp;gt;17&amp;lt;/column-width&amp;gt;
+  &amp;lt;/column-widths&amp;gt;
+&amp;lt;/csv-options:options&amp;gt; }   
+return
+let $result := 
+csv:serialize(
+csv:parse(file:read-text(fn:resolve-uri("PUAOSL95.TXT")), $options),
+                $options)
+return 
+  $result
+
+  
+(:
+
+Example txt input:
+
+501-000             Jefferson County Library System              2100 Park Place                    Birmingham       3523700232052263615HQMJAOJefferson        NAL0089AL0196                                                         
+511-000             Pickens County Cooperative Library           Post Office Bldg Highway 17 S      Carrollton       3544704892053678407HQCOAOPickens          YAL0139AL0196                                                         
+
+-------------------------------------------------------------------------
+
+Intermediate output from parsing
+
+&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+&amp;lt;row&amp;gt;
+  &amp;lt;column&amp;gt;501-000&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;Jefferson County Library System&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;2100 Park Place&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;Birmingham&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;3523700232052263615&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;HQMJ&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;AO&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;Jefferson&amp;lt;/column&amp;gt;
+&amp;lt;/row&amp;gt;&amp;lt;row&amp;gt;
+  &amp;lt;column&amp;gt;511-000&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;Pickens County Cooperative Library&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;Post Office Bldg Highway 17 S&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;Carrollton&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;3544704892053678407&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;HQCO&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;AO&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;Pickens&amp;lt;/column&amp;gt;
+&amp;lt;/row&amp;gt;
+
+----------------------------------------------------------------
+
+Final output from re-serialization:
+
+&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+501-000                           Jefferson County Library System                    2100 Park Place       Birmingham3523700232052263615HQMJAO        Jefferson
+511-000                        Pickens County Cooperative Library      Post Office Bldg Highway 17 S       Carrollton3544704892053678407HQCOAO          Pickens
+
+:)
+</programlisting></para></detaileddescription></compounddef></doxygen>

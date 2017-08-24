@@ -1,0 +1,26 @@
+<doxygen><compounddef id="extractText-pageDelim.xq-example" kind="example"><detaileddescription><para><h3>Content of extractText-pageDelim.xq example</h3><programlisting type="example">import module namespace read-pdf = "http://www.zorba-xquery.com/modules/read-pdf";
+import module namespace file = "http://expath.org/ns/file";
+
+declare namespace rpo =
+      "http://www.zorba-xquery.com/modules/read-pdf/read-pdf-options";
+
+
+let $pdf := file:read-binary(resolve-uri("28msec-NoSQLNow.pdf"))
+let $options  :=
+    &amp;lt;rpo:extract-text-options&amp;gt;
+        &amp;lt;rpo:text-kind&amp;gt;simple&amp;lt;/rpo:text-kind&amp;gt;
+        &amp;lt;rpo:end-page&amp;gt;3&amp;lt;/rpo:end-page&amp;gt;
+        &amp;lt;rpo:start-page-separator&amp;gt;
+        ---start-page-sep---
+        &amp;lt;/rpo:start-page-separator&amp;gt;
+        &amp;lt;rpo:end-page-separator&amp;gt;
+        ---end-page-sep---
+        &amp;lt;/rpo:end-page-separator&amp;gt;
+    &amp;lt;/rpo:extract-text-options&amp;gt;
+let $str := read-pdf:extract-text($pdf, $options)
+return
+     (fn:contains($str, "---start-page-sep---"),
+      fn:contains($str, "Harnessing Flexible Data in the Cloud"),
+      fn:contains($str, "Thursday, August 23, 12"),
+      fn:contains($str, "---end-page-sep---"),
+      fn:string-length($str) &amp;gt; 250 )</programlisting></para></detaileddescription></compounddef></doxygen>

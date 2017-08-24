@@ -1,0 +1,20 @@
+<doxygen><compounddef id="www.w3.org_XQueryTest_val-inplace-schema" kind="schema"><detaileddescription><para><h3>Content of www.w3.org_XQueryTest_val-inplace schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/XQueryTest/val-inplace" targetNamespace="http://www.w3.org/XQueryTest/val-inplace" elementFormDefault="qualified" attributeFormDefault="qualified"&gt;
+    &lt;xs:element name="d" type="xs:duration"/&gt;
+    &lt;xs:element name="dd" type="tns:DDType"/&gt;
+
+    &lt;xs:complexType name="DDType"&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref="tns:d"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+
+
+    &lt;xs:element name="int" type="xs:int"/&gt;
+    &lt;xs:element name="ii"&gt;
+      &lt;xs:complexType&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element ref="tns:int"/&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,50 @@
+<doxygen><compounddef id="csv_parse3.xq-example" kind="example"><detaileddescription><para><h3>Content of csv_parse3.xq example</h3><programlisting type="example">(:Parse csv with different parameters.
+The csv file is taken from http://data.gov.
+:)
+
+import schema namespace csv-options="http://zorba.io/modules/csv-options";
+import module namespace csv = "http://zorba.io/modules/csv";
+import module namespace file="http://expath.org/ns/file";
+
+csv:parse(file:read-text(fn:resolve-uri("tri_2008_NH_v08.txt")),
+
+validate{
+&amp;lt;csv-options:options&amp;gt;
+  &amp;lt;first-row-is-header accept-all-lines="true"/&amp;gt;
+  &amp;lt;csv separator="&amp;amp;#009;"
+       quote-char=""
+       quote-escape=""/&amp;gt;
+  &amp;lt;xml-nodes&amp;gt;
+    &amp;lt;row&amp;gt;
+      &amp;lt;column/&amp;gt;
+    &amp;lt;/row&amp;gt;
+  &amp;lt;/xml-nodes&amp;gt;
+&amp;lt;/csv-options:options&amp;gt;
+}
+)
+
+
+(:
+
+Example txt input:
+
+Year	TRI Facility ID	Facility Name	Street Address	
+2008	03840NVLRNOCEAN	NOVEL IRON WORKS INC	250 OCEAN RD
+2008	03055SNTGB47POW	SAINT-GOBAIN CERAMICS- IGNITER PRODUCTS	47 POWERS ST
+
+-----------------------------------------------------------------------------------
+Expected Output:
+
+&amp;lt;row&amp;gt;
+  &amp;lt;Year&amp;gt;2008&amp;lt;/Year&amp;gt;
+  &amp;lt;TRI_Facility_ID&amp;gt;03840NVLRNOCEAN&amp;lt;/TRI_Facility_ID&amp;gt;
+  &amp;lt;Facility_Name&amp;gt;NOVEL IRON WORKS INC&amp;lt;/Facility_Name&amp;gt;
+  &amp;lt;Street_Address&amp;gt;250 OCEAN RD&amp;lt;/Street_Address&amp;gt;
+&amp;lt;/row&amp;gt;&amp;lt;row&amp;gt;
+  &amp;lt;Year&amp;gt;2008&amp;lt;/Year&amp;gt;
+  &amp;lt;TRI_Facility_ID&amp;gt;03055SNTGB47POW&amp;lt;/TRI_Facility_ID&amp;gt;
+  &amp;lt;Facility_Name&amp;gt;SAINT-GOBAIN CERAMICS- IGNITER PRODUCTS&amp;lt;/Facility_Name&amp;gt;
+  &amp;lt;Street_Address&amp;gt;47 POWERS ST&amp;lt;/Street_Address&amp;gt;
+&amp;lt;/row&amp;gt;
+:)
+</programlisting></para></detaileddescription></compounddef></doxygen>

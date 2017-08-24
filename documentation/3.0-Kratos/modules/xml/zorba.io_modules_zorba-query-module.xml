@@ -1,0 +1,459 @@
+<doxygen><compounddef id="zorba-query-module" kind="module"><detaileddescription><para><h3>Content of zorba-query module</h3><programlisting type="module">xquery version "3.0";
+(:
+ : Copyright 2011 The FLWOR Foundation.
+ :
+ : Licensed under the Apache License, Version 2.0 (the "License");
+ : you may not use this file except in compliance with the License.
+ : You may obtain a copy of the License at
+ :
+ : http://www.apache.org/licenses/LICENSE-2.0
+ :
+ : Unless required by applicable law or agreed to in writing, software
+ : distributed under the License is distributed on an "AS IS" BASIS,
+ : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ : See the License for the specific language governing permissions and
+ : limitations under the License.
+:)
+
+(:~
+ : This module contains functions to compile and evaluate queries
+ : written in either JSONiq or XQuery. Also, it contains function that
+ : allow to parameterize the static or dynamic evaluation phase.
+ :
+ : @author Juan Zacarias
+ : @project Zorba/Programming Languages/ZQ
+ :)
+module namespace zq = 'http://zorba.io/modules/zorba-query';
+
+declare namespace an = "http://zorba.io/annotations";
+declare namespace ver = "http://zorba.io/options/versioning";
+declare namespace op = "http://zorba.io/options/features";
+declare namespace f = "http://zorba.io/features";
+
+declare option ver:module-version "1.0";
+
+(:~
+ : &amp;lt;p&amp;gt;The function prepares a given a query for execution.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;If the query was successfully compiled, the function returns an
+ : identifier as xs:anyURI. This URI can be passed to other functions
+ : of this module (e.g. to actually evaluate the query). The URI
+ : is opaque and its lifetime is bound by the lifetime of the query
+ : that invoked this function. Further reference or uses
+ : of the identifier lead to unexpected results.&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;Successfully prepared queries need to be deleted by passing the resulting
+ : identifier to the zq:delete-query function of this module.&amp;lt;/p&amp;gt;
+ :
+ : @param $main-module-text the query that should be prepared.
+ :   The query needs to be a XQuery or JSONiq main module.
+ :
+ : @return an identifier for the compiled query that can be passed
+ :   as arguments to other functions of this module.
+ :
+ : @error any (static or type) error that may be raised during the compilation
+ : of the query. For example, err:XPST0003 if the given query could
+ : not be parsed.
+ :)
+declare %an:sequential function zq:prepare-main-module($main-module-text as xs:string) as 
+  xs:anyURI external;
+
+(:~
+ : &amp;lt;p&amp;gt;The function prepares a given query for execution.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;If the query was successfully compiled, the function returns an
+ : identifier as xs:anyURI. This URI can be passed to other functions
+ : of this module (e.g. to actually evaluate the query). The URI
+ : is opaque and its lifetime is bound by the lifetime of the query
+ : that invoked this function. Further reference or uses
+ : of the identifier lead to unexpected results.&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;Important notes regarding the second and third parameters of the function:&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;--------------------------------------------------------------------------&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;These parameters allow you to specify a URL resolver and a URI mapper
+ : for Zorba to use when executing this query. See
+ : &amp;lt;a href="http://www.zorba-xquery.com/html/documentation/2.7.0/zorba/uriresolvers"&amp;gt;here&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;ul&amp;gt;The second parameter is a function item for a URL
+ : resolver. The URL resolver function must recive 2 parameters:
+ : &amp;lt;li&amp;gt;A $namespace as xs:string that will contain the url to be resolved.&amp;lt;/li&amp;gt;
+ : &amp;lt;li&amp;gt;A $entity as xs:string that will contain the type of resolving needed.
+ :   This can be one of two values: "module" or "schema".&amp;lt;/li&amp;gt;
+ : &amp;lt;/ul&amp;gt;
+ : &amp;lt;p&amp;gt;The function must return the empty sequence when the specified $namespace
+ : or $entity are not the ones to be resolved.&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;Example:&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;  
+ : &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;declare function mymod:url-resolver($namespace as xs:string, $entity as xs:string) as item()?
+ : {
+ :  if($namespace = 'http://test.xq')
+ :  then "module namespace test = 'http://test'; declare function test:foo(){'foo'};"
+ :  else ()
+ : };&amp;lt;/pre&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;The URL resolver function's namespace, name, and parameter naming are
+ : not restricted by ZQ.&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;The URL resolver function's return type is not restricted, it could be a string, a sequence,
+ : a node, etc. All the outputs types are to be serialized as a string.&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;The third parameter is a function item for a URI mapper.&amp;lt;/p&amp;gt;
+ : &amp;lt;ul&amp;gt;The URI mapper function, just like the URL resolver, receives 2 parameters:
+ : &amp;lt;li&amp;gt;A $namespace as xs:string that will contain the URI to be mapped.&amp;lt;/li&amp;gt;
+ : &amp;lt;li&amp;gt;A $entity as xs:string that will contain the type of resolving needed.
+ :   This can be one of two values: "module" or "schema".&amp;lt;/li&amp;gt;
+ : &amp;lt;/ul&amp;gt;
+ : &amp;lt;p&amp;gt;The URI mapper must return an empty sequence when the specified $namesapce or $entity
+ : are not to be mapped. Unlike the URL resolver this function must return a sequence of strings.&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;Example:&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;declare function mymod:uri-mapper($namespace as xs:string, $entity as xs:string)
+ : {
+ :  if($namespace = 'http://test')
+ :  then ("http://zorba.io/test", "http://foo.com/schema/test")
+ :  else ()
+ : };&amp;lt;/pre&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;The URI mapper function's namespace, name, and parameter naming are
+ : not restricted by ZQ.&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;In order to pass the above URL resolver and URI mapper to this function,
+ : use the following syntax:&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ :   &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;variable $queryID := zq:prepare-main-module("..query text..",
+ :      mymod:url-resolver#2, mymod:uri-mapper#2);&amp;lt;/pre&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;That is, the QName of the function followed by "#2". This is XQuery
+ : "higher-order function" syntax, meaning the function with the specified
+ : QName which takes two arguments. Since URL resolvers and URI mappers
+ : must take two arguments, both will always be specified with "#2".&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;Both the URL resolver and URI mapper functions are optional, meaning you
+ : may pass the empty-sequence () for either.&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;Successfully prepared queries need to be deleted by passing the resulting
+ : identifier to the zq:delete-query function of this module.&amp;lt;/p&amp;gt;
+ :
+ : @param $main-module-text the query that should be prepared.
+ :   The query needs to be a XQuery or JSONiq main module.
+ :
+ : @param $resolver the URL resolver function.
+ : 
+ : @param $mapper the URI mapper function.
+ :
+ : @return an identifier for the compiled query that can be passed
+ :   as arguments to other functions of this module.
+ :
+ : @error any (static or type) error that may be raised during the compilation
+ : of the query. For example, err:XPST0003 if the given query could
+ : not be parsed.
+ :)
+declare %an:sequential function zq:prepare-main-module(
+  $main-module-text as xs:string,
+  $resolver as ( function(xs:string, xs:string) as item()? )?,
+  $mapper as ( function(xs:string, xs:string) as xs:string* )? ) as 
+    xs:anyURI external;
+
+(:~
+ : &amp;lt;p&amp;gt;This function compiles a given XQuery or JSONiq library module.
+ : It can be used to compile-check a module.&amp;lt;/p&amp;gt; 
+ :
+ : @param $library-module-text the library module that should
+ :  be prepared. 
+ :
+ : @return the empty-sequence.
+ :
+ : @error any (static or type) error that may be raised during the compilation
+ : of the library module. For example, err:XPST0003 if the given library
+ : module could not be parsed.
+ :)
+declare %an:sequential function zq:prepare-library-module($library-module-text as xs:string) as 
+  empty-sequence() external ;
+
+(:~
+ : &amp;lt;p&amp;gt;The function tests if the context-item is bound for the
+ : execution of the query referred to by the given query identifier.&amp;lt;/p&amp;gt;
+ :
+ : @param $query-key the identifier for a compiled query
+ :
+ : @return true if the context-item is bound, false otherwise.
+ :
+ : @error zq:NO_QUERY_MATCH if no query with the given identifier
+ :   was prepared.
+ :)
+declare function zq:is-bound-context-item($query-key as xs:anyURI) 
+  as xs:boolean  external;
+  
+
+(:~
+ : &amp;lt;p&amp;gt;The function tests if the given variable is bound for the
+ : execution of the query referred to by the given query identifier.&amp;lt;/p&amp;gt;
+ :
+ : @param $query-key the identifier for a compiled query
+ : @param $var-name the name of the variable
+ :
+ : @return true if the variable is bound, false otherwise.
+ :
+ : @error zq:NO_QUERY_MATCH if no query with the given identifier
+ :   was prepared.
+ : @error zq:UNDECLARED_VARIABLE if the given variable is not declared
+ :   in the query.
+ :)
+declare function zq:is-bound-variable($query-key as xs:anyURI, $var-name as 
+  xs:QName) as xs:boolean  external;
+
+(:~
+ : &amp;lt;p&amp;gt;The function returns the names of the external variables that
+ : are declared in the given query (either in the main module or
+ : in any of the imported library modules).&amp;lt;/p&amp;gt;
+ :
+ : @param $query-key the identifier for a compiled query
+ :
+ : @return the sequence of names of the said external variables.
+ :
+ : @error zq:NO_QUERY_MATCH if no query with the given identifier
+ :   was prepared.
+ :)
+declare function zq:external-variables($query-key as xs:anyURI) as
+  xs:QName* external ;
+  
+(:~
+ : &amp;lt;p&amp;gt;The function tests if the query identified by the given key
+ : is an updating query.&amp;lt;/p&amp;gt;
+ :
+ : @param $query-key the identifier for a compiled query
+ :
+ : @return true if the query is an updating query, false otherwise.
+ :
+ : @error zq:NO_QUERY_MATCH if no query with the given identifier
+ :   was prepared.
+ :)
+declare function zq:is-updating($query-key as xs:anyURI) as
+  xs:boolean external;  
+
+(:~
+ : &amp;lt;p&amp;gt;The function tests if the query identified by the given key
+ : is sequential query.&amp;lt;/p&amp;gt;
+ :
+ : @param $query-key the identifier for a compiled query
+ :
+ : @return true if the query is a sequential, false otherwise.
+ :
+ : @error zq:NO_QUERY_MATCH if no query with the given identifier
+ :   was prepared.
+ :)
+declare function zq:is-sequential($query-key as xs:anyURI) as
+  xs:boolean external;
+  
+(:~
+ : &amp;lt;p&amp;gt;This function binds the context-item of the prepared query
+ : identified by the given key to the $dot argument.&amp;lt;/p&amp;gt;
+ :
+ : @param $query-key the identifier for a compiled query
+ : @param $dot the context item to bind
+ :
+ : @return the function has side effects and returns the empty
+ :   sequence.
+ :
+ : @error zq:NO_QUERY_MATCH if no query with the given identifier
+ :   was prepared.
+ :)
+declare %an:sequential function zq:bind-context-item($query-key as xs:anyURI,
+  $dot as item()) as empty-sequence() external ;
+
+(:~
+ : &amp;lt;p&amp;gt;This function binds the variable with name $name of
+ : the prepared query identified by $query-key to the given sequence.&amp;lt;/p&amp;gt;
+ :
+ : @param $query-key the identifier for a compiled query
+ : @param $name the name of the external variable to bind
+ : @param $value the sequence to which the external variable $name
+ :  should be bound
+ :
+ : @return the function has side effects and returns the empty
+ :   sequence.
+ :
+ : @error zq:NO_QUERY_MATCH if no query with the given identifier
+ :   was prepared.
+ : @error zq:UNDECLARED_VARIABLE if the given variable is not declared
+ :   in the query.
+ :)
+declare %an:sequential function zq:bind-variable($query-key as xs:anyURI,
+  $var as xs:QName, $value as item()*) as empty-sequence() external ;
+
+
+(:~
+ : &amp;lt;p&amp;gt;Evaluates the given prepared query and returns the result
+ : of the evaluation. The query must not be sequential or
+ : updating.&amp;lt;/p&amp;gt;
+ :
+ : @param $query-key the identifier for a compiled query
+ :
+ : @return the result of evaluating the given query
+ :
+ : @error zq:NO_QUERY_MATCH if no query with the given identifier
+ :   was prepared.
+ :
+ : @error zq:QUERY_IS_UPDATING if the query is an updating query.
+ :
+ : @error zq:QUERY_IS_SEQUENTIAL if the query is sequential.
+ :
+ : @error any dynamic error that is raised by evaluating the
+ :   given query.
+ :
+ :)
+declare function zq:evaluate($query-key as xs:anyURI) as item()* external;
+
+(:~
+ : &amp;lt;p&amp;gt;Evaluates the given prepared query and applies the updates
+ : computed by this query. The query must be an updating query.&amp;lt;/p&amp;gt;
+ :
+ : @param $query-key the identifier for a compiled query
+ :
+ : @return the function has side effects because it applies
+ :  the updates of the query. It returns the empty sequence.
+ :
+ : @error zq:NO_QUERY_MATCH if no query with the given identifier
+ :   was prepared.
+ :
+ : @error zq:QUERY_NOT_UPDATING if the query is not an updating query.
+ :
+ : @error zq:QUERY_IS_SEQUENTIAL if the query is sequential.
+ :
+ : @error any dynamic error that is raised by evaluating the
+ :   given query or applying its updates.
+ :
+ :)
+declare updating function zq:evaluate-updating($query-key as xs:anyURI) external;
+
+(:~ 
+ : &amp;lt;p&amp;gt;Evaluates the given prepared query and returns the result
+ : of the evaluation. The query must be sequential.&amp;lt;/p&amp;gt;
+ :
+ : @param $query-key the identifier for a compiled query
+ :
+ : @return the result of evaluating the query.
+ :
+ : @error zq:NO_QUERY_MATCH if no query with the given identifier
+ :   was prepared.
+ :
+ : @error zq:QUERY_NOT_SEQUENTIAL if the query is not sequential.
+ :
+ : @error zq:QUERY_IS_UPDATING if the query is an updating query.
+ :
+ : @error any dynamic error that is raised by evaluating the
+ :   given query.
+ :
+ :)
+declare %an:sequential function zq:evaluate-sequential($query-key as
+  xs:string) as item()* external;
+  
+(:~ 
+ : &amp;lt;p&amp;gt;Deletes the prepared query associated with the given identifier.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;After the query is deleted, the corresponding identifier should
+ : not be used as argument to any of the functions of this module.&amp;lt;/p&amp;gt;
+ :
+ : @param $query-key the identifier for a compiled query
+ :
+ : @return the function has side effects and returns the empty sequence.
+ :
+ : @error zq:NO_QUERY_MATCH if no query with the given identifier
+ :   was prepared.
+ :
+ :)
+declare %an:sequential function zq:delete-query($query-key as xs:anyURI) as
+  empty-sequence() external;
+
+(:~
+ : &amp;lt;p&amp;gt;This function returns the value of a variable that is bound in the
+ : given query.&amp;lt;/p&amp;gt;
+ :
+ : @param $query-key the identifier of a compiled query.
+ : @param $var-name the name of the variable whose value should be returned.
+ :
+ : @return the value bound to the given variable.
+ :
+ : @error zq:NO_QUERY_MATCH if no query with the given identifier
+ :   was prepared.
+ : @error zq:UNDECLARED_VARIABLE if the given variable is not declared
+ :   in the query.
+ : @error zq:UNBOUND_VARIABLE if the given variable doesn't have a value.
+ :)
+declare function zq:variable-value($query-key as xs:anyURI, $var-name as 
+  xs:QName) as item()* external;
+
+(:~
+ : &amp;lt;p&amp;gt;Returns the compiled query identified by the given query-key 
+ : as binary data.&amp;lt;/p&amp;gt;
+ :
+ : @param $query-key the identifier of a compiled query.
+ :
+ : @return the query as xs:base64Binary.
+ :
+ : @error zq:NO_QUERY_MATCH if no query with the given identifier
+ :   was prepared.
+ : @error zq:NO_QUERY_PLAN if there is an error serializing the query.
+ :)
+declare function zq:query-plan($query-key as xs:anyURI) 
+  as xs:base64Binary external;
+  
+  
+(:~
+ : &amp;lt;p&amp;gt;The function loads a given query for execution from a 
+ : xs:base64Binary query plan, obtained through the zq:query-plan function.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;If the query was successfully loaded, the function returns an
+ : identifier as xs:anyURI. This URI can be passed to other functions
+ : of this module (e.g. to actually evaluate the query). The URI
+ : is opaque and its lifetime is bound by the lifetime of the query
+ : that invoked this function. Further reference or uses
+ : of the identifier lead to unexpected results.&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;Successfully prepared queries need to be deleted by passing the resulting
+ : identifier to the zq:delete-query function of this module.&amp;lt;/p&amp;gt;
+ :
+ : @param $plan the binary query plan.
+ :
+ : @return an identifier for the compiled query that can be passed
+ :   as arguments to other functions of this module.
+ :
+ : @error any (static or type) error that may be raised during the compilation
+ : of the query. For example, err:XPST0003 if the given query could
+ : not be parsed.
+ :)    
+declare function zq:load-from-query-plan($plan as xs:base64Binary)
+  as xs:anyURI external;
+
+(:~
+ : &amp;lt;p&amp;gt;The function loads a given query for execution from a 
+ : xs:base64Binary query plan, obtained through the zq:query-plan function.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;If the query was successfully loaded, the function returns an
+ : identifier as xs:anyURI. This URI can be passed to other functions
+ : of this module (e.g. to actually evaluate the query). The URI
+ : is opaque and its lilfetime is bound by the lifetime of the query
+ : that invoked this function. Further reference or uses
+ : of the identifier lead to unexpected results.&amp;lt;/p&amp;gt;                 
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;For important notes regarding the second and third parameters of the 
+ : function, review the comments in zq:prepare-main-module#3.&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;Successfully prepared queries need to be deleted by passing the resulting
+ : identifier to the zq:delete-query function of this module.&amp;lt;/p&amp;gt;
+ :
+ : @param $plan the binary query plan.
+ :
+ : @param $resolver the URL resolver function.
+ : 
+ : @param $mapper the URI mapper function.
+ :
+ : @return an identifier for the compiled query that can be passed
+ :   as arguments to other functions of this module.
+ :
+ : @error any (static or type) error that may be raised during the compilation
+ : of the query. For example, err:XPST0003 if the given query could
+ : not be parsed.
+ :)  
+declare function zq:load-from-query-plan($plan as xs:base64Binary,
+  $resolver as item()?, $mapper as item()?) as xs:anyURI external;
+
+</programlisting></para></detaileddescription></compounddef></doxygen>

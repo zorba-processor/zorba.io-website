@@ -1,0 +1,8 @@
+<doxygen><compounddef id="send-request_href.xq-example" kind="example"><detaileddescription><para><h3>Content of send-request_href.xq example</h3><programlisting type="example">import module namespace http = "http://www.zorba-xquery.com/modules/http-client";
+
+variable $res := 
+http:send-request((), "http://zorbatest.lambda.nu:8080/cgi-bin/test-xml?querystring", ());
+
+$res[2]
+
+</programlisting></para></detaileddescription></compounddef></doxygen>

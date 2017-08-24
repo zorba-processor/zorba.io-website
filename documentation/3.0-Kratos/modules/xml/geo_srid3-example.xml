@@ -1,0 +1,11 @@
+<doxygen><compounddef id="srid3.xq-example" kind="example"><detaileddescription><para><h3>Content of srid3.xq example</h3><programlisting type="example">import module namespace geo = "http://expath.org/ns/geo";
+declare namespace gml="http://www.opengis.net/gml";
+
+let $mygeo := &amp;lt;myGeometryCollection srsName="http://zorba.com"&amp;gt;
+                &amp;lt;myGeometry srsName="http://www.zorba-query.com"&amp;gt;
+                &amp;lt;gml:LineString&amp;gt;&amp;lt;gml:pos&amp;gt;1 1&amp;lt;/gml:pos&amp;gt;&amp;lt;gml:pos&amp;gt;2 1&amp;lt;/gml:pos&amp;gt;&amp;lt;/gml:LineString&amp;gt;
+                &amp;lt;/myGeometry&amp;gt;
+                &amp;lt;/myGeometryCollection&amp;gt;
+return
+geo:srid($mygeo//gml:LineString
+                )</programlisting></para></detaileddescription></compounddef></doxygen>

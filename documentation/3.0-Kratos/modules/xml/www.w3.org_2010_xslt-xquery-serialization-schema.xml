@@ -1,0 +1,304 @@
+<doxygen><compounddef id="www.w3.org_2010_xslt-xquery-serialization-schema" kind="schema"><detaileddescription><para><h3>Content of www.w3.org_2010_xslt-xquery-serialization schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:output="http://www.w3.org/2010/xslt-xquery-serialization" targetNamespace="http://www.w3.org/2010/xslt-xquery-serialization" elementFormDefault="qualified"&gt;
+
+  &lt;xs:annotation&gt;
+    &lt;xs:documentation&gt;
+      This is a schema for serialization parameters for
+      XSLT and XQuery Serialization 3.0.
+
+      This schema is available for use under the conditions of the
+      W3C Software License published at
+      http://www.w3.org/Consortium/Legal/copyright-software-19980720
+
+      It defines a schema for XML Infoset instances with which a user of
+      a host language MAY specify serialization parameters for use in
+      serializing an instance of the XQuery and XPath Data Model.  It
+      also provides hooks that allow the inclusion of implementation-
+      defined serialization parameters and implementation-defined
+      modifiers to serialization parameters.
+    &lt;/xs:documentation&gt;
+  &lt;/xs:annotation&gt;
+
+  &lt;xs:simpleType name="QNames-type"&gt;
+    &lt;xs:list itemType="xs:QName"/&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="yes-no-type"&gt;
+    &lt;xs:restriction base="xs:token"&gt;
+      &lt;xs:enumeration value="no"/&gt;
+      &lt;xs:enumeration value="yes"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="yes-no-omit-type"&gt;
+    &lt;xs:restriction base="xs:token"&gt;
+      &lt;xs:enumeration value="no"/&gt;
+      &lt;xs:enumeration value="omit"/&gt;
+      &lt;xs:enumeration value="yes"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="char-type"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:maxLength value="1"/&gt;
+      &lt;xs:minLength value="1"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="encoding-string-type"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="[A-Za-z]([A-Za-z0-9._\-])*"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="method-type"&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:string"&gt;
+          &lt;xs:enumeration value="html"/&gt;
+          &lt;xs:enumeration value="text"/&gt;
+          &lt;xs:enumeration value="xml"/&gt;
+          &lt;xs:enumeration value="xhtml"/&gt;
+          &lt;xs:enumeration value="json"/&gt;
+          &lt;xs:enumeration value="json-xml-hybrid"/&gt;          
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base="xs:QName"&gt;
+          &lt;xs:pattern value=".*:.*"/&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="pubid-char-string-type"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="([- \r\n\ta-zA-Z0-9'()+,./:=?;!*#@$_%])*"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="system-id-string-type"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="[^']*|[^&amp;quot;]*"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;!--
+     - Base type of all serialization parameter types
+    --&gt;
+  &lt;xs:complexType name="base-param-type"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:restriction base="xs:anyType"&gt;
+        &lt;xs:anyAttribute namespace="##other" processContents="lax"/&gt;
+      &lt;/xs:restriction&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;!--
+     - Generic string serialization parameters
+    --&gt;
+  &lt;xs:complexType name="string-param-type"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension base="output:base-param-type"&gt;
+        &lt;xs:attribute name="value" type="xs:string" use="required"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;!--
+     - Serialization parameter type for "yes", "no" or "omit"
+     - serialization parameters
+    --&gt;
+  &lt;xs:complexType name="yes-no-param-type"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension base="output:base-param-type"&gt;
+        &lt;xs:attribute name="value" type="output:yes-no-type" use="required"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;!--
+     - Serialization parameter type for list of xs:QName
+     - serialization parameters
+    --&gt;
+  &lt;xs:complexType name="QNames-param-type"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension base="output:base-param-type"&gt;
+        &lt;xs:attribute name="value" type="output:QNames-type" use="required"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;!--
+     - Serialization parameter type for "yes", "no" or "omit"
+     - serialization parameters
+    --&gt;
+  &lt;xs:complexType name="yes-no-omit-param-type"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension base="output:base-param-type"&gt;
+        &lt;xs:attribute name="value" type="output:yes-no-omit-type" use="required"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;!--
+     - Serialization parameter element for byte-order-mark parameter
+    --&gt;
+  &lt;xs:element name="serialization-parameter-element" abstract="true" type="output:base-param-type"/&gt;
+
+  &lt;!--
+     - Serialization parameter element for byte-order-mark parameter
+    --&gt;
+  &lt;xs:element id="byte-order-mark" name="byte-order-mark" type="output:yes-no-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter element for cdata-section-elements parameter
+    --&gt;
+  &lt;xs:element id="cdata-section-elements" name="cdata-section-elements" type="output:QNames-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter type for doctype-public parameter
+    --&gt;
+  &lt;xs:complexType name="doctype-public-param-type"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension base="output:base-param-type"&gt;
+        &lt;xs:attribute name="value" type="output:pubid-char-string-type" use="required"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;!--
+     - Serialization parameter element for doctype-public parameter
+    --&gt;
+  &lt;xs:element id="doctype-public" name="doctype-public" type="output:doctype-public-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter type for doctype-system parameter
+    --&gt;
+  &lt;xs:complexType name="doctype-system-param-type"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension base="output:base-param-type"&gt;
+        &lt;xs:attribute name="value" type="output:system-id-string-type" use="required"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;!--
+     - Serialization parameter element for doctype-system parameter
+    --&gt;
+  &lt;xs:element id="doctype-system" name="doctype-system" type="output:doctype-system-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter type for encoding parameter
+    --&gt;
+  &lt;xs:complexType name="encoding-param-type"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension base="output:base-param-type"&gt;
+        &lt;xs:attribute name="value" type="output:encoding-string-type" use="required"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;!--
+     - Serialization parameter element for method parameter
+    --&gt;
+  &lt;xs:element id="encoding" name="encoding" type="output:encoding-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter element for escape-uri-attributes parameter
+    --&gt;
+  &lt;xs:element id="escape-uri-attributes" name="escape-uri-attributes" type="output:yes-no-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter element for include-content-type parameter
+    --&gt;
+  &lt;xs:element id="include-content-type" name="include-content-type" type="output:yes-no-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter element for indent parameter
+    --&gt;
+  &lt;xs:element id="indent" name="indent" type="output:yes-no-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter element for media-type parameter
+    --&gt;
+  &lt;xs:element id="media-type" name="media-type" type="output:yes-no-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter type for method parameter
+    --&gt;
+  &lt;xs:complexType name="method-param-type"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension base="output:base-param-type"&gt;
+        &lt;xs:attribute name="value" type="output:method-type" use="required"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;!--
+     - Serialization parameter element for method parameter
+    --&gt;
+  &lt;xs:element id="method" name="method" type="output:method-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+  &lt;!--
+     - Serialization parameter element for normalization-form parameter
+    --&gt;
+  &lt;xs:element id="normalization-form" name="normalization-form" type="output:string-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter element for omit-xml-declaration parameter
+    --&gt;
+  &lt;xs:element id="omit-xml-declaration" name="omit-xml-declaration" type="output:yes-no-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter element for standalone parameter
+    --&gt;
+  &lt;xs:element id="standalone" name="standalone" type="output:yes-no-omit-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter element for suppress-indentation parameter
+    --&gt;
+  &lt;xs:element id="suppress-indentation" name="suppress-indentation" type="output:QNames-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter element for undeclare-prefixes parameter
+    --&gt;
+  &lt;xs:element id="undeclare-prefixes" name="undeclare-prefixes" type="output:yes-no-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter type for use-character-maps
+     - parameter
+    --&gt;
+  &lt;xs:complexType name="use-character-maps-param-type"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension base="output:base-param-type"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name="character-map" minOccurs="0" maxOccurs="unbounded"&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:attribute name="character" type="output:char-type"/&gt;
+              &lt;xs:attribute name="map-string" type="xs:string"/&gt;
+              &lt;xs:anyAttribute namespace="##other" processContents="lax"/&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+          &lt;xs:any minOccurs="0" namespace="##other" processContents="lax"/&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;!--
+     - Serialization parameter element for use-character-maps parameter
+    --&gt;
+  &lt;xs:element id="use-character-maps" name="use-character-maps" type="output:use-character-maps-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;!--
+     - Serialization parameter element for version parameter
+    --&gt;
+  &lt;xs:element id="version" name="version" type="output:string-param-type" substitutionGroup="output:serialization-parameter-element"/&gt;
+
+  &lt;xs:element name="serialization-parameters"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element ref="output:serialization-parameter-element" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

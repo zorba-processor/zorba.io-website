@@ -1,0 +1,44 @@
+<doxygen><compounddef id="ft-module-tokenize-nodes-1.xq-example" kind="example"><detaileddescription><para><h3>Content of ft-module-tokenize-nodes-1.xq example</h3><programlisting type="example">jsoniq version "1.0";
+
+import module namespace ft = "http://zorba.io/modules/full-text";
+
+let $book :=
+  &amp;lt;book&amp;gt;
+    &amp;lt;title&amp;gt;The C++ Programming Language&amp;lt;/title&amp;gt;
+    &amp;lt;authors&amp;gt;
+      &amp;lt;author&amp;gt;Bjarne Stroustrup&amp;lt;/author&amp;gt;
+    &amp;lt;/authors&amp;gt;
+    &amp;lt;chapters&amp;gt;
+      &amp;lt;chapter&amp;gt;
+        &amp;lt;title&amp;gt;Notes to the Reader&amp;lt;/title&amp;gt;
+        &amp;lt;content&amp;gt;
+          &amp;lt;quote&amp;gt;
+            &amp;lt;content&amp;gt;
+              "The time has come," the Walrus said,
+              "to talk of many things."
+            &amp;lt;/content&amp;gt;
+            &amp;lt;source&amp;gt;Lewis Carroll&amp;lt;/source&amp;gt;
+          &amp;lt;/quote&amp;gt;
+          &amp;lt;!-- more content --&amp;gt;
+        &amp;lt;/content&amp;gt;
+      &amp;lt;/chapter&amp;gt;
+    &amp;lt;/chapters&amp;gt;
+  &amp;lt;/book&amp;gt;
+
+let $includes := $book//chapter
+let $excludes := $book//quote
+
+let $tokens := ft:tokenize-nodes( $includes, $excludes, xs:language("en") )
+
+let $t1 := $tokens[1]
+let $t2 := $tokens[2]
+let $t3 := $tokens[3]
+let $t4 := $tokens[4]
+
+return  $t1.value eq "Notes"
+    and $t2.value eq "to"
+    and $t3.value eq "the"
+    and $t4.value eq "Reader"
+
+(: vim:set et sw=2 ts=2: :)
+</programlisting></para></detaileddescription></compounddef></doxygen>

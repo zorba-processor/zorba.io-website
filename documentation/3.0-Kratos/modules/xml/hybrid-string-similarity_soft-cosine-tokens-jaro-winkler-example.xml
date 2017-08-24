@@ -1,0 +1,4 @@
+<doxygen><compounddef id="soft-cosine-tokens-jaro-winkler.xq-example" kind="example"><detaileddescription><para><h3>Content of soft-cosine-tokens-jaro-winkler.xq example</h3><programlisting type="example">import module namespace simh = "http://zorba.io/modules/data-cleaning/hybrid-string-similarity";
+
+simh:soft-cosine-tokens-jaro-winkler("The FLWOR Foundation", "FLWOR Found.", " +", 1, 4, 0.1 )
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,183 @@
+<doxygen><compounddef id="string-module" kind="module"><detaileddescription><para><h3>Content of string module</h3><programlisting type="module">jsoniq version "1.0";
+
+(:
+ : Copyright 2006-2009 The FLWOR Foundation.
+ :
+ : Licensed under the Apache License, Version 2.0 (the "License");
+ : you may not use this file except in compliance with the License.
+ : You may obtain a copy of the License at
+ :
+ : http://www.apache.org/licenses/LICENSE-2.0
+ :
+ : Unless required by applicable law or agreed to in writing, software
+ : distributed under the License is distributed on an "AS IS" BASIS,
+ : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ : See the License for the specific language governing permissions and
+ : limitations under the License.
+:)
+
+(:~
+ : &amp;lt;p&amp;gt;This module provides string related functions.&amp;lt;/p&amp;gt;
+ :
+ : &amp;lt;p&amp;gt;Mostly, the functions in this module provide primitives
+ : to work with streamable strings. For example, it allows to
+ : check whether a given string is streamable or seekable.&amp;lt;/p&amp;gt;
+ :
+ : @author Matthias Brantner
+ : @project Zorba/XML and JSON Data Model/Atomic/String
+ :
+ :)
+module namespace string = "http://zorba.io/modules/string";
+declare namespace ver = "http://zorba.io/options/versioning";
+declare option ver:module-version "1.0";
+
+(:~
+ : Analyzes a string using a regular expression, returning sequence of JSON
+ : objects that identify which parts of the input string matched or failed to
+ : match the regular expression; and in the case of matched substrings, which
+ : substrings matched each capturing group in the regular expression.
+ : &amp;lt;p/&amp;gt;
+ : This function behaves like
+ : &amp;lt;a href="http://www.w3.org/TR/xpath-functions-30/#func-analyze-string"&amp;gt;&amp;lt;code&amp;gt;fn:analyze-string&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;
+ : but returns a JSON array rather than an XML element.
+ :
+ : @param $input The string to analyze.  If the empty sequence, the function
+ : behaves as if &amp;lt;code&amp;gt;$input&amp;lt;/code&amp;gt; were a zero-length string.
+ : @param $pattern The regular expression.
+ : @param $flags The $flags argument is interpreted in the same way as for the
+ : &amp;lt;a href="http://www.w3.org/TR/xpath-functions-30/#func-matches"&amp;gt;&amp;lt;code&amp;gt;fn:matches&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;
+ : function.
+ : @return a JSON array of objects where each object contains a single
+ : key/value pair.
+ : Each key is either &amp;lt;code&amp;gt;match&amp;lt;/code&amp;gt; or &amp;lt;code&amp;gt;non-match&amp;lt;/code&amp;gt;.
+ : For &amp;lt;code&amp;gt;non-match&amp;lt;/code&amp;gt;,
+ : the value is a string that is the part of &amp;lt;code&amp;gt;$input&amp;lt;/code&amp;gt;
+ : that did not match;
+ : for &amp;lt;code&amp;gt;match&amp;lt;/code&amp;gt;,
+ : the value is either
+ : a string that is the part of &amp;lt;code&amp;gt;$input&amp;lt;/code&amp;gt; that matched
+ : (when &amp;lt;code&amp;gt;$pattern&amp;lt;/code&amp;gt; contains no capturing groups)
+ : or an array containing values for both capturing groups
+ : and other matches.
+ : &amp;lt;p/&amp;gt;
+ : Capturing group matches are themselves arrays
+ : where the first element is the group number (1-based)
+ : and subsequent elements are either
+ : a string that is the part of &amp;lt;code&amp;gt;$input&amp;lt;/code&amp;gt; that matched
+ : or sub-arrays for nested capturing groups.
+ :)
+declare function string:analyze-string( $input as xs:string?,
+                                        $pattern as xs:string,
+                                        $flags as xs:string )
+  as array() external;
+
+(:~
+ : Analyzes a string using a regular expression, returning sequence of JSON
+ : objects that identify which parts of the input string matched or failed to
+ : match the regular expression; and in the case of matched substrings, which
+ : substrings matched each capturing group in the regular expression.
+ : &amp;lt;p/&amp;gt;
+ : This function behaves like
+ : &amp;lt;a href="http://www.w3.org/TR/xpath-functions-30/#func-analyze-string"&amp;gt;&amp;lt;code&amp;gt;fn:analyze-string&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;
+ : but returns a JSON array rather than an XML element.
+ :
+ : @param $input The string to analyze.  If the empty sequence, the function
+ : behaves as if &amp;lt;code&amp;gt;$input&amp;lt;/code&amp;gt; were a zero-length string.
+ : @param $pattern The regular expression.
+ : @return a JSON array of objects where each object contains a single
+ : key/value pair.
+ : Each key is either &amp;lt;code&amp;gt;match&amp;lt;/code&amp;gt; or &amp;lt;code&amp;gt;non-match&amp;lt;/code&amp;gt;.
+ : For &amp;lt;code&amp;gt;non-match&amp;lt;/code&amp;gt;,
+ : the value is a string that is the part of &amp;lt;code&amp;gt;$input&amp;lt;/code&amp;gt;
+ : that did not match;
+ : for &amp;lt;code&amp;gt;match&amp;lt;/code&amp;gt;,
+ : the value is either
+ : a string that is the part of &amp;lt;code&amp;gt;$input&amp;lt;/code&amp;gt; that matched
+ : (when &amp;lt;code&amp;gt;$pattern&amp;lt;/code&amp;gt; contains no capturing groups)
+ : or an array containing values for both capturing groups
+ : and other matches.
+ : &amp;lt;p/&amp;gt;
+ : Capturing group matches are themselves arrays
+ : where the first element is the group number (1-based)
+ : and subsequent elements are either
+ : a string that is the part of &amp;lt;code&amp;gt;$input&amp;lt;/code&amp;gt; that matched
+ : or sub-arrays for nested capturing groups.
+ :)
+declare function string:analyze-string( $input as xs:string?,
+                                        $pattern as xs:string )
+  as array()
+{
+  string:analyze-string( $input, $pattern, "" )
+};
+
+(:~
+ : &amp;lt;p&amp;gt;This function materializes a streamable string.&amp;lt;/p&amp;gt;
+ :
+ : &amp;lt;p&amp;gt;The drawback of a streamable (non-seekable) string is that
+ : its value can only be consumed once. That is, only one function
+ : can access the value of astreamable string item.&amp;lt;/p&amp;gt;
+ :
+ : &amp;lt;p&amp;gt;In order to remedy this situation, this function can be used to 
+ : convert a streamable string into its non-streamable counterpart. As a
+ : result, the string returned by this function has the same value as its
+ : input but is materialized and, hence, can be consumed multiple times.&amp;lt;/p&amp;gt;
+ :
+ : @param $s the streamable string item to materialize
+ : @return a materialized string of its input or the input if the input
+ :         item was not a streamable string.
+ :
+ :)
+declare function string:materialize($s as string) as string external;
+
+(:~
+ : &amp;lt;p&amp;gt;This function checks whether a given string item is implemented by a
+ : streamable string.&amp;lt;/p&amp;gt;
+ :
+ : &amp;lt;p&amp;gt;A streamable string is produced by some functions of a module.
+ : It's an optimized implementation of an string to handle arbitrary
+ : sized data. The drawback is that its value can only be consumed once.
+ : That is, only one function can access the value of a streamable string
+ : item.&amp;lt;/p&amp;gt;
+ :
+ : @param $s the string to check
+ :
+ : @return true if the given item is implemented using a streamable string
+ :         or false otherwise.
+ :)
+declare function string:is-streamable($s as string) as boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;This function checks whether a given string item is a
+ : seekable stream string.&amp;lt;/p&amp;gt;
+ :
+ : &amp;lt;p&amp;gt;For example, a seekable streamable string is returned by the
+ : file module.&amp;lt;/p&amp;gt;
+ :
+ : @param $s the string to check
+ :
+ : @return true if the given item is a seekable stream string
+ :         or false otherwise.
+ :)
+declare function string:is-seekable($s as string) as boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Returns a sequence of strings constructed by splitting the input wherever
+ : the given separator is found.&amp;lt;/p&amp;gt;
+ :
+ : &amp;lt;p&amp;gt;The function is different from tokenize. It doesn't allow
+ : the separator to be a regular expression. This restriction allows for more
+ : performant implementation. Specifically, the function processes
+ : streamable strings as input in a streamable way which is particularly useful
+ : to tokenize huge strings.&amp;lt;/p&amp;gt;
+ :
+ : @param $s the input string to split
+ : @param $separator the separator used for splitting the input string $s
+ :
+ : @return a sequence of strings constructed by splitting the input
+ :)
+declare function string:split(
+  $s as string,
+  $separator as string) as string* external;
+
+(: vim:set et sw=2 ts=2: :)
+</programlisting></para></detaileddescription></compounddef></doxygen>

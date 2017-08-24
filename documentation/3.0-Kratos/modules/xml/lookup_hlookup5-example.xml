@@ -1,0 +1,10 @@
+<doxygen><compounddef id="hlookup5.xq-example" kind="example"><detaileddescription><para><h3>Content of hlookup5.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/lookup";
+
+excel:hlookup("a", ((1, "A", 3),
+                  (4, 5, 6),
+                  (7, 8, 9),
+                  (10,11,12)),
+                  3, 4,
+                  2)
+</programlisting></para></detaileddescription></compounddef></doxygen>

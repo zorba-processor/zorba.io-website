@@ -1,0 +1,24 @@
+<doxygen><compounddef id="equals4.xq-example" kind="example"><detaileddescription><para><h3>Content of equals4.xq example</h3><programlisting type="example">import module namespace geo = "http://expath.org/ns/geo";
+declare namespace gml="http://www.opengis.net/gml";
+
+geo:equals(&amp;lt;gml:MultiSurface&amp;gt;
+                &amp;lt;gml:Polygon&amp;gt;&amp;lt;gml:exterior&amp;gt;
+                &amp;lt;gml:LinearRing&amp;gt;
+                &amp;lt;gml:pos&amp;gt;1 1 &amp;lt;/gml:pos&amp;gt;
+                &amp;lt;gml:pos&amp;gt;20 1&amp;lt;/gml:pos&amp;gt;
+                &amp;lt;gml:pos&amp;gt;20 20&amp;lt;/gml:pos&amp;gt;
+                &amp;lt;gml:pos&amp;gt;1 20&amp;lt;/gml:pos&amp;gt;
+                &amp;lt;gml:pos&amp;gt; 1 1  &amp;lt;/gml:pos&amp;gt;
+                &amp;lt;/gml:LinearRing&amp;gt;
+                &amp;lt;/gml:exterior&amp;gt;&amp;lt;/gml:Polygon&amp;gt;
+              &amp;lt;/gml:MultiSurface&amp;gt;,
+                &amp;lt;gml:Polygon&amp;gt;&amp;lt;gml:exterior&amp;gt;
+                &amp;lt;gml:LinearRing&amp;gt;
+                &amp;lt;gml:pos&amp;gt;1 1 &amp;lt;/gml:pos&amp;gt;
+                &amp;lt;gml:pos&amp;gt;20 1&amp;lt;/gml:pos&amp;gt;
+                &amp;lt;gml:pos&amp;gt;20 20&amp;lt;/gml:pos&amp;gt;
+                &amp;lt;gml:pos&amp;gt;1 20&amp;lt;/gml:pos&amp;gt;
+                &amp;lt;gml:pos&amp;gt; 1 1  &amp;lt;/gml:pos&amp;gt;
+                &amp;lt;/gml:LinearRing&amp;gt;
+                &amp;lt;/gml:exterior&amp;gt;&amp;lt;/gml:Polygon&amp;gt;
+              )</programlisting></para></detaileddescription></compounddef></doxygen>

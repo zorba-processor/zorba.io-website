@@ -1,0 +1,1 @@
+<doxygen><compounddef id="-schema" kind="schema"><detaileddescription><para><h3>Content of  schema</h3><programlisting type="schema">&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;xsd:element name="p" type="xsd:string"/&gt;&lt;/xsd:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

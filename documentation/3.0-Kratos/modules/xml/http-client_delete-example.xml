@@ -1,0 +1,7 @@
+<doxygen><compounddef id="delete.xq-example" kind="example"><detaileddescription><para><h3>Content of delete.xq example</h3><programlisting type="example">import module namespace http="http://www.zorba-xquery.com/modules/http-client";
+
+variable $result :=
+  http:delete("http://zorbatest.lambda.nu:8080/cgi-bin/test-text");
+
+$result[2]
+</programlisting></para></detaileddescription></compounddef></doxygen>

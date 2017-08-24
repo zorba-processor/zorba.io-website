@@ -1,0 +1,65 @@
+<doxygen><compounddef id="www.w3.org_XQueryTest_hats-schema" kind="schema"><detaileddescription><para><h3>Content of www.w3.org_XQueryTest_hats schema</h3><programlisting type="schema">&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:hats="http://www.w3.org/XQueryTest/hats" targetNamespace="http://www.w3.org/XQueryTest/hats" elementFormDefault="qualified"&gt;
+
+&lt;!-- A hodge-podge of random type declarations --&gt;
+
+
+&lt;xsd:element name="ArrayTest"&gt;
+	&lt;xsd:complexType&gt;
+	    &lt;xsd:sequence&gt;
+	        &lt;xsd:element name="array1" type="xsd:string" maxOccurs="10"/&gt;
+	        &lt;xsd:choice minOccurs="0" maxOccurs="unbounded"&gt;
+		        &lt;xsd:element name="array2" type="xsd:boolean" minOccurs="2" maxOccurs="2"/&gt;
+		        &lt;xsd:element name="array3" type="xsd:string" maxOccurs="4"/&gt;
+	        &lt;/xsd:choice&gt;
+	    &lt;/xsd:sequence&gt;
+    &lt;/xsd:complexType&gt;
+&lt;/xsd:element&gt;
+
+&lt;xsd:simpleType name="hatsize"&gt;
+  &lt;xsd:restriction base="xsd:integer"&gt;
+    &lt;xsd:minInclusive value="4"/&gt;
+    &lt;xsd:maxInclusive value="10"/&gt;
+  &lt;/xsd:restriction&gt;
+&lt;/xsd:simpleType&gt;
+
+&lt;xsd:simpleType name="bighatsize"&gt;
+  &lt;xsd:restriction base="hats:hatsize"&gt;
+    &lt;xsd:minInclusive value="7"/&gt;
+    &lt;!--&lt;xsd:maxInclusive value="10"/&gt;--&gt; &lt;!-- inherit the maxInclusive facet --&gt;
+  &lt;/xsd:restriction&gt;
+&lt;/xsd:simpleType&gt;
+
+&lt;xsd:simpleType name="shoesize"&gt;
+  &lt;xsd:restriction base="xsd:negativeInteger"&gt;
+    &lt;xsd:minExclusive value="-8"/&gt;
+    &lt;xsd:maxExclusive value="-2"/&gt;
+  &lt;/xsd:restriction&gt;
+&lt;/xsd:simpleType&gt;
+
+
+&lt;xsd:simpleType name="date2003"&gt;
+  &lt;xsd:restriction base="xsd:date"&gt;
+    &lt;xsd:minInclusive value="2003-01-01"/&gt;
+    &lt;xsd:maxInclusive value="2003-12-31"/&gt;
+  &lt;/xsd:restriction&gt;
+&lt;/xsd:simpleType&gt;
+
+&lt;xsd:simpleType name="vreg"&gt;
+  &lt;xsd:restriction base="xsd:string"&gt;
+    &lt;xsd:pattern value="[a-z]{3}[0-9]{3}"/&gt;
+  &lt;/xsd:restriction&gt;
+&lt;/xsd:simpleType&gt;
+
+&lt;xsd:complexType name="abfType"&gt;
+    &lt;xsd:sequence&gt;
+      &lt;xsd:element name="a" minOccurs="1" type="xsd:string"/&gt;
+      &lt;xsd:element name="b" minOccurs="0" maxOccurs="2"/&gt;
+      &lt;xsd:element name="f" minOccurs="1" maxOccurs="unbounded"/&gt;
+    &lt;/xsd:sequence&gt;
+&lt;/xsd:complexType&gt;
+
+&lt;xsd:element name="abf" type="hats:abfType"/&gt;
+
+&lt;xsd:element name="s" type="xsd:string"/&gt;
+
+&lt;/xsd:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

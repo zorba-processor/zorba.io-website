@@ -1,0 +1,14 @@
+<doxygen><compounddef id="www.28msec.com_modules_oauth_server-schema" kind="schema"><detaileddescription><para><h3>Content of www.28msec.com_modules_oauth_server schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oas="http://www.28msec.com/modules/oauth/server" targetNamespace="http://www.28msec.com/modules/oauth/server" elementFormDefault="qualified"&gt;
+
+
+&lt;xs:simpleType name="token-status"&gt;
+&lt;xs:restriction base="xs:string"&gt;
+&lt;xs:enumeration value="consumer"/&gt;
+&lt;xs:enumeration value="request"/&gt;
+&lt;xs:enumeration value="authorized-request"/&gt;
+&lt;xs:enumeration value="access"/&gt;
+&lt;/xs:restriction&gt;
+&lt;/xs:simpleType&gt;
+&lt;!-- End : General Type Definitions --&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

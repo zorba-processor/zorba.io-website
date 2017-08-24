@@ -1,0 +1,5 @@
+<doxygen><compounddef id="min1.xq-example" kind="example"><detaileddescription><para><h3>Content of min1.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/statistical";
+
+excel:min((2, -1, 1E14))
+</programlisting></para></detaileddescription></compounddef></doxygen>

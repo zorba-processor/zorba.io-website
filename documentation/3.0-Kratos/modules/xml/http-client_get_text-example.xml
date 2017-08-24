@@ -1,0 +1,5 @@
+<doxygen><compounddef id="get_text.xq-example" kind="example"><detaileddescription><para><h3>Content of get_text.xq example</h3><programlisting type="example">import module namespace http="http://www.zorba-xquery.com/modules/http-client";
+
+http:get("http://zorbatest.lambda.nu:8080/cgi-bin/test-text")[2]
+
+</programlisting></para></detaileddescription></compounddef></doxygen>

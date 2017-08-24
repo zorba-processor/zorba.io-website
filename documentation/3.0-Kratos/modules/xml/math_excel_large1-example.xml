@@ -1,0 +1,9 @@
+<doxygen><compounddef id="excel_large1.xq-example" kind="example"><detaileddescription><para><h3>Content of excel_large1.xq example</h3><programlisting type="example">import module namespace
+math="http://zorba.io/modules/math";
+
+math:large((), 1)
+
+(:
+Output: Error [ZXQP0021] An empty sequence cannot be promoted to the xs:double+ type.
+:)
+</programlisting></para></detaileddescription></compounddef></doxygen>

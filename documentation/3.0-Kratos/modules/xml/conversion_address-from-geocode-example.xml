@@ -1,0 +1,5 @@
+<doxygen><compounddef id="address-from-geocode.xq-example" kind="example"><detaileddescription><para><h3>Content of address-from-geocode.xq example</h3><programlisting type="example">import module namespace conversion = "http://zorba.io/modules/data-cleaning/conversion";
+
+for $s in conversion:address-from-geocode ( 38.725735 , -9.15021 )
+return fn:lower-case($s)
+</programlisting></para></detaileddescription></compounddef></doxygen>

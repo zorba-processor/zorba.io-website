@@ -1,0 +1,146 @@
+<doxygen><compounddef id="ns.example.com_books-schema" kind="schema"><detaileddescription><para><h3>Content of ns.example.com_books schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://ns.example.com/books" xmlns:b="http://ns.example.com/books" targetNamespace="http://ns.example.com/books" elementFormDefault="qualified"&gt;
+           
+
+ &lt;xs:element name="BOOKLIST"&gt;
+  &lt;xs:complexType&gt;
+   &lt;xs:sequence&gt;
+    &lt;xs:element ref="BOOKS"/&gt;
+    &lt;xs:element ref="CATEGORIES"/&gt;
+   &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+ &lt;/xs:element&gt;
+
+ &lt;xs:element name="BOOKS"&gt;
+  &lt;xs:complexType&gt;
+   &lt;xs:sequence&gt;
+    &lt;xs:element ref="ITEM" maxOccurs="unbounded"/&gt;
+   &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+ &lt;/xs:element&gt;
+
+ &lt;xs:element name="CATEGORIES"&gt;
+  &lt;xs:complexType mixed="true"&gt;
+   &lt;xs:sequence minOccurs="0" maxOccurs="unbounded"&gt;
+    &lt;xs:element ref="CATEGORY"/&gt;
+   &lt;/xs:sequence&gt;
+   &lt;xs:attribute name="DESC" type="xs:string" use="required"/&gt;
+  &lt;/xs:complexType&gt;
+ &lt;/xs:element&gt;
+ 
+ &lt;xs:element name="CATEGORY"&gt;
+  &lt;xs:complexType&gt;
+   &lt;xs:attribute name="CODE" type="xs:ID" use="required"/&gt;
+   &lt;xs:attribute name="DESC" type="xs:string" use="required"/&gt;
+   &lt;xs:attribute name="NOTE" type="xs:string" use="optional"/&gt;
+  &lt;/xs:complexType&gt;
+ &lt;/xs:element&gt;
+
+ &lt;xs:element name="ITEM" type="itemType"/&gt;
+ 
+ &lt;xs:complexType name="itemType"&gt;
+   &lt;xs:sequence&gt;
+    &lt;xs:element name="TITLE" type="xs:string"/&gt;
+    &lt;xs:element name="AUTHOR" type="xs:string" maxOccurs="unbounded"/&gt;
+    &lt;xs:element name="PUBLISHER" type="xs:string" default="Wiley"/&gt;
+    &lt;xs:element name="PUB-DATE" type="xs:date"/&gt;
+    &lt;xs:element name="LANGUAGE" type="languageType" nillable="true"/&gt;
+    &lt;xs:element name="PRICE" type="moneyType" minOccurs="0"/&gt;
+    &lt;xs:element name="QUANTITY" type="xs:integer" minOccurs="0"/&gt;
+    &lt;xs:element name="ISBN" type="ISBNType" minOccurs="0"/&gt;                      
+    &lt;xs:element name="PAGES" type="xs:integer" minOccurs="0"/&gt;
+    &lt;xs:element ref="DIMENSIONS" minOccurs="0"/&gt;
+    &lt;xs:element ref="WEIGHT" minOccurs="0"/&gt;
+   &lt;/xs:sequence&gt;
+   &lt;xs:attribute name="CAT" type="xs:IDREF" use="required"/&gt;
+   &lt;xs:attribute name="TAX" type="xs:NMTOKEN" use="optional" default="V"/&gt;
+  &lt;/xs:complexType&gt;
+ 
+ &lt;xs:element name="SUBITEM" substitutionGroup="ITEM"/&gt;
+ 
+ &lt;xs:element name="DIMENSIONS" type="dimensionsType"/&gt;
+ &lt;xs:element name="WEIGHT" type="weightType"/&gt;
+ 
+ &lt;xs:element name="DUMMYREF"&gt;
+   &lt;xs:complexType&gt;
+     &lt;xs:attribute name="CATREF" type="xs:IDREF"/&gt;
+   &lt;/xs:complexType&gt;
+ &lt;/xs:element&gt;
+ 
+ &lt;xs:simpleType name="languageType"&gt;
+  &lt;xs:restriction base="xs:string"&gt;
+   &lt;xs:enumeration value="English"/&gt;
+   &lt;xs:enumeration value="French"/&gt;
+   &lt;xs:enumeration value="German"/&gt;
+   &lt;xs:enumeration value="Spanish"/&gt;
+  &lt;/xs:restriction&gt;
+ &lt;/xs:simpleType&gt;
+ 
+ &lt;xs:complexType name="moneyType"&gt;
+  &lt;xs:simpleContent&gt;
+   &lt;xs:extension base="xs:decimal"&gt;
+    &lt;xs:attribute name="currency" type="currencyType"/&gt;
+   &lt;/xs:extension&gt; 
+  &lt;/xs:simpleContent&gt;
+ &lt;/xs:complexType&gt;
+ 
+ &lt;xs:simpleType name="currencyType"&gt;
+  &lt;xs:restriction base="xs:string"&gt;
+   &lt;xs:enumeration value="USD"/&gt;
+   &lt;xs:enumeration value="GBP"/&gt;
+   &lt;xs:enumeration value="EUR"/&gt;
+   &lt;xs:enumeration value="CAD"/&gt;
+  &lt;/xs:restriction&gt;
+ &lt;/xs:simpleType&gt; 
+ 
+ &lt;xs:simpleType name="ISBNType"&gt;
+  &lt;xs:restriction base="xs:string"&gt;
+   &lt;xs:pattern value="[0-9]{9}[0-9X]"/&gt;
+  &lt;/xs:restriction&gt;
+ &lt;/xs:simpleType&gt;     
+ 
+ &lt;xs:complexType name="dimensionsType"&gt;
+  &lt;xs:simpleContent&gt;
+   &lt;xs:extension base="dimensionsContentType"&gt; 
+    &lt;xs:attribute name="UNIT" type="lengthUnitType" default="cm"/&gt;
+   &lt;/xs:extension&gt; 
+  &lt;/xs:simpleContent&gt;
+ &lt;/xs:complexType&gt;
+ 
+ &lt;xs:simpleType name="dimensionsContentType"&gt;
+  &lt;xs:restriction&gt;
+   &lt;xs:simpleType&gt;
+    &lt;xs:list itemType="dimensionType"/&gt;
+   &lt;/xs:simpleType&gt;     
+   &lt;xs:length value="3"/&gt;
+  &lt;/xs:restriction&gt;
+ &lt;/xs:simpleType&gt;  
+ 
+ &lt;xs:simpleType name="lengthUnitType"&gt;
+  &lt;xs:restriction base="xs:string"&gt;
+   &lt;xs:enumeration value="in"/&gt;
+   &lt;xs:enumeration value="cm"/&gt;
+  &lt;/xs:restriction&gt;
+ &lt;/xs:simpleType&gt; 
+ 
+ &lt;xs:simpleType name="dimensionType"&gt;
+  &lt;xs:restriction base="xs:decimal"&gt;
+   &lt;xs:minExclusive value="0.00"/&gt;
+  &lt;/xs:restriction&gt;
+ &lt;/xs:simpleType&gt; 
+ 
+ &lt;xs:complexType name="weightType"&gt;
+  &lt;xs:simpleContent&gt;
+   &lt;xs:extension base="xs:decimal"&gt;
+    &lt;xs:attribute name="UNIT" type="weightUnitType" default="g"/&gt;
+   &lt;/xs:extension&gt; 
+  &lt;/xs:simpleContent&gt;
+ &lt;/xs:complexType&gt;
+ 
+ &lt;xs:simpleType name="weightUnitType"&gt;
+  &lt;xs:restriction base="xs:string"&gt;
+   &lt;xs:enumeration value="oz"/&gt;
+   &lt;xs:enumeration value="g"/&gt;
+  &lt;/xs:restriction&gt;
+ &lt;/xs:simpleType&gt;    
+    
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

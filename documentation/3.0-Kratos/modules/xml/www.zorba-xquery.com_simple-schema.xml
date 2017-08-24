@@ -1,0 +1,10 @@
+<doxygen><compounddef id="www.zorba-xquery.com_simple-schema" kind="schema"><detaileddescription><para><h3>Content of www.zorba-xquery.com_simple schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.zorba-xquery.com/simple" targetNamespace="http://www.zorba-xquery.com/simple" elementFormDefault="qualified"&gt;
+
+  &lt;xs:simpleType name="HatSizeType"&gt;
+    &lt;xs:restriction base="xs:int"&gt;
+      &lt;xs:minInclusive value="7"/&gt;
+      &lt;xs:maxInclusive value="12"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

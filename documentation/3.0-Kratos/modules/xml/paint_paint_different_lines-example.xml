@@ -1,0 +1,60 @@
+<doxygen><compounddef id="paint_different_lines.xq-example" kind="example"><detaileddescription><para><h3>Content of paint_different_lines.xq example</h3><programlisting type="example">(:~
+ : This example creates a new image using the image/basic function and paints a few different colored lines to it.
+ : As it is, the example just asserts that the resulting xs:base64Binary is not empty, in a real application one could further process the image, or write it 
+ : to disk using file:write(a_path, $image-with-4-line, &amp;lt;method&amp;gt;binary&amp;lt;/method&amp;gt;), send it in an email etc.
+ :
+ : Actually, as the paint function takes a sequence of shapes all lines could have been painted with one single function call with
+ : paint:paint($new-image, (&amp;lt;image:line&amp;gt;&amp;lt;image:start&amp;gt;&amp;lt;image:x&amp;gt;10&amp;lt;/image:x&amp;gt;&amp;lt;image:y&amp;gt;0&amp;lt;/image:y&amp;gt;&amp;lt;/image:start&amp;gt;&amp;lt;image:end&amp;gt;&amp;lt;image:x&amp;gt;10&amp;lt;/image:x&amp;gt;&amp;lt;image:y&amp;gt;100&amp;lt;/image:y&amp;gt;&amp;lt;/image:end&amp;gt;&amp;lt;/image:line&amp;gt;,
+                            &amp;lt;image:line&amp;gt;&amp;lt;image:strokeColor&amp;gt;#FF0000&amp;lt;/image:strokeColor&amp;gt;&amp;lt;image:start&amp;gt;&amp;lt;image:x&amp;gt;30&amp;lt;/image:x&amp;gt;&amp;lt;image:y&amp;gt;0&amp;lt;/image:y&amp;gt;&amp;lt;/image:start&amp;gt;&amp;lt;image:end&amp;gt;&amp;lt;image:x&amp;gt;30&amp;lt;/image:x&amp;gt;&amp;lt;image:y&amp;gt;100&amp;lt;/image:y&amp;gt;&amp;lt;/image:end&amp;gt;&amp;lt;/image:line&amp;gt;,
+                            &amp;lt;image:line&amp;gt;&amp;lt;image:strokeColor&amp;gt;#FF0000&amp;lt;/image:strokeColor&amp;gt;&amp;lt;image:antiAliasing&amp;gt;true&amp;lt;/image:antiAliasing&amp;gt;&amp;lt;image:start&amp;gt;&amp;lt;image:x&amp;gt;50&amp;lt;/image:x&amp;gt;&amp;lt;image:y&amp;gt;0&amp;lt;/image:y&amp;gt;&amp;lt;/image:start&amp;gt;&amp;lt;image:end&amp;gt;&amp;lt;image:x&amp;gt;50&amp;lt;/image:x&amp;gt;&amp;lt;image:y&amp;gt;100&amp;lt;/image:y&amp;gt;&amp;lt;/image:end&amp;gt;&amp;lt;/image:line&amp;gt;,                        &amp;lt;image:line&amp;gt;&amp;lt;image:strokeWidth&amp;gt;10&amp;lt;/image:strokeWidth&amp;gt;&amp;lt;image:strokeColor&amp;gt;#FF0000&amp;lt;/image:strokeColor&amp;gt;&amp;lt;image:antiAliasing&amp;gt;true&amp;lt;/image:antiAliasing&amp;gt;&amp;lt;image:start&amp;gt;&amp;lt;image:x&amp;gt;70&amp;lt;/image:x&amp;gt;&amp;lt;image:y&amp;gt;0&amp;lt;/image:y&amp;gt;&amp;lt;/image:start&amp;gt;&amp;lt;image:end&amp;gt;&amp;lt;image:x&amp;gt;70&amp;lt;/image:x&amp;gt;&amp;lt;image:y&amp;gt;100&amp;lt;/image:y&amp;gt;&amp;lt;/image:end&amp;gt;&amp;lt;/image:line&amp;gt;)
+ :
+ : However, to show exactly what is painted it was done with several function calls in this example (which is much less performant).
+ :)
+import module namespace basic = 'http://zorba.io/modules/image/basic'; 
+import module namespace paint = 'http://zorba.io/modules/image/paint';
+
+import schema namespace image = 'http://zorba.io/modules/image/image';
+
+let $new-image :=  basic:create(xs:unsignedInt(100), xs:unsignedInt(100), "GIF")
+(: paint a simple line from (10, 0) to (10, 100) :)
+let $image-with-1-line := paint:paint($new-image, 
+{
+  "line" : {
+    "start" : [10,0],
+    "end" : [10,100]
+  }
+})
+(: paint a simple red line from (30, 0) to (30, 100) :)
+let $image-with-2-line := paint:paint($image-with-1-line, 
+{
+  "line" : {
+    "strokeColor" : "#FF0000",
+    "start" : [30,0],
+    "end" : [30,100]
+  }
+})
+(: paint a simple red anti-aliased line from (50, 0) to (50, 100) :)
+let $image-with-3-line := paint:paint($image-with-2-line, 
+{
+  "line" : {
+    "strokeColor" : "#FF0000",
+    "antiAliasing" : fn:true(),
+    "start" : [50,0],
+    "end" : [50,100]
+  }
+})
+(: paint a simple red wide anti-aliased line  from (70, 0) to (70, 100) :)
+let $image-with-4-line := paint:paint($image-with-3-line, 
+{
+  "line" : {
+    "strokeWidth" : 10,
+    "strokeColor" : "#FF0000",
+    "antiAliasing" : fn:true(),
+    "start" : [70,0],
+    "end" : [70,100]
+  }
+})
+
+return not(empty($image-with-4-line))
+
+</programlisting></para></detaileddescription></compounddef></doxygen>

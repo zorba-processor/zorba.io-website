@@ -1,0 +1,11 @@
+<doxygen><compounddef id="ft-module-current-compare-options-1.xq-example" kind="example"><detaileddescription><para><h3>Content of ft-module-current-compare-options-1.xq example</h3><programlisting type="example">jsoniq version "1.0";
+
+import module namespace ft = "http://zorba.io/modules/full-text";
+
+let $options := ft:current-compare-options()
+return $options.case eq "case insensitive"
+    and $options.diacritics eq "diacritics insensitive"
+    and $options.stemming eq "no stemming"
+
+(: vim:set et sw=2 ts=2: :)
+</programlisting></para></detaileddescription></compounddef></doxygen>

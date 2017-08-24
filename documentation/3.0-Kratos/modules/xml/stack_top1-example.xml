@@ -1,0 +1,13 @@
+<doxygen><compounddef id="top1.xq-example" kind="example"><detaileddescription><para><h3>Content of top1.xq example</h3><programlisting type="example">import module namespace stack = "http://zorba.io/modules/stack";
+
+variable $stName := fn:QName("", "stack1");
+(
+  stack:create($stName),
+  stack:push($stName, &amp;lt;z/&amp;gt;),
+  stack:push($stName, &amp;lt;a/&amp;gt;),
+  stack:top($stName),
+  stack:pop($stName),
+  stack:pop($stName),
+  stack:top($stName)
+)
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,5 @@
+<doxygen><compounddef id="zorba-xquery.org_schemas_test_valError-schema" kind="schema"><detaileddescription><para><h3>Content of zorba-xquery.org_schemas_test_valError schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oa="http://zorba-xquery.org/schemas/test/valError" targetNamespace="http://zorba-xquery.org/schemas/test/valError" elementFormDefault="qualified"&gt;
+ 
+  &lt;xs:element name="test" type="xs:string"/&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

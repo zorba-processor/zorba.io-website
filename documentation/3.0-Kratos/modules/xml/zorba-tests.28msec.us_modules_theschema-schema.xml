@@ -1,0 +1,12 @@
+<doxygen><compounddef id="zorba-tests.28msec.us_modules_theschema-schema" kind="schema"><detaileddescription><para><h3>Content of zorba-tests.28msec.us_modules_theschema schema</h3><programlisting type="schema">&lt;xs:schema xmlns:t="http://zorba-tests.28msec.us/modules/theschema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://zorba-tests.28msec.us/modules/theschema" elementFormDefault="qualified"&gt;
+
+&lt;xs:element name="a"&gt;
+  &lt;xs:simpleType&gt;
+    &lt;xs:restriction base="xs:integer"&gt;
+      &lt;xs:minInclusive value="0"/&gt;
+      &lt;xs:maxInclusive value="1"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+&lt;/xs:element&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

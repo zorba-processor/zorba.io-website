@@ -1,0 +1,22 @@
+<doxygen><compounddef id="www.zorba-xquery.org_simple-schema" kind="schema"><detaileddescription><para><h3>Content of www.zorba-xquery.org_simple schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.zorba-xquery.org/simple" targetNamespace="http://www.zorba-xquery.org/simple" elementFormDefault="qualified" attributeFormDefault="qualified"&gt;
+
+&lt;xs:element name="person" type="PersonType"/&gt;
+
+&lt;xs:complexType name="PersonType"&gt;
+  &lt;xs:sequence&gt;
+     &lt;xs:element name="name" type="xs:string"/&gt;
+     &lt;xs:element name="age" type="xs:integer" minOccurs="0" maxOccurs="1"/&gt;
+  &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
+
+
+&lt;xs:element name="person2" type="PersonType2"/&gt;
+
+&lt;xs:complexType name="PersonType2"&gt;
+  &lt;xs:sequence&gt;
+     &lt;xs:element name="name" type="xs:string"/&gt;
+  &lt;/xs:sequence&gt;
+  &lt;xs:attribute name="age" type="xs:string"/&gt;
+&lt;/xs:complexType&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

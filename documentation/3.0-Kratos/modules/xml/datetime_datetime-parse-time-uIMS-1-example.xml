@@ -1,0 +1,4 @@
+<doxygen><compounddef id="datetime-parse-time-uIMS-1.xq-example" kind="example"><detaileddescription><para><h3>Content of datetime-parse-time-uIMS-1.xq example</h3><programlisting type="example">import module namespace dt = "http://zorba.io/modules/datetime";
+
+dt:parse-time( "12:34:56", "%I:%M:%S" )
+</programlisting></para></detaileddescription></compounddef></doxygen>

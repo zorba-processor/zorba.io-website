@@ -1,0 +1,5 @@
+<doxygen><compounddef id="excel_percentrank1.xq-example" kind="example"><detaileddescription><para><h3>Content of excel_percentrank1.xq example</h3><programlisting type="example">import module namespace
+math="http://zorba.io/modules/math";
+
+math:percentrank((13, 12, 11, 8, 4, 3, 2, 1, 1, 1), 2)
+</programlisting></para></detaileddescription></compounddef></doxygen>

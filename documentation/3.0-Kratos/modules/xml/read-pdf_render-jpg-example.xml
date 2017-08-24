@@ -1,0 +1,19 @@
+<doxygen><compounddef id="render-jpg.xq-example" kind="example"><detaileddescription><para><h3>Content of render-jpg.xq example</h3><programlisting type="example">import module namespace read-pdf = "http://www.zorba-xquery.com/modules/read-pdf";
+import module namespace file = "http://expath.org/ns/file";
+
+declare namespace rpo =
+      "http://www.zorba-xquery.com/modules/read-pdf/read-pdf-options";
+
+
+let $pdf := file:read-binary(resolve-uri("28msec-NoSQLNow.pdf"))
+let $options  :=
+    &amp;lt;rpo:render-to-images-options&amp;gt;
+        &amp;lt;rpo:image-kind&amp;gt;jpg&amp;lt;/rpo:image-kind&amp;gt;
+        &amp;lt;rpo:start-page&amp;gt;2&amp;lt;/rpo:start-page&amp;gt;
+        &amp;lt;rpo:end-page&amp;gt;3&amp;lt;/rpo:end-page&amp;gt;
+    &amp;lt;/rpo:render-to-images-options&amp;gt;
+let $imgs := read-pdf:render-to-images($pdf, $options)
+for $img in $imgs
+return
+    fn:string-length(fn:string($img)) &amp;gt; 1000
+</programlisting></para></detaileddescription></compounddef></doxygen>

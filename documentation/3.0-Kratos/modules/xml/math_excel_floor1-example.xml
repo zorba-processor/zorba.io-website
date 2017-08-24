@@ -1,0 +1,5 @@
+<doxygen><compounddef id="excel_floor1.xq-example" kind="example"><detaileddescription><para><h3>Content of excel_floor1.xq example</h3><programlisting type="example">import module namespace
+math="http://zorba.io/modules/math";
+
+math:floor(2.5, 1)
+</programlisting></para></detaileddescription></compounddef></doxygen>

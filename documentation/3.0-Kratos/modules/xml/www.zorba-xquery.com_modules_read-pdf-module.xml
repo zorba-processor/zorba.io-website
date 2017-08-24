@@ -1,0 +1,209 @@
+<doxygen><compounddef id="read-pdf-module" kind="module"><detaileddescription><para><h3>Content of read-pdf module</h3><programlisting type="module">xquery version "3.0";
+
+(:
+ : Copyright 2006-2012 The FLWOR Foundation.
+ :
+ : Licensed under the Apache License, Version 2.0 (the "License");
+ : you may not use this file except in compliance with the License.
+ : You may obtain a copy of the License at
+ :
+ : http://www.apache.org/licenses/LICENSE-2.0
+ :
+ : Unless required by applicable law or agreed to in writing, software
+ : distributed under the License is distributed on an "AS IS" BASIS,
+ : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ : See the License for the specific language governing permissions and
+ : limitations under the License.
+ :)
+
+
+(:~
+ : This module provides funtionality to read the text from PDF documents and
+ : to render PDF documents to images.
+ : &amp;lt;a href="http://pdfbox.apache.org"&amp;gt;Apache PDFBox&amp;lt;/a&amp;gt; library is used to
+ : implement these functions.
+ : &amp;lt;br /&amp;gt;
+ : &amp;lt;br /&amp;gt;
+ : &amp;lt;br /&amp;gt;&amp;lt;b&amp;gt;Note:&amp;lt;/b&amp;gt; Since this module has a Java library dependency a JVM required
+ : to be installed on the system. For Windows: jvm.dll is required on the system
+ : path ( usually located in "C:\Program Files\Java\jre6\bin\client".
+ : &amp;lt;br /&amp;gt;&amp;lt;b&amp;gt;Note:&amp;lt;/b&amp;gt; For Debian based Linux distributions install PdfBox and its dependencies:
+ : sudo apt-get install libpdfbox-java libfontbox-java libjempbox-java libcommons-logging-java .
+ : For Windows use PDFBOX_HOME environment variable.
+ :
+ : @author Cezar Andrei
+ : @see http://pdfbox.apache.org/
+ : @library &amp;lt;a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html"&amp;gt;JDK - Java Development Kit&amp;lt;/a&amp;gt;
+ : @project Zorba/Data Processing/PDF Reader
+ : @library &amp;lt;a href="http://pdfbox.apache.org/"&amp;gt;Apache PDFBox&amp;lt;/a&amp;gt;
+ :)
+module namespace read-pdf = "http://www.zorba-xquery.com/modules/read-pdf";
+
+
+import schema namespace rp-options = "http://www.zorba-xquery.com/modules/read-pdf/read-pdf-options";
+
+(:~
+ : Import module for checking if options element is validated.
+ :)
+import module namespace sch = "http://zorba.io/modules/schema";
+
+
+declare namespace err = "http://www.w3.org/2005/xqt-errors";
+
+declare namespace ver = "http://zorba.io/options/versioning";
+declare option ver:module-version "1.0";
+
+
+
+(:~
+ : Extracts the text of the input pdf.
+ : &amp;lt;br /&amp;gt;
+ : Please consult the
+ : &amp;lt;a href="http://pdfbox.apache.org/"&amp;gt;official PDFBox documentation for further
+ : information&amp;lt;/a&amp;gt;.
+ : &amp;lt;br /&amp;gt;
+ : Example:&amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;
+ :
+ :  import module namespace read-pdf = "http://www.zorba-xquery.com/modules/read-pdf";
+ :  import module namespace file = "http://expath.org/ns/file";
+ :  declare namespace rpo =
+ :      "http://www.zorba-xquery.com/modules/read-pdf/read-pdf-options";
+ :  let $pdf := file:read-binary("path/to/my.pdf")
+ :  let $options  :=
+ :     &amp;lt;rpo:extract-text-options xmlns:rpo="http://www.zorba-xquery.com/modules/read-pdf/read-pdf-options"&amp;gt;
+ :       &amp;lt;rpo:text-kind&amp;gt;simple&amp;lt;/rpo:text-kind&amp;gt;
+ :       &amp;lt;rpo:start-page&amp;gt;2&amp;lt;/rpo:start-page&amp;gt;
+ :       &amp;lt;rpo:end-page&amp;gt;3&amp;lt;/rpo:end-page&amp;gt;
+ :       &amp;lt;rpo:password&amp;gt;decription_password&amp;lt;/rpo:password&amp;gt;
+ :       &amp;lt;rpo:ignore-corrupt-objects&amp;gt;false&amp;lt;/rpo:ignore-corrupt-objects&amp;gt;
+ :       &amp;lt;rpo:ignore-beads&amp;gt;false&amp;lt;/rpo:ignore-beads&amp;gt;
+ :       &amp;lt;rpo:start-page-separator&amp;gt;---start-page-separator---&amp;lt;/rpo:start-page-separator&amp;gt;
+ :       &amp;lt;rpo:end-page-separator&amp;gt;---end-page-separator---&amp;lt;/rpo:end-page-separator&amp;gt;
+ :     &amp;lt;/rpo:extract-text-options&amp;gt;
+ :  return
+ :      read-pdf:extract-text($pdf, $options)
+ :
+ : &amp;lt;/pre&amp;gt;
+ : &amp;lt;br /&amp;gt;
+ : @param $pdf The input PDF instance as xs:base64Binary
+ : @param $options Options:&amp;lt;br /&amp;gt;
+ :    &amp;lt;ul&amp;gt;
+ :      &amp;lt;li&amp;gt;text-kind: string (default html) html: format output as HTML, simple: plain text.&amp;lt;/li&amp;gt;
+ :      &amp;lt;li&amp;gt;start-page: int (default 1) Which page to start with.&amp;lt;/li&amp;gt;
+ :      &amp;lt;li&amp;gt;end-page: int (default last document page) Which page to end with.&amp;lt;/li&amp;gt;
+ :      &amp;lt;li&amp;gt;password: string The decription password. Optional if PDF is password protected. &amp;lt;/li&amp;gt;
+ :      &amp;lt;li&amp;gt;ignore-corrupt-objects: boolean (default false) If true try recoved in case of corrupt objects,
+ :          othewise exit with error.&amp;lt;/li&amp;gt;
+ :      &amp;lt;li&amp;gt;ignore-beads: boolean (default false) If true disables the separation by beads.&amp;lt;/li&amp;gt;
+ :      &amp;lt;li&amp;gt;start-page-separator: string The optional separator at every start page. &amp;lt;/li&amp;gt;
+ :      &amp;lt;li&amp;gt;end-page-separator: string The optional separator at every end page. &amp;lt;/li&amp;gt;
+ :    &amp;lt;/ul&amp;gt;
+ :
+ :
+ : @return The text contained in the PDF document.
+ : @error read-pdf:VM001 If Zorba was unable to start the JVM.
+ : @error read-pdf:JAVA-EXCEPTION If Apache PDFBox throws an exception.
+ : @example test/Queries/read-pdf/extractText-simple.xq
+ : @example test/Queries/read-pdf/extractText-html.xq
+ : @example test/Queries/read-pdf/extractText-text.xq
+ : @example test/Queries/read-pdf/extractText-pageDelim.xq
+ : @example test/Queries/read-pdf/extractText-badOpt.xq
+ : @example test/Queries/read-pdf/extractText-badPdf.xq
+ :)
+declare function
+read-pdf:extract-text($pdf as xs:base64Binary, $options as element(rp-options:extract-text-options)? )
+  as xs:string
+{
+  let $validated-options :=
+    if(empty($options))
+    then
+      $options
+    else if(sch:is-validated($options))
+    then
+      $options
+    else
+      validate{$options}
+  return
+    read-pdf:extract-text-internal($pdf, $validated-options)
+};
+
+
+declare %private function
+read-pdf:extract-text-internal( $pdf as xs:base64Binary,
+    $options as element(rp-options:extract-text-options, rp-options:extract-text-optionsType)? )
+  as xs:string external;
+
+
+(:~
+ : Renders each page of the PDF document as an image.
+ : &amp;lt;br /&amp;gt;
+ : Please consult the
+ : &amp;lt;a href="http://pdfbox.apache.org/"&amp;gt;official PDFBox documentation for further
+ : information&amp;lt;/a&amp;gt;.
+ : &amp;lt;br /&amp;gt;
+ : Example:&amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;
+ :
+ :  import module namespace read-pdf = "http://www.zorba-xquery.com/modules/read-pdf";
+ :  import module namespace file = "http://expath.org/ns/file";
+ :  declare namespace rpo =
+ :      "http://www.zorba-xquery.com/modules/read-pdf/read-pdf-options";
+ :  let $pdf := file:read-binary("path/to/my.pdf")
+ :  let $options  :=
+ :     &amp;lt;rpo:render-to-images-options xmlns:rpo="http://www.zorba-xquery.com/modules/read-pdf/read-pdf-options"&amp;gt;
+ :       &amp;lt;rpo:image-kind&amp;gt;jpg&amp;lt;/rpo:image-kind&amp;gt;
+ :       &amp;lt;rpo:start-page&amp;gt;2&amp;lt;/rpo:start-page&amp;gt;
+ :       &amp;lt;rpo:end-page&amp;gt;3&amp;lt;/rpo:end-page&amp;gt;
+ :       &amp;lt;rpo:password&amp;gt;decription_password&amp;lt;/rpo:password&amp;gt;
+ :     &amp;lt;/rpo:render-to-images-options&amp;gt;
+ :  let $imgs := read-pdf:render-to-images($pdf, $options)
+ :  for $img at $pos in $imgs
+ :  return
+ :  {
+ :    file:write-binary("img-page" || $pos || ".jpg", $img);
+ :    $pos
+ :  }
+ :
+ : &amp;lt;/pre&amp;gt;
+ : &amp;lt;br /&amp;gt;
+ : @param $pdf The input PDF instance as xs:base64Binary
+ : @param $options Options:&amp;lt;br /&amp;gt;
+ :    &amp;lt;ul&amp;gt;
+ :      &amp;lt;li&amp;gt;image-kind: string (default jpg) Image type encoding. Supported encodings: jpg, png.&amp;lt;/li&amp;gt;
+ :      &amp;lt;li&amp;gt;start-page: int (default 1) Which page to start with.&amp;lt;/li&amp;gt;
+ :      &amp;lt;li&amp;gt;end-page: int (default last document page) Which page to end with.&amp;lt;/li&amp;gt;
+ :      &amp;lt;li&amp;gt;password: string  The decription password. Optional if PDF is password protected. &amp;lt;/li&amp;gt;
+ :    &amp;lt;/ul&amp;gt;
+ :
+ : @return The rendered pages in the PDF document, as images.
+ : @error read-pdf:VM001 If Zorba was unable to start the JVM.
+ : @error read-pdf:JAVA-EXCEPTION If Apache PDFBox throws an exception.
+ : @example test/Queries/read-pdf/render-simple.xq
+ : @example test/Queries/read-pdf/render-jpg.xq
+ : @example test/Queries/read-pdf/render-png.xq
+ : @example test/Queries/read-pdf/render-badOpt.xq
+ : @example test/Queries/read-pdf/render-badPdf.xq
+ :)
+declare function
+read-pdf:render-to-images($pdf as xs:base64Binary,
+    $options as element(rp-options:render-to-images-options)? )
+  as xs:base64Binary*
+{
+  let $validated-options :=
+    if(empty($options))
+    then
+      $options
+    else if(sch:is-validated($options))
+    then
+      $options
+    else
+      validate{$options}
+  return
+    read-pdf:render-to-images-internal($pdf, $validated-options)
+};
+
+
+declare %private function
+read-pdf:render-to-images-internal($pdf as xs:base64Binary,
+    $options as element(rp-options:render-to-images-options, rp-options:render-to-images-optionsType)? )
+  as xs:base64Binary* external;
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,27 @@
+<doxygen><compounddef id="xsd2inst-opt1.xq-example" kind="example"><detaileddescription><para><h3>Content of xsd2inst-opt1.xq example</h3><programlisting type="example">import module namespace st = "http://www.zorba-xquery.com/modules/schema-tools";
+
+declare namespace sto = "http://www.zorba-xquery.com/modules/schema-tools/schema-tools-options";
+
+
+
+let $xsd  :=
+  &amp;lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      attributeFormDefault="unqualified"
+      elementFormDefault="qualified"&amp;gt;
+    &amp;lt;xs:element name="a" type="aType"/&amp;gt;
+    &amp;lt;xs:complexType name="aType"&amp;gt;
+      &amp;lt;xs:sequence&amp;gt;
+        &amp;lt;xs:element type="xs:string" name="b"/&amp;gt;
+        &amp;lt;xs:element type="xs:string" name="c"/&amp;gt;
+      &amp;lt;/xs:sequence&amp;gt;
+    &amp;lt;/xs:complexType&amp;gt;
+  &amp;lt;/xs:schema&amp;gt;
+let $opt  := &amp;lt;sto:xsd2inst-options&amp;gt;
+                 &amp;lt;sto:network-downloads&amp;gt;true&amp;lt;/sto:network-downloads&amp;gt;
+                 &amp;lt;sto:no-pvr&amp;gt;false&amp;lt;/sto:no-pvr&amp;gt;
+                 &amp;lt;sto:no-upa&amp;gt;true&amp;lt;/sto:no-upa&amp;gt;
+             &amp;lt;/sto:xsd2inst-options&amp;gt;
+return
+    st:xsd2inst(($xsd), "a", $opt)
+
+</programlisting></para></detaileddescription></compounddef></doxygen>

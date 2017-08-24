@@ -1,0 +1,26 @@
+<doxygen><compounddef id="www.news.org_schemas-schema" kind="schema"><detaileddescription><para><h3>Content of www.news.org_schemas schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.news.org/schemas" targetNamespace="http://www.news.org/schemas" elementFormDefault="qualified"&gt;
+           
+ &lt;!-- importing the XML namespace makes xml:id an ID attribute under lax validation --&gt;
+ &lt;xs:import namespace="http://www.w3.org/XML/1998/namespace"/&gt;          
+ &lt;xs:element name="employee"&gt;
+   &lt;xs:complexType&gt;
+     &lt;xs:sequence&gt;
+       &lt;xs:element name="position" minOccurs="0"/&gt;
+       &lt;xs:element name="name" minOccurs="0"/&gt;
+       &lt;xs:element name="station" type="stationType"/&gt;
+     &lt;/xs:sequence&gt;
+     &lt;xs:attribute name="id" type="xs:integer"/&gt;
+   &lt;/xs:complexType&gt;
+ &lt;/xs:element&gt;
+
+ &lt;xs:complexType name="stationType"&gt;
+   &lt;xs:sequence&gt;
+     &lt;xs:element name="city" type="xs:string"/&gt;
+   &lt;/xs:sequence&gt;
+ &lt;/xs:complexType&gt;
+
+
+ &lt;xs:element name="month"&gt;
+ &lt;/xs:element&gt;
+    
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

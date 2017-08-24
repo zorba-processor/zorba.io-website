@@ -1,0 +1,54 @@
+<doxygen><compounddef id="paint_rectangles.xq-example" kind="example"><detaileddescription><para><h3>Content of paint_rectangles.xq example</h3><programlisting type="example">(:~
+ : This example creates a new image using the image/basic function and paints different sorts of rectangles onto it. 
+ : As it is, the example just asserts that the resulting xs:base64Binary is not empty, in a real application one could further process the image, or write it 
+ : to disk using file:write(a_path, $image-with-rectangles, &amp;lt;method&amp;gt;binary&amp;lt;/method&amp;gt;), send it in an email etc.
+ :
+ : Actually, all rectangles could have been painted with one single function call, as the paint function also takes sequences of shapes with
+ : paint:paint($new-image, (&amp;lt;image:rectangle&amp;gt;&amp;lt;image:upperLeft&amp;gt;&amp;lt;image:x&amp;gt;10&amp;lt;/image:x&amp;gt;&amp;lt;image:y&amp;gt;10&amp;lt;/image:y&amp;gt;&amp;lt;/image:upperLeft&amp;gt;&amp;lt;image:lowerRight&amp;gt;&amp;lt;image:x&amp;gt;20&amp;lt;/image:x&amp;gt;&amp;lt;image:y&amp;gt;20&amp;lt;/image:y&amp;gt;&amp;lt;/image:lowerRight&amp;gt;&amp;lt;/image:rectangle&amp;gt;,
+ :                         &amp;lt;image:roundedRectangle&amp;gt;&amp;lt;image:upperLeft&amp;gt;&amp;lt;image:x&amp;gt;30&amp;lt;/image:x&amp;gt;&amp;lt;image:y&amp;gt;30&amp;lt;/image:y&amp;gt;&amp;lt;/image:upperLeft&amp;gt;&amp;lt;image:lowerRight&amp;gt;&amp;lt;image:x&amp;gt;50&amp;lt;/image:x&amp;gt;&amp;lt;image:y&amp;gt;60&amp;lt;/image:y&amp;gt;&amp;lt;/image:lowerRight&amp;gt;&amp;lt;corne
+ rWidth&amp;gt;10&amp;lt;/image:cornerWidth&amp;gt;&amp;lt;image:cornerHeight&amp;gt;10&amp;lt;/image:cornerHeight&amp;gt;&amp;lt;/image:roundedRectangle&amp;gt;,
+ :                          &amp;lt;image:rectangle&amp;gt;&amp;lt;image:strokeColor&amp;gt;#00FF00&amp;lt;/image:strokeColor&amp;gt;&amp;lt;image:fillColor&amp;gt;#FF0000&amp;lt;/image:fillColor&amp;gt;&amp;lt;image:upperLeft&amp;gt;&amp;lt;image:x&amp;gt;75&amp;lt;/image:x&amp;gt;&amp;lt;image:y&amp;gt;10&amp;lt;/image:y&amp;gt;&amp;lt;/u
+ pperLeft&amp;gt;&amp;lt;image:lowerRight&amp;gt;&amp;lt;image:x&amp;gt;95&amp;lt;/image:x&amp;gt;&amp;lt;image:y&amp;gt;50&amp;lt;/image:y&amp;gt;&amp;lt;/image:lowerRight&amp;gt;&amp;lt;/image:rectangle&amp;gt;))
+ :
+ : However, to make clear what exaclty is painted it was done with several function calls in this example (which is less performant).
+ :)
+import module namespace basic = 'http://zorba.io/modules/image/basic';
+import module namespace paint = 'http://zorba.io/modules/image/paint';
+
+import schema namespace image = 'http://zorba.io/modules/image/image';
+
+let $new-image :=  basic:create(xs:unsignedInt(100), xs:unsignedInt(100), "GIF")
+
+(: paint a simple rectangle to the image :) 
+let $image-with-rectangle := paint:paint($new-image, 
+{
+  "rectangle" : {
+    "upperLeft" : [10,10],
+    "lowerRight" : [20,20]
+  }
+}) 
+
+(: paint a rounded rectangle to the image with a corner width of 10px and a corner height of 10 px :) 
+let $image-with-rectangles := paint:paint($image-with-rectangle, 
+{
+  "roundedRectangle" : {
+    "upperLeft" : [30,30],
+    "lowerRight" : [50,60],
+    "cornerWidth" : 10,
+    "cornerHeight" : 10 
+  }             
+})
+
+(: paint a rectangle with green contour which is filled with red to the image :)  
+let $image-with-rectangles := paint:paint($image-with-rectangles, 
+{
+  "rectangle" : {
+    "strokeColor" : "#00FF00",
+    "fillColor" : "#FF0000",
+    "upperLeft" : [75,10],
+    "lowerRight" : [95,50]
+  }
+})
+
+return not(empty($image-with-rectangles)) 
+</programlisting></para></detaileddescription></compounddef></doxygen>

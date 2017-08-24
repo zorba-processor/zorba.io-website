@@ -1,0 +1,4 @@
+<doxygen><compounddef id="to-dateTime.xq-example" kind="example"><detaileddescription><para><h3>Content of to-dateTime.xq example</h3><programlisting type="example">import module namespace normalization = "http://zorba.io/modules/data-cleaning/normalization";
+
+normalization:to-dateTime( "24OCT2002 21:22" , "%d%b%Y %H%M" )
+</programlisting></para></detaileddescription></compounddef></doxygen>

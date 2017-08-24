@@ -1,0 +1,6 @@
+<doxygen><compounddef id="envelope2.xq-example" kind="example"><detaileddescription><para><h3>Content of envelope2.xq example</h3><programlisting type="example">import module namespace geo = "http://expath.org/ns/geo";
+declare namespace gml="http://www.opengis.net/gml";
+declare default element namespace "http://www.adv-online.de/namespaces/adv/gid/4.0";
+
+geo:envelope((fn:doc("gmlsf_data2.xml")/gml:FeatureCollection/gml:featureMember/AX_Strassenachse/position/gml:Curve)[1])
+</programlisting></para></detaileddescription></compounddef></doxygen>

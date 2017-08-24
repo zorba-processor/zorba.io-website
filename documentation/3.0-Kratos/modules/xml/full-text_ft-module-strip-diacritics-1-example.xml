@@ -1,0 +1,4 @@
+<doxygen><compounddef id="ft-module-strip-diacritics-1.xq-example" kind="example"><detaileddescription><para><h3>Content of ft-module-strip-diacritics-1.xq example</h3><programlisting type="example">import module namespace ft = "http://zorba.io/modules/full-text";
+
+ft:strip-diacritics( "é" )
+</programlisting></para></detaileddescription></compounddef></doxygen>

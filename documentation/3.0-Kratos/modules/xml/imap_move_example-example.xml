@@ -1,0 +1,31 @@
+<doxygen><compounddef id="move_example.xq-example" kind="example"><detaileddescription><para><h3>Content of move_example.xq example</h3><programlisting type="example">(:
+ : This example shows how to use the move function of the
+ : http://www.zorba-xquery.com/modules/email/imap module.
+ :
+ : First, we search in the "INBOX.MoveFolder" mailbox for messages containing
+ : the word "move" in the subject. If such messages are found, they are moved
+ : to the INBOX. If not messages were found in the "INBOX.MoveFolder" mailbox,
+ : the move is performed inthe other direction.
+ :) 
+
+import module namespace imap = 'http://www.zorba-xquery.com/modules/email/imap';
+
+
+(: This variable contains the information of the account on the IMAP server. :) 
+let $hostInfo :=
+  &amp;lt;hostInfo xmlns="http://www.zorba-xquery.com/modules/email"&amp;gt;
+    &amp;lt;hostName&amp;gt;mail.28msec.com/novalidate-cert&amp;lt;/hostName&amp;gt;
+    &amp;lt;userName&amp;gt;imaptest&amp;lt;/userName&amp;gt;
+    &amp;lt;password&amp;gt;cclient&amp;lt;/password&amp;gt;
+  &amp;lt;/hostInfo&amp;gt;
+
+let $uids := imap:search($hostInfo, "INBOX.MoveFolder", "SUBJECT move", true())
+
+return
+  if ($uids) then
+    imap:move($hostInfo, "INBOX.MoveFolder", "INBOX", $uids, true());
+  else
+    let $uids := imap:search($hostInfo, "INBOX", "SUBJECT move", true())
+    return
+      imap:move($hostInfo, "INBOX", "INBOX.MoveFolder", $uids, true())
+</programlisting></para></detaileddescription></compounddef></doxygen>

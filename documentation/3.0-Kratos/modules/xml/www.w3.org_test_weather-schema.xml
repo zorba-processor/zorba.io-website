@@ -1,0 +1,11 @@
+<doxygen><compounddef id="www.w3.org_test_weather-schema" kind="schema"><detaileddescription><para><h3>Content of www.w3.org_test_weather schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:weather="http://www.w3.org/test/weather" targetNamespace="http://www.w3.org/test/weather" elementFormDefault="qualified"&gt;
+
+  &lt;xs:element name="weather"&gt;
+    &lt;xs:complexType&gt;
+     &lt;xs:sequence&gt;
+      &lt;xs:element name="temperature" type="xs:string"/&gt;
+      &lt;xs:element name="precipitation" type="xs:string"/&gt;
+     &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

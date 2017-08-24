@@ -1,0 +1,14 @@
+<doxygen><compounddef id="inst2xsd-opt2.xq-example" kind="example"><detaileddescription><para><h3>Content of inst2xsd-opt2.xq example</h3><programlisting type="example">import module namespace st = "http://www.zorba-xquery.com/modules/schema-tools";
+
+declare namespace sto = "http://www.zorba-xquery.com/modules/schema-tools/schema-tools-options";
+
+
+let $inst := (&amp;lt;a&amp;gt;&amp;lt;b&amp;gt;1&amp;lt;/b&amp;gt;&amp;lt;c&amp;gt;c&amp;lt;/c&amp;gt;&amp;lt;c&amp;gt;cc&amp;lt;/c&amp;gt;&amp;lt;/a&amp;gt;, &amp;lt;b&amp;gt;2&amp;lt;/b&amp;gt;, &amp;lt;c&amp;gt;ccc&amp;lt;/c&amp;gt;)
+let $opt  := &amp;lt;sto:inst2xsd-options&amp;gt;
+                &amp;lt;sto:design&amp;gt;rdd&amp;lt;/sto:design&amp;gt;
+                &amp;lt;sto:simple-content-types&amp;gt;always-string&amp;lt;/sto:simple-content-types&amp;gt;
+                &amp;lt;sto:use-enumeration&amp;gt;1&amp;lt;/sto:use-enumeration&amp;gt;
+             &amp;lt;/sto:inst2xsd-options&amp;gt;
+return
+    st:inst2xsd($inst, $opt)
+</programlisting></para></detaileddescription></compounddef></doxygen>

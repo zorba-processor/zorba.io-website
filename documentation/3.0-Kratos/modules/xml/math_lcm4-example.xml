@@ -1,0 +1,5 @@
+<doxygen><compounddef id="lcm4.xq-example" kind="example"><detaileddescription><para><h3>Content of lcm4.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/math";
+
+excel:lcm((2, 4, 8))
+</programlisting></para></detaileddescription></compounddef></doxygen>

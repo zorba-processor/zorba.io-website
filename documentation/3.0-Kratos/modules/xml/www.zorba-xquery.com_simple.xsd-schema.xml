@@ -1,0 +1,65 @@
+<doxygen><compounddef id="www.zorba-xquery.com_simple.xsd-schema" kind="schema"><detaileddescription><para><h3>Content of www.zorba-xquery.com_simple.xsd schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.zorba-xquery.com/simple.xsd" targetNamespace="http://www.zorba-xquery.com/simple.xsd" elementFormDefault="qualified"&gt;
+
+
+  &lt;xs:element name="product" type="ProductType"/&gt;
+  &lt;xs:element name="item" type="ItemType"/&gt;
+  &lt;xs:element name="items" type="ItemsType"/&gt;
+
+
+  &lt;xs:complexType name="ProductType"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="name" type="xs:string"/&gt;
+      &lt;xs:element name="number" type="xs:int"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="ItemType"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element ref="product"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="ItemsType"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element ref="product" maxOccurs="unbounded"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="ShirtType"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension base="ProductType"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name="size" type="ShirtSizeType"/&gt;
+          &lt;xs:element name="color" type="xs:string"/&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="HatType"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension base="ProductType"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name="size" type="HatSizeType" maxOccurs="unbounded"/&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:simpleType name="ShirtSizeType"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="S"/&gt;
+      &lt;xs:enumeration value="M"/&gt;
+      &lt;xs:enumeration value="L"/&gt;
+      &lt;xs:enumeration value="XL"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="HatSizeType"&gt;
+    &lt;xs:restriction base="xs:int"&gt;
+      &lt;xs:minInclusive value="7"/&gt;
+      &lt;xs:maxInclusive value="12"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

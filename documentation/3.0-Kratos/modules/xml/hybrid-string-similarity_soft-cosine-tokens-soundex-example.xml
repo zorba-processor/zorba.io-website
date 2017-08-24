@@ -1,0 +1,4 @@
+<doxygen><compounddef id="soft-cosine-tokens-soundex.xq-example" kind="example"><detaileddescription><para><h3>Content of soft-cosine-tokens-soundex.xq example</h3><programlisting type="example">import module namespace simh = "http://zorba.io/modules/data-cleaning/hybrid-string-similarity";
+
+simh:soft-cosine-tokens-soundex("ALEKSANDER SMITH", "ALEXANDER SMYTH", " +")
+</programlisting></para></detaileddescription></compounddef></doxygen>

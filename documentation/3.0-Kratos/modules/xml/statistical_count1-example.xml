@@ -1,0 +1,5 @@
+<doxygen><compounddef id="count1.xq-example" kind="example"><detaileddescription><para><h3>Content of count1.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/statistical";
+
+excel:count((2, "1", "", "p", "1E12"))
+</programlisting></para></detaileddescription></compounddef></doxygen>

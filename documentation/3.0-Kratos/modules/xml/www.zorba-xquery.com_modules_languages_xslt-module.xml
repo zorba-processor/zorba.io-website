@@ -1,0 +1,108 @@
+<doxygen><compounddef id="xslt-module" kind="module"><detaileddescription><para><h3>Content of xslt module</h3><programlisting type="module">xquery version "1.0";
+
+(:
+ : Copyright 2006-2009 The FLWOR Foundation.
+ :
+ : Licensed under the Apache License, Version 2.0 (the "License");
+ : you may not use this file except in compliance with the License.
+ : You may obtain a copy of the License at
+ :
+ : http://www.apache.org/licenses/LICENSE-2.0
+ :
+ : Unless required by applicable law or agreed to in writing, software
+ : distributed under the License is distributed on an "AS IS" BASIS,
+ : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ : See the License for the specific language governing permissions and
+ : limitations under the License.
+:)
+
+(:~
+ : This module provides XSLT 1.0 transformation functionality.  
+ :
+ : &amp;lt;p&amp;gt;For details on XSLT see 
+ : &amp;lt;a href="http://www.w3.org/TR/xslt"&amp;gt;XSLT 1.0 specification&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;  
+ :
+ : &amp;lt;p&amp;gt;This module implements the invoking of an XSLT transformation from XQuery
+ : described in &amp;lt;a href="http://lists.w3.org/Archives/Member/w3c-xsl-wg/2008Apr/0052.html"&amp;gt;
+ :    Michael Kay's proposal&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : &amp;lt;p&amp;gt;Example:
+ : &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;&amp;lt;![CDATA[import module namespace
+ :        xslt = "http://www.zorba-xquery.com/modules/languages/xslt";
+ : 
+ : let $source := 
+ :     &amp;lt;catalog&amp;gt;
+ :         &amp;lt;cd&amp;gt;
+ :           &amp;lt;title&amp;gt;Empire Burlesque&amp;lt;/title&amp;gt;
+ :           &amp;lt;artist&amp;gt;Bob Dylan&amp;lt;/artist&amp;gt;
+ :           &amp;lt;country&amp;gt;USA&amp;lt;/country&amp;gt;
+ :           &amp;lt;company&amp;gt;Columbia&amp;lt;/company&amp;gt;
+ :           &amp;lt;price&amp;gt;10.90&amp;lt;/price&amp;gt;
+ :           &amp;lt;year&amp;gt;1985&amp;lt;/year&amp;gt;
+ :         &amp;lt;/cd&amp;gt;
+ :         &amp;lt;cd&amp;gt;
+ :           &amp;lt;title&amp;gt;Hide your heart&amp;lt;/title&amp;gt;
+ :           &amp;lt;artist&amp;gt;Bonnie Tyler&amp;lt;/artist&amp;gt;
+ :           &amp;lt;country&amp;gt;UK&amp;lt;/country&amp;gt;
+ :           &amp;lt;company&amp;gt;CBS Records&amp;lt;/company&amp;gt;
+ :           &amp;lt;price&amp;gt;9.90&amp;lt;/price&amp;gt;
+ :           &amp;lt;year&amp;gt;1988&amp;lt;/year&amp;gt;
+ :         &amp;lt;/cd&amp;gt;
+ :     &amp;lt;/catalog&amp;gt;
+ : 
+ : let $stylesheet := 
+ :   &amp;lt;xsl:stylesheet version="1.0" 
+ :       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&amp;gt;
+ : 
+ :     &amp;lt;xsl:template match="/"&amp;gt;
+ :       &amp;lt;html&amp;gt;
+ :       &amp;lt;body&amp;gt;
+ :       &amp;lt;h2&amp;gt;Music Collection&amp;amp;lt;/h2&amp;gt;
+ :         &amp;lt;table border="1"&amp;gt;
+ :           &amp;lt;tr bgcolor="lightblue"&amp;gt;
+ :             &amp;lt;th&amp;gt;Title&amp;amp;lt;/th&amp;gt;
+ :             &amp;lt;th&amp;gt;Artist&amp;amp;lt;/th&amp;gt;
+ :           &amp;lt;/tr&amp;gt;
+ :           &amp;lt;xsl:for-each select="catalog/cd"&amp;gt;
+ :            &amp;lt;tr&amp;gt;
+ :              &amp;lt;td&amp;gt;&amp;amp;lt;xsl:value-of select="title"/&amp;gt;&amp;lt;/td&amp;gt;
+ :              &amp;lt;td&amp;gt;&amp;amp;lt;xsl:value-of select="artist"/&amp;gt;&amp;lt;/td&amp;gt;
+ :           &amp;lt;/tr&amp;gt;
+ :           &amp;lt;/xsl:for-each&amp;gt;
+ :         &amp;lt;/table&amp;gt;
+ :       &amp;lt;/body&amp;gt;
+ :       &amp;lt;/html&amp;gt;
+ :     &amp;lt;/xsl:template&amp;gt;
+ :   &amp;lt;/xsl:stylesheet&amp;gt;
+ : 
+ : return
+ :   xslt:transform( $source, $stylesheet)]]&amp;gt;&amp;lt;/pre&amp;gt;&amp;lt;/p&amp;gt;
+ :
+ : @author Cezar Andrei
+ : @library &amp;lt;a href="http://xmlsoft.org/XSLT/"&amp;gt;libxslt Library&amp;lt;/a&amp;gt;
+ : @project Zorba/Programming Languages/XSLT
+ :
+ :)
+module namespace xslt = "http://www.zorba-xquery.com/modules/languages/xslt";
+
+declare namespace ver = "http://zorba.io/options/versioning";
+declare option ver:module-version "1.0";
+
+(:~
+ :&amp;lt;p&amp;gt;Invokes an XSLT transformation.&amp;lt;/p&amp;gt;
+ :
+ : @param $source the input document to the transformation
+ : @param $stylesheet the XSLT stylesheet module
+ : @return the result tree produced by the transformation
+ :
+ : @error  xslt:XSLT001 if $stylesheet is not a valid XSLT stylesheet
+ : @error  xslt:XSLT002 if result can not be imported 
+ :
+ : @example test_xslt/Queries/languages/xslt/xslt1.xq
+ :)
+declare function xslt:transform (
+  $source as node(),
+  $stylesheet as node()
+) as node() external;
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,5 @@
+<doxygen><compounddef id="maxa1.xq-example" kind="example"><detaileddescription><para><h3>Content of maxa1.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/statistical";
+
+excel:maxa((0, 0.2, 0.5, 0.4, fn:true()) )
+</programlisting></para></detaileddescription></compounddef></doxygen>

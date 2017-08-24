@@ -1,0 +1,57 @@
+<doxygen><compounddef id="www.zorba-xquery.com_schema_test_data-schema" kind="schema"><detaileddescription><para><h3>Content of www.zorba-xquery.com_schema_test_data schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:t="http://www.zorba-xquery.com/schema/test/data" targetNamespace="http://www.zorba-xquery.com/schema/test/data" elementFormDefault="qualified" attributeFormDefault="unqualified"&gt;
+
+  &lt;!-- 
+  *********************
+  	Elements 
+  *********************
+  --&gt;  
+  &lt;xs:element name="entry" type="t:MyGuestbookEntryType"/&gt;
+  &lt;xs:element name="age" type="t:MyAgeType"/&gt;
+  &lt;xs:element name="simple"&gt;
+	  &lt;xs:complexType&gt;
+	    &lt;xs:simpleContent&gt;
+	      &lt;xs:extension base="xs:string"&gt;
+	          &lt;xs:attribute name="simple" type="t:MyStringType" form="qualified"/&gt; 
+	      &lt;/xs:extension&gt;
+	    &lt;/xs:simpleContent&gt;
+	  &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt; 
+  &lt;xs:attribute name="simple" type="t:MyStringType"/&gt;
+
+  &lt;!-- 
+  *********************
+  complexTypes
+  *********************
+  --&gt;  
+  &lt;xs:complexType name="MyGuestbookEntryType"&gt;
+    &lt;xs:simpleContent&gt;
+      &lt;xs:extension base="xs:string"&gt;
+        &lt;xs:attribute name="author" type="xs:string"/&gt;
+        &lt;xs:attribute name="date" type="xs:date"/&gt;
+        &lt;xs:attribute name="time" type="xs:time"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:simpleContent&gt;
+  &lt;/xs:complexType&gt;
+  
+  
+  &lt;!-- 
+  *********************
+  simpleTypes
+  *********************
+  --&gt;  
+  &lt;xs:simpleType name="MyAgeType"&gt;
+    &lt;xs:restriction base="xs:integer"&gt;
+      &lt;xs:minInclusive value="0"/&gt;
+      &lt;xs:maxInclusive value="100"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="MyStringType"&gt;
+  	&lt;xs:restriction base="xs:string"&gt;
+  		&lt;xs:enumeration value="test"/&gt;
+  		&lt;xs:enumeration value="hello"/&gt;
+  		&lt;xs:enumeration value="value"/&gt;
+  	&lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

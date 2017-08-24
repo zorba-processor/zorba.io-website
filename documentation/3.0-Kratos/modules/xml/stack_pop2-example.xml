@@ -1,0 +1,8 @@
+<doxygen><compounddef id="pop2.xq-example" kind="example"><detaileddescription><para><h3>Content of pop2.xq example</h3><programlisting type="example">import module namespace stack = "http://zorba.io/modules/stack";
+
+variable $stName := fn:QName("", "stack1");
+stack:create($stName);
+stack:push($stName, &amp;lt;b/&amp;gt;);
+stack:push($stName, &amp;lt;a/&amp;gt;);
+stack:pop($stName)
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,27 @@
+<doxygen><compounddef id="zorba.io_manifest-schema" kind="schema"><detaileddescription><para><h3>Content of zorba.io_manifest schema</h3><programlisting type="schema">&lt;xs:schema xmlns:mani="http://zorba.io/manifest" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://zorba.io/manifest" elementFormDefault="qualified"&gt;
+
+&lt;xs:simpleType name="versionString"&gt;
+  &lt;xs:restriction base="xs:string"&gt;
+    &lt;xs:pattern value="[0-9]+(\.[0-9]+)*"/&gt;
+  &lt;/xs:restriction&gt;
+&lt;/xs:simpleType&gt;
+
+&lt;xs:complexType name="manifestEntry"&gt;
+  &lt;xs:sequence&gt;
+    &lt;xs:element name="uri" type="xs:anyURI"/&gt;
+    &lt;xs:element name="projectRoot" type="xs:string"/&gt;
+  &lt;/xs:sequence&gt;
+  &lt;xs:attribute name="isCore" type="xs:boolean" use="required"/&gt;
+  &lt;xs:attribute name="version" type="mani:versionString"/&gt;
+&lt;/xs:complexType&gt;
+
+&lt;xs:element name="manifest"&gt;
+  &lt;xs:complexType&gt;
+    &lt;xs:choice minOccurs="0" maxOccurs="unbounded"&gt;
+      &lt;xs:element name="module" type="mani:manifestEntry"/&gt;
+      &lt;xs:element name="schema" type="mani:manifestEntry"/&gt;
+    &lt;/xs:choice&gt;
+  &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

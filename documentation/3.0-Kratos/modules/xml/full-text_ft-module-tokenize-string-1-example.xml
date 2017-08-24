@@ -1,0 +1,9 @@
+<doxygen><compounddef id="ft-module-tokenize-string-1.xq-example" kind="example"><detaileddescription><para><h3>Content of ft-module-tokenize-string-1.xq example</h3><programlisting type="example">import module namespace ft = "http://zorba.io/modules/full-text";
+
+let $x := "hello, world"
+let $tokens := ft:tokenize-string( $x, xs:language("en") )
+return $tokens[1] = "hello"
+   and $tokens[2] = "world"
+
+(: vim:set et sw=2 ts=2: :)
+</programlisting></para></detaileddescription></compounddef></doxygen>

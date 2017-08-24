@@ -1,0 +1,4 @@
+<doxygen><compounddef id="datetime-parse-dateTime-uFTZ-1.xq-example" kind="example"><detaileddescription><para><h3>Content of datetime-parse-dateTime-uFTZ-1.xq example</h3><programlisting type="example">import module namespace dt = "http://zorba.io/modules/datetime";
+
+dt:parse-dateTime( "1912-12-28 05:00:00 PST", "%F %T %Z" )
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,4 @@
+<doxygen><compounddef id="dice.xq-example" kind="example"><detaileddescription><para><h3>Content of dice.xq example</h3><programlisting type="example">import module namespace set = "http://zorba.io/modules/data-cleaning/set-similarity";
+
+set:dice ( ( "a", "b", &amp;lt;c/&amp;gt; ) , ( "a", "a", "d") )
+</programlisting></para></detaileddescription></compounddef></doxygen>

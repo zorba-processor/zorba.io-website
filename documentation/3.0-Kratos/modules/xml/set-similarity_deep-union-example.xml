@@ -1,0 +1,4 @@
+<doxygen><compounddef id="deep-union.xq-example" kind="example"><detaileddescription><para><h3>Content of deep-union.xq example</h3><programlisting type="example">import module namespace set = "http://zorba.io/modules/data-cleaning/set-similarity";
+
+set:deep-union ( ( "a", "b", "c") , ( "a", "a", &amp;lt;d/&amp;gt; ) )
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,5 @@
+<doxygen><compounddef id="covers6.xq-example" kind="example"><detaileddescription><para><h3>Content of covers6.xq example</h3><programlisting type="example">import module namespace geo = "http://expath.org/ns/geo";
+declare namespace gml="http://www.opengis.net/gml";
+
+geo:covers(&amp;lt;gml:Point&amp;gt;&amp;lt;gml:pos&amp;gt;1 1&amp;lt;/gml:pos&amp;gt;&amp;lt;/gml:Point&amp;gt;,
+           &amp;lt;gml:Point&amp;gt;&amp;lt;gml:pos&amp;gt;1.00 1.00&amp;lt;/gml:pos&amp;gt;&amp;lt;/gml:Point&amp;gt; )</programlisting></para></detaileddescription></compounddef></doxygen>

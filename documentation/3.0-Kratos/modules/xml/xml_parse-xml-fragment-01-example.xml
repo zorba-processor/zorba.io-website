@@ -1,0 +1,23 @@
+<doxygen><compounddef id="parse-xml-fragment-01.xq-example" kind="example"><detaileddescription><para><h3>Content of parse-xml-fragment-01.xq example</h3><programlisting type="example">import module namespace x = "http://zorba.io/modules/xml";
+import schema namespace opt = "http://zorba.io/modules/xml-options";
+
+x:parse("&amp;lt;?xml version='1.0'?&amp;gt;
+&amp;lt;!DOCTYPE note [
+&amp;lt;!ELEMENT note (to,from,heading,body)&amp;gt;
+&amp;lt;!ELEMENT to (#PCDATA)&amp;gt;
+&amp;lt;!ELEMENT from (#PCDATA)&amp;gt;
+&amp;lt;!ELEMENT heading (#PCDATA)&amp;gt;
+&amp;lt;!ELEMENT body (#PCDATA)&amp;gt;
+]&amp;gt;
+&amp;lt;note&amp;gt;
+&amp;lt;to&amp;gt;Tove&amp;lt;/to&amp;gt;
+&amp;lt;from&amp;gt;Jani&amp;lt;/from&amp;gt;
+&amp;lt;heading&amp;gt;Reminder&amp;lt;/heading&amp;gt;
+&amp;lt;body&amp;gt;Don't forget me this weekend&amp;lt;/body&amp;gt;
+&amp;lt;/note&amp;gt;
+", 
+  &amp;lt;opt:options&amp;gt;
+    &amp;lt;opt:DTD-validate/&amp;gt;
+  &amp;lt;/opt:options&amp;gt;
+)
+</programlisting></para></detaileddescription></compounddef></doxygen>

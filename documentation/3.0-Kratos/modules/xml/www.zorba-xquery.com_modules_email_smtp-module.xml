@@ -1,0 +1,98 @@
+<doxygen><compounddef id="smtp-module" kind="module"><detaileddescription><para><h3>Content of smtp module</h3><programlisting type="module">xquery version "3.0";
+
+(:
+ : Copyright 2006-2009 The FLWOR Foundation.
+ :
+ : Licensed under the Apache License, Version 2.0 (the "License");
+ : you may not use this file except in compliance with the License.
+ : You may obtain a copy of the License at
+ :
+ : http://www.apache.org/licenses/LICENSE-2.0
+ :
+ : Unless required by applicable law or agreed to in writing, software
+ : distributed under the License is distributed on an "AS IS" BASIS,
+ : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ : See the License for the specific language governing permissions and
+ : limitations under the License.
+:)
+
+(:~
+ : This module can be used for sending emails.
+ :
+ : The SMTP module contains only one public function that receives two parameters.
+ : The SMTP server access information passed as an &amp;lt;code&amp;gt;hostInfo&amp;lt;/code&amp;gt; element
+ : and the email message representation as a &amp;lt;code&amp;gt;message&amp;lt;/code&amp;gt; element.
+ : For a quick start see the examples associates with the &amp;lt;code&amp;gt;send(...)&amp;lt;/code&amp;gt;
+ : function. For a complete specification read, the description and the
+ : documentation associated with this function.
+ :
+ : @author Sorin Nasoi, Daniel Thomas
+ : @see &amp;lt;a href="http://www.washington.edu/imap/"&amp;gt;c-client Library part of UW IMAP toolkit&amp;lt;/a&amp;gt;
+ : @library &amp;lt;a href="http://www.washington.edu/imap/"&amp;gt;c-client Library part of UW IMAP toolkit&amp;lt;/a&amp;gt;
+ : @project Zorba/Input Output/SMTP
+ :)
+module namespace smtp = "http://www.zorba-xquery.com/modules/email/smtp";
+
+import schema namespace email = 'http://www.zorba-xquery.com/modules/email';
+
+declare namespace an = "http://zorba.io/annotations";
+
+declare namespace ver = "http://zorba.io/options/versioning";
+declare option ver:module-version "1.0";
+
+(:~
+ : This function sends an email message from the specified account.
+ :
+ : The &amp;lt;code&amp;gt;hostName&amp;lt;/code&amp;gt; child element of &amp;lt;code&amp;gt;$host-info&amp;lt;/code&amp;gt; must have the form:
+ : &amp;lt;code&amp;gt;&amp;lt;b&amp;gt;remote_system_name&amp;lt;/b&amp;gt; [":" &amp;lt;b&amp;gt;port&amp;lt;/b&amp;gt;] [&amp;lt;b&amp;gt;flags&amp;lt;/b&amp;gt;]&amp;lt;/code&amp;gt;. This syntax is part of the
+ : &amp;lt;a href="http://www.washington.edu/imap/documentation/naming.txt.html" target="_blank"&amp;gt;Remote names&amp;lt;/a&amp;gt;
+ : syntax defined in the UW IMAP toolkit. The &amp;lt;code&amp;gt;&amp;lt;b&amp;gt;remote_system_name&amp;lt;/b&amp;gt;&amp;lt;/code&amp;gt; and
+ : &amp;lt;code&amp;gt;&amp;lt;b&amp;gt;flags&amp;lt;/b&amp;gt;&amp;lt;/code&amp;gt; fragments are explained in the section &amp;lt;code&amp;gt;III&amp;lt;/code&amp;gt; of this document.
+ :
+ : For example the hostName could look like:
+ : &amp;lt;ul&amp;gt;
+ :   &amp;lt;li&amp;gt;&amp;lt;code&amp;gt;&amp;amp;lt;hostName&amp;amp;gt;smtp.gmail.com:587/tls/novalidate-cert&amp;amp;lt;hostName&amp;amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/li&amp;gt;
+ :   &amp;lt;li&amp;gt;&amp;lt;code&amp;gt;&amp;amp;lt;hostName&amp;amp;gt;[209.85.129.111]:587/tls/novalidate-cert&amp;amp;lt;hostName&amp;amp;gt;&amp;lt;/code&amp;gt;&amp;lt;/li&amp;gt;
+ : &amp;lt;/ul&amp;gt;
+ :
+ : The &amp;lt;code&amp;gt;$host-info&amp;lt;/code&amp;gt; parameter could then look like this:
+ : &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;&amp;lt;![CDATA[
+ : &amp;lt;hostInfo&amp;gt;
+ :   &amp;lt;hostName&amp;gt;smtp.gmail.com:587/tls/novalidate-cert&amp;lt;/hostName&amp;gt;
+ :   &amp;lt;userName&amp;gt;username&amp;lt;/userName&amp;gt;
+ :   &amp;lt;password&amp;gt;password&amp;lt;/password&amp;gt;
+ : &amp;lt;/hostInfo&amp;gt;
+ : ]]&amp;gt;&amp;lt;/pre&amp;gt;
+ :
+ : For a complete of the structure of an email message, see the imported email
+ : schema: &amp;lt;code&amp;gt;http://www.zorba-xquery.com/modules/email&amp;lt;/code&amp;gt;
+ :
+ : All the data passed to this function does not need to be validated.
+ : The only requirement is that they have a valid format and are in the
+ : correct namespace according to the schema:
+ : &amp;lt;code&amp;gt;http://www.zorba-xquery.com/modules/email&amp;lt;/code&amp;gt;.
+ : 
+ : @param $host-info The SMTP host, user name, and password.
+ : @param $message The message to send as defined in the email XML schema.
+ : @return The function is declared as sequential and has side-effects. It returns the empty sequence.
+ : @error smtp:SMTP0001 The message format is invalid.
+ : @error smtp:SMTP0002 The message has no recipient.
+ : @error smtp:SMTP0003 The message could not be sent.
+ : @error smtp:SMTP9999 If any other error occurs.
+ : @error err:XQDY0027 If the values of the arguments are not not valid
+ :    according to the email schema:
+ :    &amp;lt;code&amp;gt;http://www.zorba-xquery.com/modules/email&amp;lt;/code&amp;gt;
+ : @example examples/Queries/smtp/simple_text.xq
+ : @example examples/Queries/smtp/text_with_image.xq
+ : @example examples/Queries/smtp/html.xq
+ :)
+declare %an:sequential function smtp:send(
+    $host-info as element(email:hostInfo),
+    $message as element(email:message))
+  as empty-sequence()
+{
+  smtp:send-impl(validate{$host-info}, validate{$message})
+}; 
+
+declare %private %an:sequential function smtp:send-impl($host-info as element(email:hostInfo), $message as element(email:message)) as empty-sequence() external;
+</programlisting></para></detaileddescription></compounddef></doxygen>

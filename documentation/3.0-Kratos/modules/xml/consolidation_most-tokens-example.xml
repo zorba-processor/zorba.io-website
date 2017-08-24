@@ -1,0 +1,4 @@
+<doxygen><compounddef id="most-tokens.xq-example" kind="example"><detaileddescription><para><h3>Content of most-tokens.xq example</h3><programlisting type="example">import module namespace con = "http://zorba.io/modules/data-cleaning/consolidation";
+
+con:most-tokens( ( "a b c", "a b", "a"), " +" )
+</programlisting></para></detaileddescription></compounddef></doxygen>

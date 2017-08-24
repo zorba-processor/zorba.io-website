@@ -1,0 +1,14 @@
+<doxygen><compounddef id="tidy_1.xq-example" kind="example"><detaileddescription><para><h3>Content of tidy_1.xq example</h3><programlisting type="example">(: tidy a html using different tidy options :)
+
+import module namespace html="http://www.zorba-xquery.com/modules/converters/html";
+import schema namespace html-options="http://www.zorba-xquery.com/modules/converters/html-options";
+
+html:parse('&amp;lt;title&amp;gt;Foo&amp;lt;/title&amp;gt;&amp;lt;p&amp;gt;Foo!',
+            &amp;lt;options xmlns="http://www.zorba-xquery.com/modules/converters/html-options" &amp;gt;
+              &amp;lt;tidyParam name="output-xml" value="yes" /&amp;gt;
+              &amp;lt;tidyParam name="doctype" value="omit" /&amp;gt;
+              &amp;lt;tidyParam name="quote-nbsp" value="no" /&amp;gt;
+              &amp;lt;tidyParam name="char-encoding" value="utf8" /&amp;gt;
+              &amp;lt;tidyParam name="newline" value="LF" /&amp;gt;
+              &amp;lt;tidyParam name="tidy-mark" value="no" /&amp;gt;
+            &amp;lt;/options&amp;gt;)</programlisting></para></detaileddescription></compounddef></doxygen>

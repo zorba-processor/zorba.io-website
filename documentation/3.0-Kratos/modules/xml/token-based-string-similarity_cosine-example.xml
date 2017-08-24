@@ -1,0 +1,4 @@
+<doxygen><compounddef id="cosine.xq-example" kind="example"><detaileddescription><para><h3>Content of cosine.xq example</h3><programlisting type="example">import module namespace simt = "http://zorba.io/modules/data-cleaning/token-based-string-similarity";
+
+simt:cosine( ("aa","bb") , ("bb","aa"))
+</programlisting></para></detaileddescription></compounddef></doxygen>

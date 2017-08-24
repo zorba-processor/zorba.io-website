@@ -1,0 +1,4 @@
+<doxygen><compounddef id="jaro.xq-example" kind="example"><detaileddescription><para><h3>Content of jaro.xq example</h3><programlisting type="example">import module namespace simc = "http://zorba.io/modules/data-cleaning/character-based-string-similarity";
+
+simc:jaro("FLWOR Found.", "FLWOR Foundation")
+</programlisting></para></detaileddescription></compounddef></doxygen>

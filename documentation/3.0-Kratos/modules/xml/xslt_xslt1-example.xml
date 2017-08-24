@@ -1,0 +1,7 @@
+<doxygen><compounddef id="xslt1.xq-example" kind="example"><detaileddescription><para><h3>Content of xslt1.xq example</h3><programlisting type="example">import module namespace
+  xslt = "http://www.zorba-xquery.com/modules/languages/xslt"; 
+
+
+xslt:transform(doc("cat.xml"), doc("t1.xslt"))
+
+</programlisting></para></detaileddescription></compounddef></doxygen>

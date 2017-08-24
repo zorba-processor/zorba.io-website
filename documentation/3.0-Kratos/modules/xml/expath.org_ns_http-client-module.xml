@@ -1,0 +1,227 @@
+<doxygen><compounddef id="http-client-module" kind="module"><detaileddescription><para><h3>Content of http-client module</h3><programlisting type="module">xquery version "3.0";
+
+(:
+ : Copyright 2006-2009 The FLWOR Foundation.
+ :
+ : Licensed under the Apache License, Version 2.0 (the "License");
+ : you may not use this file except in compliance with the License.
+ : You may obtain a copy of the License at
+ :
+ : http://www.apache.org/licenses/LICENSE-2.0
+ :
+ : Unless required by applicable law or agreed to in writing, software
+ : distributed under the License is distributed on an "AS IS" BASIS,
+ : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ : See the License for the specific language governing permissions and
+ : limitations under the License.
+:)
+
+(:~
+ : &amp;lt;p&amp;gt;
+ : This module provides an implementation of the
+ : &amp;lt;a href="http://expath.org/modules/http-client/"&amp;gt;EXPath Http Client&amp;lt;/a&amp;gt;.
+ : It provides functions for making HTTP requests and is a superset of the
+ : module specified by EXPath.
+ : Specifically, it implements the &amp;lt;code&amp;gt;http:send-request()&amp;lt;/code&amp;gt; functions
+ : as specified by EXPath. Moreover, it adds an additional function
+ : &amp;lt;code&amp;gt;http:read()&amp;lt;/code&amp;gt; (with several arities for the sake of ease).
+ : &amp;lt;/p&amp;gt;
+ :
+ : &amp;lt;p&amp;gt;
+ : In general, both functions take a description of the HTTP request to make
+ : as parameter, execute the request, and return a representation of the HTTP
+ : response. For instance, in the following code snippet, we fetch the Zorba
+ : home page:
+ : &amp;lt;/p&amp;gt;
+ : &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;&amp;lt;![CDATA[import module namespace http = "http://expath.org/ns/http-client";
+ : 
+ : http:send-request(
+ :  &amp;lt;http:request href="http://zorba.io" method="get" /&amp;gt;
+ : )
+ : ]]&amp;gt;&amp;lt;/pre&amp;gt;
+ : 
+ : &amp;lt;p&amp;gt;
+ : The &amp;lt;code&amp;gt;http:send-request()&amp;lt;/code&amp;gt; functions are declared as sequential. 
+ : Sequential functions are allowed to have side effects. For example, most probably,
+ : an HTTP POST request is a request that has side effects because it adds/changes
+ : a remote resource. Sequential functions are specified in the
+ : &amp;lt;a href="http://zorba.io/documentation/2.9/zorba/scripting_tutorial.html"&amp;gt;XQuery Scripting Extension&amp;lt;/a&amp;gt;.
+ : In contrast, the http:read() functions are not declared as sequential -
+ : they are declared as nondeterministic though, which
+ : means that several calls may return different results.
+ : HTTP requests performed using these functions are &amp;lt;b&amp;gt;not&amp;lt;/b&amp;gt; allowed to have
+ : side effects.
+ : &amp;lt;/p&amp;gt;
+ :
+ : &amp;lt;p&amp;gt;
+ : The response is returned as a sequence of one or more items. The first
+ : one is an &amp;lt;code&amp;gt;http:response&amp;lt;/code&amp;gt; element with quite the same
+ : structure as an http:request, but without the content itself.
+ : The content is returned as the second item (or several items in case of
+ : a multipart response) as a string, a document node, or a binary item.
+ : This depends on the content-type returned.
+ : Specifically, the rules are as follows:
+ : 
+ : &amp;lt;ul&amp;gt;
+ :  &amp;lt;li&amp;gt;A document node is returned if the media type has a MIME type of
+ :     text/xml, application/xml, text/xml-external-parsed-entity, or
+ :     application/xml-external-parsed-entity, as defined in [RFC 3023]
+ :     (except that application/xml-dtd is considered a text media type).
+ :     MIME types ending by +xml are also XML media types.&amp;lt;/li&amp;gt;
+ :  &amp;lt;li&amp;gt;A document node is returned if the media type has a MIME type of
+ :      text/html. In order to be able to make HTML parseable, tidy is automatically
+ :      invoked. If you want to prevent that, you can also set your own content-type
+ :      by setting the override-media-type attribute in the request element.
+ :       For tidying, the following &amp;lt;a href="http://tidy.sourceforge.net/docs/quickref.html"&amp;gt;options&amp;lt;/a&amp;gt;
+ :       will be used:
+ :       &amp;lt;ul&amp;gt;
+ :         &amp;lt;li&amp;gt;TidyXmlOut=yes&amp;lt;/li&amp;gt;
+ :         &amp;lt;li&amp;gt;TidyDoctypeMode=TidyDoctypeOmit&amp;lt;/li&amp;gt;
+ :         &amp;lt;li&amp;gt;TidyQuoteNbsp=yes&amp;lt;/li&amp;gt;
+ :         &amp;lt;li&amp;gt;TidyCharEncoding="utf8"&amp;lt;/li&amp;gt;
+ :         &amp;lt;li&amp;gt;TidyNewline="LF"&amp;lt;/li&amp;gt;
+ :       &amp;lt;/ul&amp;gt;
+ :  &amp;lt;/li&amp;gt;
+ :  &amp;lt;li&amp;gt;An xs:string item is returned if the media type has a text MIME type,
+ :     i.e. beginning with text/.&amp;lt;/li&amp;gt;
+ :  &amp;lt;li&amp;gt;An xs:base64Binary item is returned for all the other media types.&amp;lt;/li&amp;gt;
+ : &amp;lt;/ul&amp;gt;
+ : &amp;lt;/p&amp;gt;
+ :
+ :
+ : &amp;lt;p&amp;gt;
+ : The structure of a request element is defined in the schema that is imported
+ : by this module. The details are described in the
+ : &amp;lt;a href="http://expath.org/spec/http-client#d2e183"&amp;gt;specification&amp;lt;/a&amp;gt;.
+ : Analogously, the response element is also described in this
+ : &amp;lt;a href="http://expath.org/spec/http-client#d2e491"&amp;gt;specification&amp;lt;/a&amp;gt;.
+ : &amp;lt;/p&amp;gt;
+ :
+ : @author Federico Cavalieri, Markus Pilman
+ : @see &amp;lt;a href="http://www.w3.org/TR/xquery-3/#FunctionDeclns"&amp;gt;XQuery 3.0: Function Declaration&amp;lt;/a&amp;gt;
+ : @library &amp;lt;a href="http://curl.haxx.se/"&amp;gt;cURL Library&amp;lt;/a&amp;gt;
+ : @project EXPath/EXPath HTTP Client
+ :
+ :)
+module namespace http = "http://expath.org/ns/http-client";
+
+import module namespace http-wrapper = "http://zorba.io/modules/http-client-wrapper";
+import module namespace err = "http://expath.org/ns/error";
+
+import module namespace tidy="http://www.zorba-xquery.com/modules/converters/html";
+import schema namespace tidy-options="http://www.zorba-xquery.com/modules/converters/html-options";
+
+import schema namespace https = "http://expath.org/ns/http-client";
+
+declare namespace an = "http://zorba.io/annotations";
+
+declare namespace ver = "http://zorba.io/options/versioning";
+declare option ver:module-version "1.0";
+
+(:~
+ : This function sends an HTTP request and returns the corresponding response. 
+ :
+ : &amp;lt;p&amp;gt;
+ : This function is declared as sequential (see XQuery Scripting).
+ : Sequential functions are allowed to have side effects. For example, most probably,
+ : an HTTP POST request is a request that has side effects because it adds/changes
+ : a remote resource.
+ : &amp;lt;/p&amp;gt;
+ :
+ : @param $request Contains the various parameters of the request. 
+ :   See the 
+ :   &amp;lt;a href="http://expath.org/spec/http-client#d2e183"&amp;gt;specification&amp;lt;/a&amp;gt;.
+ :   for a full description of the structure of this element.
+ : @param $href is the HTTP or HTTPS URI to send the request to. It must be a valid
+ :  xs:anyURI, but is declared as a string to be able to pass literal strings
+ :  (without requiring to explicitly cast it to an xs:anyURI.)
+ : @param $content is the request body content, for HTTP methods that can
+ :  contain a body in the request (i.e. POST and PUT). It is an error, if this
+ :  param is not the empty sequence for methods other then DELETE, GET, HEAD
+ :  and OPTIONS.
+ : @return a sequence of items, where the first item is a element of type
+ :  http:responseType. The response element is also described in the
+ :  &amp;lt;a href="http://expath.org/spec/http-client#d2e483"&amp;gt;specification&amp;lt;/a&amp;gt;.
+ :  If there is one (or several, in case of multipart) response body, the response bodies
+ :  are the next items in the sequence.
+ :)   
+declare %an:sequential function http:send-request(
+  $request as element()?,
+  $href as xs:string?,
+  $bodies as item()*) as item()+ {
+  try 
+  {
+     {
+       variable $result := http-wrapper:http-sequential-request($request, $href, $bodies);
+       http:tidy-result($result, fn:data($request/@override-media-type))
+     }
+  } catch XPTY0004 {
+    fn:error($err:HC005, "The request element is not valid.")
+  }
+};
+
+(:~
+ : Function for convenience.
+ :
+ : Calling this function is equivalent to calling
+ :
+ : &amp;lt;code&amp;gt;
+ : http:send-request($request, (), ())
+ : &amp;lt;/code&amp;gt;
+ :
+ : @see documentation of &amp;lt;a href="#send-request-3"&amp;gt;send-request&amp;lt;/a&amp;gt; with three parameters.
+ :
+ : @param $request see request parameter of the sequential
+ :  &amp;lt;a href="#send-request-3"&amp;gt;send-request&amp;lt;/a&amp;gt; function with three parameters.
+ : @return see return value of the sequential 
+ :  &amp;lt;a href="#send-request-3"&amp;gt;send-request&amp;lt;/a&amp;gt; function with three parameters.
+ :)
+declare %an:sequential function http:send-request (
+  $request as element()) as item()+ {
+  try {
+    http:send-request($request, (), ())
+  } catch XPTY0004 {
+    fn:error($err:HC005, "The request element is not valid.")
+  }
+};
+
+(:~
+ : Function for convenience.
+ :
+ : Calling this function is equivalent to calling
+ :
+ : &amp;lt;code&amp;gt;
+ : http:send-request($request, $href, ())
+ : &amp;lt;/code&amp;gt;
+ :
+ : @see documentation of &amp;lt;a href="#send-request-3"&amp;gt;send-request&amp;lt;/a&amp;gt; with three parameters.
+ :
+ : @param $request see request parameter of the sequential
+ :  &amp;lt;a href="#send-request-3"&amp;gt;send-request&amp;lt;/a&amp;gt; function with three parameters.
+ : @param $href see href parameter of the sequential
+ :  &amp;lt;a href="#send-request-3"&amp;gt;send-request&amp;lt;/a&amp;gt; function with three parameters.
+ : @return see return of
+ :  &amp;lt;a href="#send-request-3"&amp;gt;send-request&amp;lt;/a&amp;gt;
+ :)
+declare %an:sequential function http:send-request(
+  $request as element()?,
+  $href as xs:string?) as item()+ {
+  try {
+    http:send-request($request, $href, ())
+  } catch XPTY0004 {
+    fn:error($err:HC005, "The request element is not valid.")
+  }
+};
+
+declare %private function http:tidy-result($result as item()+, $override-media-type as xs:string?) as item()+
+{
+  $result[1],
+  for $body at $pos in fn:subsequence($result, 2)
+  let $media-type := ($override-media-type, $result[1]//https:body[$pos]/@media-type/fn:data(.))[1]
+  return
+    if ($media-type eq "text/html") then
+      tidy:parse($body)
+    else
+      $body
+};
+</programlisting></para></detaileddescription></compounddef></doxygen>

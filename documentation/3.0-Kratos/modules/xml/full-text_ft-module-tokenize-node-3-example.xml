@@ -1,0 +1,13 @@
+<doxygen><compounddef id="ft-module-tokenize-node-3.xq-example" kind="example"><detaileddescription><para><h3>Content of ft-module-tokenize-node-3.xq example</h3><programlisting type="example">jsoniq version "1.0";
+
+import module namespace ft = "http://zorba.io/modules/full-text";
+import module namespace ref = "http://zorba.io/modules/reference";
+
+let $x := &amp;lt;p xml:lang="en"&amp;gt;Houston, we have a &amp;lt;em&amp;gt;problem&amp;lt;/em&amp;gt;!&amp;lt;/p&amp;gt;
+let $tokens := ft:tokenize-node( $x )
+let $node-ref := $tokens[5].node-ref
+let $node := ref:dereference( $node-ref )
+return $node instance of text()
+
+(: vim:set et sw=2 ts=2: :)
+</programlisting></para></detaileddescription></compounddef></doxygen>

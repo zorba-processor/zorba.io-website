@@ -1,0 +1,6 @@
+<doxygen><compounddef id="geometry-n2.xq-example" kind="example"><detaileddescription><para><h3>Content of geometry-n2.xq example</h3><programlisting type="example">import module namespace geo = "http://expath.org/ns/geo";
+declare namespace gml="http://www.opengis.net/gml";
+
+geo:geometry-n( &amp;lt;gml:Point&amp;gt;&amp;lt;gml:pos&amp;gt;1 1&amp;lt;/gml:pos&amp;gt;&amp;lt;/gml:Point&amp;gt;,
+                0 cast as xs:unsignedInt
+              )</programlisting></para></detaileddescription></compounddef></doxygen>

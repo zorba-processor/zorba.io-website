@@ -1,0 +1,5 @@
+<doxygen><compounddef id="excel_varp1.xq-example" kind="example"><detaileddescription><para><h3>Content of excel_varp1.xq example</h3><programlisting type="example">import module namespace
+math="http://zorba.io/modules/math";
+
+math:varp((1345, 1301, 1368, 1322, 1310, 1370, 1318, 1350, 1303, 1299))
+</programlisting></para></detaileddescription></compounddef></doxygen>

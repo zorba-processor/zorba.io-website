@@ -1,0 +1,525 @@
+<!DOCTYPE html><html lang="en" class="js cssanimations ng-scope" ng-app="28.ioApp" prefix="og: http://ogp.me/ns#" ng-controller="MainCtrl"><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Zorba - The NoSQL Query Processor</title>
+        <meta name="description" content="Zorba - The NoSQL Query Processor">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+
+        <meta content="28.io" name="apple-mobile-web-app-title">
+        <link href="/images/iphone-icon.png" rel="apple-touch-icon-precomposed">
+        <link href="/favicon.png" rel="icon" type="image/png">
+
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="http://www.zorba.io/blog/atom.xml">
+        <base href="/">
+        <link rel="stylesheet" href="/styles/index.css">
+    <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\:form{display:block;}</style></head>
+    <body ready="" class="" ng-cloak="undefined">
+        <!--[if lt IE 9]>
+            <script type="text/javascript">location.href = "/outdated";</script>
+        <![endif]-->
+        <div class="navbar navbar-default navbar-fixed-top" id="top-menu" navbar-toggle="">
+            <div class="container">
+                <a href="/home" id="logo">
+<svg width="172px" height="44px" viewBox="0 0 172 44" version="1.1" xmlns="http://www.w3.org/2000/svg" style="margin-right: 30px">
+    <defs></defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="g3354-1-3-0" transform="translate(70.000000, 3.000000)" fill="#3498DB">
+            <path d="M36.8599281,6.08695652 C23.7462235,7.46138534 17.3241713,7.87186266 12.0855118,12.5394913 C9.61392853,8.89602738 2.41221529,6.6246591 0,6.89251341 L0.0401259499,9.84221332 C11.3218642,17.172198 8.15927521,31.2798979 5.60530924,40 L18.0693794,40 C15.1069036,30.4981162 15.7891093,23.8890354 16.4644797,20.4999181 C17.5216924,12.0444371 30.0443188,9.56353073 37,7.95199463 L36.8599281,6.08695652 Z" id="path3217-2-16-8-3-4-8-9"></path>
+            <path d="M17.2092989,4.7826087 C17.2112417,6.18001565 16.3916489,7.47202866 15.0597079,8.1712421 C13.7277668,8.87045553 12.0861867,8.87045553 10.7542456,8.1712421 C9.42230457,7.47202866 8.60271176,6.18001565 8.60465461,4.7826087 C8.60271176,3.38520174 9.42230457,2.09318873 10.7542456,1.39397529 C12.0861867,0.694761858 13.7277668,0.694761858 15.0597079,1.39397529 C16.3916489,2.09318873 17.2112417,3.38520174 17.2092989,4.7826087 L17.2092989,4.7826087 Z" id="path3830-2-4-8-2-3-6-0-4" transform="translate(12.906977, 4.782609) rotate(-12.486691) translate(-12.906977, -4.782609) "></path>
+        </g>
+        <path d="M0.896,35.2271939 L0.896,42.1301694 L34.4088328,42.1301694 L34.4088328,34.7818406 L12.5308539,34.7818406 L33.8521412,9.28536648 L33.8521412,2.38239095 L2.56607473,2.38239095 L2.56607473,9.73071974 L22.2172873,9.73071974 L0.896,35.2271939 Z M37.8046514,27.7675268 C37.8046514,30.0685301 38.1572192,32.1468246 38.8623654,34.0024724 C39.5675116,35.8581203 40.5695464,37.4446754 41.8684999,38.7621854 C43.1674534,40.0796954 44.7261743,41.0910083 46.5447092,41.7961545 C48.3632441,42.5013007 50.4044261,42.8538685 52.6683165,42.8538685 C54.9322069,42.8538685 56.982667,42.5013007 58.8197584,41.7961545 C60.6568498,41.0910083 62.2248487,40.0796954 63.5238022,38.7621854 C64.8227557,37.4446754 65.8247905,35.8581203 66.5299367,34.0024724 C67.2350829,32.1468246 67.5876507,30.0685301 67.5876507,27.7675268 C67.5876507,25.4665234 67.2350829,23.3789509 66.5299367,21.5047466 C65.8247905,19.6305422 64.8227557,18.034709 63.5238022,16.717199 C62.2248487,15.399689 60.6568498,14.379098 58.8197584,13.6553953 C56.982667,12.9316927 54.9322069,12.5698468 52.6683165,12.5698468 C50.4044261,12.5698468 48.3632441,12.9316927 46.5447092,13.6553953 C44.7261743,14.379098 43.1674534,15.399689 41.8684999,16.717199 C40.5695464,18.034709 39.5675116,19.6305422 38.8623654,21.5047466 C38.1572192,23.3789509 37.8046514,25.4665234 37.8046514,27.7675268 Z M45.7096718,27.7675268 C45.7096718,26.6170251 45.821009,25.4850969 46.0436867,24.3717082 C46.2663645,23.2583195 46.6467666,22.2748408 47.1849045,21.4212428 C47.7230424,20.5676448 48.4374561,19.8717873 49.328167,19.3336494 C50.218878,18.7955115 51.33225,18.5264466 52.6683165,18.5264466 C54.0043829,18.5264466 55.1270331,18.7955115 56.0363005,19.3336494 C56.945568,19.8717873 57.6692598,20.5676448 58.2073977,21.4212428 C58.7455355,22.2748408 59.1259376,23.2583195 59.3486154,24.3717082 C59.5712931,25.4850969 59.6826303,26.6170251 59.6826303,27.7675268 C59.6826303,28.9180285 59.5712931,30.0406786 59.3486154,31.1355108 C59.1259376,32.230343 58.7455355,33.2138217 58.2073977,34.0859762 C57.6692598,34.9581306 56.945568,35.6539882 56.0363005,36.1735696 C55.1270331,36.693151 54.0043829,36.9529378 52.6683165,36.9529378 C51.33225,36.9529378 50.218878,36.693151 49.328167,36.1735696 C48.4374561,35.6539882 47.7230424,34.9581306 47.1849045,34.0859762 C46.6467666,33.2138217 46.2663645,32.230343 46.0436867,31.1355108 C45.821009,30.0406786 45.7096718,28.9180285 45.7096718,27.7675268 Z" id="Zo" fill="#333333"></path>
+        <path d="M109.28037,2.38239095 L109.28037,42.1301694 L116.795707,42.1301694 L116.795707,38.456005 L116.907045,38.456005 C117.760643,40.0518622 119.022465,41.1837904 120.692548,41.8518236 C122.362631,42.5198569 124.255363,42.8538685 126.370802,42.8538685 C127.818207,42.8538685 129.247034,42.5569693 130.657327,41.9631619 C132.067619,41.3693546 133.338719,40.4601008 134.470664,39.2353732 C135.602609,38.0106456 136.521141,36.4426467 137.226287,34.5313294 C137.931434,32.6200121 138.284001,30.3468776 138.284001,27.7118576 C138.284001,25.0768377 137.931434,22.8037031 137.226287,20.8923858 C136.521141,18.9810685 135.602609,17.4130696 134.470664,16.188342 C133.338719,14.9636144 132.067619,14.0543606 130.657327,13.4605533 C129.247034,12.866746 127.818207,12.5698468 126.370802,12.5698468 C124.58938,12.5698468 122.872931,12.9131365 121.221405,13.5997262 C119.569878,14.2863159 118.261666,15.3718536 117.296729,16.8563719 L117.185391,16.8563719 L117.185391,2.38239095 L109.28037,2.38239095 Z M130.378981,27.7675268 C130.378981,28.9551414 130.249088,30.1056258 129.989297,31.2190145 C129.729506,32.3324033 129.32127,33.3158819 128.764575,34.1694799 C128.207881,35.0230779 127.512024,35.7003792 126.676982,36.2014041 C125.841941,36.7024291 124.830628,36.9529378 123.643013,36.9529378 C122.492511,36.9529378 121.490477,36.7024291 120.636878,36.2014041 C119.78328,35.7003792 119.078145,35.0230779 118.521451,34.1694799 C117.964756,33.3158819 117.55652,32.3324033 117.296729,31.2190145 C117.036938,30.1056258 116.907045,28.9551414 116.907045,27.7675268 C116.907045,26.5427992 117.036938,25.3737586 117.296729,24.2603699 C117.55652,23.1469811 117.964756,22.1635025 118.521451,21.3099045 C119.078145,20.4563065 119.78328,19.7790052 120.636878,19.2779803 C121.490477,18.7769553 122.492511,18.5264466 123.643013,18.5264466 C124.830628,18.5264466 125.841941,18.7769553 126.676982,19.2779803 C127.512024,19.7790052 128.207881,20.4563065 128.764575,21.3099045 C129.32127,22.1635025 129.729506,23.1469811 129.989297,24.2603699 C130.249088,25.3737586 130.378981,26.5427992 130.378981,27.7675268 Z M142.960211,22.200611 L150.865231,22.200611 C151.013683,20.6418668 151.533256,19.5284948 152.423967,18.8604616 C153.314678,18.1924283 154.539388,17.8584167 156.098132,17.8584167 C156.803278,17.8584167 157.462023,17.9048072 158.074387,17.9975896 C158.686751,18.090372 159.224881,18.275934 159.688792,18.5542812 C160.152704,18.8326284 160.523828,19.2223086 160.802176,19.7233335 C161.080523,20.2243584 161.219694,20.9016597 161.219694,21.7552578 C161.256807,22.5717428 161.015577,23.1933755 160.495995,23.6201745 C159.976414,24.0469735 159.271278,24.3717071 158.380567,24.5943848 C157.489856,24.8170625 156.469265,24.9840683 155.318764,25.0954072 C154.168262,25.2067461 152.999221,25.3551957 151.811607,25.5407605 C150.623992,25.7263253 149.445673,25.976834 148.276615,26.2922941 C147.107557,26.6077542 146.06841,27.0809373 145.159142,27.7118576 C144.249875,28.3427779 143.507627,29.187085 142.932376,30.2448043 C142.357125,31.3025236 142.069504,32.6478481 142.069504,34.2808182 C142.069504,35.7653365 142.320013,37.0457143 142.821038,38.1219901 C143.322063,39.1982658 144.01792,40.0889634 144.908631,40.7941096 C145.799342,41.4992558 146.838489,42.0188294 148.026104,42.352846 C149.213719,42.6868627 150.494096,42.8538685 151.867276,42.8538685 C153.648698,42.8538685 155.392981,42.5940817 157.100177,42.0745003 C158.807373,41.5549189 160.291869,40.645665 161.553709,39.3467115 C161.590822,39.82918 161.655769,40.3023631 161.748551,40.7662751 C161.841334,41.230187 161.961949,41.6848139 162.110401,42.1301694 L170.12676,42.1301694 C169.75563,41.5363621 169.495843,40.6456645 169.347391,39.4580499 C169.198939,38.2704352 169.124715,37.0271698 169.124715,35.7282163 L169.124715,20.7532129 C169.124715,19.0089039 168.735034,17.6079108 167.955662,16.5501915 C167.17629,15.4924723 166.174255,14.6667213 164.949528,14.072914 C163.7248,13.4791067 162.370198,13.0801484 160.885679,12.8760271 C159.401161,12.6719059 157.935221,12.5698468 156.487816,12.5698468 C154.891959,12.5698468 153.305404,12.7275745 151.728103,13.0430346 C150.150802,13.3584948 148.731253,13.8873465 147.469412,14.6296056 C146.207572,15.3718647 145.168425,16.3553434 144.35194,17.580071 C143.535455,18.8047985 143.07155,20.3449632 142.960211,22.200611 Z M161.219694,28.0458726 L161.219694,30.9963379 C161.219694,31.4416934 161.173304,32.0354918 161.080521,32.777751 C160.987739,33.5200101 160.73723,34.25298 160.328988,34.9766827 C159.920745,35.7003853 159.289834,36.322018 158.436236,36.8415995 C157.582638,37.3611809 156.376485,37.6209677 154.817741,37.6209677 C154.186821,37.6209677 153.574466,37.5652991 152.980659,37.4539602 C152.386852,37.3426213 151.867278,37.1477812 151.421923,36.869434 C150.976567,36.5910868 150.623999,36.2106847 150.364209,35.7282163 C150.104418,35.2457479 149.974524,34.6519494 149.974524,33.9468033 C149.974524,33.2045441 150.104418,32.5921895 150.364209,32.1097211 C150.623999,31.6272526 150.967289,31.2282943 151.394088,30.9128342 C151.820887,30.597374 152.321904,30.3468653 152.897155,30.1613005 C153.472406,29.9757358 154.056926,29.8272862 154.650734,29.7159473 C155.281654,29.6046084 155.912565,29.5118274 156.543485,29.4376015 C157.174405,29.3633756 157.777482,29.2705946 158.352733,29.1592557 C158.927984,29.0479168 159.466113,28.9087453 159.967138,28.741737 C160.468163,28.5747287 160.885678,28.3427762 161.219694,28.0458726 Z" id="ba" fill="#333333"></path>
+    </g>
+</svg>
+                </a>
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li ng-class="navClass(menu.home.href)">
+                            <a ng-href="/home" ng-bind="menu.home.label" class="ng-binding" href="/home">Home</a>
+                        </li>
+                        <li ng-class="navClass(menu.documentation.href)" class="active">
+                            <a ng-href="/documentation" ng-bind="menu.documentation.label" class="ng-binding" href="/documentation">Documentation</a>
+                        </li>
+                        <li ng-class="navClass(menu.tryzorba.href)">
+                            <a ng-href="http://try.zorba.io/" ng-bind="menu.tryzorba.label" class="ng-binding" href="http://try.zorba.io/">Live Demo</a>
+                        </li>
+                        <li ng-class="navClass(menu.blog.href)">
+                            <a ng-href="/blog" ng-bind="menu.blog.label" class="ng-binding" href="/blog">Blog</a>
+                        </li>
+                        <li ng-class="navClass(menu.download.href)">
+                            <a ng-href="/download" ng-bind="menu.download.label" class="ng-binding" href="/download">Download</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ng-view"><div class="container ng-scope" id="documentation">
+    <div class="row">
+        <!-- ngIf: state !== 'notfound' && !debug --><div class="col-sm-4 sidebar ng-scope" ng-if="state !== 'notfound' &amp;&amp; !debug">
+            <div class="inner-sidebar">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="dropdown selected-version">
+                    <a class="dropdown-toggle">
+                        <span ng-bind="currentVersion.version" class="ng-binding">3.0</span>
+                        <span ng-bind="currentVersion.codename" class="ng-binding">Kratos</span>
+                        <span ng-show="currentVersion.latest">(latest)</span>
+                        <!--i class="fa fa-caret-down"></i-->
+                    </a>
+                    <!--ul class="dropdown-menu versions">
+                        <li ng-repeat="version in index.versions" ng-show="currentVersion.version != version.version">
+                            <a ng-href="/documentation/{{version.version}}">
+                                <span ng-bind="version.version"></span>
+                                <span ng-bind="version.codename"></span>
+                                <span ng-show="version.latest">(latest)</span>
+                            </a>
+                        </li>
+                    </ul-->
+                    <ul class="versions">
+                        <!-- ngRepeat: version in index.versions --><li ng-repeat="version in index.versions" ng-show="currentVersion.version != version.version" class="ng-scope" style="display: none; ">
+                            <a ng-href="/documentation/3.0" href="/documentation/3.0">
+                                <span ng-bind="version.version" class="ng-binding">3.0</span>
+                                <span ng-bind="version.codename" class="ng-binding">Kratos</span>
+                                <span ng-show="version.latest">(latest)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="slider">
+                <!-- Current -->
+                <div class="current" ng-show="panel.status === 'current'">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="path.split('/').length &gt; 3">
+                            <a href="/documentation/latest" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/xml_json" ng-click="next(item)" href="/documentation/latest/zorba/xml_json">
+                                <span ng-bind="item.label" class="ng-binding">XQuery &amp; JSONiq</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/build" ng-click="next(item)" href="/documentation/latest/zorba/build">
+                                <span ng-bind="item.label" class="ng-binding">Build Instructions</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/install" ng-click="next(item)" href="/documentation/latest/zorba/install">
+                                <span ng-bind="item.label" class="ng-binding">Install</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/cli" ng-click="next(item)" href="/documentation/latest/zorba/cli">
+                                <span ng-bind="item.label" class="ng-binding">Command Line Utility</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/architecture" ng-click="next(item)" href="/documentation/latest/zorba/architecture">
+                                <span ng-bind="item.label" class="ng-binding">General Architecture</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/modules" ng-click="next(item)" href="/documentation/latest/zorba/modules">
+                                <span ng-bind="item.label" class="ng-binding">Library Modules</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope active">
+                            <a ng-href="/documentation/latest/zorba/scripting_tutorial" ng-click="next(item)" href="/documentation/latest/zorba/scripting_tutorial">
+                                <span ng-bind="item.label" class="ng-binding">Scripting</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" ng-class="{ active: (path + '/' + item.id) === currentPath}" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/specifications" ng-click="next(item)" href="/documentation/latest/zorba/specifications">
+                                <span ng-bind="item.label" class="ng-binding">Specifications</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Next -->
+                <div class="next slideRight" ng-show="panel.status === 'next'" next="" style="display: none; ">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="menu &amp;&amp; path.split('/').length &gt; 4" style="display: none; ">
+                            <a ng-href="/documentation" ng-click="previous()" href="/documentation">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.parent.children --><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Modules</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">End-User Docs</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.parent.children" class="ng-scope">
+                            <a>
+                                <span ng-bind="item.label" class="ng-binding">Language Bindings</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="/documentation/latest" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/xml_json" ng-click="next(item)" href="/documentation/latest/zorba/xml_json">
+                                <span ng-bind="item.label" class="ng-binding">XQuery &amp; JSONiq</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/build" ng-click="next(item)" href="/documentation/latest/zorba/build">
+                                <span ng-bind="item.label" class="ng-binding">Build Instructions</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/install" ng-click="next(item)" href="/documentation/latest/zorba/install">
+                                <span ng-bind="item.label" class="ng-binding">Install</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/cli" ng-click="next(item)" href="/documentation/latest/zorba/cli">
+                                <span ng-bind="item.label" class="ng-binding">Command Line Utility</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/architecture" ng-click="next(item)" href="/documentation/latest/zorba/architecture">
+                                <span ng-bind="item.label" class="ng-binding">General Architecture</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/modules" ng-click="next(item)" href="/documentation/latest/zorba/modules">
+                                <span ng-bind="item.label" class="ng-binding">Library Modules</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/scripting_tutorial" ng-click="next(item)" href="/documentation/latest/zorba/scripting_tutorial">
+                                <span ng-bind="item.label" class="ng-binding">Scripting</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a ng-href="/documentation/latest/zorba/specifications" ng-click="next(item)" href="/documentation/latest/zorba/specifications">
+                                <span ng-bind="item.label" class="ng-binding">Specifications</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Previous -->
+                <div class="previous slideLeft" ng-show="panel.status === 'previous'" previous="" style="display: none; ">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-show="menu &amp;&amp; path.split('/').length &gt; 3">
+                            <a ng-href="/documentation/latest" ng-click="previous()" href="/documentation/latest">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in currentItem.children --><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/zorba/xml_json" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">XQuery &amp; JSONiq</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/zorba/build" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Build Instructions</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/zorba/install" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Install</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/zorba/cli" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Command Line Utility</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/zorba/architecture" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">General Architecture</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/zorba/modules" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Library Modules</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/zorba/scripting_tutorial" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Scripting</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children" style="display: none; "></i>
+                            </a>
+                        </li><li ng-repeat="item in currentItem.children" class="ng-scope">
+                            <a href="/documentation/latest/zorba/specifications" ng-click="next(item)">
+                                <span ng-bind="item.label" class="ng-binding">Specifications</span>
+                                <i class="pull-right fa fa-angle-right" ng-show="item.children"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="/documentation" ng-click="previous()">
+                                <i class="fa fa-angle-left"></i>
+                                <span>Previous</span>
+                            </a>
+                        </li>
+                        <!-- ngRepeat: item in panel.previous.children -->
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="content col-sm-8" ng-switch="" on="state" ng-class="{ 'col-sm-8': state !== 'notfound', 'col-sm-12': state === 'notfound' }">
+            
+                <ol class="breadcrumb">
+                    <li>
+                        <a ng-href="/documentation/latest" class="ng-binding" href="/documentation/latest">
+                            Zorba 3.0 Documentation
+                        </a>
+                    </li>
+                    <!-- ngRepeat: crumb in getBreadCrumbs() --><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope">
+                        <a ng-href="/documentation/latest/zorba" href="/documentation/latest/zorba">
+                            <span ng-bind="crumb.label" class="ng-binding">End-User Docs</span>
+                        </a>
+                    </li><li ng-repeat="crumb in getBreadCrumbs()" ng-class="{ active: $last }" class="ng-scope active">
+                        <a ng-href="/documentation/latest/zorba/scripting_tutorial" href="/documentation/latest/zorba/scripting_tutorial">
+                            <span ng-bind="crumb.label" class="ng-binding">Scripting</span>
+                        </a>
+                    </li>
+                </ol>
+            
+            <!-- ngSwitchWhen: loading -->
+            <!-- ngSwitchWhen: zorba --><div ng-switch-when="zorba" class="ng-scope">
+                <p>View as <a ng-href="http://bazaar.launchpad.net/~zorba-coders/zorba/trunk/view/head:/doc/zorba/scripting_tutorial.dox" target="_blank" href="http://bazaar.launchpad.net/~zorba-coders/zorba/trunk/view/head:/doc/zorba/scripting_tutorial.dox">source file</a> or <a ng-href="/documentation/3.0-Kratos/zorba/xml/scripting_tutorial.xml" target="_blank" href="/documentation/3.0-Kratos/zorba/xml/scripting_tutorial.xml">XML</a>.</p>
+                <div ng-bind-html-unsafe="content" class="ng-binding"><div class="doxygen">
+  <div><h1 class="title">XQuery Scripting Tutorial</h1>
+Zorba includes its own scripting capabilities.This page gives an overview of this feature.<div id="scripting_xquery_3_0" class="sect1"><h2>XQuery 3.0, XQuery Update Facility 1.0 (later 3.0)</h2>
+All valid expressions from XQuery 3.0 as well as XQuery Update Facility 1.0 (with small adaptation changes for XQuery 3.0, anticipating XQUF 3.0) are allowed.This means that you can write programs like:<pre class="ace-static" ace-mode="xquery"><span class="stringliteral">"Hello,<span>&nbsp;</span>World!"</span>
+</pre>or<pre class="ace-static" ace-mode="xquery"><span class="normal">&lt;current-time&gt;{current-dateTime()}&lt;/current-time</span>
+</pre>or the updating expression<pre class="ace-static" ace-mode="xquery"><span class="normal">insert<span>&nbsp;</span>node<span>&nbsp;</span>&lt;</span><span class="keyword">new</span><span class="normal">-node/&gt;<span>&nbsp;</span>into<span>&nbsp;</span>doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root</span>
+</pre>and these programs have the exact same semantics as specified in XQuery 3.0 and XQuery Update Facility 1.0.</div>
+<div id="scripting_side_effects" class="sect1"><h2>Side effects</h2>
+In XQuery 3.0 or XQUF 1.0, an expression never has any side effects other than constructing new nodes (not even updating expressions, which merely produce a pending update list).Zorba Scripting programs may have side effects. Side effects can be made with statements. In a nutshell, statements can be recognized in that they use semi-colons -- just like in C++ or Java. And they can be written in a natural way -- just like in C++ or Java.Statements are executed in the order in which they are written.Let us take the following document file.xml as an example:<pre class="ace-static" ace-mode="xquery"><span class="normal">&lt;root&gt;&lt;node/&gt;&lt;/root&gt;</span>
+</pre>In the following XQuery Update query:<pre class="ace-static" ace-mode="xquery"><span class="keyword">delete</span><span class="normal"><span>&nbsp;</span>node<span>&nbsp;</span>doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root/node,</span>
+<span class="normal">insert<span>&nbsp;</span>node<span>&nbsp;</span>doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root/node<span>&nbsp;</span>into<span>&nbsp;</span>doc(</span><span class="stringliteral">"file2.xml"</span><span class="normal">)/root</span>
+</pre>pending updates are accumulated against a given snapshot (the original document) and are only applied at the end. Both subexpressions see the same unaltered document<pre class="ace-static" ace-mode="xquery"><span class="normal">&lt;root&gt;&lt;node/&gt;&lt;/root&gt;</span>
+</pre>Now, consider the following scripting program, which consists of two statements (they have semi-colons):<pre class="ace-static" ace-mode="xquery"><span class="keyword">delete</span><span class="normal"><span>&nbsp;</span>node<span>&nbsp;</span>doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root/node;</span>
+<span class="normal">insert<span>&nbsp;</span>node<span>&nbsp;</span>doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root/node<span>&nbsp;</span>into<span>&nbsp;</span>doc(</span><span class="stringliteral">"file2.xml"</span><span class="normal">)/root;</span>
+</pre>The first statement (delete) is executed against the original document:<pre class="ace-static" ace-mode="xquery"><span class="normal">&lt;root&gt;&lt;node/&gt;&lt;/root&gt;</span>
+</pre>Its execution has the side effect of deleting the node named "node". This means that the second statement (insert) will see the following document:<pre class="ace-static" ace-mode="xquery"><span class="normal">&lt;root&gt;&lt;/root&gt;</span>
+</pre>As a result, nothing will be inserted into file2.xml, as<pre class="ace-static" ace-mode="xquery"><span class="normal">doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root/node</span>
+</pre>will evaluate to the empty sequence.</div>
+<div id="scripting_control_flow" class="sect1"><h2>Control flow</h2>
+The control flow of statements can be controlled in a way very similar to that of imperative programming languages like C++ or Java (while retaining some XQuery spirit in the exact syntax).<div id="scripting_while" class="sect2"><h3>While statements</h3>
+For example, Zorba Scripting introduces while loops. The following query:<pre class="ace-static" ace-mode="xquery"><span class="keywordflow">while</span><span class="normal"><span>&nbsp;</span>(doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root</span><span class="comment">/*)</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>delete<span>&nbsp;</span>node<span>&nbsp;</span>doc("file.xml")/root/*[1];</span>
+</pre>repeatedly deletes the first child of the root node, until it has no more children.</div>
+<div id="scripting_conditional" class="sect2"><h3>Conditional statements</h3>
+Zorba Scripting also allows using conditional or FLWOR statements. The following query:<pre class="ace-static" ace-mode="xquery"><span class="keywordflow">if</span><span class="normal"><span>&nbsp;</span>(count(doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root</span><span class="comment">/*)<span>&nbsp;</span>&gt;<span>&nbsp;</span>2)</span>
+<span class="comment">then</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>delete<span>&nbsp;</span>node<span>&nbsp;</span>doc("file.xml")/root/*[1];</span>
+<span class="comment">else</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>insert<span>&nbsp;</span>node<span>&nbsp;</span>&lt;node/&gt;<span>&nbsp;</span>as<span>&nbsp;</span>last<span>&nbsp;</span>into<span>&nbsp;</span>doc("file.xml")/root;</span>
+</pre>deletes the first child of the root if it has more than two children, otherwise it inserts a new child. Mind the semi-colons in both the then and the else statement. This is a conditional statement. It has side effects. Both its then and else operands are statements. Both operands are required.</div>
+<div id="scripting_flwor" class="sect2"><h3>FLWOR statements</h3>
+Now, consider the following FLWOR statement:<pre class="ace-static" ace-mode="xquery"><span class="keywordflow">for</span><span class="normal"><span>&nbsp;</span>$x<span>&nbsp;</span>in<span>&nbsp;</span>1<span>&nbsp;</span><a href="/pages/3.0/zorba/namespacezorba_1_1locale_1_1iso639__1?anchor=aafd6e55905dc8efe50a3f9fd38616781a0f4527a84781e2e19c9796b2b7fcacba">to</a><span>&nbsp;</span>5</span>
+<span class="normal"><span class="keywordflow">return</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>insert<span>&nbsp;</span>node<span>&nbsp;</span>&lt;node&gt;{$x}&lt;/node&gt;<span>&nbsp;</span><a href="/pages/3.0/zorba/namespacezorba_1_1locale_1_1iso639__1?anchor=aafd6e55905dc8efe50a3f9fd38616781a1dea282b8d50cca16d5e6f8faef7d9d0">as</a><span>&nbsp;</span>first<span>&nbsp;</span>into<span>&nbsp;</span>doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root;</span>
+</span></span></pre>which works very much like a C++ for: for each value of $x between 1 and 5, a new node is inserted as the first child of the root. Each execution of the operand statement for a value of $x sees the previously inserted children. This means that the resulting document will look like:<pre class="ace-static" ace-mode="xquery"><span class="normal">&lt;root&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>&lt;node&gt;5&lt;/node&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>&lt;node&gt;4&lt;/node&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>&lt;node&gt;3&lt;/node&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>&lt;node&gt;2&lt;/node&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>&lt;node&gt;1&lt;/node&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>&lt;node/&gt;</span>
+<span class="normal">&lt;/root&gt;</span>
+</pre></div>
+<div id="scripting_other" class="sect2"><h3>Other kinds of control flow statements</h3>
+Zorba Scripting also defines switch statements, typeswitch statements and try-catch statements. It reuses the existing XQuery 3.0 syntax... but with semi-colons.</div>
+</div>
+<div id="scripting_semi_colon" class="sect1"><h2>Where to put the semi-colon?</h2>
+Put in a nutshell: in control flow constructs, just like in C++, the semi-colons "stick" to the operands, not to the entire control flow construct. While conditional statements and FLWOR statements look a lot like conditional expressions and FLWOR expressions, they are different in that their operands are statements. They must use semi-colons. All of them.This is a conditional statement:<pre class="ace-static" ace-mode="xquery"><span class="keywordflow">if</span><span class="normal"><span>&nbsp;</span>(count(doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root</span><span class="comment">/*)<span>&nbsp;</span>&gt;<span>&nbsp;</span>2)</span>
+<span class="comment">then</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>delete<span>&nbsp;</span>node<span>&nbsp;</span>doc("file.xml")/root/*[1];</span>
+<span class="comment">else</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>insert<span>&nbsp;</span>node<span>&nbsp;</span>&lt;node/&gt;<span>&nbsp;</span>as<span>&nbsp;</span>last<span>&nbsp;</span>into<span>&nbsp;</span>doc("file.xml")/root;</span>
+</pre>This is a conditional expression:<pre class="ace-static" ace-mode="xquery"><span class="keywordflow">if</span><span class="normal"><span>&nbsp;</span>(count(doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root</span><span class="comment">/*)<span>&nbsp;</span>&gt;<span>&nbsp;</span>2)</span>
+<span class="comment">then</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>delete<span>&nbsp;</span>node<span>&nbsp;</span>doc("file.xml")/root/*[1]</span>
+<span class="comment">else</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>insert<span>&nbsp;</span>node<span>&nbsp;</span>&lt;node/&gt;<span>&nbsp;</span>as<span>&nbsp;</span>last<span>&nbsp;</span>into<span>&nbsp;</span>doc("file.xml")/root</span>
+</pre>The following is incorrect, because the then operand is an expression, whereas the else operand is a statement:<pre class="ace-static" ace-mode="xquery"><span class="keywordflow">if</span><span class="normal"><span>&nbsp;</span>(count(doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root</span><span class="comment">/*)<span>&nbsp;</span>&gt;<span>&nbsp;</span>2)</span>
+<span class="comment">then</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>delete<span>&nbsp;</span>node<span>&nbsp;</span>doc("file.xml")/root/*[1]</span>
+<span class="comment">else</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>insert<span>&nbsp;</span>node<span>&nbsp;</span>&lt;node/&gt;<span>&nbsp;</span>as<span>&nbsp;</span>last<span>&nbsp;</span>into<span>&nbsp;</span>doc("file.xml")/root;</span>
+</pre>If you really want the semi-colon to be bound to the entire conditional construct, you need parentheses:<pre class="ace-static" ace-mode="xquery"><span class="normal">(</span><span class="keywordflow">if</span><span class="normal"><span>&nbsp;</span>(count(doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root</span><span class="comment">/*)<span>&nbsp;</span>&gt;<span>&nbsp;</span>2)</span>
+<span class="comment">then</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>delete<span>&nbsp;</span>node<span>&nbsp;</span>doc("file.xml")/root/*[1]</span>
+<span class="comment">else</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>insert<span>&nbsp;</span>node<span>&nbsp;</span>&lt;node/&gt;<span>&nbsp;</span>as<span>&nbsp;</span>last<span>&nbsp;</span>into<span>&nbsp;</span>doc("file.xml")/root);</span>
+</pre>For FLWOR statements too, the semi-colon "sticks" to the return statement. If you want to accumulate the updates instead, i.e., bind the semi-colon to the entire FLWOR construct, you need parentheses:<pre class="ace-static" ace-mode="xquery"><span class="normal">(</span><span class="keywordflow">for</span><span class="normal"><span>&nbsp;</span>$x<span>&nbsp;</span>in<span>&nbsp;</span>1<span>&nbsp;</span><a href="/pages/3.0/zorba/namespacezorba_1_1locale_1_1iso639__1?anchor=aafd6e55905dc8efe50a3f9fd38616781a0f4527a84781e2e19c9796b2b7fcacba">to</a><span>&nbsp;</span>5</span>
+<span class="normal"><span class="keywordflow">return</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>insert<span>&nbsp;</span>node<span>&nbsp;</span>&lt;node&gt;{$x}&lt;/node&gt;<span>&nbsp;</span><a href="/pages/3.0/zorba/namespacezorba_1_1locale_1_1iso639__1?anchor=aafd6e55905dc8efe50a3f9fd38616781a1dea282b8d50cca16d5e6f8faef7d9d0">as</a><span>&nbsp;</span>first<span>&nbsp;</span>into<span>&nbsp;</span>doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root);</span>
+</span></span></pre>Note however than the order of insertion is no longer guaranteed. Further explanations about expressions vs. statements are given further down on this page.</div>
+<div id="scripting_blocks" class="sect1"><h2>Block statements</h2>
+Like in C++, several statements can be concatenated and put inside a curly-braced block (just like expressions can be concatenated with commas and put inside parentheses!):<pre class="ace-static" ace-mode="xquery"><span class="normal">{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keyword">delete</span><span class="normal"><span>&nbsp;</span>node<span>&nbsp;</span>doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root/node;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>insert<span>&nbsp;</span>node<span>&nbsp;</span>doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root/node<span>&nbsp;</span>into<span>&nbsp;</span>doc(</span><span class="stringliteral">"file2.xml"</span><span class="normal">)/root;</span>
+<span class="normal">}</span>
+</pre>Such blocks, which contain a series of statements, are themselves also statements and can be used wherever statements are allowed - for example in a conditional statement:<pre class="ace-static" ace-mode="xquery"><span class="keywordflow">if</span><span class="normal"><span>&nbsp;</span>(doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root</span><span class="comment">/*)</span>
+<span class="comment">then<span>&nbsp;</span>{</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>delete<span>&nbsp;</span>node<span>&nbsp;</span>doc("file.xml")/root/node;</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>insert<span>&nbsp;</span>node<span>&nbsp;</span>doc("file.xml")/root/node<span>&nbsp;</span>into<span>&nbsp;</span>doc("file2.xml")/root;</span>
+<span class="comment">}</span>
+<span class="comment">else</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>insert<span>&nbsp;</span>node<span>&nbsp;</span>doc("file.xml")/root/node<span>&nbsp;</span>into<span>&nbsp;</span>doc("file2.xml")/root;</span>
+</pre>Keep in mind that semi-colons and curly braces work just like in C++ when you are dealing with statements. Block statements can be empty:<pre class="ace-static" ace-mode="xquery"><span class="normal">{}</span>
+</pre>Conditional statements (and while statements, FLWOR statements, block statements ...) are themselves statements and can also be concatenated with other statements:<pre class="ace-static" ace-mode="xquery"><span class="normal">{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">do</span><span class="normal">-some-initialization();</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">if</span><span class="normal"><span>&nbsp;</span>(doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root</span><span class="comment">/*)</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>then<span>&nbsp;</span>{</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>delete<span>&nbsp;</span>node<span>&nbsp;</span>doc("file.xml")/root/node;</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>}</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>else<span>&nbsp;</span>{}</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>insert<span>&nbsp;</span>node<span>&nbsp;</span>doc("file.xml")/root/node<span>&nbsp;</span>into<span>&nbsp;</span>doc("file2.xml")/root;</span>
+<span class="comment">}</span>
+</pre>Again, just like in C++, you get the idea.</div>
+<div id="scripting_variables" class="sect1"><h2>Variables</h2>
+Zorba Scripting allows you to declare and assign variables. An example is better than a thousand words, so here is a query which computes the first 100 integers in the Fibonacci sequence:<pre class="ace-static" ace-mode="xquery"><span class="normal">variable<span>&nbsp;</span>$a<span>&nbsp;</span><a href="/pages/3.0/zorba/namespacezorba_1_1locale_1_1iso639__1?anchor=aafd6e55905dc8efe50a3f9fd38616781a1dea282b8d50cca16d5e6f8faef7d9d0">as</a><span>&nbsp;</span>xs:integer<span>&nbsp;</span>:=<span>&nbsp;</span>0;<span>&nbsp;</span>(:<span>&nbsp;</span></span><span class="keyword">this</span><span class="normal"><span>&nbsp;</span><a href="/pages/3.0/zorba/namespacezorba_1_1locale_1_1iso639__1?anchor=aafd6e55905dc8efe50a3f9fd38616781a11cc1dd79aff8b41628c4f17295d25a7">is</a><span>&nbsp;</span>a<span>&nbsp;</span>variable<span>&nbsp;</span>declaration<span>&nbsp;</span>statement<span>&nbsp;</span>:)</span>
+<span class="normal">variable<span>&nbsp;</span>$b<span>&nbsp;</span><a href="/pages/3.0/zorba/namespacezorba_1_1locale_1_1iso639__1?anchor=aafd6e55905dc8efe50a3f9fd38616781a1dea282b8d50cca16d5e6f8faef7d9d0">as</a><span>&nbsp;</span>xs:integer<span>&nbsp;</span>:=<span>&nbsp;</span>1;<span>&nbsp;</span><span>&nbsp;</span></span>
+<span class="normal">variable<span>&nbsp;</span>$c<span>&nbsp;</span><a href="/pages/3.0/zorba/namespacezorba_1_1locale_1_1iso639__1?anchor=aafd6e55905dc8efe50a3f9fd38616781a1dea282b8d50cca16d5e6f8faef7d9d0">as</a><span>&nbsp;</span>xs:integer<span>&nbsp;</span>:=<span>&nbsp;</span>$a<span>&nbsp;</span>+<span>&nbsp;</span>$b;</span>
+<span class="normal">variable<span>&nbsp;</span>$fibseq<span>&nbsp;</span><a href="/pages/3.0/zorba/namespacezorba_1_1locale_1_1iso639__1?anchor=aafd6e55905dc8efe50a3f9fd38616781a1dea282b8d50cca16d5e6f8faef7d9d0">as</a><span>&nbsp;</span>xs:integer*<span>&nbsp;</span>:=<span>&nbsp;</span>($a,<span>&nbsp;</span>$b);</span>
+<span class="normal">
+<span class="normal"><span class="keywordflow">while</span><span class="normal"><span>&nbsp;</span>($c<span>&nbsp;</span>&lt;<span>&nbsp;</span>100)<span>&nbsp;</span>{<span>&nbsp;</span></span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>$fibseq<span>&nbsp;</span>:=<span>&nbsp;</span>($fibseq,<span>&nbsp;</span>$c);<span>&nbsp;</span>(:<span>&nbsp;</span></span><span class="keyword">this</span><span class="normal"><span>&nbsp;</span><a href="/pages/3.0/zorba/namespacezorba_1_1locale_1_1iso639__1?anchor=aafd6e55905dc8efe50a3f9fd38616781a11cc1dd79aff8b41628c4f17295d25a7">is</a><span>&nbsp;</span>a<span>&nbsp;</span>variable<span>&nbsp;</span>assignment<span>&nbsp;</span>statement<span>&nbsp;</span>:)</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>$a<span>&nbsp;</span>:=<span>&nbsp;</span>$b;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>$b<span>&nbsp;</span>:=<span>&nbsp;</span>$c;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>$c<span>&nbsp;</span>:=<span>&nbsp;</span>$a<span>&nbsp;</span>+<span>&nbsp;</span>$b;</span>
+<span class="normal">}</span>
+</span></span></pre>Note that a main program does not need to be a block or a single statement: it can consist of several statements.</div>
+<div id="scripting_combining" class="sect1"><h2>Combining expressions and statements</h2>
+<div id="scripting_differences" class="sect2"><h3>Differences between expressions and statements</h3>
+Put shortly, an expression returns a sequence of items (and possibly a pending update list). A statements does not return anything. It does something. Sometimes, doing something might require getting a result from an expression. Sometimes, computing a result requires doing something. Sometimes, one might even want to both do something and return a result. This part explains how to mix statements and expressions.</div>
+<div id="scripting_nested" class="sect2"><h3>Expressions nested in statements</h3>
+You already know that expressions can be put inside statements. We gave the example of a conditional expression inside a statement, using parentheses:<pre class="ace-static" ace-mode="xquery"><span class="normal">(</span><span class="keywordflow">if</span><span class="normal"><span>&nbsp;</span>(count(doc(</span><span class="stringliteral">"file.xml"</span><span class="normal">)/root</span><span class="comment">/*)<span>&nbsp;</span>&gt;<span>&nbsp;</span>2)</span>
+<span class="comment">then</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>delete<span>&nbsp;</span>node<span>&nbsp;</span>doc("file.xml")/root/*[1]</span>
+<span class="comment">else</span>
+<span class="comment"><span>&nbsp;</span><span>&nbsp;</span>insert<span>&nbsp;</span>node<span>&nbsp;</span>&lt;node/&gt;<span>&nbsp;</span>as<span>&nbsp;</span>last<span>&nbsp;</span>into<span>&nbsp;</span>doc("file.xml")/root);</span>
+</pre>Another example is the condition expression of a conditional statement, which is always an expression.</div>
+<div id="scripting_statements" class="sect2"><h3>Statements inside expressions: node constructors</h3>
+There is one most prominent location where statements can be very useful. If you remember PHP, it allows executing instructions, and declaratively outputing some HTML. With Zorba Scripting, statements can be used in element constructors, giving it some PHP taste. In the following example, the element constructor contains a series a statements followed by a single expression which constructs (and returns) the body of the page.<pre class="ace-static" ace-mode="xquery"><span class="normal">&lt;html<span>&nbsp;</span>xmlns=</span><span class="stringliteral">"http://www.w3.org/1999/xhtml"</span><span class="normal">&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>&lt;head&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>&lt;title&gt;Blog<span>&nbsp;</span>entry<span>&nbsp;</span>added&lt;/title&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>&lt;/head&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>{</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>variable<span>&nbsp;</span>$user<span>&nbsp;</span>:=<span>&nbsp;</span>replace($request/url,<span>&nbsp;</span></span><span class="stringliteral">"^http://.*/([^/]+)/add$"</span><span class="normal">,<span>&nbsp;</span></span><span class="stringliteral">"$1"</span><span class="normal">);</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>variable<span>&nbsp;</span>$blog<span>&nbsp;</span>:=<span>&nbsp;</span>collection()/micro-blog[@user<span>&nbsp;</span>=<span>&nbsp;</span>$user];</span>
+<span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></span><span class="keywordflow">if</span><span class="normal">($blog)<span>&nbsp;</span>then<span>&nbsp;</span>{}<span>&nbsp;</span></span><span class="keywordflow">else</span><span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>exit<span>&nbsp;</span>returning<span>&nbsp;</span>local:error(</span><span class="stringliteral">"Unknown<span>&nbsp;</span>user"</span><span class="normal">);</span>
+<span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>insert<span>&nbsp;</span>node</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>&lt;entry<span>&nbsp;</span>timestamp=</span><span class="stringliteral">"{<span>&nbsp;</span>current-dateTime()<span>&nbsp;</span>}"</span><span class="normal">&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>&lt;text&gt;{<span>&nbsp;</span>data($request/param[@name<span>&nbsp;</span>=<span>&nbsp;</span></span><span class="stringliteral">"text"</span><span class="normal">])<span>&nbsp;</span>}&lt;/text&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>&lt;/entry&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><a href="/pages/3.0/zorba/namespacezorba_1_1locale_1_1iso639__1?anchor=aafd6e55905dc8efe50a3f9fd38616781a1dea282b8d50cca16d5e6f8faef7d9d0">as</a><span>&nbsp;</span>last<span>&nbsp;</span>into<span>&nbsp;</span>$blog;</span>
+<span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>&lt;body&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>&lt;h1&gt;Blog<span>&nbsp;</span>entry<span>&nbsp;</span>added<span>&nbsp;</span></span><span class="keywordflow">for</span><span class="normal"><span>&nbsp;</span>{<span>&nbsp;</span>$user<span>&nbsp;</span>}&lt;/h1&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>&lt;p&gt;{<span>&nbsp;</span>data($request/param[@name<span>&nbsp;</span>=<span>&nbsp;</span></span><span class="stringliteral">"text"</span><span class="normal">])<span>&nbsp;</span>}&lt;/p&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>&lt;/body&gt;</span>
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>}</span>
+<span class="normal">&lt;/html&gt;</span>
+</span></span></span></span></pre>While it contains statements, the outer construct is still an expression (it returns a value: the HTML page), but it has side effects (updating the database...). Such an expression is called a sequential expression.In short, an expression is sequential if it contains statements that have side effects (updating some XML, assigning a variable in scope outside of the expression) or that affect the control flow (break, continue, exit returning) - or if it calls a sequential function.</div>
+<div id="scripting_do_do" class="sect2"><h3>Do-do-do-do-deliver</h3>
+This pattern of having, in a block, several statements followed by a single expression is the most general way of using statements together with expressions. The main program is built that way: it can be a single expression, it can be several statements followed by a single expression, or it can be just several statements (in which case it is as if the final expression were empty).A function body works exactly the same way. Note that if the body expression of a function is sequential, the function must be annotated as sequential.</div>
+<div id="scripting_pitfall" class="sect2"><h3>Pitfall: block statements, block expressions</h3>
+It is also possible to have several statements followed by an expression inside curly braces (with no node constructor). This is called a block expression.Distinguishing block statements and block expressions is done by looking whether it ends with a statement or an expression. As a rule of thumb, anything (valid) that ends neither with a semi-colon or a closing curly-brace is an expression. If there is no semi-colon or opening curly brace before the closing curly braces, it is also an expression. Which means you cannot concatenate something else after it!As a last piece of advice, if the parser complains while you are writing a scripting program, there can be two main kind of errors: either you are trying to mix expressions and statements suboperands, which is not allowed (for example in a conditional statement or expression - <b>remember that the semi-colon sticks to an operand, not to the entire control flow construct</b>). Or if you got this right, it might be that you are trying to concatenate something after an expression. In both cases, <b>it is very likely that you wrote a block expression where you meant to use a block statement</b> (see criterion above). In this case, you probably just forgot a semi-colon.XQuery is very powerful and expressive. As in C++, modularizing your programs in small functions will dramatically reduce development time while improving readability.</div>
+<div id="scripting_warnings" class="sect2"><h3>Scripting Warnings</h3>
+The compiler may report warnings to report scripting constructions which are not inherently erroneious but which are risky or suggest there may have been an error (also see <a href="/pages/3.0/zorba/errors_warnings">Errors and Warnings</a>).<div id="scripting_tutorial_1ZWST0004" class="sect3"><h4>ZWST0004</h4>
+This is a warning to draw attention to the fact that when FOR clauses or LET clauses that are nested inside FOR clauses have a sequential domain expression, then one can think of two different evaluation semantics of the corresponding FLWOR expression. Both semantics are correct, but they are not equivalent. Zorba adopts one of these semantics (see <a href="/scripting-spec" target="_blank">Scripting Specification</a>). The warning is there to alert users who write such FLWOR expressions that what they may have in mind as the way these FLWORs will be evaluated may not be the same as the way Zorba actually evaluates them.</div>
+</div>
+<div id="scripting_option" class="sect2"><h3>Disabling Scripting Support</h3>
+By default, Zorba comes with support for scripting. However, it might make sense to disable this feature. For example, if you want to make sure that a module does not need any scripting features because it would not be compatible with other XQuery processors.The following prolog option can be used to disable the scripting feature.<pre class="ace-static" ace-mode="xquery"><span class="normal"><span>&nbsp;</span><span>&nbsp;</span>declare<span>&nbsp;</span></span><span class="keyword">namespace<span>&nbsp;</span></span><span class="normal">op<span>&nbsp;</span>=<span>&nbsp;</span></span><span class="stringliteral">"http://zorba.io/options/features"</span><span class="normal">;</span>
+<span class="normal">
+<span class="normal"><span>&nbsp;</span><span>&nbsp;</span>declare<span>&nbsp;</span>option<span>&nbsp;</span>op:disable<span>&nbsp;</span></span><span class="stringliteral">"scripting"</span><span class="normal">;</span>
+</span></pre>Please find more details regarding options to enable or disable particular features in the documentation about <a href="/pages/3.0/zorba/options_and_annotations">Zorba Specific Options and Annotations</a>. </div>
+</div>
+    </div>
+</div></div>
+                <div id="disqus" class="disqus" disqus="">
+                    <div id="disqus_thread" class="content-panel-content"><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" tabindex="0" title="Disqus" style="width: 100% !important; border-top-style: none !important; border-right-style: none !important; border-bottom-style: none !important; border-left-style: none !important; border-width: initial !important; border-color: initial !important; overflow-x: hidden !important; overflow-y: hidden !important; height: 928px !important; " width="100%" src="http://disqus.com/embed/comments/?disqus_version=1df9d712&amp;base=default&amp;f=28msec&amp;t_i=%2Fdocumentation%2Flatest%2Fzorba%2Fscripting_tutorial%2F&amp;t_u=http%3A%2F%2Fwww.28.io%2Fdocumentation%2Flatest%2Fzorba%2Fscripting_tutorial%2F&amp;t_d=Zorba%20-%20The%20NoSQL%20Query%20Processor&amp;t_t=Zorba%20-%20The%20NoSQL%20Query%20Processor&amp;s_o=default#2" scrolling="no" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+                </div>
+            </div>
+            <!-- ngSwitchWhen: api -->
+            <!-- ngSwitchWhen: modules -->
+            <!-- ngSwitchWhen: notfound -->
+            <!-- ngSwitchDefault:  -->
+        </div>
+    </div>
+</div></div>
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3>Get Involved</h3>
+                        <ul>
+                            <li><a href="https://groups.google.com/forum/#!forum/zorba-users" target="_blank">Users List on Google Groups</a></li>
+                            <li><a href="https://groups.google.com/forum/#!forum/zorba-dev" target="_blank">Developers List on Google Groups</a></li>
+                            <li><a href="https://bugs.launchpad.net/zorba/+bugs" target="_blank">Bug Tracker</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Resources</h3>
+                        <li><a href="http://jsoniq.org" target="_blank">JSONiq</a></li>
+                        <li><a href="http://www.w3.org/TR/xquery-30/" target="_blank">XQuery 3.0</a></li>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Quick Links</h3>
+                        <li><a href="https://code.launchpad.net/zorba" target="_blank">Source Code</a></li>
+                        <li><a href="/download">Download</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </div>
+                </div>
+                <p class="text-center copyright">
+                    <small>
+                    ©&nbsp;2013 Zorba.
+                    </small>
+                </p>
+            </div>        
+        </footer>
+    <script type="text/javascript" async="" src="http://stats.g.doubleclick.net/dc.js"></script><script charset="ISO-8859-1" src="http://fast.wistia.com/static/concat/E-v1.js"></script>
+    <script src="/scripts/scripts.js"></script>
+    <script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-4281090-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; 
+ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+        </script>
+  
+<script type="text/javascript" async="" src="http://28msec.disqus.com/embed.js"></script></body></html><script type="text/javascript">location.href = '/#' + location.pathname;</script>

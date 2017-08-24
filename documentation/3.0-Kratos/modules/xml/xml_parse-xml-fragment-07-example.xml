@@ -1,0 +1,15 @@
+<doxygen><compounddef id="parse-xml-fragment-07.xq-example" kind="example"><detaileddescription><para><h3>Content of parse-xml-fragment-07.xq example</h3><programlisting type="example">import module namespace x = "http://zorba.io/modules/xml";
+import schema namespace opt = "http://zorba.io/modules/xml-options";
+import schema namespace weather = "http://www.w3.org/test/weather" at "weather.xsd";
+
+x:parse("&amp;lt;?xml version='1.0' encoding = 'UTF-8'?&amp;gt;
+&amp;lt;weather:weather xmlns:weather='http://www.w3.org/test/weather' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'&amp;gt;
+  &amp;lt;weather:temperature&amp;gt;30&amp;lt;/weather:temperature&amp;gt;
+  &amp;lt;weather:precipitation&amp;gt;20&amp;lt;/weather:precipitation&amp;gt;
+&amp;lt;/weather:weather&amp;gt;
+",
+  &amp;lt;opt:options&amp;gt;
+    &amp;lt;opt:schema-validate opt:mode="lax"/&amp;gt;
+  &amp;lt;/opt:options&amp;gt;
+)
+</programlisting></para></detaileddescription></compounddef></doxygen>

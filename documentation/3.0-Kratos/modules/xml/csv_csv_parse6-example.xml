@@ -1,0 +1,90 @@
+<doxygen><compounddef id="csv_parse6.xq-example" kind="example"><detaileddescription><para><h3>Content of csv_parse6.xq example</h3><programlisting type="example">(:
+Parse a csv with header and subheaders, starting from line 5.
+Data continues after subheaders.
+The csv file is taken from http://data.gov.
+:)
+import schema namespace csv-options="http://zorba.io/modules/csv-options";
+import module namespace csv = "http://zorba.io/modules/csv";
+import module namespace file="http://expath.org/ns/file";
+
+csv:parse(file:read-text(fn:resolve-uri("Hospital Outpatient Payments for 61 Commonly Performed Procedures, CY 2008 Data.csv")),
+validate{
+&amp;lt;csv-options:options&amp;gt;
+  &amp;lt;first-row-is-header line="5-8"/&amp;gt;
+  &amp;lt;start-from-row line="9"/&amp;gt;
+  &amp;lt;csv separator=","
+       quote-char="&amp;amp;quot;"
+       quote-escape="&amp;amp;quot;&amp;amp;quot;"/&amp;gt;
+&amp;lt;/csv-options:options&amp;gt;}
+)
+
+(:
+
+Example input:
+
+OUTPATIENT HOSPITAL PAYMENTS FOR 61 COMMONLY PERFORMED PROCEDURES,,,,,,
+2008 CALENDAR YEAR CLAIMS PROCESSED THROUGH JUNE 2009,,,,,,
+SOURCE:  NATIONAL CLAIMS HISTORY,,,,,,
+14-Oct-09,,,,,,
+ STATE,COUNTY,HOSPITAL NAME,Removal of damaged skin and underlying tissue,,Breast biopsy through skin with sampling device,,
+,,,CPT 11042,,CPT 19103,
+,,,,,,
+,,,Allowed Services+,Range of Payment Rates by County+,Allowed Services+,Range of Payment Rates by County+
+NATIONAL,,,"622,289",102 - 228,"60,717"
+California,Los Angeles, ,"12,831",187,"1,037",955
+California,Los Angeles,ALHAMBRA HOSPITAL MEDICAL CENTER,0,,0,
+
+----------------------------------------------------------------------------------------------
+Expected output:
+
+&amp;lt;row&amp;gt;
+  &amp;lt;_STATE&amp;gt;NATIONAL&amp;lt;/_STATE&amp;gt;
+  &amp;lt;COUNTY/&amp;gt;
+  &amp;lt;HOSPITAL_NAME/&amp;gt;
+  &amp;lt;Removal_of_damaged_skin_and_underlying_tissue&amp;gt;
+    &amp;lt;CPT_11042&amp;gt;
+      &amp;lt;Allowed_Services_&amp;gt;622,289&amp;lt;/Allowed_Services_&amp;gt;
+      &amp;lt;Range_of_Payment_Rates_by_County_&amp;gt;102 - 228&amp;lt;/Range_of_Payment_Rates_by_County_&amp;gt;
+    &amp;lt;/CPT_11042&amp;gt;
+  &amp;lt;/Removal_of_damaged_skin_and_underlying_tissue&amp;gt;
+  &amp;lt;Breast_biopsy_through_skin_with_sampling_device&amp;gt;
+    &amp;lt;CPT_19103&amp;gt;
+      &amp;lt;Allowed_Services_&amp;gt;60,717&amp;lt;/Allowed_Services_&amp;gt;
+      &amp;lt;Range_of_Payment_Rates_by_County_&amp;gt;536 - 1147&amp;lt;/Range_of_Payment_Rates_by_County_&amp;gt;
+    &amp;lt;/CPT_19103&amp;gt;
+  &amp;lt;/Breast_biopsy_through_skin_with_sampling_device&amp;gt;
+&amp;lt;/row&amp;gt;&amp;lt;row&amp;gt;
+  &amp;lt;_STATE&amp;gt;California&amp;lt;/_STATE&amp;gt;
+  &amp;lt;COUNTY&amp;gt;Los Angeles&amp;lt;/COUNTY&amp;gt;
+  &amp;lt;HOSPITAL_NAME&amp;gt; &amp;lt;/HOSPITAL_NAME&amp;gt;
+  &amp;lt;Removal_of_damaged_skin_and_underlying_tissue&amp;gt;
+    &amp;lt;CPT_11042&amp;gt;
+      &amp;lt;Allowed_Services_&amp;gt;12,831&amp;lt;/Allowed_Services_&amp;gt;
+      &amp;lt;Range_of_Payment_Rates_by_County_&amp;gt;187&amp;lt;/Range_of_Payment_Rates_by_County_&amp;gt;
+    &amp;lt;/CPT_11042&amp;gt;
+  &amp;lt;/Removal_of_damaged_skin_and_underlying_tissue&amp;gt;
+  &amp;lt;Breast_biopsy_through_skin_with_sampling_device&amp;gt;
+    &amp;lt;CPT_19103&amp;gt;
+      &amp;lt;Allowed_Services_&amp;gt;1,037&amp;lt;/Allowed_Services_&amp;gt;
+      &amp;lt;Range_of_Payment_Rates_by_County_&amp;gt;955&amp;lt;/Range_of_Payment_Rates_by_County_&amp;gt;
+    &amp;lt;/CPT_19103&amp;gt;
+  &amp;lt;/Breast_biopsy_through_skin_with_sampling_device&amp;gt;
+&amp;lt;/row&amp;gt;&amp;lt;row&amp;gt;
+  &amp;lt;_STATE&amp;gt;California&amp;lt;/_STATE&amp;gt;
+  &amp;lt;COUNTY&amp;gt;Los Angeles&amp;lt;/COUNTY&amp;gt;
+  &amp;lt;HOSPITAL_NAME&amp;gt;ALHAMBRA HOSPITAL MEDICAL CENTER&amp;lt;/HOSPITAL_NAME&amp;gt;
+  &amp;lt;Removal_of_damaged_skin_and_underlying_tissue&amp;gt;
+    &amp;lt;CPT_11042&amp;gt;
+      &amp;lt;Allowed_Services_&amp;gt;0&amp;lt;/Allowed_Services_&amp;gt;
+      &amp;lt;Range_of_Payment_Rates_by_County_/&amp;gt;
+    &amp;lt;/CPT_11042&amp;gt;
+  &amp;lt;/Removal_of_damaged_skin_and_underlying_tissue&amp;gt;
+  &amp;lt;Breast_biopsy_through_skin_with_sampling_device&amp;gt;
+    &amp;lt;CPT_19103&amp;gt;
+      &amp;lt;Allowed_Services_&amp;gt;0&amp;lt;/Allowed_Services_&amp;gt;
+      &amp;lt;Range_of_Payment_Rates_by_County_/&amp;gt;
+    &amp;lt;/CPT_19103&amp;gt;
+  &amp;lt;/Breast_biopsy_through_skin_with_sampling_device&amp;gt;
+&amp;lt;/row&amp;gt;
+:)
+</programlisting></para></detaileddescription></compounddef></doxygen>

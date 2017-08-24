@@ -1,0 +1,4 @@
+<doxygen><compounddef id="least-similar-edit-distance.xq-example" kind="example"><detaileddescription><para><h3>Content of least-similar-edit-distance.xq example</h3><programlisting type="example">import module namespace con = "http://zorba.io/modules/data-cleaning/consolidation";
+
+con:least-similar-edit-distance( ( "aaabbbccc", "aaabbb", "eeefff" ), "aaab" )
+</programlisting></para></detaileddescription></compounddef></doxygen>

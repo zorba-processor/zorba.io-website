@@ -1,0 +1,7 @@
+<doxygen><compounddef id="zorba.io_numbers.xsd-schema" kind="schema"><detaileddescription><para><h3>Content of zorba.io_numbers.xsd schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://zorba.io/numbers.xsd" targetNamespace="http://zorba.io/numbers.xsd" elementFormDefault="qualified"&gt;
+
+
+&lt;xs:element name="long" type="xs:long"/&gt;
+&lt;xs:element name="integer" type="xs:integer"/&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

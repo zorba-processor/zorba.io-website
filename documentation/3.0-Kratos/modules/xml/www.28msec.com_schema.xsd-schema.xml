@@ -1,0 +1,8 @@
+<doxygen><compounddef id="www.28msec.com_schema.xsd-schema" kind="schema"><detaileddescription><para><h3>Content of www.28msec.com_schema.xsd schema</h3><programlisting type="schema">&lt;xs:schema xmlns="http://www.28msec.com/schema.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.28msec.com/schema.xsd" elementFormDefault="qualified"&gt;
+
+&lt;xs:simpleType name="ContentID"&gt;
+&lt;xs:restriction base="xs:string"&gt;
+&lt;/xs:restriction&gt;
+&lt;/xs:simpleType&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

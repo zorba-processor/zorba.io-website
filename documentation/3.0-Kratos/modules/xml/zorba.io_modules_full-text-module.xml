@@ -1,0 +1,889 @@
+<doxygen><compounddef id="full-text-module" kind="module"><detaileddescription><para><h3>Content of full-text module</h3><programlisting type="module">xquery version "3.0";
+
+(:
+ : Copyright 2006-2011 The FLWOR Foundation.
+ :
+ : Licensed under the Apache License, Version 2.0 (the "License");
+ : you may not use this file except in compliance with the License.
+ : You may obtain a copy of the License at
+ :
+ : http://www.apache.org/licenses/LICENSE-2.0
+ :
+ : Unless required by applicable law or agreed to in writing, software
+ : distributed under the License is distributed on an "AS IS" BASIS,
+ : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ : See the License for the specific language governing permissions and
+ : limitations under the License.
+ :)
+
+(:===========================================================================:)
+
+(:~
+ : This module provides an XQuery API to full-text functions.
+ : For general information about this implementation of the
+ : &amp;lt;a href="http://www.w3.org/TR/xpath-full-text-10/"&amp;gt;XQuery and XPath Full Text 1.0 specification&amp;lt;/a&amp;gt;
+ : as well as instructions for building an installing a thesaurus,
+ : see the &amp;lt;a href="http://zorba.io/documentation/latest/zorba/architecture/ft_intro"&amp;gt;Full Text Thesaurus documentation&amp;lt;/a&amp;gt;.
+ : &amp;lt;h2&amp;gt;Notes on languages&amp;lt;/h2&amp;gt;
+ : To refer to particular human languages,
+ : uses either the
+ : &amp;lt;a href="http://en.wikipedia.org/wiki/ISO_639-1"&amp;gt;ISO 639-1&amp;lt;/a&amp;gt;
+ : or
+ : &amp;lt;a href="http://en.wikipedia.org/wiki/ISO_639-2"&amp;gt;ISO 639-2&amp;lt;/a&amp;gt;
+ : languages codes.
+ : Note that only a subset of the
+ : &amp;lt;a href="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"&amp;gt;complete list of language codes&amp;lt;/a&amp;gt;
+ : are supported and not every function supports the same subset.
+ : &amp;lt;p/&amp;gt;
+ : Most functions in this module take a language as a parameter
+ : using the
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;
+ : XML schema data type.
+ : &amp;lt;h2&amp;gt;Notes on stemming&amp;lt;/h2&amp;gt;
+ : The &amp;lt;code&amp;gt;stem()&amp;lt;/code&amp;gt; functions return the
+ : &amp;lt;a href="http://en.wikipedia.org/wiki/Word_stem"&amp;gt;stem&amp;lt;/a&amp;gt;
+ : of a word.
+ : The stem of a word itself, however, is not guaranteed to be a word.
+ : It is best to consider a stem as an opaque byte sequence.
+ : All that is guaranteed about a stem is that,
+ : for a given word,
+ : the stem of that word will always be the same byte sequence.
+ : Hence,
+ : you should never compare the result of one of the &amp;lt;code&amp;gt;stem()&amp;lt;/code&amp;gt;
+ : functions against a non-stemmed string,
+ : for example:
+ : &amp;lt;pre&amp;gt;
+ :  if ( ft:stem( "apples" ) eq "apple" )             ** WRONG **
+ : &amp;lt;/pre&amp;gt;
+ : Instead do:
+ : &amp;lt;pre&amp;gt;
+ :  if ( ft:stem( "apples" ) eq ft:stem( "apple" ) )  ** CORRECT **
+ : &amp;lt;/pre&amp;gt;
+ : &amp;lt;h2&amp;gt;Notes on the thesaurus&amp;lt;/h2&amp;gt;
+ : The &amp;lt;code&amp;gt;thesaurus-lookup()&amp;lt;/code&amp;gt; functions have "levels"
+ : and "relationship" parameters.
+ : The values for these are implementation-defined.
+ : The default implementation uses the
+ : &amp;lt;a href="http://wordnet.princeton.edu/"&amp;gt;WordNet lexical database&amp;lt;/a&amp;gt;,
+ : version 3.0.
+ : &amp;lt;p/&amp;gt;
+ : In WordNet,
+ : the number of "levels" that two phrases are apart
+ : are how many hierarchical meanings apart they are.
+ : For example,
+ : "canary" is 5 levels away from "vertebrate"
+ : (carary &amp;amp;gt; finch &amp;amp;gt; oscine &amp;amp;gt; passerine &amp;amp;gt; bird &amp;amp;gt; vertebrate).
+ : &amp;lt;p/&amp;gt;
+ : When using the WordNet implementation,
+ : all of the relationships (and their abbreviations)
+ : specified by
+ : &amp;lt;a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=7776"&amp;gt;ISO 2788&amp;lt;/a&amp;gt;
+ : and
+ : &amp;lt;a href="http://www.niso.org/kst/reports/standards?step=2&amp;amp;amp;gid=&amp;amp;amp;project_key=7cc9b583cb5a62e8c15d3099e0bb46bbae9cf38a"&amp;gt;ANSI/NISO Z39.19-2005&amp;lt;/a&amp;gt;
+ : with the exceptions of "HN" (history note)
+ : and "X SN" (see scope note for) are supported.
+ : These relationships are:
+ :  &amp;lt;table&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;th&amp;gt;Rel.&amp;lt;/th&amp;gt;
+ :      &amp;lt;th&amp;gt;Meaning&amp;lt;/th&amp;gt;
+ :      &amp;lt;th&amp;gt;WordNet Rel.&amp;lt;/th&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;BT&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;broader term&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;hypernym&amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;BTG&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;broader term generic&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;hypernym&amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;BTI&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;broader term instance&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;instance hypernym&amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;BTP&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;broader term partitive&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;part meronym&amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;NT&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;narrower term&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;hyponym&amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;NTG&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;narrower term generic&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;hyponym&amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;NTI&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;narrower term instance&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;instance hyponym&amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;NTP&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;narrower term partitive&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;part holonym&amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;RT&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;related term&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;also see&amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;SN&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;scope note&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;n/a&amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;TT&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;top term&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;hypernym&amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;UF&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;non-preferred term&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;n/a&amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;USE&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;preferred term&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;n/a&amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :  &amp;lt;/table&amp;gt;
+ : Note that you can specify relationships
+ : either by their abbreviation
+ : or their meaning.
+ : Relationships are case-insensitive.
+ :
+ : In addition to the
+ : &amp;lt;a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=7776"&amp;gt;ISO 2788&amp;lt;/a&amp;gt;
+ : and
+ : &amp;lt;a href="http://www.niso.org/kst/reports/standards?step=2&amp;amp;amp;gid=&amp;amp;amp;project_key=7cc9b583cb5a62e8c15d3099e0bb46bbae9cf38a"&amp;gt;ANSI/NISO Z39.19-2005&amp;lt;/a&amp;gt;
+ : relationships,
+ : All of the relationships offered by WordNet are also supported.
+ : These relationships are:
+ :  &amp;lt;table class="ft_rels"&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;th&amp;gt;Relationship&amp;lt;/th&amp;gt;
+ :      &amp;lt;th&amp;gt;Meaning&amp;lt;/th&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td nowrap="nowrap"&amp;gt;also see&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A word that is related to another,
+ :        e.g., for "varnished" (furniture)
+ :        one should &amp;lt;em&amp;gt;also see&amp;lt;/em&amp;gt; "finished."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;antonym&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A word opposite in meaning to another,
+ :        e.g., "light" is an &amp;lt;em&amp;gt;antonym&amp;lt;/em&amp;gt; for "heavy."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;attribute&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A noun for which adjectives express values,
+ :        e.g., "weight" is an &amp;lt;em&amp;gt;attribute&amp;lt;/em&amp;gt;
+ :        for which the adjectives "light" and "heavy"
+ :        express values.
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;cause&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A verb that causes another,
+ :        e.g., "show" is a &amp;lt;em&amp;gt;cause&amp;lt;/em&amp;gt; of "see."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td nowrap="nowrap"&amp;gt;derivationally related form&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A word that is derived from a root word,
+ :        e.g., "metric" is a &amp;lt;em&amp;gt;derivationally related form&amp;lt;/em&amp;gt; of "meter."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td nowrap="nowrap"&amp;gt;derived from adjective&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        An adverb that is derived from an adjective,
+ :        e.g., "correctly" is &amp;lt;em&amp;gt;derived from the adjective&amp;lt;/em&amp;gt; "correct."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;entailment&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A verb that presupposes another,
+ :        e.g., "snoring" &amp;lt;em&amp;gt;entails&amp;lt;/em&amp;gt; "sleeping."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;hypernym&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A word with a broad meaning that more specific words fall under,
+ :        e.g., "meal" is a &amp;lt;em&amp;gt;hypernym&amp;lt;/em&amp;gt; of "breakfast."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;hyponym&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A word of more specific meaning than a general term applicable to it,
+ :        e.g., "breakfast" is a &amp;lt;em&amp;gt;hyponym&amp;lt;/em&amp;gt; of "meal."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td nowrap="nowrap"&amp;gt;instance hypernym&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A word that denotes a category of some specific instance,
+ :        e.g., "author" is an &amp;lt;em&amp;gt;instance hypernym&amp;lt;/em&amp;gt; of "Asimov."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td nowrap="nowrap"&amp;gt;instance hyponym&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A term that donotes a specific instance of some general category,
+ :        e.g., "Asimov" is an &amp;lt;em&amp;gt;instance hyponym&amp;lt;/em&amp;gt; of "author."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td nowrap="nowrap"&amp;gt;member holonym&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A word that denotes a collection of individuals,
+ :        e.g., "faculty" is a &amp;lt;em&amp;gt;member holonym&amp;lt;/em&amp;gt; of "professor."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td nowrap="nowrap"&amp;gt;member meronym&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A word that denotes a member of a larger group,
+ :        e.g., a "person" is a &amp;lt;em&amp;gt;member meronym&amp;lt;/em&amp;gt; of a "crowd."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td nowrap="nowrap"&amp;gt;part holonym&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A word that denotes a larger whole comprised of some part,
+ :        e.g., "car" is a &amp;lt;em&amp;gt;part holonym&amp;lt;/em&amp;gt; of "engine."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td nowrap="nowrap"&amp;gt;part meronym&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A word that denotes a part of a larger whole,
+ :        e.g., an "engine" is &amp;lt;em&amp;gt;part meronym&amp;lt;/em&amp;gt; of a "car."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td nowrap="nowrap"&amp;gt;participle of verb&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        An adjective that is the participle of some verb,
+ :        e.g., "breaking" is the &amp;lt;em&amp;gt;participle of the verb&amp;lt;/em&amp;gt; "break."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td&amp;gt;pertainym&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        An adjective that classifies its noun,
+ :        e.g., "musical" is a &amp;lt;em&amp;gt;pertainym&amp;lt;/em&amp;gt; in "musical instrument."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td nowrap="nowrap"&amp;gt;similar to&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        Similar, though not necessarily interchangeable, adjectives.
+ :        For example, "shiny" is &amp;lt;em&amp;gt;similar to&amp;lt;/em&amp;gt; "bright",
+ :        but they have subtle differences.
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td nowrap="nowrap"&amp;gt;substance holonym&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A word that denotes a larger whole containing some constituent
+ :        substance, e.g., "bread" is a &amp;lt;em&amp;gt;substance holonym&amp;lt;/em&amp;gt; of "flour."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td nowrap="nowrap"&amp;gt;substance meronym&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A word that denotes a constituant substance of some larger whole,
+ :        e.g., "flour" is a &amp;lt;em&amp;gt;substance meronym&amp;lt;/em&amp;gt; of "bread."
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :    &amp;lt;tr&amp;gt;
+ :      &amp;lt;td nowrap="nowrap"&amp;gt;verb group&amp;lt;/td&amp;gt;
+ :      &amp;lt;td&amp;gt;
+ :        A verb that is a member of a group of similar verbs,
+ :        e.g., "live" is in the &amp;lt;em&amp;gt;verb group&amp;lt;/em&amp;gt;
+ :        of "dwell", "live", "inhabit", etc.
+ :      &amp;lt;/td&amp;gt;
+ :    &amp;lt;/tr&amp;gt;
+ :  &amp;lt;/table&amp;gt;
+ : &amp;lt;h2&amp;gt;Notes on tokenization&amp;lt;/h2&amp;gt;
+ : For general information about the implementation of tokenization,
+ : including what constitutes a token,
+ : see the &amp;lt;a href="http://zorba.io/pages/3.0/zorba/ft_tokenizer"&amp;gt;Full Text Tokenizer&amp;lt;/a&amp;gt; documentation.
+ : @author Paul J. Lucas
+ : @project Zorba/Full-Text/Full-Text
+ :)
+
+module namespace ft = "http://zorba.io/modules/full-text";
+
+declare namespace err = "http://www.w3.org/2005/xqt-errors";
+declare namespace zerr = "http://zorba.io/errors";
+
+declare namespace ver = "http://zorba.io/options/versioning";
+declare option ver:module-version "1.0";
+
+(:===========================================================================:)
+
+(:~
+ : Predeclared constant for the Danish
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-DA as xs:language := xs:language("da");
+
+(:~
+ : Predeclared constant for the German
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-DE as xs:language := xs:language("de");
+
+(:~
+ : Predeclared constant for the English
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-EN as xs:language := xs:language("en");
+
+(:~
+ : Predeclared constant for the Spanish
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-ES as xs:language := xs:language("es");
+
+(:~
+ : Predeclared constant for the Finnish
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-FI as xs:language := xs:language("fi");
+
+(:~
+ : Predeclared constant for the French
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-FR as xs:language := xs:language("fr");
+
+(:~
+ : Predeclared constant for the Hungarian
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-HU as xs:language := xs:language("hu");
+
+(:~
+ : Predeclared constant for the Italian
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-IT as xs:language := xs:language("it");
+
+(:~
+ : Predeclared constant for the Dutch
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-NL as xs:language := xs:language("nl");
+
+(:~
+ : Predeclared constant for the Norwegian
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-NO as xs:language := xs:language("no");
+
+(:~
+ : Predeclared constant for the Portuguese
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-PT as xs:language := xs:language("pt");
+
+(:~
+ : Predeclared constant for the Romanian
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-RO as xs:language := xs:language("ro");
+
+(:~
+ : Predeclared constant for the Russian
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-RU as xs:language := xs:language("ru");
+
+(:~
+ : Predeclared constant for the Swedish
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-SV as xs:language := xs:language("sv");
+
+(:~
+ : Predeclared constant for the Turkish
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;&amp;lt;code&amp;gt;xs:language&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;.
+ :)
+declare variable $ft:LANG-TR as xs:language := xs:language("tr");
+
+(:===========================================================================:)
+
+(:~
+ : Gets the current compare options.
+ :
+ : @return said compare options.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-current-compare-options-1.xq
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-current-compare-options-2.xq
+ :)
+declare function ft:current-compare-options()
+  as object() external;
+
+(:~
+ : Gets the current
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;:
+ : either the language specified by the
+ : &amp;lt;code&amp;gt;&amp;lt;a href="http://www.w3.org/TR/xpath-full-text-10/#doc-xquery10-FTOptionDecl"&amp;gt;declare ft-option using&amp;lt;/a&amp;gt;
+ : &amp;lt;a href="http://www.w3.org/TR/xpath-full-text-10/#ftlanguageoption"&amp;gt;language&amp;lt;/a&amp;gt;&amp;lt;/code&amp;gt;
+ : statement (if any)
+ : or the one returned by &amp;lt;code&amp;gt;ft:host-lang()&amp;lt;/code&amp;gt; (if none).
+ :
+ : @return said language.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-current-lang-true-1.xq
+ :)
+declare function ft:current-lang()
+  as xs:language external;
+
+(:~
+ : Gets the host's current
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;.
+ : The "host" is the computer on which the software is running.
+ : The host's current language is obtained as follows:
+ :  &amp;lt;ul&amp;gt;
+ :    &amp;lt;li&amp;gt;
+ :      For *nix systems:
+ :      &amp;lt;ol&amp;gt;
+ :        &amp;lt;li&amp;gt;
+ :          If &amp;lt;a ref="http://www.cplusplus.com/reference/clibrary/clocale/setlocale/"&amp;gt;&amp;lt;code&amp;gt;setlocale&amp;lt;/code&amp;gt;(3)&amp;lt;/a&amp;gt; returns non-null,
+ :          the language corresponding to that locale is used.
+ :        &amp;lt;/li&amp;gt;
+ :        &amp;lt;li&amp;gt;
+ :          Else, if the &amp;lt;code&amp;gt;LANG&amp;lt;/code&amp;gt; environment variable is set,
+ :          that language is ued.
+ :        &amp;lt;/li&amp;gt;
+ :        &amp;lt;li&amp;gt;
+ :          Otherwise, there is no default language.
+ :        &amp;lt;/li&amp;gt;
+ :      &amp;lt;/ol&amp;gt;
+ :    &amp;lt;/li&amp;gt;
+ :    &amp;lt;li&amp;gt;
+ :      For Windows systems,
+ :      the language corresponding to the locale returned by the
+ :      &amp;lt;a href="http://msdn.microsoft.com/en-us/library/windows/desktop/dd318101(v=vs.85).aspx"&amp;gt;&amp;lt;code&amp;gt;GetLocaleInfo()&amp;lt;/code&amp;gt;&amp;lt;/a&amp;gt;
+ :      function is used.
+ :    &amp;lt;/li&amp;gt;
+ :  &amp;lt;/ul&amp;gt;
+ :
+ : @return said language.
+ :)
+declare function ft:host-lang()
+  as xs:language external;
+
+(:~
+ : Checks whether the given
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : is supported for stemming.
+ :
+ : @param $lang The language to check.
+ : @return &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt; only if the language is supported.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-is-stem-lang-es-supported-true.xq
+ :)
+declare function ft:is-stem-lang-supported( $lang as xs:language )
+  as xs:boolean external;
+
+(:~
+ : Checks whether the given word is a stop-word.
+ :
+ : @param $word The word to check.
+ : @param $lang The
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : of &amp;lt;code&amp;gt;$word&amp;lt;/code&amp;gt;.
+ : @return &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt; only if &amp;lt;code&amp;gt;$word&amp;lt;/code&amp;gt; is a stop-word.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;$lang&amp;lt;/code&amp;gt; is not supported.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-is-stop-word-true-1.xq
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-is-stop-word-true-3.xq
+ :)
+declare function ft:is-stop-word( $word as xs:string, $lang as xs:language )
+  as xs:boolean external;
+
+(:~
+ : Checks whether the given word is a stop-word.
+ :
+ : @param $word The word to check.
+ : The word's &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : is assumed to be the one returned by &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt;.
+ : @return &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt; only if &amp;lt;code&amp;gt;$word&amp;lt;/code&amp;gt; is a stop-word.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt; is not supported.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-is-stop-word-true-2.xq
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-is-stop-word-true-4.xq
+ :)
+declare function ft:is-stop-word( $word as xs:string )
+  as xs:boolean external;
+
+(:~
+ : Checks whether the given
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : is supported for stop words.
+ :
+ : @param $lang The language to check.
+ : @return &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt; only if the language is supported.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-is-stop-word-lang-en-supported-true.xq
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-is-stop-word-lang-supported-false-1.xq
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-is-stop-word-lang-supported-false-2.xq
+ :)
+declare function ft:is-stop-word-lang-supported( $lang as xs:language )
+  as xs:boolean external;
+
+(:~
+ : Checks whether the given
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : is supported for look-up using the default thesaurus.
+ :
+ : @param $lang The language to check.
+ : @return &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt; only if the language is supported.
+ :)
+declare function ft:is-thesaurus-lang-supported( $lang as xs:language )
+  as xs:boolean external;
+
+(:~
+ : Checks whether the given
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : is supported for look-up using the thesaurus specified by the given URI.
+ :
+ : @param $uri The URI specifying the thesaurus to use.
+ : @param $lang The language to check.
+ : @return &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt; only if the language is supported.
+ : @error err:FTST0018 if &amp;lt;code&amp;gt;$uri&amp;lt;/code&amp;gt; refers to a thesaurus
+ : that is not found in the statically known thesauri.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-is-thesaurus-lang-supported-true-1.xq
+ :)
+declare function ft:is-thesaurus-lang-supported( $uri as xs:string,
+                                                 $lang as xs:language )
+  as xs:boolean external;
+
+(:~
+ : Checks whether the given
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : is supported for tokenization.
+ :
+ : @param $lang The language to check.
+ : @return &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt; only if the language is supported.
+ :)
+declare function ft:is-tokenizer-lang-supported( $lang as xs:language )
+  as xs:boolean external;
+
+(:~
+ : Stems the given word.
+ :
+ : @param $word The word to stem.
+ : @param $lang The
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : of &amp;lt;code&amp;gt;$word&amp;lt;/code&amp;gt;.
+ : @return the stem of &amp;lt;code&amp;gt;$word&amp;lt;/code&amp;gt;.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;$lang&amp;lt;/code&amp;gt; is not supported.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-stem-1.xq
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-stem-2.xq
+ :)
+declare function ft:stem( $word as xs:string, $lang as xs:language )
+  as xs:string external;
+
+(:~
+ : Stems the given word.
+ :
+ : @param $word The word to stem.
+ : The word's &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : is assumed to be the one returned by &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt;.
+ : @return the stem of &amp;lt;code&amp;gt;$word&amp;lt;/code&amp;gt;.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt; is not supported.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-stem-3.xq
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-stem-4.xq
+ :)
+declare function ft:stem( $word as xs:string )
+  as xs:string external;
+
+(:~
+ : Strips all diacritical marks from all characters.
+ :
+ : @param $string The string to strip diacritical marks from.
+ : @return &amp;lt;code&amp;gt;$string&amp;lt;/code&amp;gt; with diacritical marks stripped.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-strip-diacritics-1.xq
+ :)
+declare function ft:strip-diacritics( $string as xs:string )
+  as xs:string external;
+
+(:~
+ : Looks-up the given phrase in the default thesaurus.
+ :
+ : @param $phrase The phrase to look up.
+ : The phrase's
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : is assumed to be the one returned by &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt;.
+ : @return the related phrases if &amp;lt;code&amp;gt;$phrase&amp;lt;/code&amp;gt; is found in the
+ : thesaurus or the empty sequence if not.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt; is not supported.
+ : @error zerr:ZXQP8401 if the thesaurus data file's version is not supported
+ : by the currently running version of the software.
+ : @error zerr:ZXQP8402 if the thesaurus data file's endianness does not match
+ : that of the CPU on which the software is currently running.
+ : @error zerr:ZXQP8403 if there was an error reading the thesaurus data.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-thesaurus-lookup-1.xq
+ :)
+declare function ft:thesaurus-lookup( $phrase as xs:string )
+  as xs:string* external;
+
+(:~
+ : Looks-up the given phrase in the thesaurus specified by the given URI.
+ :
+ : @param $uri The URI specifying the thesaurus to use.
+ : @param $phrase The phrase to look up.
+ : @param $lang The
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : of &amp;lt;code&amp;gt;$phrase&amp;lt;/code&amp;gt;.
+ : @return the related phrases if &amp;lt;code&amp;gt;$phrase&amp;lt;/code&amp;gt; is found in the
+ : thesaurus or the empty sequence if not.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;$lang&amp;lt;/code&amp;gt; is not supported.
+ : @error err:FTST0018 if &amp;lt;code&amp;gt;$uri&amp;lt;/code&amp;gt; refers to a thesaurus
+ : that is not found in the statically known thesauri.
+ : @error zerr:ZOSE0001 if the thesaurus data file could not be found.
+ : @error zerr:ZOSE0002 if the thesaurus data file is not a plain file.
+ : @error zerr:ZXQP8401 if the thesaurus data file's version is not supported
+ : by the currently running version of the software.
+ : @error zerr:ZXQP8402 if the thesaurus data file's endianness does not match
+ : that of the CPU on which the software is currently running.
+ : @error zerr:ZXQP8403 if there was an error reading the thesaurus data file.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-thesaurus-lookup-2.xq
+ :)
+declare function ft:thesaurus-lookup( $uri as xs:string, $phrase as xs:string,
+                                      $lang as xs:language )
+  as xs:string* external;
+
+(:~
+ : Looks-up the given phrase in a thesaurus.
+ :
+ : @param $uri The URI specifying the thesaurus to use.
+ : @param $phrase The phrase to look up.
+ : The phrase's
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : is assumed to be the one the one returned by &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt;.
+ : @return the related phrases if &amp;lt;code&amp;gt;$phrase&amp;lt;/code&amp;gt; is found in the
+ : thesaurus or the empty sequence if not.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt; is unsupported.
+ : @error err:FTST0018 if &amp;lt;code&amp;gt;$uri&amp;lt;/code&amp;gt; refers to a thesaurus
+ : that is not found in the statically known thesauri.
+ : @error zerr:ZOSE0001 if the thesaurus data file could not be found.
+ : @error zerr:ZOSE0002 if the thesaurus data file is not a plain file.
+ : @error zerr:ZXQP8401 if the thesaurus data file's version is not supported
+ : by the currently running version of the software.
+ : @error zerr:ZXQP8402 if the thesaurus data file's endianness does not match
+ : that of the CPU on which the software is currently running.
+ : @error zerr:ZXQP8403 if there was an error reading the thesaurus data file.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-thesaurus-lookup-3.xq
+ :)
+declare function ft:thesaurus-lookup( $uri as xs:string, $phrase as xs:string )
+  as xs:string* external;
+
+(:~
+ : Looks-up the given phrase in a thesaurus.
+ :
+ : @param $uri The URI specifying the thesaurus to use.
+ : @param $phrase The phrase to look up.
+ : @param $lang The
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : of &amp;lt;code&amp;gt;$phrase&amp;lt;/code&amp;gt;.
+ : @param $relationship The relationship the results are to have to
+ : &amp;lt;code&amp;gt;$phrase&amp;lt;/code&amp;gt;.
+ : @return the related phrases if &amp;lt;code&amp;gt;$phrase&amp;lt;/code&amp;gt; is found in the
+ : thesaurus or the empty sequence if not.
+ : @error err:FTST0018 if &amp;lt;code&amp;gt;$uri&amp;lt;/code&amp;gt; refers to a thesaurus
+ : that is not found in the statically known thesauri.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;$lang&amp;lt;/code&amp;gt; is not supported.
+ : @error zerr:ZOSE0001 if the thesaurus data file could not be found.
+ : @error zerr:ZOSE0002 if the thesaurus data file is not a plain file.
+ : @error zerr:ZXQP8401 if the thesaurus data file's version is not supported
+ : by the currently running version of the software.
+ : @error zerr:ZXQP8402 if the thesaurus data file's endianness does not match
+ : that of the CPU on which the software is currently running.
+ : @error zerr:ZXQP8403 if there was an error reading the thesaurus data file.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-thesaurus-lookup-4.xq
+ :)
+declare function ft:thesaurus-lookup( $uri as xs:string, $phrase as xs:string,
+                                      $lang as xs:language,
+                                      $relationship as xs:string )
+  as xs:string* external;
+
+(:~
+ : Looks-up the given phrase in a thesaurus.
+ :
+ : @param $uri The URI specifying the thesaurus to use.
+ : @param $phrase The phrase to look up.
+ : @param $lang The
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : of &amp;lt;code&amp;gt;$phrase&amp;lt;/code&amp;gt;.
+ : @param $relationship The relationship the results are to have to
+ : &amp;lt;code&amp;gt;$phrase&amp;lt;/code&amp;gt;.
+ : @param $level-least The minimum number of levels within the thesaurus to be
+ : traversed.
+ : @param $level-most The maximum number of levels within the thesaurus to be
+ : traversed.
+ : @return the related phrases if &amp;lt;code&amp;gt;$phrase&amp;lt;/code&amp;gt; is found in the
+ : thesaurus or the empty sequence if not.
+ : @error err:FOCA0003 if either &amp;lt;code&amp;gt;$level-least&amp;lt;/code&amp;gt; or
+ : &amp;lt;code&amp;gt;$level-most&amp;lt;/code&amp;gt; is either negative or too large.
+ : @error err:FTST0018 if &amp;lt;code&amp;gt;$uri&amp;lt;/code&amp;gt; refers to a thesaurus
+ : that is not found in the statically known thesauri.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;$lang&amp;lt;/code&amp;gt; is not supported.
+ : @error zerr:ZOSE0001 if the thesaurus data file could not be found.
+ : @error zerr:ZOSE0002 if the thesaurus data file is not a plain file.
+ : @error zerr:ZXQP8401 if the thesaurus data file's version is not supported
+ : by the currently running version of the software.
+ : @error zerr:ZXQP8402 if the thesaurus data file's endianness does not match
+ : that of the CPU on which the software is currently running.
+ : @error zerr:ZXQP8403 if there was an error reading the thesaurus data file.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-thesaurus-lookup-5.xq
+ :)
+declare function ft:thesaurus-lookup( $uri as xs:string, $phrase as xs:string,
+                                      $lang as xs:language,
+                                      $relationship as xs:string,
+                                      $level-least as xs:integer,
+                                      $level-most as xs:integer )
+  as xs:string* external;
+
+(:~
+ : Tokenizes the given node and all of its decendants.
+ :
+ : @param $node The node to tokenize.
+ : @param $lang The default
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : of &amp;lt;code&amp;gt;$node&amp;lt;/code&amp;gt;.
+ : @return a (possibly empty) sequence of tokens.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;$lang&amp;lt;/code&amp;gt; is not supported.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-tokenize-node-1.xq
+ :)
+declare function ft:tokenize-node( $node as node(), $lang as xs:language )
+  as object()* external;
+
+(:~
+ : Tokenizes the given node and all of its descendants.
+ :
+ : @param $node The node to tokenize.
+ : The node's default
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : is assumed to be the one returned by &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt;.
+ : @return a (possibly empty) sequence of tokens.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt; is not supported.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-tokenize-node-2.xq
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-tokenize-node-3.xq
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-tokenize-node-4.xq
+ :)
+declare function ft:tokenize-node( $node as node() )
+  as object()* external;
+
+(:~
+ : Tokenizes the set of nodes comprising &amp;lt;code&amp;gt;$includes&amp;lt;/code&amp;gt; (and all of its
+ : descendants) but excluding &amp;lt;code&amp;gt;$excludes&amp;lt;/code&amp;gt; (and all of its
+ : descendants), if any.
+ :
+ : @param $includes The set of nodes (and its descendants) to include.
+ : The default
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : is assumed to be the one returned by &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt;.
+ : @param $excludes The set of nodes (and its descendants) to exclude.
+ : @return a (possibly empty) sequence of tokens.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt; is not supported.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-tokenize-nodes-1.xq
+ :)
+declare function ft:tokenize-nodes( $includes as node()+,
+                                    $excludes as node()* )
+  as object()* external;
+
+(:~
+ : Tokenizes the set of nodes comprising &amp;lt;code&amp;gt;$includes&amp;lt;/code&amp;gt; (and all of its
+ : descendants) but excluding &amp;lt;code&amp;gt;$excludes&amp;lt;/code&amp;gt; (and all of its
+ : descendants), if any.
+ :
+ : @param $includes The set of nodes (and its descendants) to include.
+ : @param $excludes The set of nodes (and its descendants) to exclude.
+ : @param $lang The default
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : for nodes.
+ : @return a (possibly empty) sequence of tokens.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;$lang&amp;lt;/code&amp;gt; is not supported.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-tokenize-nodes-1.xq
+ :)
+declare function ft:tokenize-nodes( $includes as node()+,
+                                    $excludes as node()*,
+                                    $lang as xs:language )
+  as object()* external;
+
+(:~
+ : Tokenizes the given string.
+ :
+ : @param $string The string to tokenize.
+ : @param $lang The
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : of &amp;lt;code&amp;gt;$string&amp;lt;/code&amp;gt;.
+ : @return a (possibly empty) sequence of tokens.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;$lang&amp;lt;/code&amp;gt; is not supported.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-tokenize-string-1.xq
+ :)
+declare function ft:tokenize-string( $string as xs:string,
+                                     $lang as xs:language )
+  as xs:string* external;
+
+(:~
+ : Tokenizes the given string.
+ :
+ : @param $string The string to tokenize.
+ : The string's
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : is assumed to be the one returned by &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt;.
+ : @return a (possibly empty) sequence of tokens.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt; is not supported.
+ : @example test/rbkt/Queries/zorba/fulltext/ft-module-tokenize-string-2.xq
+ :)
+declare function ft:tokenize-string( $string as xs:string )
+  as xs:string* external;
+
+(:~
+ : Gets properties of the tokenizer for the given
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;.
+ :
+ : @param $lang The language of the tokenizer to get the properties of.
+ : @return said properties.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;$lang&amp;lt;/code&amp;gt; is not supported.
+ : tokenization specifically.
+ :)
+declare function ft:tokenizer-properties( $lang as xs:language )
+  as object() external;
+
+(:~
+ : Gets properties of the tokenizer for the
+ : &amp;lt;a href="http://www.w3.org/TR/xmlschema-2/#language"&amp;gt;language&amp;lt;/a&amp;gt;
+ : returned by &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt;.
+ :
+ : @return said properties.
+ : @error err:FTST0009 if &amp;lt;code&amp;gt;ft:current-lang()&amp;lt;/code&amp;gt; is not supported.
+ :)
+declare function ft:tokenizer-properties()
+  as object() external;
+
+(:===========================================================================:)
+
+(: vim:set et sw=2 ts=2: :)
+</programlisting></para></detaileddescription></compounddef></doxygen>

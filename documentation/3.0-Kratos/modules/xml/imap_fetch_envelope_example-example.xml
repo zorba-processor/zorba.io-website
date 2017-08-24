@@ -1,0 +1,52 @@
+<doxygen><compounddef id="fetch_envelope_example.xq-example" kind="example"><detaileddescription><para><h3>Content of fetch_envelope_example.xq example</h3><programlisting type="example">(:
+ : This example shows how to use the fetch-envelope function of
+ : the http://www.zorba-xquery.com/modules/email/imap module.
+ :
+ : Using the host information stored in the variable $hostInfo, first a message
+ : containing the word "test" in the subject is searched for, using the search
+ : function. Then, the envelope of the first message found is fetched.
+ :
+ : The XML output of this script should look something like:
+ :
+ :  &amp;lt;envelope xmlns="http://www.zorba-xquery.com/modules/email"&amp;gt;
+ :    &amp;lt;date&amp;gt;2011-02-14T13:07:38&amp;lt;/date&amp;gt;
+ :    &amp;lt;from&amp;gt;
+ :      &amp;lt;name&amp;gt;Daniel Thomas&amp;lt;/name&amp;gt;
+ :      &amp;lt;email&amp;gt;thomas.daniel.james@gmail.com&amp;lt;/email&amp;gt;
+ :    &amp;lt;/from&amp;gt;
+ :    &amp;lt;sender&amp;gt;
+ :      &amp;lt;name&amp;gt;Daniel Thomas&amp;lt;/name&amp;gt;
+ :      &amp;lt;email&amp;gt;thomas.daniel.james@gmail.com&amp;lt;/email&amp;gt;
+ :    &amp;lt;/sender&amp;gt;
+ :    &amp;lt;replyTo&amp;gt;
+ :      &amp;lt;name&amp;gt;Daniel Thomas&amp;lt;/name&amp;gt;
+ :      &amp;lt;email&amp;gt;thomas.daniel.james@gmail.com&amp;lt;/email&amp;gt;
+ :    &amp;lt;/replyTo&amp;gt;
+ :    &amp;lt;subject&amp;gt;test&amp;lt;/subject&amp;gt;
+ :    &amp;lt;recipient&amp;gt;
+ :      &amp;lt;to&amp;gt;
+ :        &amp;lt;email&amp;gt;imaptest@28msec.com&amp;lt;/email&amp;gt;
+ :      &amp;lt;/to&amp;gt;
+ :    &amp;lt;/recipient&amp;gt;
+ :    &amp;lt;messageId&amp;gt;&amp;amp;lt;AANLkTinSujfq9-UgGDvX+RcOrhvQf5JTnTdwSLNTiqZ5@mail.gmail.com&amp;amp;gt;&amp;lt;/messageId&amp;gt;
+ :    &amp;lt;flags/&amp;gt;
+ :  &amp;lt;/envelope&amp;gt;
+ :
+ : If no error is thrown, all operations were successful.
+ :) 
+
+import module namespace imap = 'http://www.zorba-xquery.com/modules/email/imap';
+
+
+(: This variable contains the information of the account on the IMAP server. :) 
+let $hostInfo :=
+  &amp;lt;hostInfo xmlns="http://www.zorba-xquery.com/modules/email"&amp;gt;
+    &amp;lt;hostName&amp;gt;mail.28msec.com/novalidate-cert&amp;lt;/hostName&amp;gt;
+    &amp;lt;userName&amp;gt;imaptest&amp;lt;/userName&amp;gt;
+    &amp;lt;password&amp;gt;cclient&amp;lt;/password&amp;gt;
+  &amp;lt;/hostInfo&amp;gt;
+
+let $uids := imap:search($hostInfo, "INBOX", "SUBJECT test", false())
+return
+  imap:fetch-envelope($hostInfo, "INBOX", $uids[1], false())
+</programlisting></para></detaileddescription></compounddef></doxygen>

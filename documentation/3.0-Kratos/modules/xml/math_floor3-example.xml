@@ -1,0 +1,8 @@
+<doxygen><compounddef id="floor3.xq-example" kind="example"><detaileddescription><para><h3>Content of floor3.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/math";
+
+excel:floor(-2.5, 2)
+
+(:
+Output: Error [XQP0021] Floor function: both arguments must have the same sign
+:)</programlisting></para></detaileddescription></compounddef></doxygen>

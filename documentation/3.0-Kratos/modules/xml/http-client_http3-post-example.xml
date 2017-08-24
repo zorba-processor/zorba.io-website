@@ -1,0 +1,16 @@
+<doxygen><compounddef id="http3-post.xq-example" kind="example"><detaileddescription><para><h3>Content of http3-post.xq example</h3><programlisting type="example">import module namespace http = "http://www.zorba-xquery.com/modules/http-client";
+
+declare default element namespace "http://expath.org/ns/http-client";
+
+variable $req :=
+  &amp;lt;request method="POST" href="http://zorbatest.lambda.nu:8080/http-test-data/request.php"&amp;gt;
+    &amp;lt;header name="foo" value="bar"/&amp;gt;
+    &amp;lt;body media-type="text/plain"&amp;gt;
+      Dies ist ein kleiner Test
+    &amp;lt;/body&amp;gt;
+  &amp;lt;/request&amp;gt;;
+
+variable $http-res := http:send-request($req, (), ());
+
+$http-res[2]
+</programlisting></para></detaileddescription></compounddef></doxygen>

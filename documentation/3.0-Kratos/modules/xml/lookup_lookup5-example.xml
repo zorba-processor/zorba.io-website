@@ -1,0 +1,11 @@
+<doxygen><compounddef id="lookup5.xq-example" kind="example"><detaileddescription><para><h3>Content of lookup5.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/lookup";
+
+(: array form :)
+excel:lookup(2, 
+            ((1, 2, 3), 
+             (4, 5, 6),
+             (7, 8, 9),
+             (11, 12, 13)),
+             3, 4)
+</programlisting></para></detaileddescription></compounddef></doxygen>

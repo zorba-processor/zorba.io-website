@@ -1,0 +1,5 @@
+<doxygen><compounddef id="standardize1.xq-example" kind="example"><detaileddescription><para><h3>Content of standardize1.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/statistical";
+
+excel:standardize(42, 40, 1.5)
+</programlisting></para></detaileddescription></compounddef></doxygen>

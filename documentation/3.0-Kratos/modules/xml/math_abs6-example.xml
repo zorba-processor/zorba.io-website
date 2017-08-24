@@ -1,0 +1,8 @@
+<doxygen><compounddef id="abs6.xq-example" kind="example"><detaileddescription><para><h3>Content of abs6.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/math";
+
+excel:abs("ss")
+
+(:
+Output: Error [XQP0021] Provided value is not a number
+:)</programlisting></para></detaileddescription></compounddef></doxygen>

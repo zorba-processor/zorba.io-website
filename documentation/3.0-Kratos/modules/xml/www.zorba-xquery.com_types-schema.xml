@@ -1,0 +1,39 @@
+<doxygen><compounddef id="www.zorba-xquery.com_types-schema" kind="schema"><detaileddescription><para><h3>Content of www.zorba-xquery.com_types schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:types="http://www.zorba-xquery.com/types" targetNamespace="http://www.zorba-xquery.com/types" elementFormDefault="qualified" attributeFormDefault="qualified"&gt;
+
+  &lt;xs:attribute name="myAttribute" type="xs:string"/&gt;
+
+  &lt;xs:simpleType name="mySimpleType"&gt;
+    &lt;xs:restriction base="xs:int"&gt;
+     &lt;xs:minInclusive value="1"/&gt;
+     &lt;xs:maxInclusive value="50"/&gt;
+   &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+ 
+  &lt;xs:complexType name="myComplex"&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:element name="myProduct"&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:attribute name="prodid" type="xs:positiveInteger"/&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+
+  &lt;xs:group name="custGroup"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="customer" type="xs:string"/&gt;
+      &lt;xs:element name="orderdetails" type="xs:string"/&gt;
+      &lt;xs:element name="billto" type="xs:string"/&gt;
+      &lt;xs:element name="shipto" type="xs:string"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:group&gt;
+
+  &lt;xs:attributeGroup name="personattr"&gt;
+    &lt;xs:attribute name="attr1" type="xs:string"/&gt;
+    &lt;xs:attribute name="attr2" type="xs:integer"/&gt;
+  &lt;/xs:attributeGroup&gt;
+
+  &lt;xs:complexType name="person"&gt;
+    &lt;xs:attributeGroup ref="types:personattr"/&gt;
+  &lt;/xs:complexType&gt; 
+
+&lt;/xs:schema&gt;&lt;!-- vim:set et sw=2 ts=2: --&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,110 @@
+<doxygen><compounddef id="www.w3.org_XQueryTest_unionListDefined-schema" kind="schema"><detaileddescription><para><h3>Content of www.w3.org_XQueryTest_unionListDefined schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:s="http://www.w3.org/XQueryTest/unionListDefined" targetNamespace="http://www.w3.org/XQueryTest/unionListDefined" elementFormDefault="qualified"&gt;
+
+  &lt;xs:simpleType name="unrestrictedInteger"&gt;
+    &lt;xs:restriction base="xs:integer"/&gt;
+  &lt;/xs:simpleType&gt; 
+  
+  &lt;xs:simpleType name="unrestrictedDate"&gt;
+    &lt;xs:restriction base="xs:date"/&gt;
+  &lt;/xs:simpleType&gt;  
+  
+  &lt;xs:simpleType name="myUnionType1"&gt;
+    &lt;xs:union memberTypes="s:unrestrictedInteger s:unrestrictedDate"/&gt;
+  &lt;/xs:simpleType&gt;
+  
+  &lt;xs:simpleType name="restrictedString"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:pattern value="IB(\d)+"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;  
+
+  &lt;xs:simpleType name="myUnionType2"&gt;
+    &lt;xs:union memberTypes="s:restrictedString s:unrestrictedInteger"/&gt;
+  &lt;/xs:simpleType&gt;
+  
+  &lt;xs:simpleType name="sensitiveUnion"&gt;
+    &lt;xs:union memberTypes="xs:NCName xs:QName"/&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="decimalListType1"&gt;
+    &lt;xs:list itemType="xs:decimal"/&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="strListType1"&gt;
+    &lt;xs:list itemType="xs:string"/&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="intListType1"&gt;
+	&lt;xs:list itemType="xs:integer"/&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="myRestrictedList1"&gt;
+	&lt;xs:restriction base="s:intListType1"&gt;
+		&lt;xs:pattern value="123 (\d+\s)*456"/&gt;
+	&lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  
+  &lt;xs:simpleType name="sensitiveList"&gt;
+    &lt;xs:list itemType="s:sensitiveUnion"/&gt;
+  &lt;/xs:simpleType&gt;
+  
+  &lt;xs:simpleType name="lowercaseName"&gt;
+    &lt;xs:restriction base="s:sensitiveUnion"&gt;
+      &lt;xs:pattern value="[a-z:]+"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  
+  &lt;xs:simpleType name="unionOfLists"&gt;
+    &lt;xs:union memberTypes="xs:IDREFS s:sensitiveList"/&gt;
+  &lt;/xs:simpleType&gt;
+  
+  &lt;xs:simpleType name="unionOfListsAndAtomic"&gt;
+    &lt;xs:union memberTypes="xs:integer xs:NMTOKENS "/&gt;
+  &lt;/xs:simpleType&gt;
+  
+  &lt;xs:simpleType name="listOfUnions"&gt;
+    &lt;xs:list itemType="s:sensitiveUnion"/&gt;
+  &lt;/xs:simpleType&gt;
+  
+  &lt;xs:simpleType name="approximateDate"&gt;
+    &lt;xs:union memberTypes="xs:date xs:dateTime xs:gYear xs:gYearMonth"/&gt;
+  &lt;/xs:simpleType&gt;
+  
+  &lt;xs:simpleType name="dateOrDateTime"&gt;
+    &lt;xs:union memberTypes="xs:date xs:dateTime"/&gt;
+  &lt;/xs:simpleType&gt;  
+  
+  &lt;xs:simpleType name="restrictedUnion"&gt;
+    &lt;xs:restriction base="s:approximateDate"&gt;      
+      &lt;xs:pattern value="20.*"/&gt;
+    &lt;/xs:restriction&gt;  
+  &lt;/xs:simpleType&gt;
+  
+  &lt;xs:simpleType name="restrictedDate"&gt;
+    &lt;xs:restriction base="s:unrestrictedDate"&gt;      
+      &lt;xs:pattern value="20.*"/&gt;
+    &lt;/xs:restriction&gt;  
+  &lt;/xs:simpleType&gt;
+  
+  &lt;xs:element name="elementContainingApproximateDate" type="s:elementContainingApproximateDateType"/&gt;
+  
+    &lt;xs:complexType name="elementContainingApproximateDateType"&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="e" type="s:approximateDate"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;  
+  
+  &lt;xs:element name="elementContainingDateTime" substitutionGroup="s:elementContainingApproximateDate" type="s:elementContainingDateType"/&gt;
+    
+  &lt;xs:complexType name="elementContainingDateType"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:restriction base="s:elementContainingApproximateDateType"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name="e" type="xs:dateTime"/&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:restriction&gt;
+    &lt;/xs:complexContent&gt;    
+  &lt;/xs:complexType&gt;    
+
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

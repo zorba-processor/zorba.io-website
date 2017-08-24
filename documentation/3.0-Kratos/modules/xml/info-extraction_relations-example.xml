@@ -1,0 +1,32 @@
+<doxygen><compounddef id="relations.xq-example" kind="example"><detaileddescription><para><h3>Content of relations.xq example</h3><programlisting type="example">import module namespace ex = 'http://zorba.io/modules/info-extraction';
+
+import schema namespace schema = 'http://zorba.io/modules/info-extraction';
+
+let $result := ex:relations("President Obama called Wednesday on Congress to extend a tax break for students included in last year's economic stimulus package, arguing that the policy provides more generous assistance.")
+
+return count ( for $r in $result return validate { $r } ) &amp;gt; 0
+    
+(:
+
+&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+&amp;lt;!-- The ex:relations function should return the following list of results for the input provided in the example --&amp;gt;
+&amp;lt;ex:relation xmlns:ex="http://zorba.io/modules/info-extraction"&amp;gt;
+  &amp;lt;ex:entity start="0" end="14"&amp;gt;President Obama&amp;lt;/ex:entity&amp;gt;
+  &amp;lt;ex:wikipedia_url&amp;gt;http://en.wikipedia.com/wiki/Gabrielle_Giffords&amp;lt;/ex:wikipedia_url&amp;gt;
+  &amp;lt;ex:wikipedia_url&amp;gt;http://en.wikipedia.com/wiki/2011_Tucson_shooting&amp;lt;/ex:wikipedia_url&amp;gt;
+  &amp;lt;ex:wikipedia_url&amp;gt;http://en.wikipedia.com/wiki/Fray&amp;lt;/ex:wikipedia_url&amp;gt;
+  &amp;lt;ex:wikipedia_url&amp;gt;http://en.wikipedia.com/wiki/White_House&amp;lt;/ex:wikipedia_url&amp;gt;
+  &amp;lt;ex:wikipedia_url&amp;gt;http://en.wikipedia.com/wiki/Recall_%28memory%29&amp;lt;/ex:wikipedia_url&amp;gt;
+&amp;lt;/ex:relation&amp;gt;
+&amp;lt;ex:relation xmlns:ex="http://zorba.io/modules/info-extraction"&amp;gt;
+  &amp;lt;ex:entity start="36" end="43"&amp;gt;
+    &amp;lt;ex:type&amp;gt;organization&amp;lt;/ex:type&amp;gt;Congress&amp;lt;/ex:entity&amp;gt;
+  &amp;lt;ex:wikipedia_url&amp;gt;http://en.wikipedia.com/wiki/Republican_Party_%28United_States%29&amp;lt;/ex:wikipedia_url&amp;gt;
+  &amp;lt;ex:wikipedia_url&amp;gt;http://en.wikipedia.com/wiki/Barack_Obama&amp;lt;/ex:wikipedia_url&amp;gt;
+  &amp;lt;ex:wikipedia_url&amp;gt;http://en.wikipedia.com/wiki/Roger_Clemens&amp;lt;/ex:wikipedia_url&amp;gt;
+  &amp;lt;ex:wikipedia_url&amp;gt;http://en.wikipedia.com/wiki/Democratic_Party_%28United_States%29&amp;lt;/ex:wikipedia_url&amp;gt;
+  &amp;lt;ex:wikipedia_url&amp;gt;http://en.wikipedia.com/wiki/Growth_hormone&amp;lt;/ex:wikipedia_url&amp;gt;
+&amp;lt;/ex:relation&amp;gt;
+
+:)
+</programlisting></para></detaileddescription></compounddef></doxygen>

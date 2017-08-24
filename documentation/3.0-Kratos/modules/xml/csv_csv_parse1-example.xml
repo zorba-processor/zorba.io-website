@@ -1,0 +1,6 @@
+<doxygen><compounddef id="csv_parse1.xq-example" kind="example"><detaileddescription><para><h3>Content of csv_parse1.xq example</h3><programlisting type="example">(: csv-to-xml example with 1 row :)
+
+import module namespace csv = "http://zorba.io/modules/csv";
+
+csv:parse("f1, f2, f3, f4", ())
+</programlisting></para></detaileddescription></compounddef></doxygen>

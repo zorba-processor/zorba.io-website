@@ -1,0 +1,4 @@
+<doxygen><compounddef id="ft-module-stem-2.xq-example" kind="example"><detaileddescription><para><h3>Content of ft-module-stem-2.xq example</h3><programlisting type="example">import module namespace ft = "http://zorba.io/modules/full-text";
+
+ft:stem( "chico", xs:language("es") )
+</programlisting></para></detaileddescription></compounddef></doxygen>

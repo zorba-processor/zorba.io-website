@@ -1,0 +1,4 @@
+<doxygen><compounddef id="jaro-winkler.xq-example" kind="example"><detaileddescription><para><h3>Content of jaro-winkler.xq example</h3><programlisting type="example">import module namespace simc = "http://zorba.io/modules/data-cleaning/character-based-string-similarity";
+
+simc:jaro-winkler("DWAYNE", "DUANE", 4, 0.1 )
+</programlisting></para></detaileddescription></compounddef></doxygen>

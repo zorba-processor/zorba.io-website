@@ -1,0 +1,4 @@
+<doxygen><compounddef id="dice-tokens.xq-example" kind="example"><detaileddescription><para><h3>Content of dice-tokens.xq example</h3><programlisting type="example">import module namespace simt = "http://zorba.io/modules/data-cleaning/token-based-string-similarity";
+
+simt:dice-tokens("The FLWOR Foundation", "FLWOR Found.", " +" )
+</programlisting></para></detaileddescription></compounddef></doxygen>

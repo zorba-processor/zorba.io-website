@@ -1,0 +1,361 @@
+<doxygen><compounddef id="json-csv-module" kind="module"><detaileddescription><para><h3>Content of json-csv module</h3><programlisting type="module">jsoniq version "1.0";
+
+(:
+ : Copyright 2006-2011 The FLWOR Foundation.
+ :
+ : Licensed under the Apache License, Version 2.0 (the "License");
+ : you may not use this file except in compliance with the License.
+ : You may obtain a copy of the License at
+ :
+ : http://www.apache.org/licenses/LICENSE-2.0
+ :
+ : Unless required by applicable law or agreed to in writing, software
+ : distributed under the License is distributed on an "AS IS" BASIS,
+ : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ : See the License for the specific language governing permissions and
+ : limitations under the License.
+ :)
+
+(:===========================================================================:)
+
+(:~
+ : This module provides an API for parsing and serializing CSV (comma-separated
+ : values) files.
+ : See RFC 4180,
+ : "Common Format and MIME Type for Comma-Separated Values (CSV) Files."
+ :
+ : @author Paul J. Lucas
+ : @project Zorba/Data Converters/CSV
+ :)
+
+module namespace csv = "http://zorba.io/modules/json-csv";
+
+declare namespace ver = "http://zorba.io/options/versioning";
+declare option ver:module-version "1.0";
+
+(:===========================================================================:)
+
+(:~
+ : Parses a CSV (comma-separated values) string using the given options.
+ : A newline (U+000A), optionally preceeded by a carriage-return (U+000D),
+ : terminates lines, aka, "records."
+ : &amp;lt;p/&amp;gt;
+ : Quoted values are always considered strings;
+ : unquoted values are attempted to be cast to other types, e.g., integer
+ : (unless the &amp;lt;code&amp;gt;cast-unquoted-values&amp;lt;/code&amp;gt; option is &amp;lt;code&amp;gt;false&amp;lt;/code&amp;gt;).
+ : Casting is attempted in the following order:
+ : integer, decimal, double, and boolean.
+ : If casting fails, the value is considered a string.
+ : Header field names are always considered strings even if unquoted.
+ : &amp;lt;p/&amp;gt;
+ : In addition to the "normal" values of
+ : &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;false&amp;lt;/code&amp;gt; for boolean,
+ : &amp;lt;code&amp;gt;T&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Y&amp;lt;/code&amp;gt; are also considered "true"
+ : and &amp;lt;code&amp;gt;F&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;N&amp;lt;/code&amp;gt; are also considered "false."
+ :
+ : @param $csv The CSV string to parse.
+ : @param $options The options to use:
+ :  &amp;lt;dl&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;cast-unquoted-values&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        Whether to attempt to cast unquoted values to
+ :        integer, decimal, double, or boolean;
+ :        default: &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt;.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;extra-name&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        The field name for extra values, if any;
+ :        default: none (error &amp;lt;code&amp;gt;csv:EXTRA_VALUE&amp;lt;/code&amp;gt; is raised).
+ :        If this option is given and a line contains one or more extra values
+ :        (that is, values that have no corresponding field names),
+ :        then the extra values are assigned as the values
+ :        for fields having &amp;lt;code&amp;gt;extra-name&amp;lt;/code&amp;gt; as their names.
+ :        &amp;lt;p/&amp;gt;
+ :        If &amp;lt;code&amp;gt;extra-name&amp;lt;/code&amp;gt; contains a &amp;lt;code&amp;gt;#&amp;lt;/code&amp;gt; (U+0023),
+ :        then the &amp;lt;code&amp;gt;#&amp;lt;/code&amp;gt; is substituted with the field number
+ :        (where field numbers start at 1).
+ :        If &amp;lt;code&amp;gt;extra-name&amp;lt;/code&amp;gt; does not contains a &amp;lt;code&amp;gt;#&amp;lt;/code&amp;gt;,
+ :        then the field number is appended.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;field-names&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        A JSON array of strings denoting field names;
+ :        default: none.
+ :        If this option is given, then the first CSV line is assumed not to be
+ :        a header line; if omitted, then the first CSV line is assumed to be a
+ :        header line and the field names are taken from this line.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;missing-value&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        What should happen when a missing value is detected;
+ :        default: &amp;lt;code&amp;gt;"null"&amp;lt;/code&amp;gt;.
+ :        A "missing" value is one of:
+ :        &amp;lt;ul&amp;gt;
+ :          &amp;lt;li&amp;gt;Two consecutive &amp;lt;code&amp;gt;separator&amp;lt;/code&amp;gt; characters.&amp;lt;/li&amp;gt;
+ :          &amp;lt;li&amp;gt;A &amp;lt;code&amp;gt;separator&amp;lt;/code&amp;gt; character as either the first
+ :              or last character on a line.&amp;lt;/li&amp;gt;
+ :          &amp;lt;li&amp;gt;Fewer values than the number of field names.&amp;lt;/li&amp;gt;
+ :        &amp;lt;/ul&amp;gt;
+ :        When a missing value is detected,
+ :        the value of this option determines what happens:
+ :        &amp;lt;dl&amp;gt;
+ :          &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;"error"&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :            &amp;lt;dd&amp;gt;Error &amp;lt;code&amp;gt;csv:MISSING_VALUE&amp;lt;/code&amp;gt; is raised.&amp;lt;/dd&amp;gt;
+ :          &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;"omit"&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :            &amp;lt;dd&amp;gt;Both the value and its key are omitted from the result
+ :                object.&amp;lt;/dd&amp;gt;
+ :          &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;"null"&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :            &amp;lt;dd&amp;gt;The value is set to &amp;lt;code&amp;gt;null&amp;lt;/code&amp;gt;.&amp;lt;/dd&amp;gt;
+ :        &amp;lt;/dl&amp;gt;
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        The single ASCII character that may be used to quote values;
+ :        default: &amp;lt;code&amp;gt;"&amp;lt;/code&amp;gt; (U+0022).
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;quote-escape&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        The single ASCII character used to escape &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;;
+ :        default: same as &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;.
+ :        If &amp;lt;code&amp;gt;quote-escape&amp;lt;/code&amp;gt; equals &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;,
+ :        it means that &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt; must be doubled to escape it.
+ :        If &amp;lt;code&amp;gt;quote-escape&amp;lt;/code&amp;gt; does not equal &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;,
+ :        it means that &amp;lt;code&amp;gt;quote-escape&amp;lt;/code&amp;gt; is used to escape
+ :        &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;.
+ :        For example, a &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt; of &amp;lt;code&amp;gt;"&amp;lt;/code&amp;gt; (U+0022)
+ :        and a &amp;lt;code&amp;gt;quote-escape&amp;lt;/code&amp;gt; of &amp;lt;code&amp;gt;\&amp;lt;/code&amp;gt; (U+005C) means that
+ :        quotes will be escaped by &amp;lt;code&amp;gt;\"&amp;lt;/code&amp;gt;.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;separator&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        The single ASCII character used to separate values;
+ :        default: &amp;lt;code&amp;gt;,&amp;lt;/code&amp;gt; (U+002C).
+ :      &amp;lt;/dd&amp;gt;
+ :  &amp;lt;/dl&amp;gt;
+ : @return a sequence of zero or more JSON objects where each key is a field
+ : name and each value is a parsed value.
+ : @error csv:INVALID_OPTION if the &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;,
+ : &amp;lt;code&amp;gt;quote-escape&amp;lt;/code&amp;gt;, or &amp;lt;code&amp;gt;separator&amp;lt;/code&amp;gt; option is given
+ : and it's not a single ASCII character.
+ : @error csv:MISSING_VALUE if a missing value is detected and the
+ : &amp;lt;code&amp;gt;missing-value&amp;lt;/code&amp;gt; option is "&amp;lt;code&amp;gt;error&amp;lt;/code&amp;gt;".
+ : @error csv:EXTRA_VALUE if an extra value is detected and the
+ : &amp;lt;code&amp;gt;extra-name&amp;lt;/code&amp;gt; option is not set.
+ :)
+declare function csv:parse( $csv as string, $options as object() )
+  as object()* external;
+
+(:~
+ : Parses a CSV (comma-separated values) string using the default options.
+ : A newline (U+000A), optionally preceeded by a carriage-return (U+000D),
+ : terminates lines, aka, "records."
+ : &amp;lt;p/&amp;gt;
+ : Quoted values are always considered strings;
+ : unquoted values are attempted to be cast to other types, e.g., integer
+ : (unless the &amp;lt;code&amp;gt;cast-unquoted-values&amp;lt;/code&amp;gt; option is &amp;lt;code&amp;gt;false&amp;lt;/code&amp;gt;).
+ : Casting is attempted in the following order:
+ : integer, decimal, double, and boolean.
+ : If casting fails, the value is considered a string.
+ : Header field names are always considered strings even if unquoted.
+ : &amp;lt;p/&amp;gt;
+ : In addition to the "normal" values of
+ : &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;false&amp;lt;/code&amp;gt; for boolean,
+ : &amp;lt;code&amp;gt;T&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;Y&amp;lt;/code&amp;gt; are also considered "true"
+ : and &amp;lt;code&amp;gt;F&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;N&amp;lt;/code&amp;gt; are also considered "false."
+ : &amp;lt;p/&amp;gt;
+ : The default options are:
+ :  &amp;lt;dl&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;cast-unquoted-values&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        Whether to attempt to cast unquoted values to
+ :        integer, decimal, double, or boolean;
+ :        default: &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt;.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;extra-name&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        The field name for extra values, if any;
+ :        default: none (error &amp;lt;code&amp;gt;csv:EXTRA_VALUE&amp;lt;/code&amp;gt; is raised).
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;field-names&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        A JSON array of strings denoting field names;
+ :        default: none.
+ :        The first CSV line is assumed to be a header line
+ :        and the field names are taken from this line.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;missing-value&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        What should happen when a missing value is detected;
+ :        default: &amp;lt;code&amp;gt;"null"&amp;lt;/code&amp;gt;.
+ :        A "missing" value is one of:
+ :        &amp;lt;ul&amp;gt;
+ :          &amp;lt;li&amp;gt;Two consecutive &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt; characters.&amp;lt;/li&amp;gt;
+ :          &amp;lt;li&amp;gt;A &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt; character as either the first
+ :              or last character on a line.&amp;lt;/li&amp;gt;
+ :          &amp;lt;li&amp;gt;Fewer values than the number of field names.&amp;lt;/li&amp;gt;
+ :        &amp;lt;/ul&amp;gt;
+ :        When a missing value is detected,
+ :        the value is set to &amp;lt;code&amp;gt;null&amp;lt;/code&amp;gt;.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        The single ASCII character that may be used to quote values;
+ :        default: &amp;lt;code&amp;gt;"&amp;lt;/code&amp;gt; (U+0022).
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;quote-escape&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        The single ASCII character used to escape &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;;
+ :        default: same as &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;.
+ :        This means that an escaped quote is doubled as &amp;lt;code&amp;gt;""&amp;lt;/code&amp;gt;.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;separator&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        The single ASCII character used to separate values;
+ :        default: &amp;lt;code&amp;gt;,&amp;lt;/code&amp;gt; (U+002C).
+ :      &amp;lt;/dd&amp;gt;
+ :  &amp;lt;/dl&amp;gt;
+ :
+ : @param $csv The CSV string to parse.
+ : @return a sequence of zero or more JSON objects where each key is a field
+ : name and each value is a parsed value.
+ : @error csv:EXTRA_VALUE if an extra value is detected.
+ :)
+declare function csv:parse( $csv as string )
+  as object()*
+{
+  csv:parse( $csv, {} )
+};
+
+(:~
+ : Serializes a sequence of JSON objects as CSV (comma-separated values) using
+ : the given options.
+ :
+ : @param $obj The sequence of JSON objects to serialize.
+ : @param $options The options to use:
+ :  &amp;lt;dl&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;field-names&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        A JSON array of strings denoting field names;
+ :        default: none.
+ :        If this option is not set,
+ :        the field names are taken from the first JSON object
+ :        and the order of the fields is implementation dependent.
+ :        If this option is set,
+ :        the fields are serielized in the order they are in the array.
+ :        In either case,
+ :        every JSON object must have the same keys as the first object.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;serialize-boolean-as&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        What strings to serialize &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;false&amp;lt;/code&amp;gt; as;
+ :        default: &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;false&amp;lt;/code&amp;gt;.
+ :        This must be a sub-object with the two keys
+ :        &amp;lt;code&amp;gt;"true"&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;"false"&amp;lt;/code&amp;gt;, e.g.:
+ :        &amp;lt;code&amp;gt;{ "true" : "Y", "false" : "N" }&amp;lt;/code&amp;gt;.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;serialize-header&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        Whether a header line is included;
+ :        default: &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt;.
+ :        If &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt;,
+ :        the first string result is the header line
+ :        comprised of all the objects' keys' names;
+ :        if &amp;lt;code&amp;gt;false&amp;lt;/code&amp;gt;,
+ :        the heder line is not returned.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;serialize-null-as&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        What string to serialize JSON &amp;lt;code&amp;gt;null&amp;lt;/code&amp;gt; values as;
+ :        default: &amp;lt;code&amp;gt;null&amp;lt;/code&amp;gt;.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        The single ASCII character that may be used to quote values;
+ :        default: &amp;lt;code&amp;gt;"&amp;lt;/code&amp;gt; (U+0022).
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;quote-escape&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        The single ASCII character used to escape &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;;
+ :        default: same as &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;.
+ :        If &amp;lt;code&amp;gt;quote-escape&amp;lt;/code&amp;gt; equals &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;,
+ :        it means that &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt; must be doubled to escape it.
+ :        If &amp;lt;code&amp;gt;quote-escape&amp;lt;/code&amp;gt; does not equal &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;,
+ :        it means that &amp;lt;code&amp;gt;quote-escape&amp;lt;/code&amp;gt; is used to escape
+ :        &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;.
+ :        For example, a &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt; of &amp;lt;code&amp;gt;"&amp;lt;/code&amp;gt; (U+0022)
+ :        and a &amp;lt;code&amp;gt;quote-escape&amp;lt;/code&amp;gt; of &amp;lt;code&amp;gt;\&amp;lt;/code&amp;gt; (U+005C) means that
+ :        quotes will be escaped by &amp;lt;code&amp;gt;\"&amp;lt;/code&amp;gt;.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;separator&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        The single ASCII character used to separate values;
+ :        default: &amp;lt;code&amp;gt;,&amp;lt;/code&amp;gt; (U+002C).
+ :      &amp;lt;/dd&amp;gt;
+ :  &amp;lt;/dl&amp;gt;
+ : @return a sequence of strings where each string corresponds to a JSON
+ : object, aka, "record."
+ :)
+declare function csv:serialize( $obj as object()*, $options as object() )
+  as string* external;
+
+(:~
+ : Serializes a sequence of JSON objects as CSV (comma-separated values) using
+ : the default options.
+ : The default options are:
+ :  &amp;lt;dl&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;field-names&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        A JSON array of strings denoting field names;
+ :        default: none.
+ :        The field names are taken from the first JSON object
+ :        and the order of the fields is implementation dependent.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;serialize-boolean-as&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        What strings to serialize &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;false&amp;lt;/code&amp;gt; as;
+ :        default: &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;false&amp;lt;/code&amp;gt;.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;serialize-header&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        Whether a header line is included;
+ :        default: &amp;lt;code&amp;gt;true&amp;lt;/code&amp;gt;.
+ :        The first string result is the header line
+ :        comprised of all the objects' keys' names.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;serialize-null-as&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        What string to serialize JSON &amp;lt;code&amp;gt;null&amp;lt;/code&amp;gt; values as;
+ :        default: &amp;lt;code&amp;gt;null&amp;lt;/code&amp;gt;.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        The single ASCII character that may be used to quote values;
+ :        default: &amp;lt;code&amp;gt;"&amp;lt;/code&amp;gt; (U+0022).
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;quote-escape&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        The single ASCII character used to escape &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;;
+ :        default: same as &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt;.
+ :        This means that &amp;lt;code&amp;gt;quote-char&amp;lt;/code&amp;gt; is doubled to escape it.
+ :      &amp;lt;/dd&amp;gt;
+ :    &amp;lt;dt&amp;gt;&amp;lt;code&amp;gt;separator&amp;lt;/code&amp;gt;&amp;lt;/dt&amp;gt;
+ :      &amp;lt;dd&amp;gt;
+ :        The single ASCII character used to separate values;
+ :        default: &amp;lt;code&amp;gt;,&amp;lt;/code&amp;gt; (U+002C).
+ :      &amp;lt;/dd&amp;gt;
+ :  &amp;lt;/dl&amp;gt;
+ :
+ : @param $obj The sequence of JSON objects to serialize.
+ : @return a sequence of strings where each string corresponds to a JSON
+ : object, aka, "record."
+ :)
+declare function csv:serialize( $obj as object()* )
+  as string*
+{
+  csv:serialize( $obj, {} )
+};
+
+(:===========================================================================:)
+
+(: vim:set syntax=xquery et sw=2 ts=2: :)
+</programlisting></para></detaileddescription></compounddef></doxygen>

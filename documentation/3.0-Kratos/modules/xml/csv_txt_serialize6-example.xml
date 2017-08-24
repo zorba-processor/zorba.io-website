@@ -1,0 +1,62 @@
+<doxygen><compounddef id="txt_serialize6.xq-example" kind="example"><detaileddescription><para><h3>Content of txt_serialize6.xq example</h3><programlisting type="example">(:
+Serialize xml nodes to fixed size text, 
+and then parse it using different parameters, but same column sizes.
+:)
+import schema namespace csv-options="http://zorba.io/modules/csv-options";
+import module namespace csv = "http://zorba.io/modules/csv";
+
+csv:parse(
+   csv:serialize(
+            (&amp;lt;row&amp;gt;&amp;lt;f1&amp;gt;value1&amp;lt;/f1&amp;gt;&amp;lt;f2&amp;gt;value2&amp;lt;/f2&amp;gt;&amp;lt;f3&amp;gt;value3&amp;lt;/f3&amp;gt;&amp;lt;f4&amp;gt;value4&amp;lt;/f4&amp;gt;&amp;lt;/row&amp;gt;,
+             &amp;lt;row&amp;gt;&amp;lt;f1&amp;gt;value11&amp;lt;/f1&amp;gt;&amp;lt;f2&amp;gt;value12&amp;lt;/f2&amp;gt;&amp;lt;f3&amp;gt;value13&amp;lt;/f3&amp;gt;&amp;lt;f4&amp;gt;value14&amp;lt;/f4&amp;gt;&amp;lt;/row&amp;gt;),
+            validate{
+            &amp;lt;csv-options:options&amp;gt;
+              &amp;lt;first-row-is-header/&amp;gt;
+              &amp;lt;column-widths&amp;gt;
+                &amp;lt;column-width&amp;gt;7&amp;lt;/column-width&amp;gt;
+                &amp;lt;column-width&amp;gt;7&amp;lt;/column-width&amp;gt;
+                &amp;lt;column-width&amp;gt;7&amp;lt;/column-width&amp;gt;
+                &amp;lt;column-width&amp;gt;7&amp;lt;/column-width&amp;gt;
+              &amp;lt;/column-widths&amp;gt;
+            &amp;lt;/csv-options:options&amp;gt;   }
+            ),
+    validate{
+    &amp;lt;csv-options:options&amp;gt;
+      &amp;lt;first-row-is-header/&amp;gt;
+      &amp;lt;column-positions&amp;gt;
+        &amp;lt;column-position&amp;gt;1&amp;lt;/column-position&amp;gt;
+        &amp;lt;column-position&amp;gt;8&amp;lt;/column-position&amp;gt;
+        &amp;lt;column-position&amp;gt;15&amp;lt;/column-position&amp;gt;
+        &amp;lt;column-position&amp;gt;22&amp;lt;/column-position&amp;gt;
+      &amp;lt;/column-positions&amp;gt;
+    &amp;lt;/csv-options:options&amp;gt; }  )
+
+    
+(:
+
+Intermediate result from serialization:
+ 
+&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+f1     f2     f3     f4     
+value1 value2 value3 value4 
+value11value12value13value14
+
+-------------------------------------------------------------
+
+Final output from re-parsing:
+ 
+&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+&amp;lt;row&amp;gt;
+  &amp;lt;f1&amp;gt;value1&amp;lt;/f1&amp;gt;
+  &amp;lt;f2&amp;gt;value2&amp;lt;/f2&amp;gt;
+  &amp;lt;f3&amp;gt;value3&amp;lt;/f3&amp;gt;
+  &amp;lt;f4&amp;gt;value4&amp;lt;/f4&amp;gt;
+&amp;lt;/row&amp;gt;&amp;lt;row&amp;gt;
+  &amp;lt;f1&amp;gt;value11&amp;lt;/f1&amp;gt;
+  &amp;lt;f2&amp;gt;value12&amp;lt;/f2&amp;gt;
+  &amp;lt;f3&amp;gt;value13&amp;lt;/f3&amp;gt;
+  &amp;lt;f4&amp;gt;value14&amp;lt;/f4&amp;gt;
+&amp;lt;/row&amp;gt;
+ 
+:)
+</programlisting></para></detaileddescription></compounddef></doxygen>

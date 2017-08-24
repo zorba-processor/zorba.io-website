@@ -1,0 +1,10 @@
+<doxygen><compounddef id="json-snelson-x2j-array-01.xq-example" kind="example"><detaileddescription><para><h3>Content of json-snelson-x2j-array-01.xq example</h3><programlisting type="example">import module namespace jx = "http://zorba.io/modules/json-xml";
+
+let $xml :=
+  &amp;lt;json type="array"&amp;gt;
+    &amp;lt;item type="boolean"&amp;gt;true&amp;lt;/item&amp;gt;
+  &amp;lt;/json&amp;gt;
+return jx:xml-to-json( $xml )
+
+(: vim:set et sw=2 ts=2: :)
+</programlisting></para></detaileddescription></compounddef></doxygen>

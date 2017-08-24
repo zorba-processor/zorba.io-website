@@ -1,0 +1,5 @@
+<doxygen><compounddef id="slope1.xq-example" kind="example"><detaileddescription><para><h3>Content of slope1.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/statistical";
+
+excel:slope((2, 3, 9, 1, 8, 7, 5), (6, 5, 11, 7, 5, 4, 4))
+</programlisting></para></detaileddescription></compounddef></doxygen>

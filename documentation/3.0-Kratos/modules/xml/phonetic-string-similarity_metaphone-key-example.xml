@@ -1,0 +1,4 @@
+<doxygen><compounddef id="metaphone-key.xq-example" kind="example"><detaileddescription><para><h3>Content of metaphone-key.xq example</h3><programlisting type="example">import module namespace simp = "http://zorba.io/modules/data-cleaning/phonetic-string-similarity";
+
+simp:metaphone-key("ALEKSANDER")
+</programlisting></para></detaileddescription></compounddef></doxygen>

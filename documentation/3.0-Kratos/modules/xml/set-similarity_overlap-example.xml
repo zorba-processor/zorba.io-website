@@ -1,0 +1,4 @@
+<doxygen><compounddef id="overlap.xq-example" kind="example"><detaileddescription><para><h3>Content of overlap.xq example</h3><programlisting type="example">import module namespace set = "http://zorba.io/modules/data-cleaning/set-similarity";
+
+set:overlap ( ( "a", "b", &amp;lt;c/&amp;gt; ) , ( "a", "a", "b" ) )
+</programlisting></para></detaileddescription></compounddef></doxygen>

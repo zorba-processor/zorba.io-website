@@ -1,0 +1,40 @@
+<doxygen><compounddef id="simple_text.xq-example" kind="example"><detaileddescription><para><h3>Content of simple_text.xq example</h3><programlisting type="example">(:
+ : This example uses the send function of the SMTP module to send an email
+ : containing a simple text message from a GMail account.
+ :)
+
+import module namespace smtp = 'http://www.zorba-xquery.com/modules/email/smtp'; 
+
+
+(: This variable contains the information of the account from which the email should be sent. :) 
+let $hostInfo :=
+  &amp;lt;hostInfo xmlns="http://www.zorba-xquery.com/modules/email"&amp;gt;
+    &amp;lt;hostName&amp;gt;smtp.gmail.com:587/tls/novalidate-cert&amp;lt;/hostName&amp;gt;
+    &amp;lt;userName&amp;gt;zorba.smtp.sender&amp;lt;/userName&amp;gt;
+    &amp;lt;password&amp;gt;1openssl!!&amp;lt;/password&amp;gt;
+  &amp;lt;/hostInfo&amp;gt;
+
+(: the XML representation of the email to be sent, as described by the XML schema
+   http://www.zorba-xquery.com/modules/email :)
+let $email := 
+  &amp;lt;message xmlns="http://www.zorba-xquery.com/modules/email"&amp;gt;
+    &amp;lt;envelope&amp;gt;
+      &amp;lt;date&amp;gt;2010-11-26T15:50:39-04:01&amp;lt;/date&amp;gt;
+      &amp;lt;subject&amp;gt;An important message&amp;lt;/subject&amp;gt;
+      &amp;lt;recipient&amp;gt;
+        &amp;lt;to&amp;gt;
+          &amp;lt;name&amp;gt;Test Account&amp;lt;/name&amp;gt;
+          &amp;lt;email&amp;gt;imaptest@28msec.com&amp;lt;/email&amp;gt;
+        &amp;lt;/to&amp;gt;
+      &amp;lt;/recipient&amp;gt;
+    &amp;lt;/envelope&amp;gt;
+    &amp;lt;body&amp;gt;
+      &amp;lt;content contentType="text/plain" charset="UTF-8" contentTransferEncoding="ENC8BIT"&amp;gt;
+        Zorba really rocks. 
+      &amp;lt;/content&amp;gt;
+    &amp;lt;/body&amp;gt;
+  &amp;lt;/message&amp;gt;
+
+return
+  smtp:send($hostInfo, $email)
+</programlisting></para></detaileddescription></compounddef></doxygen>

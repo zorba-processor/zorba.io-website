@@ -1,0 +1,5 @@
+<doxygen><compounddef id="excel_quotient2.xq-example" kind="example"><detaileddescription><para><h3>Content of excel_quotient2.xq example</h3><programlisting type="example">import module namespace
+math="http://zorba.io/modules/math";
+
+math:quotient(4.5, 3.1)
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,288 @@
+<doxygen><compounddef id="www.zorba-xquery.com-schema" kind="schema"><detaileddescription><para><h3>Content of www.zorba-xquery.com schema</h3><programlisting type="schema">&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.zorba-xquery.com" targetNamespace="http://www.zorba-xquery.com" elementFormDefault="qualified"&gt;
+
+&lt;!--
+:: Copyright 2006-2008 The FLWOR Foundation.
+::
+:: Licensed under the Apache License, Version 2.0 (the "License");
+:: you may not use this file except in compliance with the License.
+:: You may obtain a copy of the License at
+::
+:: http://www.apache.org/licenses/LICENSE-2.0
+::
+:: Unless required by applicable law or agreed to in writing, software
+:: distributed under the License is distributed on an "AS IS" BASIS,
+:: WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+:: See the License for the specific language governing permissions and
+:: limitations under the License.
+::
+--&gt;
+  &lt;xs:element name="iterators"&gt;
+  &lt;xs:complexType&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="header" type="seqInclude" minOccurs="0"/&gt;
+      &lt;xs:element name="source" type="seqInclude" minOccurs="0"/&gt;
+      &lt;xs:element name="codegen" type="codegen" minOccurs="0"/&gt;
+      &lt;xs:element name="iterator" type="iterator" maxOccurs="unbounded"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+
+  &lt;xs:complexType name="codegen"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="h" type="seqInclude" minOccurs="0"/&gt;
+      &lt;xs:element name="cpp" type="seqInclude" minOccurs="0"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="seqInclude"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="include" type="include" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;xs:element name="fwd-decl" type="fwd-decl" minOccurs="0" maxOccurs="unbounded"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="include"&gt;
+    &lt;xs:simpleContent&gt;
+      &lt;xs:extension base="xs:string"&gt;
+        &lt;xs:attribute name="form" type="include-enum" use="required"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:simpleContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="fwd-decl"&gt;
+    &lt;xs:simpleContent&gt;
+      &lt;xs:extension base="xs:string"&gt;
+        &lt;xs:attribute name="ns" type="xs:string" use="required"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:simpleContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:simpleType name="include-enum"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="Quoted"/&gt;
+      &lt;xs:enumeration value="Angle-bracket"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="arity-enum"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="noary"/&gt;
+      &lt;xs:enumeration value="unary"/&gt;
+      &lt;xs:enumeration value="binary"/&gt;
+      &lt;xs:enumeration value="nary"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+  
+  &lt;xs:simpleType name="xquery-version-enum"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="3.0"/&gt;
+      &lt;xs:enumeration value="1.0"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:complexType name="iterator"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="description" type="description"/&gt;
+      &lt;xs:element name="function" type="function" minOccurs="0"/&gt;
+      &lt;xs:element name="state" type="state" minOccurs="0"/&gt;
+      &lt;xs:element name="constructor" type="constructor" minOccurs="0"/&gt;
+      &lt;xs:element name="member" type="member" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;xs:element name="method" type="method" minOccurs="0" maxOccurs="unbounded"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attribute name="name" type="xs:string" use="required"/&gt;
+    &lt;xs:attribute name="arity" type="arity-enum" default="nary"/&gt;
+    &lt;xs:attribute name="generateSerialize" type="xs:boolean" default="true"/&gt;
+    &lt;xs:attribute name="generateCodegen" type="xs:boolean" default="true"/&gt;
+    &lt;xs:attribute name="preprocessorGuard" type="xs:string"/&gt;
+    &lt;xs:attribute name="generateAccept" type="xs:boolean" default="true"/&gt;
+    &lt;xs:attribute name="generateDestructor" type="xs:boolean" default="true"/&gt;
+    &lt;xs:attribute name="generateResetImpl" type="xs:boolean" default="false"/&gt;
+    &lt;xs:attribute name="generateOpenImpl" type="xs:boolean" default="false"/&gt;
+    &lt;xs:attribute name="generateCloseImpl" type="xs:boolean" default="false"/&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="description"&gt;
+    &lt;xs:simpleContent&gt;
+      &lt;xs:extension base="xs:string"&gt;
+        &lt;xs:attribute name="author" type="xs:string" use="required"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:simpleContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="function"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="signature" type="signature" maxOccurs="unbounded"/&gt;
+      &lt;xs:element name="methods" type="methods" minOccurs="0"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attribute name="annIsUpdating" type="xs:boolean"/&gt;
+    &lt;xs:attribute name="specializable" type="xs:boolean"/&gt;
+    &lt;xs:attribute name="generateCodegen" type="xs:boolean"/&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="signature"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="param" type="xs:string" minOccurs="0" maxOccurs="unbounded"/&gt;
+      &lt;xs:element name="output" type="xs:string" minOccurs="0"/&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attribute name="localname" type="xs:string" use="required"/&gt;
+    &lt;xs:attribute name="prefix" type="namespace-prefix-enum" use="required"/&gt;
+    &lt;xs:attribute name="version" type="xquery-version-enum" use="optional"/&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="methods"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="getReturnType" minOccurs="0"/&gt;
+      &lt;xs:element name="accessesDynCtx" type="returnValue_2" minOccurs="0"/&gt;
+      &lt;xs:element name="isSource" type="returnValue_2" minOccurs="0"/&gt;
+      &lt;xs:element name="isDeterministic" type="returnValue_2" minOccurs="0"/&gt;
+      &lt;xs:element name="isMap" type="producer" minOccurs="0"/&gt;
+      &lt;xs:element name="producesDistinctNodes" type="returnValue_3" minOccurs="0"/&gt;
+      &lt;xs:element name="producesSortedNodes" type="returnValue_3" minOccurs="0"/&gt;
+      &lt;xs:element name="propagatesDistinctNodes" type="producer" minOccurs="0"/&gt;
+      &lt;xs:element name="propagatesSortedNodes" type="producer" minOccurs="0"/&gt;
+      &lt;xs:element name="compute_annotation" minOccurs="0"/&gt;
+      &lt;xs:element name="specializable" minOccurs="0"/&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="state"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="member" maxOccurs="unbounded"&gt;
+        &lt;xs:complexType&gt;
+          &lt;xs:simpleContent&gt;
+            &lt;xs:extension base="xs:string"&gt;
+              &lt;xs:attribute name="type" type="xs:string" use="required"/&gt;
+              &lt;xs:attribute name="name" type="xs:string" use="required"/&gt;
+              &lt;xs:attribute name="defaultValue" type="xs:string"/&gt;
+              &lt;xs:attribute name="brief" type="xs:string" use="required"/&gt;
+            &lt;/xs:extension&gt;
+          &lt;/xs:simpleContent&gt;
+        &lt;/xs:complexType&gt;
+      &lt;/xs:element&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attribute name="baseClassName" type="xs:string" default="PlanIteratorState"/&gt;
+    &lt;xs:attribute name="generateInit" type="xs:string" default="true"/&gt;
+    &lt;xs:attribute name="generateReset" type="xs:string" default="true"/&gt;
+    &lt;xs:attribute name="generateDestructor" type="xs:boolean" default="true"/&gt;
+    &lt;xs:attribute name="generateConstructor" type="xs:boolean" default="true"/&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="constructor"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="parameter" maxOccurs="unbounded"&gt;
+        &lt;xs:complexType&gt;
+          &lt;xs:simpleContent&gt;
+            &lt;xs:extension base="xs:string"&gt;
+              &lt;xs:attribute name="type" type="xs:string" use="required"/&gt;
+              &lt;xs:attribute name="name" type="xs:string" use="required"/&gt;
+              &lt;xs:attribute name="defaultValue" type="xs:string"/&gt;
+            &lt;/xs:extension&gt;
+          &lt;/xs:simpleContent&gt;
+        &lt;/xs:complexType&gt;
+      &lt;/xs:element&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="member"&gt;
+    &lt;xs:simpleContent&gt;
+      &lt;xs:extension base="xs:string"&gt;
+        &lt;xs:attribute name="type" type="xs:string" use="required"/&gt;
+        &lt;xs:attribute name="name" type="xs:string" use="required"/&gt;
+        &lt;xs:attribute name="brief" type="xs:string" use="required"/&gt;
+        &lt;xs:attribute name="getterName" type="xs:string"/&gt;
+        &lt;xs:attribute name="setterName" type="xs:string"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:simpleContent&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="method"&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="param" minOccurs="0" maxOccurs="unbounded"&gt;
+        &lt;xs:complexType&gt;
+          &lt;xs:simpleContent&gt;
+            &lt;xs:extension base="xs:string"&gt;
+              &lt;xs:attribute name="type" type="xs:string" use="required"/&gt;
+              &lt;xs:attribute name="name" type="xs:string" use="required"/&gt;
+            &lt;/xs:extension&gt;
+          &lt;/xs:simpleContent&gt;
+        &lt;/xs:complexType&gt;
+      &lt;/xs:element&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attribute name="name" type="xs:string" use="required"/&gt;
+    &lt;xs:attribute name="return" type="xs:string" use="required"/&gt;
+    &lt;xs:attribute name="const" type="xs:string"/&gt;
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="returnValue_1"&gt;
+    &lt;xs:simpleContent&gt;
+      &lt;xs:extension base="xs:string"&gt;
+        &lt;xs:attribute name="returnValue" type="expr-script-kind-enum" use="required"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:simpleContent&gt;    
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="returnValue_2"&gt;
+    &lt;xs:simpleContent&gt;
+      &lt;xs:extension base="xs:string"&gt;
+        &lt;xs:attribute name="returnValue" type="xs:boolean" use="required"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:simpleContent&gt;    
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="returnValue_3"&gt;
+    &lt;xs:simpleContent&gt;
+      &lt;xs:extension base="xs:string"&gt;
+        &lt;xs:attribute name="returnValue" type="annotation-value-enum" default="NO"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:simpleContent&gt;    
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:complexType name="producer"&gt;
+    &lt;xs:simpleContent&gt;
+      &lt;xs:extension base="xs:string"&gt;
+        &lt;xs:attribute name="producer" type="xs:string" use="required"/&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:simpleContent&gt;    
+  &lt;/xs:complexType&gt;
+
+  &lt;xs:simpleType name="expr-script-kind-enum"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="UPDATE_EXPR"/&gt;
+      &lt;xs:enumeration value="VACUOUS_EXPR"/&gt;
+      &lt;xs:enumeration value="SIMPLE_EXPR"/&gt;
+      &lt;xs:enumeration value="SEQUENTIAL_EXPR"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="annotation-value-enum"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="NO"/&gt;
+      &lt;xs:enumeration value="YES"/&gt;
+      &lt;xs:enumeration value="PRESERVE"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+  &lt;xs:simpleType name="namespace-prefix-enum"&gt;
+    &lt;xs:restriction base="xs:string"&gt;
+      &lt;xs:enumeration value="fn"/&gt;
+      &lt;xs:enumeration value="op"/&gt;
+      &lt;xs:enumeration value="xs"/&gt;
+      &lt;xs:enumeration value="fn-zorba-util"/&gt;
+      &lt;xs:enumeration value="fn-zorba"/&gt;
+      &lt;xs:enumeration value="fn-zorba-rest"/&gt;
+      &lt;xs:enumeration value="fn-zorba-ref"/&gt;
+      &lt;xs:enumeration value="op-zorba"/&gt;
+      &lt;xs:enumeration value="fn-zorba-email"/&gt;
+      &lt;xs:enumeration value="fn-zorba-fop"/&gt;
+      &lt;xs:enumeration value="xqdoc"/&gt;
+      &lt;xs:enumeration value="fn-zorba-math"/&gt;
+      &lt;xs:enumeration value="base64"/&gt;
+      &lt;xs:enumeration value="fn-zorba-introspect-dctx"/&gt;
+      &lt;xs:enumeration value="fn-zorba-introspect-sctx"/&gt;
+      &lt;xs:enumeration value="fn-zorba-ddl"/&gt;
+			&lt;xs:enumeration value="fn-zorba-reflection"/&gt;
+      &lt;xs:enumeration value="zorba-csv"/&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:simpleType&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

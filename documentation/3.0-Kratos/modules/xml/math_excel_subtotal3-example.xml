@@ -1,0 +1,9 @@
+<doxygen><compounddef id="excel_subtotal3.xq-example" kind="example"><detaileddescription><para><h3>Content of excel_subtotal3.xq example</h3><programlisting type="example">import module namespace
+math="http://zorba.io/modules/math";
+
+math:subtotal(3, (2, 3, 4, "", "x"))
+
+(:
+Output: Error [ZXQP0021] Type promotion not possible: xs:string -&amp;gt; xs:double
+:)
+</programlisting></para></detaileddescription></compounddef></doxygen>

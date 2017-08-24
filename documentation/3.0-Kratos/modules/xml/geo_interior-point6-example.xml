@@ -1,0 +1,8 @@
+<doxygen><compounddef id="interior-point6.xq-example" kind="example"><detaileddescription><para><h3>Content of interior-point6.xq example</h3><programlisting type="example">import module namespace geo = "http://expath.org/ns/geo";
+declare namespace gml="http://www.opengis.net/gml";
+
+geo:point-on-surface(&amp;lt;gml:Curve&amp;gt;&amp;lt;gml:segments&amp;gt;
+                &amp;lt;gml:LineStringSegment interpolation="linear"&amp;gt;&amp;lt;gml:posList&amp;gt;0 0 1 1 0 0 1 1 2 2&amp;lt;/gml:posList&amp;gt;&amp;lt;/gml:LineStringSegment&amp;gt;
+                &amp;lt;gml:LineStringSegment&amp;gt;&amp;lt;gml:posList&amp;gt; 1 1 2 2 4 -40&amp;lt;/gml:posList&amp;gt;&amp;lt;/gml:LineStringSegment&amp;gt;
+              &amp;lt;/gml:segments&amp;gt;&amp;lt;/gml:Curve&amp;gt;
+              )</programlisting></para></detaileddescription></compounddef></doxygen>

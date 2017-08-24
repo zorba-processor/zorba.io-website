@@ -1,0 +1,4 @@
+<doxygen><compounddef id="least-distinct-nodes.xq-example" kind="example"><detaileddescription><para><h3>Content of least-distinct-nodes.xq example</h3><programlisting type="example">import module namespace con = "http://zorba.io/modules/data-cleaning/consolidation";
+
+con:least-distinct-nodes( ( &amp;lt;a&amp;gt;&amp;lt;b/&amp;gt;&amp;lt;/a&amp;gt;, &amp;lt;b&amp;gt;&amp;lt;c/&amp;gt;&amp;lt;/b&amp;gt;, &amp;lt;d/&amp;gt;) )
+</programlisting></para></detaileddescription></compounddef></doxygen>

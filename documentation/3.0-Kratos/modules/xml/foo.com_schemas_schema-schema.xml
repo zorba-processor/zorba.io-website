@@ -1,0 +1,10 @@
+<doxygen><compounddef id="foo.com_schemas_schema-schema" kind="schema"><detaileddescription><para><h3>Content of foo.com_schemas_schema schema</h3><programlisting type="schema">&lt;xs:schema xmlns="http://foo.com/schemas/schema" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://foo.com/schemas/schema" elementFormDefault="qualified"&gt;
+
+
+    &lt;xs:element name="Content" type="Content"/&gt;
+
+    &lt;xs:complexType name="Content"&gt;
+      &lt;xs:attribute name="id" type="xs:string"/&gt;
+    &lt;/xs:complexType&gt;
+
+&lt;/xs:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

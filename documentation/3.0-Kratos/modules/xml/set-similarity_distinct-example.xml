@@ -1,0 +1,4 @@
+<doxygen><compounddef id="distinct.xq-example" kind="example"><detaileddescription><para><h3>Content of distinct.xq example</h3><programlisting type="example">import module namespace set = "http://zorba.io/modules/data-cleaning/set-similarity";
+
+set:distinct (( "a", "a", &amp;lt;b/&amp;gt; ))
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,295 @@
+<doxygen><compounddef id="txt_parse8.xq-example" kind="example"><detaileddescription><para><h3>Content of txt_parse8.xq example</h3><programlisting type="example">(:Parse a text file with fixed size columns
+The text file is taken from http://data.gov.
+:)
+
+import schema namespace csv-options="http://zorba.io/modules/csv-options";
+import module namespace csv = "http://zorba.io/modules/csv";
+import module namespace file="http://expath.org/ns/file";
+
+csv:parse(file:read-text(fn:resolve-uri("pusum02a.txt")),
+                    
+validate{
+&amp;lt;csv-options:options&amp;gt;
+  &amp;lt;column-positions&amp;gt;
+     &amp;lt;column-position&amp;gt;                 1 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               3&amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               13 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               23 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               33 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               38 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               43 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               48 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               59 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               70 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               81 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               93&amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               104 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               115 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               126 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               137 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               149 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               160 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               171 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               182 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               193 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               204 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               216 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               227 &amp;lt;/column-position&amp;gt;
+      &amp;lt;column-position&amp;gt;              238 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               249 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               260 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               271 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               282 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               293 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               304 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               315 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               323 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               331 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               340 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               349 &amp;lt;/column-position&amp;gt;
+      &amp;lt;column-position&amp;gt;              360 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               371 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               382 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               388 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               394 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               403 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               410 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               417 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               426 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               428 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               430 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               432 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               434 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               436 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               438 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               440 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               442 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               444 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               446 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               448 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               450 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               452 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               454 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               456 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               458 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               460 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               462 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               464 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               466 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               468 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               470 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               472 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               474 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               476 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               478 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               480 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               482 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               484 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               486 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               488 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               490 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               492 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               494 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               496 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               498 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               500 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               502 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               504 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;               506 &amp;lt;/column-position&amp;gt;
+     &amp;lt;column-position&amp;gt;              508&amp;lt;/column-position&amp;gt;
+  &amp;lt;/column-positions&amp;gt;
+&amp;lt;/csv-options:options&amp;gt; }
+
+)                 
+         
+		 
+		 
+(:
+
+Example txt input:
+
+AK    643786    643786    643786   85   17    2      69.20     116.76     203.55      320.31   21262139     909265     917565    1049824    24138793   11073742    3840140   14913882    2862282    5624872    23401036    1639283    2272159      87252     111849       7013     144446    2823241     351481    3726988   24945   29966  1294603   130525     223785     706700       5615   329   459    1395707/200106/200202200308 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 0 1 1 1 0 0 1 0 0 0 
+AL   4447100   4447100   4447100  206   76   17     247.72     654.64     940.98     1595.62   60530598    4240026     465982    5822386    71058992   37040130    8116560   45156690   10066006   14525722    69748418   17136487    8913046     300832     272135      15666     582025   13226499    3219055   17049279   33696   44092  5710811   639360     258283    1315744      10105  1344  1704    4894910/200109/200201200305 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1 1 1 0 0 1 0 0 0 1 0 0 0 
+
+---------------------------------------------------------------------------------------
+
+Expected output:
+
+&amp;lt;row&amp;gt;
+  &amp;lt;column&amp;gt;AK&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;643786&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;643786&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;643786&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;85&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;17&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;2&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;69.20&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;116.76&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;203.55&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;320.31&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;21262139&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;909265&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;917565&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1049824&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;24138793&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;11073742&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;3840140&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;14913882&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;2862282&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;5624872&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;23401036&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1639283&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;2272159&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;87252&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;111849&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;7013&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;144446&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;2823241&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;351481&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;3726988&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;24945&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;29966&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1294603&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;130525&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;223785&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;706700&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;5615&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;329&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;459&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;13957&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;07/2001&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;06/2002&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;02200308&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+&amp;lt;/row&amp;gt;&amp;lt;row&amp;gt;
+  &amp;lt;column&amp;gt;AL&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;4447100&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;4447100&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;4447100&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;206&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;76&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;17&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;247.72&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;654.64&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;940.98&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1595.62&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;60530598&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;4240026&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;465982&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;5822386&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;71058992&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;37040130&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;8116560&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;45156690&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;10066006&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;14525722&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;69748418&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;17136487&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;8913046&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;300832&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;272135&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;15666&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;582025&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;13226499&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;3219055&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;17049279&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;33696&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;44092&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;5710811&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;639360&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;258283&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1315744&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;10105&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1344&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1704&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;48949&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;10/2001&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;09/2002&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;01200305&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;0&amp;lt;/column&amp;gt;
+&amp;lt;/row&amp;gt;
+
+:)           
+</programlisting></para></detaileddescription></compounddef></doxygen>

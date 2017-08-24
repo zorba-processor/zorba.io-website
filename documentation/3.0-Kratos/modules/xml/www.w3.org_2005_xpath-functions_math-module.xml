@@ -1,0 +1,209 @@
+<doxygen><compounddef id="math-module" kind="module"><detaileddescription><para><h3>Content of math module</h3><programlisting type="module">xquery version "1.0";
+
+(:
+ : Copyright 2006-2009 The FLWOR Foundation.
+ :
+ : Licensed under the Apache License, Version 2.0 (the "License");
+ : you may not use this file except in compliance with the License.
+ : You may obtain a copy of the License at
+ :
+ : http://www.apache.org/licenses/LICENSE-2.0
+ :
+ : Unless required by applicable law or agreed to in writing, software
+ : distributed under the License is distributed on an "AS IS" BASIS,
+ : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ : See the License for the specific language governing permissions and
+ : limitations under the License.
+:)
+
+(:~
+ : This module contains all the functions part of the
+ : W3C XPath and XQuery Functions and Operators 3.0 
+ : section "4.7 Trigonometric and exponential functions".
+ :
+ :
+ : @author www.w3c.org
+ : @see http://www.w3.org/TR/xpath-functions-30/#trigonometry
+ : @project W3C/XPath Math Functions
+ :
+ :)
+module namespace math = "http://www.w3.org/2005/xpath-functions/math";
+
+
+
+(:~
+ : &amp;lt;div&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Returns an approximation to the mathematical constant &amp;lt;var&amp;gt;π&amp;lt;/var&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;&amp;lt;example role="signature"&amp;gt;&amp;lt;proto name="pi" return-type="xs:double" isOp="no" prefix="math" returnEmptyOk="no" returnSeq="no" returnVaries="no" isSchema="no" isDatatype="no" isSpecial="no"/&amp;gt;&amp;lt;/example&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function is &amp;lt;termref def="dt-deterministic"&amp;gt;deterministic&amp;lt;/termref&amp;gt;, &amp;lt;termref def="dt-context-independent"&amp;gt;context-independent&amp;lt;/termref&amp;gt;,  and &amp;lt;termref def="dt-focus-independent"&amp;gt;focus-independent&amp;lt;/termref&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function returns the &amp;lt;code&amp;gt;xs:double&amp;lt;/code&amp;gt; value whose lexical representation is
+ :             3.141592653589793e0&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The expression &amp;lt;code&amp;gt;2*math:pi()&amp;lt;/code&amp;gt; returns &amp;lt;code&amp;gt;6.283185307179586e0&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The expression &amp;lt;code&amp;gt;60 * (math:pi() div 180)&amp;lt;/code&amp;gt; converts an angle of 60 degrees
+ :                to radians. &amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 
+ :
+ : @see http://www.w3.org/TR/xpath-functions-30/#func-math-pi
+ :)
+declare function math:pi() as  xs:double external;
+ 
+(:~
+ : &amp;lt;div&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Returns the value of &amp;lt;var&amp;gt;e&amp;lt;/var&amp;gt;&amp;lt;sup&amp;gt;&amp;lt;var&amp;gt;x&amp;lt;/var&amp;gt;&amp;lt;/sup&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;&amp;lt;example role="signature"&amp;gt;&amp;lt;proto name="exp" return-type="xs:double?" isOp="no" prefix="math" returnEmptyOk="no" returnSeq="no" returnVaries="no" isSchema="no" isDatatype="no" isSpecial="no"&amp;gt;&amp;lt;arg name="arg" type="xs:double?"/&amp;gt;&amp;lt;/proto&amp;gt;&amp;lt;/example&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function is &amp;lt;termref def="dt-deterministic"&amp;gt;deterministic&amp;lt;/termref&amp;gt;, &amp;lt;termref def="dt-context-independent"&amp;gt;context-independent&amp;lt;/termref&amp;gt;,  and &amp;lt;termref def="dt-focus-independent"&amp;gt;focus-independent&amp;lt;/termref&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; is the empty sequence, the function returns the empty sequence.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" diff="chg" at="G"&amp;gt;Otherwise the result is the mathematical constant &amp;lt;var&amp;gt;e&amp;lt;/var&amp;gt;
+ :             raised to the power of &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt;, as defined in the &amp;lt;bibref ref="ieee754-2008"/&amp;gt;
+ :             specification of the &amp;lt;code&amp;gt;exp&amp;lt;/code&amp;gt; function applied to 64-bit binary floating point
+ :             values.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The treatment of overflow and underflow is defined in &amp;lt;specref ref="op.numeric"/&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 
+ :
+ : @see http://www.w3.org/TR/xpath-functions-30/#func-math-exp
+ :)
+declare function math:exp($arg as xs:double?) as  xs:double? external;
+ 
+(:~
+ : &amp;lt;div&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Returns the value of &amp;lt;code&amp;gt;10&amp;lt;/code&amp;gt;&amp;lt;sup&amp;gt;&amp;lt;var&amp;gt;x&amp;lt;/var&amp;gt;&amp;lt;/sup&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;&amp;lt;example role="signature"&amp;gt;&amp;lt;proto name="exp10" return-type="xs:double?" isOp="no" prefix="math" returnEmptyOk="no" returnSeq="no" returnVaries="no" isSchema="no" isDatatype="no" isSpecial="no"&amp;gt;&amp;lt;arg name="arg" type="xs:double?"/&amp;gt;&amp;lt;/proto&amp;gt;&amp;lt;/example&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function is &amp;lt;termref def="dt-deterministic"&amp;gt;deterministic&amp;lt;/termref&amp;gt;, &amp;lt;termref def="dt-context-independent"&amp;gt;context-independent&amp;lt;/termref&amp;gt;,  and &amp;lt;termref def="dt-focus-independent"&amp;gt;focus-independent&amp;lt;/termref&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; is the empty sequence, the function returns the empty sequence.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" diff="chg" at="G"&amp;gt;Otherwise the result is ten raised to the power of &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt;,
+ :             as defined in the &amp;lt;bibref ref="ieee754-2008"/&amp;gt; specification of the &amp;lt;code&amp;gt;exp10&amp;lt;/code&amp;gt;
+ :             function applied to 64-bit binary floating point values.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The treatment of overflow and underflow is defined in &amp;lt;specref ref="op.numeric"/&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 
+ :
+ : @see http://www.w3.org/TR/xpath-functions-30/#func-math-exp10
+ :)
+declare function math:exp10($arg as xs:double?) as  xs:double? external;
+ 
+(:~
+ : &amp;lt;div&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Returns the natural logarithm of the argument.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;&amp;lt;example role="signature"&amp;gt;&amp;lt;proto name="log" return-type="xs:double?" isOp="no" prefix="math" returnEmptyOk="no" returnSeq="no" returnVaries="no" isSchema="no" isDatatype="no" isSpecial="no"&amp;gt;&amp;lt;arg name="arg" type="xs:double?"/&amp;gt;&amp;lt;/proto&amp;gt;&amp;lt;/example&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function is &amp;lt;termref def="dt-deterministic"&amp;gt;deterministic&amp;lt;/termref&amp;gt;, &amp;lt;termref def="dt-context-independent"&amp;gt;context-independent&amp;lt;/termref&amp;gt;,  and &amp;lt;termref def="dt-focus-independent"&amp;gt;focus-independent&amp;lt;/termref&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; is the empty sequence, the function returns the empty sequence.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" diff="chg" at="G"&amp;gt;Otherwise the result is the natural logarithm of &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt;, as
+ :             defined in the &amp;lt;bibref ref="ieee754-2008"/&amp;gt; specification of the &amp;lt;code&amp;gt;log&amp;lt;/code&amp;gt;
+ :             function applied to 64-bit binary floating point values.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The treatment of &amp;lt;code&amp;gt;divideByZero&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;invalidOperation&amp;lt;/code&amp;gt; exceptions
+ :             is defined in &amp;lt;specref ref="op.numeric"/&amp;gt;. The effect is that if the argument is less
+ :             than or equal to zero, the result is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 
+ :
+ : @see http://www.w3.org/TR/xpath-functions-30/#func-math-log
+ :)
+declare function math:log($arg as xs:double?) as  xs:double? external;
+ 
+(:~
+ : &amp;lt;div&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Returns the base-ten logarithm of the argument.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;&amp;lt;example role="signature"&amp;gt;&amp;lt;proto name="log10" return-type="xs:double?" isOp="no" prefix="math" returnEmptyOk="no" returnSeq="no" returnVaries="no" isSchema="no" isDatatype="no" isSpecial="no"&amp;gt;&amp;lt;arg name="arg" type="xs:double?"/&amp;gt;&amp;lt;/proto&amp;gt;&amp;lt;/example&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function is &amp;lt;termref def="dt-deterministic"&amp;gt;deterministic&amp;lt;/termref&amp;gt;, &amp;lt;termref def="dt-context-independent"&amp;gt;context-independent&amp;lt;/termref&amp;gt;,  and &amp;lt;termref def="dt-focus-independent"&amp;gt;focus-independent&amp;lt;/termref&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; is the empty sequence, the function returns the empty sequence.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" diff="chg" at="G"&amp;gt;Otherwise the result is the base-10 logarithm of &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt;, as
+ :             defined in the &amp;lt;bibref ref="ieee754-2008"/&amp;gt; specification of the &amp;lt;code&amp;gt;log10&amp;lt;/code&amp;gt;
+ :             function applied to 64-bit binary floating point values.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The treatment of &amp;lt;code&amp;gt;divideByZero&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;invalidOperation&amp;lt;/code&amp;gt; exceptions
+ :             is defined in &amp;lt;specref ref="op.numeric"/&amp;gt;. The effect is that if the argument is less
+ :             than or equal to zero, the result is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 
+ :
+ : @see http://www.w3.org/TR/xpath-functions-30/#func-math-log10
+ :)
+declare function math:log10($arg as xs:double?) as  xs:double? external;
+ 
+(:~
+ : &amp;lt;div&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Returns the result of raising the first argument to the power of the
+ :             second.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;&amp;lt;example role="signature"&amp;gt;&amp;lt;proto name="pow" return-type="xs:double?" isOp="no" prefix="math" returnEmptyOk="no" returnSeq="no" returnVaries="no" isSchema="no" isDatatype="no" isSpecial="no"&amp;gt;&amp;lt;arg name="x" type="xs:double?"/&amp;gt;&amp;lt;arg name="y" type="numeric"/&amp;gt;&amp;lt;/proto&amp;gt;&amp;lt;/example&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function is &amp;lt;termref def="dt-deterministic"&amp;gt;deterministic&amp;lt;/termref&amp;gt;, &amp;lt;termref def="dt-context-independent"&amp;gt;context-independent&amp;lt;/termref&amp;gt;,  and &amp;lt;termref def="dt-focus-independent"&amp;gt;focus-independent&amp;lt;/termref&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$x&amp;lt;/code&amp;gt; is the empty sequence, the function returns the empty sequence.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$y&amp;lt;/code&amp;gt; is an instance of &amp;lt;code&amp;gt;xs:integer&amp;lt;/code&amp;gt;, the result is
+ :                &amp;lt;code&amp;gt;$x&amp;lt;/code&amp;gt; raised to the power of &amp;lt;code&amp;gt;$y&amp;lt;/code&amp;gt; as defined in the &amp;lt;bibref ref="ieee754-2008"/&amp;gt; specification of the &amp;lt;code&amp;gt;pown&amp;lt;/code&amp;gt; function applied to a
+ :             64-bit binary floating point value and an integer.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Otherwise &amp;lt;code&amp;gt;$y&amp;lt;/code&amp;gt; is converted to an &amp;lt;code&amp;gt;xs:double&amp;lt;/code&amp;gt; by numeric
+ :             promotion, and the result is the value of &amp;lt;code&amp;gt;$x&amp;lt;/code&amp;gt; raised to the power of
+ :                &amp;lt;code&amp;gt;$y&amp;lt;/code&amp;gt; as defined in the &amp;lt;bibref ref="ieee754-2008"/&amp;gt; specification of the
+ :                &amp;lt;code&amp;gt;pow&amp;lt;/code&amp;gt; function applied to two 64-bit binary floating point values.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The treatment of the &amp;lt;code&amp;gt;divideByZero&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;invalidOperation&amp;lt;/code&amp;gt;
+ :             exceptions is defined in &amp;lt;specref ref="op.numeric"/&amp;gt;. Some of the consequences are
+ :             illustrated in the examples below.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 
+ :
+ : @see http://www.w3.org/TR/xpath-functions-30/#func-math-pow
+ :)
+declare function math:pow($x as xs:double?,  $y as numeric) as  xs:double? external;
+ 
+(:~
+ : &amp;lt;div&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Returns the non-negative square root of the argument.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;&amp;lt;example role="signature"&amp;gt;&amp;lt;proto name="sqrt" return-type="xs:double?" isOp="no" prefix="math" returnEmptyOk="no" returnSeq="no" returnVaries="no" isSchema="no" isDatatype="no" isSpecial="no"&amp;gt;&amp;lt;arg name="arg" type="xs:double?"/&amp;gt;&amp;lt;/proto&amp;gt;&amp;lt;/example&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function is &amp;lt;termref def="dt-deterministic"&amp;gt;deterministic&amp;lt;/termref&amp;gt;, &amp;lt;termref def="dt-context-independent"&amp;gt;context-independent&amp;lt;/termref&amp;gt;,  and &amp;lt;termref def="dt-focus-independent"&amp;gt;focus-independent&amp;lt;/termref&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; is the empty sequence, the function returns the empty sequence.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" diff="chg" at="G"&amp;gt;Otherwise the result is the mathematical non-negative square root of
+ :                &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; as defined in the &amp;lt;bibref ref="ieee754-2008"/&amp;gt; specification of the
+ :                &amp;lt;code&amp;gt;squareRoot&amp;lt;/code&amp;gt; function applied to 64-bit binary floating point values.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The treatment of the &amp;lt;code&amp;gt;invalidOperation&amp;lt;/code&amp;gt; exception is defined in &amp;lt;specref ref="op.numeric"/&amp;gt;. The effect is that if the argument is less than zero, the result
+ :             is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; is positive or negative zero, positive infinity, or
+ :                &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;, then the result is &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt;. (Negative zero is the only
+ :             case where the result can have negative sign)&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 
+ :
+ : @see http://www.w3.org/TR/xpath-functions-30/#func-math-sqrt
+ :)
+declare function math:sqrt($arg as xs:double?) as  xs:double? external;
+ 
+(:~
+ : &amp;lt;div&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Returns the sine of the argument, expressed in radians.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;&amp;lt;example role="signature"&amp;gt;&amp;lt;proto name="sin" return-type="xs:double?" isOp="no" prefix="math" returnEmptyOk="no" returnSeq="no" returnVaries="no" isSchema="no" isDatatype="no" isSpecial="no"&amp;gt;&amp;lt;arg name="θ" type="xs:double?"/&amp;gt;&amp;lt;/proto&amp;gt;&amp;lt;/example&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function is &amp;lt;termref def="dt-deterministic"&amp;gt;deterministic&amp;lt;/termref&amp;gt;, &amp;lt;termref def="dt-context-independent"&amp;gt;context-independent&amp;lt;/termref&amp;gt;,  and &amp;lt;termref def="dt-focus-independent"&amp;gt;focus-independent&amp;lt;/termref&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt; is the empty sequence, the function returns the empty
+ :             sequence.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" diff="chg" at="G"&amp;gt;Otherwise the result is the sine of &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt;,
+ :             treated as an angle in radians, as defined in the &amp;lt;bibref ref="ieee754-2008"/&amp;gt;
+ :             specification of the &amp;lt;code&amp;gt;sin&amp;lt;/code&amp;gt; function applied to 64-bit binary floating point
+ :             values.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The treatment of the &amp;lt;code&amp;gt;invalidOperation&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;underflow&amp;lt;/code&amp;gt; exceptions
+ :             is defined in &amp;lt;specref ref="op.numeric"/&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt; is positive or negative zero, the result is
+ :                &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt; is positive or negative infinity, or &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;,
+ :             then the result is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Otherwise the result is always in the range -1.0e0 to +1.0e0&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 
+ :
+ : @see http://www.w3.org/TR/xpath-functions-30/#func-math-sin
+ :)
+declare function math:sin($theta as xs:double?) as  xs:double? external;
+ 
+(:~
+ : &amp;lt;div&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Returns the cosine of the argument, expressed in radians.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;&amp;lt;example role="signature"&amp;gt;&amp;lt;proto name="cos" return-type="xs:double?" isOp="no" prefix="math" returnEmptyOk="no" returnSeq="no" returnVaries="no" isSchema="no" isDatatype="no" isSpecial="no"&amp;gt;&amp;lt;arg name="θ" type="xs:double?"/&amp;gt;&amp;lt;/proto&amp;gt;&amp;lt;/example&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function is &amp;lt;termref def="dt-deterministic"&amp;gt;deterministic&amp;lt;/termref&amp;gt;, &amp;lt;termref def="dt-context-independent"&amp;gt;context-independent&amp;lt;/termref&amp;gt;,  and &amp;lt;termref def="dt-focus-independent"&amp;gt;focus-independent&amp;lt;/termref&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt; is the empty sequence, the function returns the empty
+ :             sequence.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt; is positive or negative infinity, or &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;,
+ :             then the result is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" diff="chg" at="G"&amp;gt;Otherwise the result is the cosine of &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt;,
+ :             treated as an angle in radians, as defined in the &amp;lt;bibref ref="ieee754-2008"/&amp;gt;
+ :             specification of the &amp;lt;code&amp;gt;cos&amp;lt;/code&amp;gt; function applied to 64-bit binary floating point
+ :             values.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The treatment of the &amp;lt;code&amp;gt;invalidOperation&amp;lt;/code&amp;gt; exception is defined in &amp;lt;specref ref="op.numeric"/&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt; is positive or negative zero, the result is
+ :                &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt; is positive or negative infinity, or &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;,
+ :             then the result is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Otherwise the result is always in the range -1.0e0 to +1.0e0&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 
+ :
+ : @see http://www.w3.org/TR/xpath-functions-30/#func-math-cos
+ :)
+declare function math:cos($theta as xs:double?) as  xs:double? external;
+ 
+(:~
+ : &amp;lt;div&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Returns the tangent of the argument, expressed in radians.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;&amp;lt;example role="signature"&amp;gt;&amp;lt;proto name="tan" return-type="xs:double?" isOp="no" prefix="math" returnEmptyOk="no" returnSeq="no" returnVaries="no" isSchema="no" isDatatype="no" isSpecial="no"&amp;gt;&amp;lt;arg name="θ" type="xs:double?"/&amp;gt;&amp;lt;/proto&amp;gt;&amp;lt;/example&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function is &amp;lt;termref def="dt-deterministic"&amp;gt;deterministic&amp;lt;/termref&amp;gt;, &amp;lt;termref def="dt-context-independent"&amp;gt;context-independent&amp;lt;/termref&amp;gt;,  and &amp;lt;termref def="dt-focus-independent"&amp;gt;focus-independent&amp;lt;/termref&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt; is the empty sequence, the function returns the empty
+ :             sequence.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" diff="chg" at="G"&amp;gt;Otherwise the result is the tangent of &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt;,
+ :             treated as an angle in radians, as defined in the &amp;lt;bibref ref="ieee754-2008"/&amp;gt;
+ :             specification of the &amp;lt;code&amp;gt;tan&amp;lt;/code&amp;gt; function applied to 64-bit binary floating point
+ :             values.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The treatment of the &amp;lt;code&amp;gt;invalidOperation&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;underflow&amp;lt;/code&amp;gt; exceptions
+ :             is defined in &amp;lt;specref ref="op.numeric"/&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt; is positive or negative infinity, or &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;,
+ :             then the result is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 
+ :
+ : @see http://www.w3.org/TR/xpath-functions-30/#func-math-tan
+ :)
+declare function math:tan($theta as xs:double?) as  xs:double? external;
+ 
+(:~
+ : &amp;lt;div&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Returns the arc sine of the argument, the result being in the range
+ :                -&amp;lt;var&amp;gt;π&amp;lt;/var&amp;gt;/2 to +&amp;lt;var&amp;gt;π&amp;lt;/var&amp;gt;/2 radians.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;&amp;lt;example role="signature"&amp;gt;&amp;lt;proto name="asin" return-type="xs:double?" isOp="no" prefix="math" returnEmptyOk="no" returnSeq="no" returnVaries="no" isSchema="no" isDatatype="no" isSpecial="no"&amp;gt;&amp;lt;arg name="arg" type="xs:double?"/&amp;gt;&amp;lt;/proto&amp;gt;&amp;lt;/example&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function is &amp;lt;termref def="dt-deterministic"&amp;gt;deterministic&amp;lt;/termref&amp;gt;, &amp;lt;termref def="dt-context-independent"&amp;gt;context-independent&amp;lt;/termref&amp;gt;,  and &amp;lt;termref def="dt-focus-independent"&amp;gt;focus-independent&amp;lt;/termref&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; is the empty sequence, the function returns the empty sequence.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" diff="chg" at="G"&amp;gt;Otherwise the result is the arc sine of &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt;,
+ :             treated as an angle in radians, as defined in the &amp;lt;bibref ref="ieee754-2008"/&amp;gt;
+ :             specification of the &amp;lt;code&amp;gt;asin&amp;lt;/code&amp;gt; function applied to 64-bit binary floating point
+ :             values.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The treatment of the &amp;lt;code&amp;gt;invalidOperation&amp;lt;/code&amp;gt; and &amp;lt;code&amp;gt;underflow&amp;lt;/code&amp;gt; exceptions
+ :             is defined in &amp;lt;specref ref="op.numeric"/&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; is positive or negative zero, the result is &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;, or if its absolute value is greater than one,
+ :             then the result is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;In other cases the result is an &amp;lt;code&amp;gt;xs:double&amp;lt;/code&amp;gt; value representing an angle
+ :                &amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt; in radians in the range -&amp;lt;var&amp;gt;π&amp;lt;/var&amp;gt;&amp;lt;code&amp;gt;/2 &amp;amp;lt;=
+ :                $&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt;&amp;lt;code&amp;gt; &amp;amp;lt;= +&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;π&amp;lt;/var&amp;gt;&amp;lt;code&amp;gt;/2&amp;lt;/code&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 
+ :
+ : @see http://www.w3.org/TR/xpath-functions-30/#func-math-asin
+ :)
+declare function math:asin($arg as xs:double?) as  xs:double? external;
+ 
+(:~
+ : &amp;lt;div&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Returns the arc cosine of the argument, the result being in the range zero to
+ :                +&amp;lt;var&amp;gt;π&amp;lt;/var&amp;gt; radians.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;&amp;lt;example role="signature"&amp;gt;&amp;lt;proto name="acos" return-type="xs:double?" isOp="no" prefix="math" returnEmptyOk="no" returnSeq="no" returnVaries="no" isSchema="no" isDatatype="no" isSpecial="no"&amp;gt;&amp;lt;arg name="arg" type="xs:double?"/&amp;gt;&amp;lt;/proto&amp;gt;&amp;lt;/example&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function is &amp;lt;termref def="dt-deterministic"&amp;gt;deterministic&amp;lt;/termref&amp;gt;, &amp;lt;termref def="dt-context-independent"&amp;gt;context-independent&amp;lt;/termref&amp;gt;,  and &amp;lt;termref def="dt-focus-independent"&amp;gt;focus-independent&amp;lt;/termref&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; is the empty sequence, the function returns the empty sequence.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" diff="chg" at="G"&amp;gt;Otherwise the result is the arc cosine of &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt;,
+ :             treated as an angle in radians, as defined in the &amp;lt;bibref ref="ieee754-2008"/&amp;gt;
+ :             specification of the &amp;lt;code&amp;gt;acos&amp;lt;/code&amp;gt; function applied to 64-bit binary floating point
+ :             values.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The treatment of the &amp;lt;code&amp;gt;invalidOperation&amp;lt;/code&amp;gt; exception is defined in &amp;lt;specref ref="op.numeric"/&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;, or if its absolute value is greater than one,
+ :             then the result is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;In other cases the result is an &amp;lt;code&amp;gt;xs:double&amp;lt;/code&amp;gt; value representing an angle
+ :                &amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt; in radians in the range &amp;lt;code&amp;gt;0 &amp;amp;lt;= $&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt;&amp;lt;code&amp;gt; &amp;amp;lt;=
+ :                +&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;π&amp;lt;/var&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 
+ :
+ : @see http://www.w3.org/TR/xpath-functions-30/#func-math-acos
+ :)
+declare function math:acos($arg as xs:double?) as  xs:double? external;
+ 
+(:~
+ : &amp;lt;div&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Returns the arc tangent of the argument, the result being in the range
+ :                -&amp;lt;var&amp;gt;π&amp;lt;/var&amp;gt;/2 to +&amp;lt;var&amp;gt;π&amp;lt;/var&amp;gt;/2 radians.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;&amp;lt;example role="signature"&amp;gt;&amp;lt;proto name="atan" return-type="xs:double?" isOp="no" prefix="math" returnEmptyOk="no" returnSeq="no" returnVaries="no" isSchema="no" isDatatype="no" isSpecial="no"&amp;gt;&amp;lt;arg name="arg" type="xs:double?"/&amp;gt;&amp;lt;/proto&amp;gt;&amp;lt;/example&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function is &amp;lt;termref def="dt-deterministic"&amp;gt;deterministic&amp;lt;/termref&amp;gt;, &amp;lt;termref def="dt-context-independent"&amp;gt;context-independent&amp;lt;/termref&amp;gt;,  and &amp;lt;termref def="dt-focus-independent"&amp;gt;focus-independent&amp;lt;/termref&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; is the empty sequence, the function returns the empty sequence.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" diff="chg" at="G"&amp;gt;Otherwise the result is the arc tangent of &amp;lt;code&amp;gt;$&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt;,
+ :             treated as an angle in radians, as defined in the &amp;lt;bibref ref="ieee754-2008"/&amp;gt;
+ :             specification of the &amp;lt;code&amp;gt;atan&amp;lt;/code&amp;gt; function applied to 64-bit binary floating point
+ :             values.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The treatment of the &amp;lt;code&amp;gt;underflow&amp;lt;/code&amp;gt; exception is defined in &amp;lt;specref ref="op.numeric"/&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; is positive or negative zero, the result is &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$arg&amp;lt;/code&amp;gt; is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt; then the result is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;In other cases the result is an &amp;lt;code&amp;gt;xs:double&amp;lt;/code&amp;gt; value representing an angle
+ :                &amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt; in radians in the range -&amp;lt;var&amp;gt;π&amp;lt;/var&amp;gt;&amp;lt;code&amp;gt;/2 &amp;amp;lt;=
+ :                $&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;θ&amp;lt;/var&amp;gt;&amp;lt;code&amp;gt; &amp;amp;lt;= +&amp;lt;/code&amp;gt;&amp;lt;var&amp;gt;π&amp;lt;/var&amp;gt;&amp;lt;code&amp;gt;/2&amp;lt;/code&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 
+ :
+ : @see http://www.w3.org/TR/xpath-functions-30/#func-math-atan
+ :)
+declare function math:atan($arg as xs:double?) as  xs:double? external;
+ 
+(:~
+ : &amp;lt;div&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Returns the angle in radians subtended at the origin by the point on a plane
+ :             with coordinates (x, y) and the positive x-axis, the result being in the range
+ :                -&amp;lt;var&amp;gt;π&amp;lt;/var&amp;gt; to +&amp;lt;var&amp;gt;π&amp;lt;/var&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;&amp;lt;example role="signature"&amp;gt;&amp;lt;proto name="atan2" return-type="xs:double" isOp="no" prefix="math" returnEmptyOk="no" returnSeq="no" returnVaries="no" isSchema="no" isDatatype="no" isSpecial="no"&amp;gt;&amp;lt;arg name="y" type="xs:double"/&amp;gt;&amp;lt;arg name="x" type="xs:double"/&amp;gt;&amp;lt;/proto&amp;gt;&amp;lt;/example&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;This function is &amp;lt;termref def="dt-deterministic"&amp;gt;deterministic&amp;lt;/termref&amp;gt;, &amp;lt;termref def="dt-context-independent"&amp;gt;context-independent&amp;lt;/termref&amp;gt;,  and &amp;lt;termref def="dt-focus-independent"&amp;gt;focus-independent&amp;lt;/termref&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" diff="chg" at="G"&amp;gt;The result is the value of &amp;lt;code&amp;gt;atan2(y, x)&amp;lt;/code&amp;gt; as defined in the
+ :                &amp;lt;bibref ref="ieee754-2008"/&amp;gt; specification of the &amp;lt;code&amp;gt;atan2&amp;lt;/code&amp;gt; function applied
+ :             to 64-bit binary floating point values.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;The treatment of the &amp;lt;code&amp;gt;underflow&amp;lt;/code&amp;gt; exception is defined in &amp;lt;specref ref="op.numeric"/&amp;gt;. &amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;phrase diff="chg" at="L"&amp;gt;either argument&amp;lt;/phrase&amp;gt; is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt; 
+ :             then the result is &amp;lt;code&amp;gt;NaN&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$y&amp;lt;/code&amp;gt; is positive and &amp;lt;code&amp;gt;$x&amp;lt;/code&amp;gt; is positive and finite, then 
+ :             (subject to rules for overflow, underflow and approximation) 
+ :          the value of &amp;lt;code&amp;gt;atan2($y, $x)&amp;lt;/code&amp;gt; is &amp;lt;code&amp;gt;atan($y div $x)&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;If &amp;lt;code&amp;gt;$y&amp;lt;/code&amp;gt; is positive and &amp;lt;code&amp;gt;$x&amp;lt;/code&amp;gt; is negative and finite, then 
+ :             (subject to the same caveats) 
+ :             the value of &amp;lt;code&amp;gt;atan2($y, $x)&amp;lt;/code&amp;gt; is &amp;lt;var&amp;gt;π&amp;lt;/var&amp;gt; &amp;lt;code&amp;gt;- atan($y div $x)&amp;lt;/code&amp;gt;.&amp;lt;/p&amp;gt;&amp;lt;p xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"&amp;gt;Some results for special values of the arguments are shown in the examples below.&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; 
+ :
+ : @see http://www.w3.org/TR/xpath-functions-30/#func-math-atan2
+ :)
+declare function math:atan2($y as xs:double,  $x as xs:double) as  xs:double external;
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,11 @@
+<doxygen><compounddef id="vlookup4.xq-example" kind="example"><detaileddescription><para><h3>Content of vlookup4.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/lookup";
+
+excel:vlookup(".3", (("21", 2, 3),
+                  ("22", 5, 6),
+                  ("23", 8, 9),
+                  ("24",11,12)),
+                  3, 4,
+                  2,
+                  fn:false())
+</programlisting></para></detaileddescription></compounddef></doxygen>

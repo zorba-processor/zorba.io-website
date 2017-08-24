@@ -1,0 +1,10 @@
+<doxygen><compounddef id="post3_xml.xq-example" kind="example"><detaileddescription><para><h3>Content of post3_xml.xq example</h3><programlisting type="example">import module namespace http="http://www.zorba-xquery.com/modules/http-client";
+
+variable $arg := &amp;lt;hello&amp;gt;there&amp;lt;/hello&amp;gt;;
+variable $result :=
+  http:post("http://zorbatest.lambda.nu:8080/cgi-bin/test-text", $arg,
+           "application/xml");
+
+$result[2]
+
+</programlisting></para></detaileddescription></compounddef></doxygen>

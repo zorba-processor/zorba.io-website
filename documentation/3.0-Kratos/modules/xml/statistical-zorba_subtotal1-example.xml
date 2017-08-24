@@ -1,0 +1,5 @@
+<doxygen><compounddef id="subtotal1.xq-example" kind="example"><detaileddescription><para><h3>Content of subtotal1.xq example</h3><programlisting type="example">import module namespace
+excel="http://zorba.io/modules/excel/statistical-zorba";
+
+excel:subtotal(1, (2, 3, 4))
+</programlisting></para></detaileddescription></compounddef></doxygen>

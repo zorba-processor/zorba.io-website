@@ -1,0 +1,7 @@
+<doxygen><compounddef id="num-points3.xq-example" kind="example"><detaileddescription><para><h3>Content of num-points3.xq example</h3><programlisting type="example">import module namespace geo = "http://expath.org/ns/geo";
+declare namespace gml="http://www.opengis.net/gml";
+
+geo:num-points(&amp;lt;gml:MultiCurve&amp;gt;
+                &amp;lt;gml:LineString&amp;gt;&amp;lt;gml:posList&amp;gt;1 1 0 0 2 1&amp;lt;/gml:posList&amp;gt;&amp;lt;/gml:LineString&amp;gt;
+                &amp;lt;gml:LineString&amp;gt;&amp;lt;gml:posList&amp;gt;20 10 3 3 4 4&amp;lt;/gml:posList&amp;gt;&amp;lt;/gml:LineString&amp;gt;
+              &amp;lt;/gml:MultiCurve&amp;gt;)</programlisting></para></detaileddescription></compounddef></doxygen>

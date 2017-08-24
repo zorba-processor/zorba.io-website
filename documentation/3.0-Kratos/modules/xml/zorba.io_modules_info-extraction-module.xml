@@ -1,0 +1,218 @@
+<doxygen><compounddef id="info-extraction-module" kind="module"><detaileddescription><para><h3>Content of info-extraction module</h3><programlisting type="module">xquery version "3.0";
+
+(:
+ : Copyright 2006-2009 The FLWOR Foundation.
+ :
+ : Licensed under the Apache License, Version 2.0 (the "License");
+ : you may not use this file except in compliance with the License.
+ : You may obtain a copy of the License at
+ :
+ : http://www.apache.org/licenses/LICENSE-2.0
+ :
+ : Unless required by applicable law or agreed to in writing, software
+ : distributed under the License is distributed on an "AS IS" BASIS,
+ : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ : See the License for the specific language governing permissions and
+ : limitations under the License.
+ :)
+ 
+(:~
+ : &amp;lt;p&amp;gt;This library module provides data extraction functions that return a list  
+ : of entities, relations, categories and concepts present in a given text.&amp;lt;/p&amp;gt;
+ :
+ : @author Pedro Antunes
+ : @project Zorba/Data Cleaning/Info Extraction
+ :)
+
+module namespace ex = "http://zorba.io/modules/info-extraction";
+
+declare namespace ann = "http://zorba.io/annotations";
+
+declare namespace yahoo = "urn:yahoo:cap";
+
+import module namespace http = "http://www.zorba-xquery.com/modules/http-client";
+
+import schema namespace h = "http://expath.org/ns/http-client";
+
+(:~
+ : &amp;lt;p&amp;gt;Uses Yahoo's Content Analysis webservice to return a list of entities 
+ : encountered in the text supplied as input.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;See http://developer.yahoo.com/search/content/V2/contentAnalysis.html for more information.&amp;lt;/p&amp;gt;
+ :
+ : @param $text String to be analyzed
+ : @return Sequence of recognized entities
+ : @example test/Queries/entities.xq
+ :)
+declare %ann:sequential function ex:entities($text as xs:string) as element(ex:entity)*{
+    let $response := ex:server-connection($text)
+    let $entities := $response/query/results/yahoo:entities/yahoo:entity
+    return if ( $entities ) then
+        for $entity in $entities            
+        order by xs:integer($entity/yahoo:text/@start)
+        return &amp;lt;ex:entity start="{$entity/yahoo:text/@start}" end="{$entity/yahoo:text/@end}"&amp;gt;{
+		    if ( $entity/yahoo:types ) then
+		    for $type in $entity/yahoo:types/yahoo:type
+		    return &amp;lt;ex:type&amp;gt;{ replace($type/text(), '^/|^[a-zA-Z]*:/','') }&amp;lt;/ex:type&amp;gt;
+		    else ()
+	}
+	{ $entity/yahoo:text/text() }&amp;lt;/ex:entity&amp;gt;
+    else ()
+};
+
+(:~
+ : &amp;lt;p&amp;gt;Uses Yahoo's Content Analysis webservice to return a list of categories (topics) related
+ : to the text supplied as input.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;See http://developer.yahoo.com/search/content/V2/contentAnalysis.html for more information.&amp;lt;/p&amp;gt;
+ :
+ : @param $text String to be analyzed
+ : @return Sequence of recognized categories
+ : @example test/Queries/categories.xq
+ :)
+declare %ann:sequential function ex:categories($text) as element(ex:category)*{
+    let $response := ex:server-connection($text)
+    let $categories := $response/query/results/yahoo:yctCategories/yahoo:yctCategory
+    return if ( $categories ) then 
+        for $category in $categories
+        return &amp;lt;ex:category&amp;gt;{ $category/text() }&amp;lt;/ex:category&amp;gt;
+    else ()
+};
+
+(:~
+ : &amp;lt;p&amp;gt;Uses Yahoo's Content Analysis webservice to return a list of relations (entities found and related wikipedia links)
+ : encountered in the text supplied as input.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;See http://developer.yahoo.com/search/content/V2/contentAnalysis.html for more information.&amp;lt;/p&amp;gt;
+ :
+ : @param $text String to be analyzed
+ : @return Sequence of recognized relations
+ : @example test/Queries/relations.xq
+ :)
+declare %ann:sequential function ex:relations($text) as element(ex:relation)*{
+    let $response := ex:server-connection($text)
+    let $relations := $response/query/results/yahoo:entities/yahoo:entity/yahoo:related_entities
+    return if ( $relations ) then
+        for $relation in $relations
+        return &amp;lt;ex:relation&amp;gt;{        
+            &amp;lt;ex:entity start="{$relation/../yahoo:text/@start}" end="{$relation/../yahoo:text/@end}"&amp;gt;{
+            	if ( $relation/../yahoo:types ) then
+                	for $type in $relation/../yahoo:types/yahoo:type
+		            return &amp;lt;ex:type&amp;gt;{ replace($type/text(), '^/|^[a-zA-Z]*:/','') }&amp;lt;/ex:type&amp;gt;
+		        else ()
+            }
+            { $relation/../yahoo:text/text() }&amp;lt;/ex:entity&amp;gt;
+            union
+            (for $link in $relation/yahoo:wikipedia/yahoo:wiki_url
+            return &amp;lt;ex:wikipedia_url&amp;gt;{$link/text()}&amp;lt;/ex:wikipedia_url&amp;gt;)
+        }&amp;lt;/ex:relation&amp;gt;
+    else ()
+};
+
+(:~
+ : &amp;lt;p&amp;gt;Uses Yahoo's Content Analysis webservice to return a list of concepts (entity found and the corresponding wikipedia link) 
+ : encountered in the text supplied as input.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;See http://developer.yahoo.com/search/content/V2/contentAnalysis.html for more information.&amp;lt;/p&amp;gt;
+ :
+ : @param $text String to be analyzed
+ : @return Sequence of recognized concepts
+ : @example test/Queries/concepts.xq
+ :)
+declare %ann:sequential function ex:concepts($text) as element(ex:concept)*{
+    let $response := ex:server-connection($text)
+    let $concepts := $response/query/results/yahoo:entities/yahoo:entity/yahoo:wiki_url
+    return if ( $concepts ) then
+        for $link in $concepts
+        order by xs:integer($link/../yahoo:text/@start)
+        return &amp;lt;ex:concept&amp;gt;{
+            &amp;lt;ex:entity start="{$link/../yahoo:text/@start}" end="{$link/../yahoo:text/@end}"&amp;gt;{
+            	if ( $link/../yahoo:types ) then
+            	for $type in $link/../yahoo:types/yahoo:type
+            	return &amp;lt;ex:type&amp;gt;{ replace($type/text(), '^/|^[a-zA-Z]*:/','') }&amp;lt;/ex:type&amp;gt;
+		else ()
+            } 
+            { $link/../yahoo:text/text() }&amp;lt;/ex:entity&amp;gt;
+            union 
+            (&amp;lt;ex:wikipedia_url&amp;gt;{$link[1]/text()}&amp;lt;/ex:wikipedia_url&amp;gt;)
+        }&amp;lt;/ex:concept&amp;gt;
+    else ()
+};
+
+(:~
+ : &amp;lt;p&amp;gt;Uses Yahoo's Content Analysis webservice to return the text supplied as input
+ : together with entities recognized annotated as xml elements in the text.&amp;lt;/p&amp;gt;
+ :
+ : @param $text String to be analyzed
+ : @return Mixed sequence of strings and &amp;amp;lt;ex:entity&amp;amp;gt; elements
+ : @example test/Queries/entities-inline.xq
+ :)
+declare %ann:sequential function ex:entities-inline($text) as item()*{
+   ex:entity-inline-annotation($text , ex:entities($text), 0)
+};
+
+(:~
+ : &amp;lt;p&amp;gt;Uses Yahoo's Content Analysis webservice to return the text supplied as input
+ : together with concepts (entities with corresponding wikipedia link) annotated
+ : as xml elements in the text.&amp;lt;/p&amp;gt;
+ :
+ : @param $text String to be analyzed
+ : @return Mixed sequence of strings and &amp;amp;lt;ex:concept&amp;amp;gt; elements
+ : @example test/Queries/concepts-inline.xq
+ :)
+declare %ann:sequential function ex:concepts-inline($text) as item()*{
+   ex:concept-inline-annotation($text , ex:concepts($text), 0)
+};
+
+(:~
+ : &amp;lt;p&amp;gt;Creates entities inline annotations in a given string&amp;lt;/p&amp;gt;
+ :
+ : @param $text String to be analyzed
+ : @param $entities list of entities found in the given string
+ : @param $size size of the remaining string
+ : @return Mixed sequence of strings and &amp;amp;lt;ex:entity&amp;amp;gt; elements
+ :)
+declare %private function ex:entity-inline-annotation($text, $entities, $size) as item()*{
+    if ( count($entities) = 0 ) then $text 
+    else(substring($text, 0, ($entities[1]/@start) +1 -$size), 
+        if ( count( $entities[1]/ex:type) &amp;gt;= 1 ) then
+        &amp;lt;ex:entity start="{$entities[1]/@start}" end="{$entities[1]/@end}" type="{$entities[1]/ex:type[1]}"&amp;gt; {$entities[1]/text()} &amp;lt;/ex:entity&amp;gt;
+        else $entities[1],
+        ex:entity-inline-annotation(substring($text, ($entities[1]/@end)+2 -$size), $entities[position() &amp;gt;1], ($entities[1]/@end)+1))
+};
+
+(:~
+ : &amp;lt;p&amp;gt;Creates concepts inline annotations in a given string&amp;lt;/p&amp;gt;
+ :
+ : @param $text String to be analyzed
+ : @param $concepts list of concepts found in the given string
+ : @param $size size of the remaining string
+ : @return Mixed sequence of strings and &amp;amp;lt;ex:concept&amp;amp;gt; elements
+ :)
+declare %private function ex:concept-inline-annotation($text, $concepts, $size) as item()*{
+    if ( count($concepts) = 0 ) then $text 
+    else(substring($text, 0, ($concepts[1]/ex:entity/@start) +1 -$size),
+        if ( count( $concepts[1]/ex:wikipedia_url ) &amp;gt;= 1 ) 
+        then &amp;lt;ex:concept xmlns:ex="http://zorba.io/modules/info-extraction" start="{$concepts[1]/ex:entity/@start}" end="{$concepts[1]/ex:entity/@end}" url="{$concepts[1]/ex:wikipedia_url[1]/text()}"&amp;gt;{$concepts[1]/ex:entity/text()}&amp;lt;/ex:concept&amp;gt;
+        else $concepts[1]/ex:entity,
+        ex:concept-inline-annotation(substring($text, ($concepts[1]/ex:entity/@end) +2 -$size), $concepts[position() &amp;gt;1], ($concepts[1]/ex:entity/@end) +1))
+};
+
+(:~
+ : &amp;lt;p&amp;gt;Establishes connection with the Yahoo Server&amp;lt;/p&amp;gt;
+ :
+ : @param $text String to be analyzed
+ : @return XML document returned by the Yahoo Server
+ :)
+declare %private %ann:sequential function ex:server-connection($text as xs:string){
+   let $uri := iri-to-uri(concat("q=select * from contentanalysis.analyze where text=", 
+      concat("&amp;amp;quot;", concat(replace(normalize-space($text), "&amp;amp;quot;", "&amp;amp;apos;"), "&amp;amp;quot;"))))
+   let $req := 
+      &amp;lt;h:request method="POST" href="http://query.yahooapis.com/v1/public/yql"&amp;gt;
+         &amp;lt;h:header name="Connection" value="keep-alive"/&amp;gt;
+         &amp;lt;h:body media-type="application/x-www-form-urlencoded"&amp;gt;
+         {$uri}
+         &amp;lt;/h:body&amp;gt;
+      &amp;lt;/h:request&amp;gt;
+    let $response := http:send-request($req, (), ())
+    return if ($response[1]/@status = 200)
+    	then $response[2]
+    	else ()
+};
+</programlisting></para></detaileddescription></compounddef></doxygen>

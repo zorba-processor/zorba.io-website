@@ -1,0 +1,20 @@
+<doxygen><compounddef id="union1.xq-example" kind="example"><detaileddescription><para><h3>Content of union1.xq example</h3><programlisting type="example">import module namespace geo = "http://expath.org/ns/geo";
+declare namespace gml="http://www.opengis.net/gml";
+
+geo:union(&amp;lt;gml:LinearRing&amp;gt;
+                &amp;lt;gml:posList&amp;gt;
+                1 1 
+                20 1
+                50 30
+                1 1
+                &amp;lt;/gml:posList&amp;gt;
+              &amp;lt;/gml:LinearRing&amp;gt;,
+              &amp;lt;gml:LinearRing&amp;gt;
+                &amp;lt;gml:posList&amp;gt;
+                10 2 
+                12 2
+                12 4
+                10 2
+                &amp;lt;/gml:posList&amp;gt;
+              &amp;lt;/gml:LinearRing&amp;gt;
+             )</programlisting></para></detaileddescription></compounddef></doxygen>

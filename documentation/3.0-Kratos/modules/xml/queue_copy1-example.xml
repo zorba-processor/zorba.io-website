@@ -1,0 +1,12 @@
+<doxygen><compounddef id="copy1.xq-example" kind="example"><detaileddescription><para><h3>Content of copy1.xq example</h3><programlisting type="example">import module namespace queue = "http://zorba.io/modules/queue";
+
+variable $name := fn:QName("", "queue1");
+variable $nameCopy := fn:QName("", "queue-copy");
+queue:create($name);
+queue:push($name, &amp;lt;a/&amp;gt;);
+queue:push($name, &amp;lt;b/&amp;gt;);
+queue:copy($nameCopy, $name);
+queue:push($nameCopy, &amp;lt;c/&amp;gt;);
+queue:push($nameCopy, &amp;lt;d/&amp;gt;);
+(queue:front($nameCopy), queue:size($nameCopy))
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,380 @@
+<doxygen><compounddef id="csv-module" kind="module"><detaileddescription><para><h3>Content of csv module</h3><programlisting type="module">xquery version "3.0";
+
+(:
+ : Copyright 2006-2009 The FLWOR Foundation.
+ :
+ : Licensed under the Apache License, Version 2.0 (the "License");
+ : you may not use this file except in compliance with the License.
+ : You may obtain a copy of the License at
+ :
+ : http://www.apache.org/licenses/LICENSE-2.0
+ :
+ : Unless required by applicable law or agreed to in writing, software
+ : distributed under the License is distributed on an "AS IS" BASIS,
+ : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ : See the License for the specific language governing permissions and
+ : limitations under the License.
+:)
+
+(:~
+ : Function library providing converters from CSV/TXT to XML and back.
+ : The functions are optimized to work with large amounts of data, in a streaming way.
+ :
+ : @author Daniel Turcanu
+ : @project Zorba/Data Converters/CSV
+ :)
+module namespace csv = "http://zorba.io/modules/csv";
+
+(:~
+ : Import module for checking if csv options element is validated.
+ :)
+import module namespace schemaOptions = "http://zorba.io/modules/schema";
+
+(:~
+ : Contains the definitions of the csv options element.
+  :)
+import schema namespace csv-options = "http://zorba.io/modules/csv-options";
+
+declare namespace ver = "http://zorba.io/options/versioning";
+declare option ver:module-version "1.0";
+
+(:~
+ : Parse a CSV or fixed size text and convert to XML.&amp;lt;br/&amp;gt;
+ : By default each line is converted to a &amp;amp;lt;row&amp;gt; element, and each field to a &amp;amp;lt;column&amp;gt; element inside &amp;amp;lt;row&amp;gt;.&amp;lt;br/&amp;gt;
+ : The format of the param $options is:&amp;lt;br/&amp;gt;
+ :  &amp;lt;pre&amp;gt;
+ :    &amp;amp;lt;csv-options:options&amp;gt;
+ :        &amp;amp;lt;csv  [separator="default comma ,"] ?
+ :          [quote-char="default double quotes &amp;amp;amp;quote;"]?
+ :          [quote-escape="default double double quotes &amp;amp;amp;quote;&amp;amp;amp;quote;"]? /&amp;gt;
+ : 
+ :        or
+ :        &amp;amp;lt;column-widths&amp;gt;
+ :          &amp;amp;lt;column-width&amp;gt;&amp;lt;i&amp;gt;[column fixed width, unsigned int]&amp;lt;/i&amp;gt;&amp;amp;lt;column-width&amp;gt;*
+ :        &amp;amp;lt;/column-widths&amp;gt;
+ :
+ :        or
+ :        &amp;amp;lt;column-positions&amp;gt;
+ :          &amp;amp;lt;column-position&amp;gt;&amp;lt;i&amp;gt;[column position on line, unsigned int]&amp;lt;/i&amp;gt;&amp;amp;lt;column-position&amp;gt;*
+ :        &amp;amp;lt;/column-positions&amp;gt;
+ :
+ :        &amp;amp;lt;first-row-is-header [line="&amp;lt;i&amp;gt;first_line[-last_line]?&amp;lt;/i&amp;gt;"]?/&amp;gt;?
+ :        &amp;amp;lt;start-from-row line="&amp;lt;i&amp;gt;first_line[-last_line]?&amp;lt;/i&amp;gt;"/&amp;gt;?
+ :        &amp;amp;lt;add-last-void-columns/&amp;gt;?
+ :        &amp;amp;lt;xml-nodes&amp;gt;
+ :          [&amp;amp;lt;&amp;lt;i&amp;gt;row-name&amp;lt;/i&amp;gt;&amp;gt;
+ :            [&amp;amp;lt;&amp;lt;i&amp;gt;column-name/&amp;lt;/i&amp;gt;&amp;gt;]?
+ :          &amp;amp;lt;/&amp;lt;i&amp;gt;row-name&amp;lt;/i&amp;gt;&amp;gt;]?
+ :        &amp;amp;lt;/xml-nodes&amp;gt;?
+ :    &amp;amp;lt;/csv-options:options&amp;gt;
+ :  &amp;lt;/pre&amp;gt;
+ :    All the parameters are optional and can appear in any order.&amp;lt;br/&amp;gt;
+ :    All the parameters are case sensitive. The namespace used is "http://zorba.io/modules/csv-options".&amp;lt;br/&amp;gt;
+ :    All strings must have UTF-8 encoding.&amp;lt;br/&amp;gt;
+ :    Parameters csv, column-widths, column-positions are mutually exclusive. If none is specified, 
+ :    the input string is assumed to be csv.&amp;lt;br/&amp;gt;
+ :    Description of parameters:
+ :    &amp;lt;dl&amp;gt;
+ :     &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;csv&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :     &amp;lt;dd&amp;gt; Specifies the parameters for parsing a csv string.&amp;lt;br/&amp;gt;
+ :       &amp;lt;dl&amp;gt; 
+ :        &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;separator&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :        &amp;lt;dd&amp;gt;The character or group of characters used to separating fields in a row. 
+ :            If it is not specified, it defaults to comma ','.
+ :        &amp;lt;/dd&amp;gt;
+ :        &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;quote-char&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :        &amp;lt;dd&amp;gt;The character or group of characters used for quoting the fields that may contain special characters,
+ :             like separator, new line or this quote char. The default value is double quote ".&amp;lt;br/&amp;gt;
+ :        &amp;lt;/dd&amp;gt;
+ :        &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;quote-escape&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :        &amp;lt;dd&amp;gt;The group of characters used for escaping the quote char inside a field. The whole quote escape group
+ :           is translated to a quote char during parsing. The default value is double double quotes "".&amp;lt;br/&amp;gt;
+ :        &amp;lt;/dd&amp;gt;
+ :       &amp;lt;/dl&amp;gt;
+ :     &amp;lt;/dd&amp;gt;
+ :     &amp;lt;br/&amp;gt;
+ :     &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;column-widths&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :     &amp;lt;dd&amp;gt;Specifies the column widths for fixed size text. It contains multiple column-width child elements
+ :        specifying the fixed width of each column, from left to right.&amp;lt;br/&amp;gt;
+ :        If the line has more fields than specified, they are ignored. 
+ :     &amp;lt;/dd&amp;gt;
+ :     &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;column-positions&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :     &amp;lt;dd&amp;gt;This is an alternative to column-widths, and specifies instead the starting position of each column.
+ :        Column positions are 1 based, and are specified in order from left to right. 
+ :        The last column is read until end of line. The first column position can be greater than 1, if you want
+ :        to parse only a part of the input text.
+ :     &amp;lt;/dd&amp;gt;
+ :     &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;first-row-is-header&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :     &amp;lt;dd&amp;gt;The presence of this element indicates that the first row is to be treated as the name of the columns.
+ :        If it is not present, then each field is enclosed in a &amp;amp;lt;column&amp;gt; element, 
+ :        or how it is specified in &amp;amp;lt;xml-nodes&amp;gt; parameter.&amp;lt;br/&amp;gt;
+ :        If the first row is the header, then each field is enclosed in an element with the corresponding name from the header.&amp;lt;br/&amp;gt;
+ :        For example, the csv:
+ :        &amp;lt;pre&amp;gt;
+ :        &amp;lt;i&amp;gt;ID,Name,Occupation
+ :        1,John,student&amp;lt;/i&amp;gt;
+ :        &amp;lt;/pre&amp;gt;
+ :        is parsed into:
+ :        &amp;lt;pre&amp;gt;
+ :        &amp;lt;i&amp;gt;&amp;amp;lt;row&amp;gt;
+ :        &amp;amp;lt;ID&amp;gt;1&amp;amp;lt;/ID&amp;gt;
+ :        &amp;amp;lt;Name&amp;gt;John&amp;amp;lt;/Name&amp;gt;
+ :        &amp;amp;lt;Occupation&amp;gt;student&amp;amp;lt;/Occupation&amp;gt;
+ :        &amp;amp;lt;/row&amp;gt;&amp;lt;/i&amp;gt;
+ :        &amp;lt;/pre&amp;gt;
+ :        If the header names contain characters that cannot be used in a QName, they are replaced with underscore '_'.&amp;lt;br/&amp;gt;
+ :        The namespace for the header QNames is taken from the column name specified in xml-nodes parameter, or from
+ :        the row name, or if that doesn't exist either then empty namespace is used. &amp;lt;br/&amp;gt;
+ :        If the header is not the first line in the input string, the starting line can be specified in the &amp;lt;b&amp;gt;line&amp;lt;/b&amp;gt; attribute.&amp;lt;br/&amp;gt;
+ :        If a column does not have a name, a new name is constructed in the form &amp;lt;i&amp;gt;columnN&amp;lt;/i&amp;gt; where N is the position of the column,
+ :        starting from 1.&amp;lt;br/&amp;gt;
+ :        &amp;lt;b&amp;gt;Subheaders&amp;lt;/b&amp;gt;&amp;lt;br/&amp;gt;
+ :        If the header consists of more than one line, this can be specified in the &amp;lt;b&amp;gt;line&amp;lt;/b&amp;gt; attribute in the form
+ :        "&amp;lt;i&amp;gt;first_line - last_line&amp;lt;/i&amp;gt;". Having more lines as the header translates into a hierarchy of elements in the xml.&amp;lt;br/&amp;gt;
+ :        For example, the csv:
+ :        &amp;lt;pre&amp;gt;
+ :        &amp;lt;i&amp;gt;ID,Name,,Occupation
+ :        ,First Name,Last Name,
+ :        1,John,Howard,student&amp;lt;/i&amp;gt;
+ :        &amp;lt;/pre&amp;gt;
+ :        is parsed into:
+ :        &amp;lt;pre&amp;gt;
+ :        &amp;lt;i&amp;gt;&amp;amp;lt;row&amp;gt;
+ :        &amp;amp;lt;ID&amp;gt;1&amp;amp;lt;/ID&amp;gt;
+ :        &amp;amp;lt;Name&amp;gt;
+ :          &amp;amp;lt;First_Name&amp;gt;John&amp;amp;lt;/First_Name&amp;gt;
+ :          &amp;amp;lt;Last_Name&amp;gt;Howard&amp;amp;lt;/Last_Name&amp;gt;
+ :        &amp;amp;lt;/Name&amp;gt;
+ :        &amp;amp;lt;Occupation&amp;gt;student&amp;amp;lt;/Occupation&amp;gt;
+ :        &amp;amp;lt;/row&amp;gt;&amp;lt;/i&amp;gt;
+ :        &amp;lt;/pre&amp;gt;
+ :        This element can have an attribute "accept-all-lines" with values "false" or "true" (default "false").
+ :        When set to true it tells the parser to not report lines that do not have the same number of items as 
+ :        the header. If set to false, the parser will raise a csv:WrongInput error for these lines.&amp;lt;br/&amp;gt;
+ :     &amp;lt;/dd&amp;gt;
+ :     &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;start-from-row&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :     &amp;lt;dd&amp;gt;If the data does not start from line 1 or immediately after the header, 
+ :        you can specify the starting line in the &amp;lt;b&amp;gt;line&amp;lt;/b&amp;gt; attribute.&amp;lt;br/&amp;gt;
+ :        Also you can use this attribute in the form "&amp;lt;i&amp;gt;first_line - last_line&amp;lt;/i&amp;gt;" to specify also the last line
+ :        if you don't want the whole csv to be parsed.
+ :     &amp;lt;/dd&amp;gt;
+ :     &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;add-last-void-columns&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :     &amp;lt;dd&amp;gt;In the case when using headers and some data lines are shorter than the header, by default the excess columns are ignored
+ :          for those lines. You can set the add-last-void-columns parameter to make all the columns appear in xml even if they are void.
+ :     &amp;lt;/dd&amp;gt;
+ :     &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;xml-nodes&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :     &amp;lt;dd&amp;gt;With this parameter you can specify the names for the row element and for the column element if there is no header.&amp;lt;br/&amp;gt;
+ :        The first element child of this element specifies the desired QName of the row element in the output xml. 
+ :        The name of this element will be used as the name of the row element.&amp;lt;br/&amp;gt;
+ :        The element child of this row element is the column element, and its name will be used as the name of the column elements
+ :        that enclose the fields in the output xml if there is no header. &amp;lt;br/&amp;gt;
+ :        If the csv has a header, only the namespace is used from the column element.&amp;lt;br/&amp;gt;
+ :        For example, with parameter:
+ :        &amp;lt;pre&amp;gt;
+ :        &amp;lt;i&amp;gt;&amp;amp;lt;xml-nodes&amp;gt;
+ :        &amp;amp;lt;r&amp;gt;
+ :          &amp;amp;lt;c/&amp;gt;
+ :        &amp;amp;lt;/r&amp;gt;
+ :        &amp;amp;lt;/xml-nodes&amp;gt;&amp;lt;/i&amp;gt;
+ :        &amp;lt;/pre&amp;gt;
+ :        the output for each line will look like:
+ :        &amp;lt;pre&amp;gt;
+ :        &amp;lt;i&amp;gt;&amp;amp;lt;r&amp;gt;
+ :          &amp;amp;lt;c&amp;gt;field1&amp;amp;lt;/c&amp;gt;
+ :          &amp;amp;lt;c&amp;gt;field2&amp;amp;lt;/c&amp;gt;
+ :          .......
+ :        &amp;amp;lt;/r&amp;gt;&amp;lt;/i&amp;gt;
+ :        &amp;lt;/pre&amp;gt;
+ :     &amp;lt;/dd&amp;gt;
+ :    &amp;lt;/dl&amp;gt;
+ : @param $csv the string containing the csv or fixed size text.
+ : @param $options this parameter is validated against "http://zorba.io/modules/csv-options" schema. 
+ :    If this parameter is not specified, the row name is by default "row" and the column name is by default "column". 
+ : @return a sequence of row elements, one for each line in csv
+ : @error csv:CSV001 if the input string is streamable string and cannot be rewinded
+ : @error csv:WrongInput if the input string has lines with variable number of items, and the csv has headers and
+ :         the options do not specify the ignore-foreign-input attribute
+ : @error err:XQDY0027 if $options can not be validated against the csv-options schema
+ : @error err:XQDY0084 if the options parameter doesn't have the name "csv-options:options".
+ : @example test/Queries/converters/csv/csv_parse1.xq
+ : @example test/Queries/converters/csv/csv_parse2.xq
+ : @example test/Queries/converters/csv/csv_parse3.xq
+ : @example test/Queries/converters/csv/csv_parse6.xq
+ : @example test/Queries/converters/csv/csv_parse11.xq
+ : @example test/Queries/converters/csv/csv_parse_utf8_11.xq
+ : @example test/Queries/converters/csv/txt_parse5.xq
+ : @example test/Queries/converters/csv/txt_parse8.xq
+:)
+declare function csv:parse($csv as xs:string,
+                           $options as element(csv-options:options)?) as element()*
+{
+  let $validated-options :=
+  if(empty($options)) then
+    $options
+  else
+  if(schemaOptions:is-validated($options)) then
+    $options
+  else
+    validate{$options}
+  return
+    csv:parse-internal($csv, $validated-options)
+};
+                                 
+declare %private function csv:parse-internal($csv as xs:string,
+                                 $options as element(csv-options:options, csv-options:optionsType)?) as element()* external;
+                                 
+(:~
+ : Convert XML into CSV or fixed size text.
+ :
+ : Note: if you want to serialize out the result, make sure that the serializer method is set to "text". 
+ : For example, in zorba command line, you have to set the param --serialize-text.
+ : When using the &amp;lt;pre&amp;gt;file:write(...)&amp;lt;/pre&amp;gt; function, you have to set the
+ : method serialization parameter to "text":
+ : &amp;lt;pre&amp;gt;
+ : &amp;amp;lt;output:serialization-parameters&amp;amp;lt;
+ :   &amp;amp;lt;output:method value="text"/&amp;amp;lt;
+ : &amp;amp;lt;/output:serialization-parameters&amp;amp;lt;
+ : &amp;lt;/pre&amp;gt;
+ :
+ : The &amp;lt;pre&amp;gt;$options&amp;lt;/pre&amp;gt; parameter must have the following format:
+ : &amp;lt;pre&amp;gt;
+ :    &amp;amp;lt;csv-options:options&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;csv  [separator="default comma ,"] ? &amp;lt;br/&amp;gt;
+ :          [quote-char="default double quotes &amp;amp;amp;quote;"]? &amp;lt;br/&amp;gt;
+ :          [quote-escape="default double double quotes &amp;amp;amp;quote;&amp;amp;amp;quote;"]? /&amp;gt; &amp;lt;br/&amp;gt;
+ :        &amp;lt;br/&amp;gt;
+ :        or&amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;column-widths [align="left|right"]?&amp;gt;&amp;lt;br/&amp;gt;
+ :          &amp;amp;lt;column-width [align="left|right"]?&amp;gt;&amp;lt;i&amp;gt;[column fixed width, unsigned int]&amp;lt;/i&amp;gt;&amp;amp;lt;column-width&amp;gt;*&amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;/column-widths&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;lt;br/&amp;gt;
+ :        or&amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;column-positions [align="left|right"]?&amp;gt;&amp;lt;br/&amp;gt;
+ :          &amp;amp;lt;column-position [align="left|right"]?&amp;gt;&amp;lt;i&amp;gt;[column position on line, unsigned int]&amp;lt;/i&amp;gt;&amp;amp;lt;column-position&amp;gt;*&amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;/column-positions&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;first-row-is-header/&amp;gt;?&amp;lt;br/&amp;gt;
+ :    &amp;amp;lt;/csv-options:options&amp;gt;
+ : &amp;lt;/pre&amp;gt;
+ :
+ : All the parameters are optional and can appear in any order.&amp;lt;br/&amp;gt;
+ : All the parameters are case sensitive. The namespace used is "http://zorba.io/modules/csv-options".&amp;lt;br/&amp;gt;
+ : All strings must have UTF-8 encoding.&amp;lt;br/&amp;gt;
+ : Parameters csv, column-widths, column-positions are mutually exclusive.
+ : If none is specified, the xml is converted to csv.
+ :
+ : Description of parameters:
+ :    &amp;lt;dl&amp;gt;
+ :     &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;csv&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :     &amp;lt;dd&amp;gt; Specifies the parameters for converting to csv.&amp;lt;br/&amp;gt;
+ :       &amp;lt;dl&amp;gt; 
+ :        &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;separator&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :        &amp;lt;dd&amp;gt;The character or group of characters used to separating fields in a row. 
+ :            If it is not specified, it defaults to comma ','.
+ :        &amp;lt;/dd&amp;gt;
+ :        &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;quote-char&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :        &amp;lt;dd&amp;gt;The character or group of characters used for quoting the fields that may contain special characters,
+ :             like separator, new line or this quote char. The default value is double quote ".&amp;lt;br/&amp;gt;
+ :        &amp;lt;/dd&amp;gt;
+ :        &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;quote-escape&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :        &amp;lt;dd&amp;gt;The group of characters used for escaping the quote char inside a field. The whole quote escape group
+ :           is translated to a quote char during parsing. The default value is double double quotes "".&amp;lt;br/&amp;gt;
+ :        &amp;lt;/dd&amp;gt;
+ :       &amp;lt;/dl&amp;gt;
+ :     &amp;lt;/dd&amp;gt;
+ :     &amp;lt;br/&amp;gt;
+ :     &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;column-widths&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :     &amp;lt;dd&amp;gt;Specifies the column widths for fixed size text. It contains multiple column-width child elements
+ :        specifying the fixed width of each column, from left to right.&amp;lt;br/&amp;gt;
+ :        With the attribute &amp;lt;b&amp;gt;align&amp;lt;/b&amp;gt; you can specify how to align fields that are smaller than the column width.
+ :        The default alignment is left.&amp;lt;br/&amp;gt;
+ :     &amp;lt;/dd&amp;gt;
+ :     &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;column-positions&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :     &amp;lt;dd&amp;gt;This is an alternative to column-widths, and specifies instead the starting position of each column.
+ :        Column positions are 1 based, and are specified in order from left to right. 
+ :        The last column has a variable length.&amp;lt;br/&amp;gt;
+ :        With the attribute &amp;lt;b&amp;gt;align&amp;lt;/b&amp;gt; you can specify how to align fields that are smaller than the column width.
+ :        The default alignment is left. The last column does not need alignment.&amp;lt;br/&amp;gt;
+ :     &amp;lt;/dd&amp;gt;
+ :     &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;first-row-is-header&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :     &amp;lt;dd&amp;gt;The presence of this element indicates that the first row will contain the header, that is, the names of
+ :        the column elements. Only the column names from the first row element are taken into account.&amp;lt;br/&amp;gt;
+ :        For example, the row xml:&amp;lt;br/&amp;gt;
+ :        &amp;lt;i&amp;gt;&amp;amp;lt;row&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;ID&amp;gt;1&amp;amp;lt;/ID&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;Name&amp;gt;John&amp;amp;lt;/Name&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;Occupation&amp;gt;student&amp;amp;lt;/Occupation&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;/row&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;lt;br/&amp;gt;
+ :        is converted to&amp;lt;br/&amp;gt;
+ :        &amp;lt;i&amp;gt;ID,Name,Occupation&amp;lt;br/&amp;gt;
+ :        1,John,student&amp;lt;/i&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;lt;br/&amp;gt;
+ :        The header names are the localnames of the column elements, and the namespace is ignored.&amp;lt;br/&amp;gt;
+ :        &amp;lt;b&amp;gt;Subheaders&amp;lt;/b&amp;gt;&amp;lt;br/&amp;gt;
+ :        If the row-column hierarchy is more complex, then subheaders are also generated on subsequent lines.
+ :        The number of subheaders depends on the depth of the column hierarchy.&amp;lt;br/&amp;gt;
+ :        When generating the subheaders, the non-whitespace text nodes are also taken into account, 
+ :        and a separate column is generated for them too.&amp;lt;br/&amp;gt;
+ :        For example, the xml row element:&amp;lt;br/&amp;gt;
+ :        &amp;lt;i&amp;gt;&amp;amp;lt;row&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;ID&amp;gt;1&amp;amp;lt;/ID&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;Name&amp;gt;&amp;lt;br/&amp;gt;
+ :          Mr.&amp;lt;br/&amp;gt;
+ :          &amp;amp;lt;First_Name&amp;gt;John&amp;amp;lt;/First_Name&amp;gt;&amp;lt;br/&amp;gt;
+ :          &amp;amp;lt;Last_Name&amp;gt;Howard&amp;amp;lt;/Last_Name&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;/Name&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;Occupation&amp;gt;student&amp;amp;lt;/Occupation&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;amp;lt;/row&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;br/&amp;gt;
+ :        is converted to&amp;lt;br/&amp;gt;
+ :        &amp;lt;i&amp;gt;ID,Name,,Occupation&amp;lt;br/&amp;gt;
+ :        ,,First Name,Last Name,&amp;lt;br/&amp;gt;
+ :        1,Mr.,John,Howard,student&amp;lt;/i&amp;gt;&amp;lt;br/&amp;gt;
+ :        &amp;lt;br/&amp;gt;
+ :        If first-row-is-header is not specified and the columns have a deeper hierarchy,
+ :          only the first layer of columns is processed, and the fields are the string values of each column.&amp;lt;br/&amp;gt;
+ :        This element can have an attribute "ignore-foreign-input" with values "false" or "true" (default "false").
+ :        When set to true it tells the serializer to ignore elements that to not match the header names.
+ :        If set to false, the serializer will raise a csv:ForeignInput error for these elements.&amp;lt;br/&amp;gt;
+ :     &amp;lt;/dd&amp;gt;
+ :    &amp;lt;/dl&amp;gt;
+ :
+ : @param $xml a sequence of elements, each element representing a row. The name of each row element is ignored.
+ :     The childs of each row are the column fields.
+ : @param $options The options parameter. See the function description for details. 
+ : This parameter is validated against "http://zorba.io/modules/csv-options" schema.
+ : @return the csv or fixed size text as string containing all the lines
+ : @error csv:CSV003 if the serialize output is streamable string and cannot be reset
+ : @error csv:ForeignInput if there are input elements in subsequent rows that do not match the headers,
+ :    and the options specify first-row-is-header and do not specify the ignore-foreign-input attribute
+ : @error err:XQDY0027 if $options can not be validated against csv-options schema
+ : @error err:XQDY0084 if the options parameter doesn't have the name "csv-options:options".
+ : @example test/Queries/converters/csv/csv_serialize1.xq
+ : @example test/Queries/converters/csv/csv_serialize2.xq
+ : @example test/Queries/converters/csv/csv_serialize3.xq
+ : @example test/Queries/converters/csv/csv_serialize5.xq
+ : @example test/Queries/converters/csv/csv_serialize6.xq
+ : @example test/Queries/converters/csv/csv_parse_serialize6.xq
+ : @example test/Queries/converters/csv/txt_serialize6.xq
+ : @example test/Queries/converters/csv/txt_parse_serialize6.xq
+:)
+declare function csv:serialize($xml as element()*,
+                               $options as element(csv-options:options)?) as xs:string
+{
+  let $validated-options :=
+  if(empty($options)) then
+    $options
+  else
+  if(schemaOptions:is-validated($options)) then
+    $options
+  else
+    validate{$options}
+  return
+    csv:serialize-internal($xml, $validated-options)
+};
+                                    
+declare %private function csv:serialize-internal($xml as element()*,
+                  $options as element(csv-options:options, csv-options:optionsType)?) as xs:string external;
+
+(: vim:set et sw=2 ts=2: :)
+</programlisting></para></detaileddescription></compounddef></doxygen>

@@ -1,0 +1,17 @@
+<doxygen><compounddef id="srid5.xq-example" kind="example"><detaileddescription><para><h3>Content of srid5.xq example</h3><programlisting type="example">import module namespace geo = "http://expath.org/ns/geo";
+declare namespace gml="http://www.opengis.net/gml";
+
+let $geom := &amp;lt;myGeom srsName="http://www.zorba-xquery.com0/"&amp;gt;
+              &amp;lt;gml:boundedBy&amp;gt;
+              &amp;lt;gml:Envelope srsName="http://www.zorba-xquery.com2/"&amp;gt;
+                  &amp;lt;lowerCorner&amp;gt;1 1&amp;lt;/lowerCorner&amp;gt;
+                  &amp;lt;upperCorner&amp;gt;2 2&amp;lt;/upperCorner&amp;gt;
+              &amp;lt;/gml:Envelope&amp;gt;
+              &amp;lt;/gml:boundedBy&amp;gt;
+              &amp;lt;gml:MultiPoint&amp;gt;
+                &amp;lt;gml:Point&amp;gt;&amp;lt;gml:pos&amp;gt;1 1&amp;lt;/gml:pos&amp;gt;&amp;lt;/gml:Point&amp;gt;
+              &amp;lt;/gml:MultiPoint&amp;gt;
+             &amp;lt;/myGeom&amp;gt;
+return
+geo:srid($geom//gml:MultiPoint
+              )</programlisting></para></detaileddescription></compounddef></doxygen>

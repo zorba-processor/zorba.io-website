@@ -1,0 +1,4 @@
+<doxygen><compounddef id="ft-module-is-stop-word-true-1.xq-example" kind="example"><detaileddescription><para><h3>Content of ft-module-is-stop-word-true-1.xq example</h3><programlisting type="example">import module namespace ft = "http://zorba.io/modules/full-text";
+
+ft:is-stop-word( "the", xs:language("en") )
+</programlisting></para></detaileddescription></compounddef></doxygen>

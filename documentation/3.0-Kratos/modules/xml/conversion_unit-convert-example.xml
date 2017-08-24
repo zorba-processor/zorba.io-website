@@ -1,0 +1,4 @@
+<doxygen><compounddef id="unit-convert.xq-example" kind="example"><detaileddescription><para><h3>Content of unit-convert.xq example</h3><programlisting type="example">import module namespace conversion = "http://zorba.io/modules/data-cleaning/conversion";
+
+conversion:unit-convert ( 1 , "Distance", "mile", "kilometer" )
+</programlisting></para></detaileddescription></compounddef></doxygen>

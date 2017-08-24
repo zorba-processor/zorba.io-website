@@ -1,0 +1,1348 @@
+<doxygen><compounddef id="geo-module" kind="module"><detaileddescription><para><h3>Content of geo module</h3><programlisting type="module">xquery version "1.0";
+
+(:
+ : Copyright 2006-2009 The FLWOR Foundation.
+ :
+ : Licensed under the Apache License, Version 2.0 (the "License");
+ : you may not use this file except in compliance with the License.
+ : You may obtain a copy of the License at
+ :
+ : http://www.apache.org/licenses/LICENSE-2.0
+ :
+ : Unless required by applicable law or agreed to in writing, software
+ : distributed under the License is distributed on an "AS IS" BASIS,
+ : WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ : See the License for the specific language governing permissions and
+ : limitations under the License.
+:)
+
+(:~
+ : &amp;lt;p&amp;gt;Function library providing geo processing using Simple Features api API GMLSF format.
+ : It uses the GEOS third party library, license LGPL. Version 3.2.2 or above is required.&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;The data format supported is GML SF profile 0/1.
+ : This is a subset of GML, and covers the basic geometries of Point, Line and Surface and collections of those.
+ : GMLSF nodes have the namespace "http://www.opengis.net/gml".&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;Possible GMLSF geometric structures are:&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;&amp;lt;dl&amp;gt;
+ :  &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;Point&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :  &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;&amp;lt;![CDATA[&amp;lt;gml:Point [srsDimension='2|3']?&amp;gt;
+ :    &amp;lt;gml:pos [srsDimension='2|3']?&amp;gt;double_x double_y &amp;lt;/gml:pos&amp;gt;
+ :  &amp;lt;/gml:Point&amp;gt;]]&amp;gt;&amp;lt;/pre&amp;gt;
+ :  &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;LineString&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :  &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;&amp;lt;![CDATA[&amp;lt;gml:LineString [srsDimension='2|3']?&amp;gt;
+ :    &amp;lt;gml:posList [srsDimension='2|3']?&amp;gt; double_x1 double_y1 double_x2 double_y2 ... &amp;lt;/gml:posList&amp;gt;
+ :  &amp;lt;/gml:LineString&amp;gt;]]&amp;gt;&amp;lt;/pre&amp;gt;
+ :  &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;Curve&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :  &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;&amp;lt;![CDATA[&amp;lt;gml:Curve [srsDimension='2|3']?&amp;gt;
+ :    &amp;lt;gml:segments&amp;gt;
+ :    [&amp;lt;gml:LineStringSegment interpolation="linear" [srsDimension='2|3']?&amp;gt;
+ :       &amp;lt;gml:posList [srsDimension='2|3']?&amp;gt; double_x1 double_y1 double_x2 double_y2 ... &amp;lt;/gml:posList&amp;gt;;
+ :     &amp;lt;gml:LineStringSegment&amp;gt;]*
+ :    &amp;lt;/gml:segments&amp;gt;
+ :  &amp;lt;/gml:Curve&amp;gt;]]&amp;gt;&amp;lt;/pre&amp;gt;
+ :  &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;LinearRing&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :  &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;&amp;lt;![CDATA[&amp;lt;gml:LinearRing [srsDimension='2|3']?&amp;gt;
+ :    &amp;lt;gml:posList [srsDimension='2|3']?&amp;gt; double_x1 double_y1 double_x2 double_y2 ... &amp;lt;/gml:posList&amp;gt;
+ :  &amp;lt;/gml:LinearRing&amp;gt;]]&amp;gt;&amp;lt;/pre&amp;gt;
+ :  &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;Surface&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :  &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;&amp;lt;![CDATA[&amp;lt;gml:Surface [srsDimension='2|3']?&amp;gt;
+ :    &amp;lt;gml:patches&amp;gt;
+ :    [&amp;lt;gml:PolygonPatch [srsDimension='2|3']?&amp;gt;
+ :       &amp;lt;gml:exterior&amp;gt;
+ :         &amp;lt;gml:LinearRing&amp;gt; ... &amp;lt;/gml:LinearRing&amp;gt;
+ :       &amp;lt;/gml:exterior&amp;gt;
+ :       &amp;lt;gml:interior&amp;gt;
+ :         &amp;lt;gml:LinearRing&amp;gt; ... &amp;lt;/gml:LinearRing&amp;gt;
+ :       &amp;lt;/gml:interior&amp;gt;]*
+ :     &amp;lt;/gml:PolygonPatch&amp;gt;]*
+ :    &amp;lt;/gml:patches&amp;gt;
+ :  &amp;lt;/gml:Surface&amp;gt;]]&amp;gt;&amp;lt;/pre&amp;gt;
+ :  &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;Polygon&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :  &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;&amp;lt;![CDATA[&amp;lt;gml:Polygon [srsDimension='2|3']?&amp;gt;
+ :    &amp;lt;gml:exterior&amp;gt;
+ :      &amp;lt;gml:LinearRing&amp;gt; ... &amp;lt;/gml:LinearRing&amp;gt;
+ :    &amp;lt;/gml:exterior&amp;gt;
+ :    [&amp;lt;gml:interior&amp;gt;
+ :       &amp;lt;gml:LinearRing&amp;gt; ... &amp;lt;/gml:LinearRing&amp;gt;
+ :     &amp;lt;/gml:interior&amp;gt;]*
+ :  &amp;lt;/gml:Polygon&amp;gt;]]&amp;gt;&amp;lt;/pre&amp;gt;
+ :  &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;MultiPoint&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :  &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;&amp;lt;![CDATA[&amp;lt;gml:MultiPoint [srsDimension='2|3']?&amp;gt;
+ :    [&amp;lt;gml:Point&amp;gt; ... &amp;lt;/gml:Point&amp;gt;]*
+ :  &amp;lt;/gml:MultiPoint&amp;gt;]]&amp;gt;&amp;lt;/pre&amp;gt;
+ :  &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;MultiCurve&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :  &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;&amp;lt;![CDATA[&amp;lt;gml:MultiCurve [srsDimension='2|3']?&amp;gt;
+ :    [&amp;lt;gml:LineString&amp;gt; ... &amp;lt;/gml:LineString&amp;gt;]*
+ :  &amp;lt;/gml:MultiCurve&amp;gt;]]&amp;gt;&amp;lt;/pre&amp;gt;
+ :  &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;MultiSurface&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :  &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;&amp;lt;![CDATA[&amp;lt;gml:MultiSurface [srsDimension='2|3']?&amp;gt;
+ :    [&amp;lt;gml:Polygon&amp;gt; ... &amp;lt;/gml:Polygon&amp;gt;]*
+ :  &amp;lt;/gml:MultiSurface&amp;gt;
+ :  ]]&amp;gt;&amp;lt;/pre&amp;gt;
+ :  &amp;lt;dt&amp;gt;&amp;lt;b&amp;gt;MultiGeometry (this is from GML 3 schema)&amp;lt;/b&amp;gt;&amp;lt;/dt&amp;gt;
+ :  &amp;lt;pre class="ace-static" ace-mode="xquery"&amp;gt;&amp;lt;![CDATA[&amp;lt;gml:MultiGeometry [srsDimension='2|3']?&amp;gt;
+ :     [&amp;lt;gml:geometryMember&amp;gt;
+ :          ...one geometry...
+ :     &amp;lt;/gml:geometryMember&amp;gt;]*
+ :    [&amp;lt;gml:geometryMembers&amp;gt;
+ :      ...a list of geometries...
+ :    &amp;lt;/gml:geometryMembers&amp;gt;]?
+ :  &amp;lt;/gml:MultiGeometry&amp;gt;]]&amp;gt;&amp;lt;/pre&amp;gt;
+ : &amp;lt;/dl&amp;gt;&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;Note: When using gml:posList, it is possible to replace this element with a list of gml:pos.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;Note: XLink referencing is not supported.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;Note: The &amp;lt;i&amp;gt;srsDimension&amp;lt;/i&amp;gt; optional attribute specifies the coordinate dimension. The default value is 2 (for 2D).
+ :    Another possible value is 3 (for 3D) in which case every point has to have three double values (x, y, z).
+ :    This is an extension borrowed from GML 3 spec.&amp;lt;/p&amp;gt; 
+ : &amp;lt;p&amp;gt;The operations made on 3D objects work only on x-y coordinates, the z coordinate is not taken into account.
+ : When returning the result, the original z-coordinates of the points are preserved.
+ : For computed points, the z-coordinate is interpolated.&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;The coordinates values have to be in cartesian coordinates, not in polar coordinates. 
+ : Converting between coordinate systems and doing projections from polar to cartesian is outside the scope of this geo module.&amp;lt;/p&amp;gt; 
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;For operations between two geometries, the DE-9IM matrix is used. The DE-9IM matrix is defined like this:&amp;lt;/p&amp;gt;
+ : &amp;lt;table&amp;gt;
+ :	&amp;lt;tr&amp;gt;
+ :		 &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;&amp;lt;b&amp;gt;Interior&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;&amp;lt;b&amp;gt;Boundary&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;&amp;lt;b&amp;gt;Exterior&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;
+ :		&amp;lt;/tr&amp;gt;
+ :		&amp;lt;tr&amp;gt;
+ :		 &amp;lt;td&amp;gt;&amp;lt;b&amp;gt;Interior&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of interior1 and interior2)&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of interior1 and boundary2)&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of interior1 and exterior2)&amp;lt;/td&amp;gt;
+ :		&amp;lt;/tr&amp;gt;
+ :		&amp;lt;tr&amp;gt;
+ :		 &amp;lt;td&amp;gt;&amp;lt;b&amp;gt;Boundary&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of boundary1 and interior2)&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of boundary1 and boundary2)&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of boundary1 and exterior2)&amp;lt;/td&amp;gt;
+ :		&amp;lt;/tr&amp;gt;
+ :		&amp;lt;tr&amp;gt;
+ :		 &amp;lt;td&amp;gt;&amp;lt;b&amp;gt;Exterior&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of exterior1 and interior2)&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of exterior1 and boundary2)&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of exterior1 and exterior2)&amp;lt;/td&amp;gt;
+ :		&amp;lt;/tr&amp;gt;
+ :	&amp;lt;/table&amp;gt;
+ :	&amp;lt;p/&amp;gt;
+ :	&amp;lt;p&amp;gt;The values in the DE-9IM can be T, F, *, 0, 1, 2.&amp;lt;/p&amp;gt;
+ :  &amp;lt;p&amp;gt;- T means the intersection gives a non-empty result.&amp;lt;/p&amp;gt;
+ :  &amp;lt;p&amp;gt;- F means the intersection gives an empty result.&amp;lt;/p&amp;gt;
+ :  &amp;lt;p&amp;gt;- * means any result.&amp;lt;/p&amp;gt;
+ :  &amp;lt;p&amp;gt;- 0, 1, 2 gives the expected dimension of the result (point, curve, surface)&amp;lt;/p&amp;gt;
+ :  &amp;lt;p/&amp;gt;
+ : 
+ : @author Daniel Turcanu
+ :
+ : @see http://expath.org/spec/geo
+ : @see http://www.opengeospatial.org/standards/sfa
+ : @see http://www.opengeospatial.org/standards/gml
+ : @see http://trac.osgeo.org/geos/
+ : @library &amp;lt;a href="http://trac.osgeo.org/geos/"&amp;gt;GEOS (Geometry Engine - Open Source)&amp;lt;/a&amp;gt;
+ : @project EXPath/EXPath Geo Module
+ :)
+module namespace geo = "http://expath.org/ns/geo";
+
+(:~
+ : &amp;lt;p&amp;gt;Declare the namespace for the gml geometry objects.&amp;lt;/p&amp;gt;
+ :)
+declare namespace gml="http://www.opengis.net/gml";
+
+(:~
+ : &amp;lt;p&amp;gt;Declare the expath errors namespace.&amp;lt;/p&amp;gt;
+ :)
+declare namespace geo-err="http://expath.org/ns/error";
+
+declare namespace ver = "http://zorba.io/options/versioning";
+declare option ver:module-version "1.0";
+
+
+(:~
+ : &amp;lt;p&amp;gt;Return the dimension of the geo object.&amp;lt;/p&amp;gt; 
+ : 
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return 0 for point, 1 for line, 2 for surface.
+ : @error geo-err:UnrecognizedGeoObject
+ : @example test/Queries/geo/dimension1.xq
+ : @example test/Queries/geo/dimension2.xq
+ : @example test/Queries/geo/dimension3.xq
+ : @example test/Queries/geo/dimension4.xq
+ : @example test/Queries/geo/dimension5.xq
+ : @example test/Queries/geo/dimension6.xq
+ : @example test/Queries/geo/dimension7.xq
+ : @example test/Queries/geo/dimension8.xq
+ : @example test/Queries/geo/dimension9.xq
+ : @example test/Queries/geo/dimension10.xq
+:)
+declare function geo:dimension( $geometry as element()) as xs:integer external;
+
+(:~
+ : &amp;lt;p&amp;gt;Return the coordinate dimension of the geo object, as specified in the srsDimension attribute.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;Only two-dimensional and three-dimensional coordinates are supported.&amp;lt;/p&amp;gt;
+ : 
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return 2 for 2D, 3 for 3D.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/coordinate_dimension1.xq
+ : @example test/Queries/geo/coordinate_dimension2.xq
+ : @example test/Queries/geo/coordinate_dimension3.xq
+ : @example test/Queries/geo/coordinate_dimension4.xq
+ : @example test/Queries/geo/coordinate_dimension5.xq
+ : @example test/Queries/geo/coordinate_dimension6.xq
+:)
+declare function geo:coordinate-dimension( $geometry as element()) as xs:integer external;
+
+(:~
+ : &amp;lt;p&amp;gt;Return the qname type of geo object.&amp;lt;/p&amp;gt; 
+ : &amp;lt;p&amp;gt;Returns empty sequence if the geometry is not recognized.&amp;lt;/p&amp;gt; 
+ : 
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return "gml:Point" for Point, "gml:LineString" for LineString, "gml:Curve" for Curve, "gml:LineString" for LinearRing,
+ :     "gml:Surface" for Surface, "gml:Polygon" for Polygon and PolygonPatch, 
+ :     "gml:MultiPoint" for MultiPoint, "gml:MultiCurve" for MultiCurve,
+ :     "gml:MultiSurface" for MultiSurface, "gml:MultiGeometry" for MultiGeometry
+ : @error geo-err:UnrecognizedGeoObject
+ : @example test/Queries/geo/geometry_type1.xq
+ : @example test/Queries/geo/geometry_type2.xq
+ : @example test/Queries/geo/geometry_type3.xq
+ : @example test/Queries/geo/geometry_type4.xq
+ : @example test/Queries/geo/geometry_type5.xq
+ : @example test/Queries/geo/geometry_type6.xq
+ : @example test/Queries/geo/geometry_type7.xq
+ : @example test/Queries/geo/geometry_type8.xq
+ : @example test/Queries/geo/geometry_type9.xq
+ : @example test/Queries/geo/geometry_type10.xq
+ : @example test/Queries/geo/geometry_type11.xq
+:)
+declare function geo:geometry-type( $geometry as element()) as xs:QName? external;
+
+(:~
+ : &amp;lt;p&amp;gt;Return the srid URI of geo object.&amp;lt;/p&amp;gt; 
+ : &amp;lt;p&amp;gt;SRID is contained in the srsName attribute in the geo element, or one of the parents,
+ : or in the boundedBy/Envelope element in one of the parents.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;This function searches recursively from this element up to the top-most parent.&amp;lt;/p&amp;gt;
+ : 
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return the SRID if it is found
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/srid1.xq
+ : @example test/Queries/geo/srid2.xq
+ : @example test/Queries/geo/srid3.xq
+ : @example test/Queries/geo/srid4.xq
+ : @example test/Queries/geo/srid5.xq
+:)
+declare function geo:srid( $geometry as element()) as xs:anyURI? external;
+
+(:~
+ : &amp;lt;p&amp;gt;Return the number of geometries in the collection, or 1 for non-collection.&amp;lt;/p&amp;gt; 
+ : &amp;lt;p&amp;gt;For gml:Point, gml:LineString, gml:LinearRing, gml:Polygon, return 1.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For gml:Curve and gml:Surface, they are treated as geometric collections.&amp;lt;/p&amp;gt;
+ : 
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return number of geometries in collection
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/num-geometries1.xq
+ : @example test/Queries/geo/num-geometries2.xq
+ : @example test/Queries/geo/num-geometries3.xq
+:)
+declare function geo:num-geometries( $geometry as element()) as xs:unsignedInt external;
+
+(:~
+ : &amp;lt;p&amp;gt;Return the n-th geometry in the collection.&amp;lt;/p&amp;gt; 
+ : &amp;lt;p&amp;gt;Return this geometry if it is not a collection.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For gml:Point, gml:LineString, gml:LinearRing, gml:Polygon, return this item if n is zero, otherwise error.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For gml:Curve and gml:Surface, they are treated as geometric collections.&amp;lt;/p&amp;gt;
+ : 
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $n zero-based index in the collection
+ : @return n-th geometry in collection. The node is the original node, not a copy.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/geometry-n1.xq
+ : @example test/Queries/geo/geometry-n2.xq
+ : @example test/Queries/geo/geometry-n3.xq
+ : @example test/Queries/geo/geometry-n4.xq
+:)
+declare function geo:geometry-n( $geometry as element(), $n as xs:unsignedInt) as element() external;
+
+(:~
+ : &amp;lt;p&amp;gt;The envelope is the minimum bounding box of this geometry.&amp;lt;/p&amp;gt;
+ : 
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return An gml:Envelope element with content 
+ :         &amp;amp;lt;gml:Envelope&amp;gt;
+ :         &amp;amp;lt;gml:lowerCorner&amp;gt;&amp;lt;i&amp;gt;minx miny&amp;lt;/i&amp;gt;&amp;amp;lt;/gml:lowerCorner&amp;gt;
+ :         &amp;amp;lt;gml:upperCorner&amp;gt;&amp;lt;i&amp;gt;maxx maxy&amp;lt;/i&amp;gt;&amp;amp;lt;/gml:upperCorner&amp;gt;
+ :         &amp;amp;lt;/gml:Envelope&amp;gt;
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/envelope1.xq
+ : @example test/Queries/geo/envelope2.xq
+ : @example test/Queries/geo/envelope3.xq
+ : @example test/Queries/geo/envelope4.xq
+ : @example test/Queries/geo/envelope5.xq
+ : @example test/Queries/geo/envelope6.xq
+ : @example test/Queries/geo/envelope7.xq
+ : @example test/Queries/geo/envelope8.xq
+ : @example test/Queries/geo/envelope9.xq
+ : @example test/Queries/geo/envelope11.xq
+ : @example test/Queries/geo/envelope12.xq
+:)
+declare function geo:envelope( $geometry as element()) as element(gml:Envelope) external;
+
+(:~
+ : &amp;lt;p&amp;gt;Return the Well-known Text Representation of Geometry.&amp;lt;/p&amp;gt; 
+ : &amp;lt;p&amp;gt;This is defined in the Simple Features spec from OGC.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;gml:Curve is represented as MultiLineString.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;gml:Surface is represented as MultiPolygon.&amp;lt;/p&amp;gt;
+ : 
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return the Well-known Text Representation for the geo object.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/as_text1.xq
+ : @example test/Queries/geo/as_text2.xq
+ : @example test/Queries/geo/as_text3.xq
+ : @example test/Queries/geo/as_text4.xq
+ : @example test/Queries/geo/as_text5.xq
+ : @example test/Queries/geo/as_text6.xq
+ : @example test/Queries/geo/as_text7.xq
+ : @example test/Queries/geo/as_text8.xq
+ : @example test/Queries/geo/as_text9.xq
+:)
+declare function geo:as-text( $geometry as element()) as xs:string external;
+
+(:~
+ : &amp;lt;p&amp;gt;Return the Well-known Binary Representation of Geometry.&amp;lt;/p&amp;gt; 
+ : &amp;lt;p&amp;gt;This is defined in the Simple Features spec from OGC.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;gml:Curve is represented as MultiLineString.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;gml:Surface is represented as MultiPolygon.&amp;lt;/p&amp;gt;
+ : 
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return the Well-known Binary Representation for the geo object as base64.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/as_binary1.xq
+:)
+declare function geo:as-binary( $geometry as element()) as xs:base64Binary external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if the argument is empty or not and if it is a valid geometry or not.&amp;lt;/p&amp;gt; 
+ : &amp;lt;p&amp;gt;A geometry is considered empty if it has no points.&amp;lt;/p&amp;gt;
+ : 
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return true if $geometry is not a valid gmlsf object or if is empty.
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/is_empty1.xq
+ : @example test/Queries/geo/is_empty2.xq
+ : @example test/Queries/geo/is_empty3.xq
+ : @example test/Queries/geo/is_empty4.xq
+ : @example test/Queries/geo/is_empty5.xq
+:)
+declare function geo:is-empty( $geometry as element()?) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if this geometric object has no anomalous geometric points, such
+ :	as self intersection or self tangency.&amp;lt;/p&amp;gt; 
+ : &amp;lt;p&amp;gt;Does not work for gml:Surface and gml:MultiGeometry.&amp;lt;/p&amp;gt;
+ : 
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString,
+ :    gml:LinearRing, gml:Curve, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface
+ : @return true if $geometry is simple.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/is_simple1.xq
+ : @example test/Queries/geo/is_simple2.xq
+ : @example test/Queries/geo/is_simple3.xq
+ : @example test/Queries/geo/is_simple4.xq
+ : @example test/Queries/geo/is_simple5.xq
+ : @example test/Queries/geo/is_simple6.xq
+ : @example test/Queries/geo/is_simple7.xq
+ : @example test/Queries/geo/is_simple8.xq
+ : @example test/Queries/geo/is_simple9.xq
+ : @example test/Queries/geo/is_simple10.xq
+ : @example test/Queries/geo/is_simple11.xq
+ : @example test/Queries/geo/is_simple12.xq
+ : @example test/Queries/geo/is_simple13.xq
+ : @example test/Queries/geo/is_simple14.xq
+:)
+declare function geo:is-simple( $geometry as element()) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if this geometric object is 2D or 3D, as specified in srsDimension optional attribute.&amp;lt;/p&amp;gt;
+ : 
+ : 
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return true if $geometry is 3D. 
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/is_3D1.xq
+ : @example test/Queries/geo/is_3D2.xq
+:)
+declare function geo:is-3d( $geometry as element()) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if this geometric object has measurements.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;Measurements is not supported in this geo module, so the function returns false.&amp;lt;/p&amp;gt;
+ : 
+ : 
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return false. 
+ : @error geo-err:UnrecognizedGeoObject
+ : @example test/Queries/geo/is_measured1.xq
+:)
+declare function geo:is-measured( $geometry as element()) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;A boundary is a set that represents the limit of an geometry.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For a Point or MultiPoint, the boundary is the empty geometry, nothing is returned.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For a LineString, the boundary is the MultiPoint set of start point and end point.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For a LinearRing, the boundary is empty MultiPoint.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For a Curve, it is treated as a MultiCurve.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For a Polygon, the boundary is the MultiCurve set of exterior and interior rings.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For a Surface, the boundary is the MultiCurve set formed from the exterior ring of all patches
+ :  seen as a single surface and all the interior rings from all patches.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For MultiCurve, the boundary is the MultiPoint set of all start and end points that appear
+ :  in an odd number of linestrings.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For MultiGeometry, a sequence of boundaries is returned, corresponding to each child geometry.&amp;lt;/p&amp;gt;
+ : 
+ : 
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:LinearRing,
+ :    gml:Curve, gml:Polygon, gml:Surface, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return the boundary of a Geometry as a set of Geometries of the next lower dimension.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/boundary1.xq
+ : @example test/Queries/geo/boundary2.xq
+ : @example test/Queries/geo/boundary3.xq
+ : @example test/Queries/geo/boundary4.xq
+ : @example test/Queries/geo/boundary5.xq
+ : @example test/Queries/geo/boundary6.xq
+ : @example test/Queries/geo/boundary7.xq
+ : @example test/Queries/geo/boundary8.xq
+ : @example test/Queries/geo/boundary9.xq
+ : @example test/Queries/geo/boundary10.xq
+ : @example test/Queries/geo/boundary11.xq
+ : @example test/Queries/geo/boundary12.xq
+ : @example test/Queries/geo/boundary13.xq
+ : @example test/Queries/geo/boundary14.xq
+:)
+declare function geo:boundary( $geometry as element()) as element()* external;
+
+
+
+
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if the two geometries are equal.&amp;lt;/p&amp;gt;
+ : &amp;lt;p/&amp;gt;
+ : &amp;lt;p&amp;gt;Note: Does not work for gml:Surface and gml:MultiSurface if they have multiple Polygons.&amp;lt;/p&amp;gt;
+ : 
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return true if the DE-9IM intersection matrix for the two Geometrys is T*F**FFF*.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/equals1.xq
+ : @example test/Queries/geo/equals2.xq
+ : @example test/Queries/geo/equals3.xq
+ : @example test/Queries/geo/equals4.xq
+ : @example test/Queries/geo/equals5.xq
+ : @example test/Queries/geo/equals6.xq
+ : @example test/Queries/geo/equals7.xq
+ : @example test/Queries/geo/equals8.xq
+ : @example test/Queries/geo/equals9.xq
+:)
+declare function geo:equals( $geometry1 as element(),  $geometry2 as element()) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if geometry1 covers geometry2.&amp;lt;/p&amp;gt;         
+ : &amp;lt;p&amp;gt;It has to fulfill one of these conditions:&amp;lt;/p&amp;gt;
+ :  &amp;lt;p&amp;gt;- every point of geometry2 is a point of geometry1.&amp;lt;/p&amp;gt;
+ :  &amp;lt;p&amp;gt;- the DE-9IM Intersection Matrix for the two geometries is
+ :     T*****FF* or *T****FF* or ***T**FF* or ****T*FF*.&amp;lt;/p&amp;gt;
+ : 
+ : Unlike contains it does not distinguish between points in the boundary and in the interior of geometries.
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return true if geometry1 covers geometry2.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/covers6.xq
+:)
+declare function geo:covers( $geometry1 as element(),  $geometry2 as element()) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if geometry1 does not touch or intersects geometry2.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;It has to fulfill these conditions:&amp;lt;/p&amp;gt;
+ :  &amp;lt;p&amp;gt;- they have no point in common&amp;lt;/p&amp;gt;
+ :  &amp;lt;p&amp;gt;- the DE-9IM Intersection Matrix for the two geometries is
+ :     FF*FF****.&amp;lt;/p&amp;gt;
+ :  &amp;lt;p&amp;gt;- geometry1 does not intersect geometry2.&amp;lt;/p&amp;gt;
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return true if geometry1 and geometry2 are disjoint.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/disjoint1.xq
+ : @example test/Queries/geo/disjoint2.xq
+ : @example test/Queries/geo/disjoint3.xq
+ : @example test/Queries/geo/disjoint4.xq
+ : @example test/Queries/geo/disjoint5.xq
+ : @example test/Queries/geo/disjoint6.xq
+ : @example test/Queries/geo/disjoint7.xq
+ : @example test/Queries/geo/disjoint8.xq
+ : @example test/Queries/geo/disjoint9.xq
+:)
+declare function geo:disjoint( $geometry1 as element(),  $geometry2 as element()) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if geometry1 intersects geometry2.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;This is true if disjoint returns false.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return true if geometry1 and geometry2 are not disjoint.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/intersects1.xq
+ : @example test/Queries/geo/intersects2.xq
+ : @example test/Queries/geo/intersects3.xq
+ : @example test/Queries/geo/intersects4.xq
+ : @example test/Queries/geo/intersects5.xq
+ : @example test/Queries/geo/intersects6.xq
+ : @example test/Queries/geo/intersects6_3d.xq
+ : @example test/Queries/geo/intersects7.xq
+ : @example test/Queries/geo/intersects8.xq
+ : @example test/Queries/geo/intersects9.xq
+:)
+declare function geo:intersects( $geometry1 as element(),  $geometry2 as element()) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if geometry1 touches geometry2.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;Returns true if the DE-9IM intersection matrix for the two
+ : geometries is FT*******, F**T***** or F***T****.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return true if geometry1 touches geometry2.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/touches1.xq
+ : @example test/Queries/geo/touches2.xq
+ : @example test/Queries/geo/touches3.xq
+ : @example test/Queries/geo/touches4.xq
+ : @example test/Queries/geo/touches5.xq
+ : @example test/Queries/geo/touches6.xq
+ : @example test/Queries/geo/touches7.xq
+ : @example test/Queries/geo/touches8.xq
+ : @example test/Queries/geo/touches9.xq
+:)
+declare function geo:touches( $geometry1 as element(),  $geometry2 as element()) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if geometry1 crosses geometry2.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;That is if the geometries have some but not all interior points in common.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;Returns true if the DE-9IM intersection matrix for the two
+ : geometries is:&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;T*T****** (for P/L, P/A, and L/A situations).&amp;lt;/p&amp;gt; 
+ : &amp;lt;p&amp;gt;T*****T** (for L/P, A/P, and A/L situations).&amp;lt;/p&amp;gt; 
+ : &amp;lt;p&amp;gt;0******** (for L/L situations).&amp;lt;/p&amp;gt;
+ : 
+ : &amp;lt;p&amp;gt;This applies for situations:  P/L, P/A, L/L, L/A, L/P, A/P and A/L.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For other situations it returns false.&amp;lt;/p&amp;gt;
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return true if geometry1 crosses geometry2.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/crosses1.xq
+ : @example test/Queries/geo/crosses2.xq
+ : @example test/Queries/geo/crosses3.xq
+ : @example test/Queries/geo/crosses4.xq
+ : @example test/Queries/geo/crosses5.xq
+ : @example test/Queries/geo/crosses6.xq
+ : @example test/Queries/geo/crosses7.xq
+ : @example test/Queries/geo/crosses8.xq
+ : @example test/Queries/geo/crosses9.xq
+ : @example test/Queries/geo/crosses10.xq
+:)
+declare function geo:crosses( $geometry1 as element(),  $geometry2 as element()) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if geometry1 is within geometry2.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;Returns true if the DE-9IM intersection matrix for the two
+ :  geometries is T*F**F***.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return true if geometry1 is within geometry2.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/within1.xq
+ : @example test/Queries/geo/within2.xq
+ : @example test/Queries/geo/within3.xq
+ : @example test/Queries/geo/within4.xq
+ : @example test/Queries/geo/within5.xq
+ : @example test/Queries/geo/within6.xq
+ : @example test/Queries/geo/within7.xq
+ : @example test/Queries/geo/within8.xq
+ : @example test/Queries/geo/within9.xq
+:)
+declare function geo:within( $geometry1 as element(),  $geometry2 as element()) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if geometry1 contains geometry2.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;Returns true if within(geometry2, geometry1) is true.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return true if geometry1 contains geometry2.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/contains1.xq
+ : @example test/Queries/geo/contains2.xq
+ : @example test/Queries/geo/contains3.xq
+ : @example test/Queries/geo/contains4.xq
+ : @example test/Queries/geo/contains5.xq
+ : @example test/Queries/geo/contains6.xq
+ : @example test/Queries/geo/contains7.xq
+ : @example test/Queries/geo/contains8.xq
+ : @example test/Queries/geo/contains9.xq
+ : @example test/Queries/geo/contains10.xq
+:)
+declare function geo:contains( $geometry1 as element(),  $geometry2 as element()) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if geometry1 overlaps with geometry2.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;Returns true if DE-9IM intersection matrix for the two
+ : geometries is T*T***T** (for two points or two surfaces)
+ :	 or * 1*T***T** (for two curves).&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return true if geometry1 overlaps geometry2.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/overlaps1.xq
+ : @example test/Queries/geo/overlaps2.xq
+ : @example test/Queries/geo/overlaps3.xq
+ : @example test/Queries/geo/overlaps4.xq
+ : @example test/Queries/geo/overlaps5.xq
+ : @example test/Queries/geo/overlaps6.xq
+ : @example test/Queries/geo/overlaps7.xq
+ : @example test/Queries/geo/overlaps8.xq
+ : @example test/Queries/geo/overlaps9.xq
+ : @example test/Queries/geo/overlaps10.xq
+ : @example test/Queries/geo/overlaps11.xq
+ : @example test/Queries/geo/overlaps12.xq
+:)
+declare function geo:overlaps( $geometry1 as element(),  $geometry2 as element()) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if geometry1 relates with geometry2 relative to a DE-9IM matrix.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;The DE-9IM matrix is defined like this:&amp;lt;/p&amp;gt;
+ : &amp;lt;table&amp;gt;
+ :	&amp;lt;tr&amp;gt;
+ :		 &amp;lt;td&amp;gt;&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;&amp;lt;b&amp;gt;Interior&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;&amp;lt;b&amp;gt;Boundary&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;&amp;lt;b&amp;gt;Exterior&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;
+ :		&amp;lt;/tr&amp;gt;
+ :		&amp;lt;tr&amp;gt;
+ :		 &amp;lt;td&amp;gt;&amp;lt;b&amp;gt;Interior&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of interior1 and interior2)&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of interior1 and boundary2)&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of interior1 and exterior2)&amp;lt;/td&amp;gt;
+ :		&amp;lt;/tr&amp;gt;
+ :		&amp;lt;tr&amp;gt;
+ :		 &amp;lt;td&amp;gt;&amp;lt;b&amp;gt;Boundary&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of boundary1 and interior2)&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of boundary1 and boundary2)&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of boundary1 and exterior2)&amp;lt;/td&amp;gt;
+ :		&amp;lt;/tr&amp;gt;
+ :		&amp;lt;tr&amp;gt;
+ :		 &amp;lt;td&amp;gt;&amp;lt;b&amp;gt;Exterior&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of exterior1 and interior2)&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of exterior1 and boundary2)&amp;lt;/td&amp;gt;
+ :		 &amp;lt;td&amp;gt;dim(intersection of exterior1 and exterior2)&amp;lt;/td&amp;gt;
+ :		&amp;lt;/tr&amp;gt;
+ :	&amp;lt;/table&amp;gt;
+ :	
+ :	&amp;lt;p&amp;gt;The values in the DE-9IM can be T, F, *, 0, 1, 2 .&amp;lt;/p&amp;gt;
+ :  &amp;lt;p&amp;gt;- T means the intersection gives a non-empty result.&amp;lt;/p&amp;gt;
+ :  &amp;lt;p&amp;gt;- F means the intersection gives an empty result.&amp;lt;/p&amp;gt;
+ :  &amp;lt;p&amp;gt;- * means any result.&amp;lt;/p&amp;gt;
+ :  &amp;lt;p&amp;gt;- 0, 1, 2 gives the expected dimension of the result (point, curve, surface)&amp;lt;/p&amp;gt;
+ : 
+ : &amp;lt;p&amp;gt;For example, the matrix of "T*T***T**" checks for intersections of interior1 with interior2,
+ : interior1 with exterior2 and exterior1 with interior2.&amp;lt;/p&amp;gt;
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString,
+ :    gml:LinearRing, gml:Polygon
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString,
+ :    gml:LinearRing, gml:Polygon
+ : @param $intersection_matrix the DE-9IM matrix, with nine chars, three chars for each line in DE-9IM matrix.
+ : @return true if geometry1 relates to geometry2 according to the intersection matrix.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/relate1.xq
+ : @example test/Queries/geo/relate2.xq
+ : @example test/Queries/geo/relate3.xq
+ : @example test/Queries/geo/relate4.xq
+:)
+declare function geo:relate( $geometry1 as element(),  $geometry2 as element(), $intersection_matrix as xs:string) as xs:boolean external;
+
+
+
+
+(:~
+ : &amp;lt;p&amp;gt;Compute the shortest distance between any two Points in geometry1 and geometry2.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return minimum distance as xs:double.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/distance1.xq
+:)
+declare function geo:distance( $geometry1 as element(),  $geometry2 as element()) as xs:double external;
+
+(:~
+ : &amp;lt;p&amp;gt;Returns a polygon that represents all Points whose distance
+ :   from this geometric object is less than or equal to distance.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $distance the distance from geometry, expressed in units of the current coordinate system
+ : @return new geometry surrounding the input geometry.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/buffer1.xq
+ : @example test/Queries/geo/buffer2.xq
+ : @example test/Queries/geo/buffer3.xq
+ : @example test/Queries/geo/buffer4.xq
+ : @example test/Queries/geo/buffer5.xq
+ : @example test/Queries/geo/buffer6.xq
+ : @example test/Queries/geo/buffer7.xq
+ : @example test/Queries/geo/buffer8.xq
+ : @example test/Queries/geo/buffer9.xq
+ : @example test/Queries/geo/buffer10.xq
+:)
+declare function geo:buffer( $geometry as element(),  $distance as xs:double) as element() external;
+
+(:~
+ : &amp;lt;p&amp;gt;Returns the smallest convex Polygon that contains all the points in the Geometry.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;Actually returns the object of smallest dimension possible (possible Point or LineString).&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return the convex polygon node.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/convex-hull1.xq
+ : @example test/Queries/geo/convex-hull2.xq
+ : @example test/Queries/geo/convex-hull3.xq
+ : @example test/Queries/geo/convex-hull3_3d.xq
+ : @example test/Queries/geo/convex-hull4.xq
+ : @example test/Queries/geo/convex-hull5.xq
+ : @example test/Queries/geo/convex-hull6.xq
+ : @example test/Queries/geo/convex-hull7.xq
+ : @example test/Queries/geo/convex-hull8.xq
+ : @example test/Queries/geo/convex-hull9.xq
+ : @example test/Queries/geo/convex-hull10.xq
+:)
+declare function geo:convex-hull( $geometry as element()) as element() external;
+
+(:~
+ : &amp;lt;p&amp;gt;Returns a geometric object that represents the Point set intersection of
+ :    geometry1 and geometry2.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For intersection of two polygons interiors, returns a polygon.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;If intersection is void, empty sequence is returned.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return point set geometry node.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/intersection1.xq
+ : @example test/Queries/geo/intersection2.xq
+ : @example test/Queries/geo/intersection3.xq
+ : @example test/Queries/geo/intersection4.xq
+ : @example test/Queries/geo/intersection5.xq
+ : @example test/Queries/geo/intersection6.xq
+ : @example test/Queries/geo/intersection7.xq
+ : @example test/Queries/geo/intersection8.xq
+ : @example test/Queries/geo/intersection8_3d.xq
+ : @example test/Queries/geo/intersection9.xq
+ : @example test/Queries/geo/intersection10.xq
+:)
+declare function geo:intersection( $geometry1 as element(),  $geometry2 as element()) as element()? external;
+
+(:~
+ : &amp;lt;p&amp;gt;Returns a geometric object that represents the Point set union of
+ :    geometry1 and geometry2.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return point set geometry node.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/union1.xq
+ : @example test/Queries/geo/union2.xq
+ : @example test/Queries/geo/union3.xq
+ : @example test/Queries/geo/union4.xq
+ : @example test/Queries/geo/union5.xq
+ : @example test/Queries/geo/union5_3d.xq
+ : @example test/Queries/geo/union6.xq
+ : @example test/Queries/geo/union7.xq
+ : @example test/Queries/geo/union8.xq
+ : @example test/Queries/geo/union9.xq
+:)
+declare function geo:union( $geometry1 as element(),  $geometry2 as element()) as element() external;
+
+(:~
+ : &amp;lt;p&amp;gt;Returns a geometric object that represents the Point set difference of
+ :    geometry1 and geometry2. Points that are in geometry1 and are not in geometry2.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;If difference is empty geometry, empty sequence is returned.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return point set geometry node.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/difference1.xq
+ : @example test/Queries/geo/difference2.xq
+ : @example test/Queries/geo/difference3.xq
+ : @example test/Queries/geo/difference4.xq
+ : @example test/Queries/geo/difference5.xq
+ : @example test/Queries/geo/difference6.xq
+ : @example test/Queries/geo/difference7.xq
+ : @example test/Queries/geo/difference8.xq
+ : @example test/Queries/geo/difference9.xq
+ : @example test/Queries/geo/difference10.xq
+:)
+declare function geo:difference( $geometry1 as element(),  $geometry2 as element()) as element()? external;
+
+(:~
+ : &amp;lt;p&amp;gt;Returns a geometric object that represents the Point set symmetric difference of
+ :    geometry1 and geometry2. Points that are in geometry1 and are not in geometry2
+ :    and points that are in geometry2 and are not in geometry1.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;If difference is empty geometry, empty sequence is returned.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return point set geometry node.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/sym-difference1.xq
+ : @example test/Queries/geo/sym-difference2.xq
+ : @example test/Queries/geo/sym-difference3.xq
+ : @example test/Queries/geo/sym-difference4.xq
+ : @example test/Queries/geo/sym-difference5.xq
+ : @example test/Queries/geo/sym-difference6.xq
+ : @example test/Queries/geo/sym-difference7.xq
+ : @example test/Queries/geo/sym-difference8.xq
+ : @example test/Queries/geo/sym-difference9.xq
+:)
+declare function geo:sym-difference( $geometry1 as element(),  $geometry2 as element()) as element()? external;
+
+
+
+
+(:~
+ : &amp;lt;p&amp;gt;Returns the area of this geometry.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;Returns zero for Point and Lines.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return geometry area as xs:double.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/area1.xq
+ : @example test/Queries/geo/area2.xq
+ : @example test/Queries/geo/area3.xq
+ : @example test/Queries/geo/area4.xq
+ : @example test/Queries/geo/area5.xq
+ : @example test/Queries/geo/area6.xq
+ : @example test/Queries/geo/area7.xq
+ : @example test/Queries/geo/area8.xq
+ : @example test/Queries/geo/area9.xq
+ : @example test/Queries/geo/area10.xq
+:)
+declare function geo:area( $geometry as element()) as xs:double external;
+
+(:~
+ : &amp;lt;p&amp;gt;Returns the length of the lines of this geometry.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;Returns zero for Points.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return geometry length as xs:double.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/length1.xq
+ : @example test/Queries/geo/length2.xq
+ : @example test/Queries/geo/length3.xq
+ : @example test/Queries/geo/length4.xq
+ : @example test/Queries/geo/length5.xq
+ : @example test/Queries/geo/length6.xq
+ : @example test/Queries/geo/length7.xq
+ : @example test/Queries/geo/length8.xq
+ : @example test/Queries/geo/length9.xq
+ : @example test/Queries/geo/length10.xq
+:)
+declare function geo:length( $geometry as element()) as xs:double external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if geometry2 is within a certain distance of geometry1.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geometry1 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $geometry2 node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @param $distance the distance from geometry1, expressed in units of the current coordinate system
+ : @return true if distance from geometry1 to geometry2 is less than $distance.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:SRSNotIdenticalInBothGeometries
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/is-within-distance1.xq
+ : @example test/Queries/geo/is-within-distance2.xq
+ : @example test/Queries/geo/is-within-distance3.xq
+ : @example test/Queries/geo/is-within-distance4.xq
+ : @example test/Queries/geo/is-within-distance5.xq
+ : @example test/Queries/geo/is-within-distance6.xq
+ : @example test/Queries/geo/is-within-distance7.xq
+ : @example test/Queries/geo/is-within-distance8.xq
+ : @example test/Queries/geo/is-within-distance9.xq
+:)
+declare function geo:is-within-distance( $geometry1 as element(),  $geometry2 as element(), $distance as xs:double) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Returns a Point that is the mathematical centroid of this geometry.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;The result is not guaranteed to be on the surface.&amp;lt;/p&amp;gt; 
+ : 
+ :
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return centroid Point.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/centroid1.xq
+ : @example test/Queries/geo/centroid2.xq
+ : @example test/Queries/geo/centroid3.xq
+ : @example test/Queries/geo/centroid4.xq
+ : @example test/Queries/geo/centroid5.xq
+ : @example test/Queries/geo/centroid6.xq
+ : @example test/Queries/geo/centroid7.xq
+ : @example test/Queries/geo/centroid8.xq
+ : @example test/Queries/geo/centroid9.xq
+ : @example test/Queries/geo/centroid10.xq
+:)
+declare function geo:centroid( $geometry as element()) as element(gml:Point) external;
+
+(:~
+ : &amp;lt;p&amp;gt;Returns a Point that is interior of this geometry.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;If it cannot be inside the geometry, then it will be on the boundary.&amp;lt;/p&amp;gt; 
+ : 
+ :
+ : @param $geometry node of one of GMLSF objects: gml:Point, gml:LineString, gml:Curve, gml:LinearRing, 
+ :    gml:Surface, gml:Polygon, gml:MultiPoint, gml:MultiCurve, gml:MultiSurface, gml:MultiGeometry
+ : @return a Point inside the geometry.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/interior-point1.xq
+ : @example test/Queries/geo/interior-point2.xq
+ : @example test/Queries/geo/interior-point3.xq
+ : @example test/Queries/geo/interior-point4.xq
+ : @example test/Queries/geo/interior-point5.xq
+ : @example test/Queries/geo/interior-point6.xq
+ : @example test/Queries/geo/interior-point7.xq
+ : @example test/Queries/geo/interior-point8.xq
+ : @example test/Queries/geo/interior-point9.xq
+ : @example test/Queries/geo/interior-point10.xq
+:)
+declare function geo:point-on-surface( $geometry as element()) as element(gml:Point) external;
+
+
+
+
+
+
+(:~
+ : &amp;lt;p&amp;gt;Returns the X coordinate of a Point.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $point node of one of GMLSF objects: gml:Point
+ : @return the X coordinate
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/point_xyz1.xq
+ : @example test/Queries/geo/point_xyz4.xq
+:)
+declare function geo:x( $point as element(gml:Point)) as xs:double external;
+
+(:~
+ : &amp;lt;p&amp;gt;Returns the Y coordinate of a Point.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $point node of one of GMLSF objects: gml:Point
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @return the Y coordinate
+ : @example test/Queries/geo/point_xyz2.xq
+:)
+declare function geo:y( $point as element(gml:Point)) as xs:double external;
+
+(:~
+ : &amp;lt;p&amp;gt;Returns the Z coordinate of a Point, if is 3D.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $point node of one of GMLSF objects: gml:Point
+ : @return the Z coordinate, or empty sequence if 2D
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/point_xyz3.xq
+ : @example test/Queries/geo/point_xyz5.xq
+:)
+declare function geo:z( $point as element(gml:Point)) as xs:double? external;
+
+(:~
+ : &amp;lt;p&amp;gt;Should return the Measure of a Point, but is not implemented, 
+ : because it is not specified in GMLSF.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $point node of one of GMLSF objects: gml:Point
+ : @return always empty sequence
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @example test/Queries/geo/point_xyz6.xq
+:)
+declare function geo:m( $point as element(gml:Point)) as xs:double? external;
+
+
+
+
+
+
+
+(:~
+ : &amp;lt;p&amp;gt;Returns the start Point of a line.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $line node of one of GMLSF objects: gml:LineString, gml:LinearRing, gml:Curve
+ : @return the starting gml:Point, constructed with the first coordinates in the line.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/start-point1.xq
+ : @example test/Queries/geo/start-point2.xq
+ : @example test/Queries/geo/start-point3.xq
+:)
+declare function geo:start-point( $line as element()) as element(gml:Point) external;
+
+(:~
+ : &amp;lt;p&amp;gt;Returns the end Point of a line.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $line node of one of GMLSF objects: gml:LineString, gml:LinearRing, gml:Curve
+ : @return the end gml:Point, constructed with the last coordinates in the line.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/end-point1.xq
+:)
+declare function geo:end-point( $line as element()) as element(gml:Point) external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if the line is closed loop. That is, if the start Point is same with end Point.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For gml:Curve, checks if the start point of the first segment is the same with the
+ :   last point of the last segment. It also checks that all the segments are connected together,
+ :   and returns false if they aren't.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For gml:MultiCurve, checks recursively for each LineString.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;For gml:Surface, checks if the exterior boundary of each patch touches completely other patches,
+ :   so the Surface encloses a solid.
+ :   For this to happen there is a need for 3D objects, and full 3D processing is not supported in GEOS library,
+ :   so the function always returns false in this case.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $geom node of one of GMLSF objects: gml:LineString, gml:LinearRing, gml:Curve,
+ :      gml:MultiCurve, gml:Surface
+ : @return true if the line or surface is closed.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/is-closed1.xq
+ : @example test/Queries/geo/is-closed2.xq
+ : @example test/Queries/geo/is-closed3.xq
+ : @example test/Queries/geo/is-closed4.xq
+ : @example test/Queries/geo/is-closed5.xq
+ : @example test/Queries/geo/is-closed6.xq
+:)
+declare function geo:is-closed( $geom as element()) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Checks if the line is a ring. That is, if the line is closed and simple.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $line node of one of GMLSF objects: gml:LineString, gml:LinearRing, gml:Curve
+ : @return true if the line is a closed ring.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/is-ring1.xq
+ : @example test/Queries/geo/is-ring2.xq
+ : @example test/Queries/geo/is-ring3.xq
+ : @example test/Queries/geo/is-ring4.xq
+:)
+declare function geo:is-ring( $line as element()) as xs:boolean external;
+
+(:~
+ : &amp;lt;p&amp;gt;Return the number of Points in a line.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $line node of one of GMLSF objects: gml:LineString, gml:LinearRing, gml:Curve,
+ :   gml:MultiCurve
+ : @return number of points in the line
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/num-points1.xq
+ : @example test/Queries/geo/num-points2.xq
+ : @example test/Queries/geo/num-points3.xq
+:)
+declare function geo:num-points( $line as element()) as xs:unsignedInt external;
+
+(:~
+ : &amp;lt;p&amp;gt;Return the n-th Point in a line.&amp;lt;/p&amp;gt;
+ :
+ : @param $line node of one of GMLSF objects: gml:LineString, gml:LinearRing, gml:Curve,
+ :    gml:MultiCurve
+ : @param $n index in the list of coordinates, zero based.
+ : @return n-th point in the line, zero-based. The node is gml:Point constructed with n-th coordinate from line.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/point-n1.xq
+ : @example test/Queries/geo/point-n2.xq
+ : @example test/Queries/geo/point-n3.xq
+:)
+declare function geo:point-n( $line as element(), $n as xs:unsignedInt) as element(gml:Point) external;
+
+
+
+
+
+
+(:~
+ : &amp;lt;p&amp;gt;Return the exterior ring of a Polygon.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $polygon node of one of GMLSF objects: gml:Polygon
+ : @return the original gml:LinearRing node for exterior ring
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/exterior-ring1.xq
+ : @example test/Queries/geo/exterior-ring2.xq
+:)
+declare function geo:exterior-ring( $polygon as element(gml:Polygon)) as element(gml:LinearRing) external;
+
+(:~
+ : &amp;lt;p&amp;gt;Return the number of interior rings of a Polygon.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $polygon node of one of GMLSF objects: gml:Polygon
+ : @return the number of interior rings
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/num-interior-ring1.xq
+:)
+declare function geo:num-interior-ring( $polygon as element(gml:Polygon)) as xs:unsignedInt external;
+
+(:~
+ : &amp;lt;p&amp;gt;Return the n-th interior ring of a Polygon.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $polygon node of one of GMLSF objects: gml:Polygon
+ : @param $n index in the list of interior rings, zero based.
+ : @return n-th interior ring. The node is the original node, not a copy.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:IndexOutsideRange
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/interior-ring-n1.xq
+:)
+declare function geo:interior-ring-n( $polygon as element(gml:Polygon), $n as xs:unsignedInt) as element(gml:LinearRing) external;
+
+(:~
+ : &amp;lt;p&amp;gt;Return the number of surface patches inside a gml:Surface.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;This function has the same effect as num-geometries(), only it is restricted to gml:Surface.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $polyhedral-surface node of one of GMLSF objects: gml:Surface
+ : @return the number of surface patches
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/num-patches1.xq
+ : @example test/Queries/geo/num-patches2.xq
+:)
+declare function geo:num-patches($polyhedral-surface as element(gml:Surface)) as xs:integer external;
+
+(:~
+ : &amp;lt;p&amp;gt;Return the n-th Surface patch of a Surface.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;Only polygonal Surfaces are supported, so a gml:PolygonPatch is returned.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;The gml:PolygonPatch has the same content as gml:Polygon.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;This function has the same effect as geometry-n(), only it is restricted to gml:Surface.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $polyhedral-surface node of one of GMLSF objects: gml:Surface
+ : @param $n index in the list of surface patches, zero based.
+ : @return n-th polygon patch. The node is the original node, not a copy.
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:IndexOutsideRange
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/patch-n1.xq
+ : @example test/Queries/geo/patch-n2.xq
+:)
+declare function geo:patch-n($polyhedral-surface as element(gml:Surface),
+																		$n as xs:unsignedInt) as element(gml:PolygonPatch) external;
+
+
+(:~
+ : &amp;lt;p&amp;gt;Return the list of PolygonPatches that share a boundary with the given $polygon.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;The gml:PolygonPatch has the same content as gml:Polygon.&amp;lt;/p&amp;gt;
+ : &amp;lt;p&amp;gt;This function tests the exterior ring of each polygon patch if it overlaps
+ : with the exterior ring of the given polygon.&amp;lt;/p&amp;gt;
+ : 
+ :
+ : @param $polyhedral-surface node of one of GMLSF objects: gml:Surface
+ : @param $polygon, of type gml:Polygon or gml:PolygonPatch
+ : @return the list of neibourghing gml:PolygonPatch-es
+ : @error geo-err:UnrecognizedGeoObject
+ : @error geo-err:UnsupportedSRSDimensionValue
+ : @error geo-err:GEOSError
+ : @example test/Queries/geo/bounding-polygons1.xq
+ : @example test/Queries/geo/bounding-polygons2.xq
+ : @example test/Queries/geo/bounding-polygons3.xq
+:)
+declare function geo:bounding-polygons($polyhedral-surface as element(gml:Surface),
+																	 $polygon as element()) as element(gml:PolygonPatch)* external;
+</programlisting></para></detaileddescription></compounddef></doxygen>

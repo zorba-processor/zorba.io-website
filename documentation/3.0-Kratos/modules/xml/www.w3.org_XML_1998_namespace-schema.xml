@@ -1,0 +1,44 @@
+<doxygen><compounddef id="www.w3.org_XML_1998_namespace-schema" kind="schema"><detaileddescription><para><h3>Content of www.w3.org_XML_1998_namespace schema</h3><programlisting type="schema">&lt;xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3.org/XML/1998/namespace" xml:lang="en"&gt;
+ &lt;xsd:attribute name="lang"&gt;
+  &lt;xsd:simpleType&gt;
+   &lt;xsd:union memberTypes="xsd:language"&gt;
+    &lt;xsd:simpleType&gt;    
+     &lt;xsd:restriction base="xsd:string"&gt;
+      &lt;xsd:enumeration value=""/&gt;
+     &lt;/xsd:restriction&gt;
+    &lt;/xsd:simpleType&gt;
+   &lt;/xsd:union&gt;
+  &lt;/xsd:simpleType&gt;
+ &lt;/xsd:attribute&gt;
+
+ &lt;xsd:attribute name="space"&gt;
+  &lt;xsd:simpleType&gt;
+   &lt;xsd:restriction base="xsd:NCName"&gt;
+    &lt;xsd:enumeration value="default"/&gt;
+    &lt;xsd:enumeration value="preserve"/&gt;
+   &lt;/xsd:restriction&gt;
+  &lt;/xsd:simpleType&gt;
+ &lt;/xsd:attribute&gt;
+
+ &lt;xsd:attribute name="base" type="xsd:anyURI"&gt;
+  &lt;xsd:annotation&gt;
+   &lt;xsd:documentation&gt;See http://www.w3.org/TR/xmlbase/ for
+                     information about this attribute.&lt;/xsd:documentation&gt;
+  &lt;/xsd:annotation&gt;
+ &lt;/xsd:attribute&gt;
+ 
+ &lt;xsd:attribute name="id" type="xsd:ID"&gt;
+  &lt;xsd:annotation&gt;
+   &lt;xsd:documentation&gt;See http://www.w3.org/TR/xml-id/ for
+                     information about this attribute.&lt;/xsd:documentation&gt;
+  &lt;/xsd:annotation&gt;
+ &lt;/xsd:attribute&gt;
+
+ &lt;xsd:attributeGroup name="specialAttrs"&gt;
+  &lt;xsd:attribute ref="xml:base"/&gt;
+  &lt;xsd:attribute ref="xml:lang"/&gt;
+  &lt;xsd:attribute ref="xml:space"/&gt;
+  &lt;xsd:attribute ref="xml:id"/&gt;
+ &lt;/xsd:attributeGroup&gt;
+
+&lt;/xsd:schema&gt;</programlisting></para></detaileddescription></compounddef></doxygen>

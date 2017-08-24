@@ -1,0 +1,13 @@
+<doxygen><compounddef id="csv_serialize1.xq-example" kind="example"><detaileddescription><para><h3>Content of csv_serialize1.xq example</h3><programlisting type="example">(: Simple example of serializing xml to csv :)
+
+import module namespace csv = "http://zorba.io/modules/csv";
+
+csv:serialize(
+&amp;lt;row&amp;gt;
+  &amp;lt;column&amp;gt;f1&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;f2&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;f3&amp;lt;/column&amp;gt;
+  &amp;lt;column&amp;gt;f4&amp;lt;/column&amp;gt;
+&amp;lt;/row&amp;gt;, ())
+
+</programlisting></para></detaileddescription></compounddef></doxygen>

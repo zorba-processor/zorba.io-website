@@ -1,0 +1,10 @@
+<doxygen><compounddef id="head_status.xq-example" kind="example"><detaileddescription><para><h3>Content of head_status.xq example</h3><programlisting type="example">import module namespace http="http://www.zorba-xquery.com/modules/http-client";
+
+declare namespace exp="http://expath.org/ns/http-client";
+
+data(
+  http:head("http://zorbatest.lambda.nu:8080/cgi-bin/test-xml")/@status
+)
+
+
+</programlisting></para></detaileddescription></compounddef></doxygen>
